@@ -141,12 +141,12 @@
 <h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><p>什么是状态，当我们通过一个链接打开页面，会有资源请求的过程，资源包括哪些？HTML、CSS、JavaScript，页面相关的图片、文字、音视频等。当资源从服务器获取回来之后，就开始在浏览器窗口展现，这个展现的过程会对应不同状态，正在加载、加载完成，亦或是发生变化，这样的不同时机。</p>
 <p>知道了这些，我们可以在合适的时机做想做的事情。</p>
 <ul>
-<li>DOMContentLoaded</li>
+<li>DOMContentLoaded事件</li>
 </ul>
-<p>这个方法可按照字面意思理解和记忆，DOM内容已加载，什么是DOM内容，即HTML文档。所以，<strong>DOMContentLoaded事件的触发时机是初始的HTML文档被完全加载和解析完成之后</strong>，而无需等待样式表、图像和子框架的完全加载。简单示例如下：</p>
+<p>这个事件可按照字面意思理解和记忆，DOM内容已加载，什么是DOM内容，即HTML文档。所以，<strong>DOMContentLoaded事件的触发时机是初始的HTML文档被完全加载和解析完成之后</strong>，无需等待样式表、图像和子框架的完全加载。简单示例如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'DOMContentLoaded'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <ul>
-<li>load家族</li>
+<li>load事件家族</li>
 </ul>
 <p>之所以称家族，是因为load有正向、反向的过程和一个中间态。</p>
 <p>load：正向，<strong>整个页面及所有依赖资源如样式表和图片都已完成加载时，将触发load事件</strong>。简单示例如下：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="params">(event)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'page is fully loaded'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
@@ -169,12 +169,12 @@
 <li>offsetLeft，元素左边框外侧距离包含元素左边框内侧的像素数。</li>
 <li>offsetTop，元素上边框外侧距离包含元素上边框内侧的像素数。</li>
 </ul>
-<p>这里的偏移，是元素相对于计算的起点所产生的，在网页的坐标体系中，以左上角为基准，所以，offsetLeft 和 offsetTop，代表<strong>从元素的边框计算，距离包含元素的像素数</strong>。而 offsetWidth 和 offsetHeight 则是在位置基础上的宽高区域延展。</p>
-<p>它们都是只读的属性，有什么用途呢？举个典型的例子，一个方块，在一个区域内运动，怎样判断这个方块接触到边界呢，这些属性就能够派上用场。</p>
+<p>这里的偏移，是元素相对于计算的起点所产生的，在网页的坐标体系中，以左上角为基准，所以，offsetLeft 和 offsetTop，代表<strong>从元素的边框外侧计算，距离包含元素的像素数</strong>。而 offsetWidth 和 offsetHeight 则是在位置基础上的宽高区域延展。</p>
+<p>它们都是只读的属性，有什么用途呢？举个典型的例子，一个方块，在一个区域内运动，怎样判断这个方块接触到边界？接触边界并不会有什么事件发生，此时判断偏移量即可。</p>
 <h3 id="客户端尺寸"><a href="#客户端尺寸" class="headerlink" title="客户端尺寸"></a>客户端尺寸</h3><p>客户端尺寸只有两个相关属性：clientWidth和clientHeight。</p>
 <p>这个值可理解为元素本身所占的宽高，不包含margin、border、滚动条等，只包含内容及padding区域。</p>
 <h3 id="元素尺寸——getBoundingClientRect"><a href="#元素尺寸——getBoundingClientRect" class="headerlink" title="元素尺寸——getBoundingClientRect()"></a>元素尺寸——getBoundingClientRect()</h3><p>上面的内容已经涉及了元素的宽高和位置，这个方法用来干什么的呢？</p>
-<p>首先，client 并未涉及位置，而offset所涉及的位置又是相对父元素的。那么，如果想获取到元素相对于视口的位置该怎么办呢？</p>
+<p>首先，client 并未涉及位置，而offset所涉及的位置又是相对包含元素的。那么，如果想获取到元素相对于视口的位置该怎么办呢？</p>
 <p>浏览器在每个元素上都暴露了getBoundingClientRect()方法，该方法返回一个DOMRect对象，包含6个属性：left、top、right、bottom、height和width。这些属性给出了元素在页面中<strong>相对于视口</strong>的位置。</p>
 <p>如果想知道一个元素相对视口的位置，特别是动态情况下，可以借助此方法获取，然后再结合视口的宽高，元素的宽高，进行下一步的交互或样式变化即可。</p>
 <h3 id="滚动尺寸"><a href="#滚动尺寸" class="headerlink" title="滚动尺寸"></a>滚动尺寸</h3><p>前面介绍了一个“偏移”，这里的关键词就是“滚动”。</p>
@@ -187,13 +187,13 @@
 <p>这个用途就很广了，比如，我们可以通过判断元素滚动到了什么位置，设置不同的样式表现，常见的是头部固定，或者侧边菜单固定的效果。还可以在用户打开某个特定页面之后直接滚动到某个位置等。</p>
 <p>除了设置scroll位置的值之外，还可以使用scrollTo()方法进行滚动，但这脱离了DOM的范围，待后续文章再讨论。</p>
 <p>好的，到这里我们已经讨论了滚动相关的话题，但是，都是借助不同元素间的关系以及属性，通过计算判断得来的，还有个更新、更便利的方案。</p>
-<h2 id="区域滚动——scrollIntoView"><a href="#区域滚动——scrollIntoView" class="headerlink" title="区域滚动——scrollIntoView()"></a>区域滚动——scrollIntoView()</h2><p>DOM规范中没有涉及的一个问题是如何滚动页面中的某个区域，为填充这方面的缺失，不同浏览器实现了不同的控制滚动的方式，在所有这些专有方法中，HTML5选择了标准化scrollIntoView()。</p>
+<h2 id="区域滚动——scrollIntoView"><a href="#区域滚动——scrollIntoView" class="headerlink" title="区域滚动——scrollIntoView()"></a>区域滚动——scrollIntoView()</h2><p>DOM规范中没有涉及的一个问题是如何滚动页面中的某个区域，为填充这方面的缺失，不同浏览器实现了不同的控制滚动的方式，在所有方法中，HTML5选择了标准化scrollIntoView()。</p>
 <p>这个方法便利到什么程度呢？如果你想将一个id为box的元素滚动到与视口顶部对齐，只需要这样。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">div</span> id=<span class="string">'box'</span>&gt;</span><br><span class="line">  此区域滚动</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">const box = document.<span class="function"><span class="title">getElementById</span><span class="params">(<span class="string">'box'</span>)</span></span></span><br><span class="line">box.<span class="function"><span class="title">scrollIntoView</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
 <p>这里需要注意两点：</p>
-<p>1、容器可滚动，且DOM加载完成<br>2、剩余空间足够滚动到目标位置</p>
+<p>1、容器要可滚动，且DOM加载完成<br>2、剩余空间足够滚动到目标位置</p>
 <p>就能达到正确的效果。</p>
-<p>scrollIntoView()方法存在于所有HTML元素上，参数如下：</p>
+<p>scrollIntoView()方法存在于所有HTML元素上，具体参数如下：</p>
 <ul>
 <li><p>alignToTop，一个布尔值。</p>
 <p>true：窗口滚动后元素的顶部与视口顶部对齐。</p>
@@ -206,15 +206,15 @@
 </li>
 </ul>
 <p>两个参数皆为可选，但同时存在时Options不生效；不传参数等同于alignToTop为true。</p>
-<p>有了这个方法，将元素滚动到可视区的操作就变得异常简单了。</p>
+<p>有了这个方法，将元素滚动到可视区的操作就变得非常简单了。</p>
 <h2 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h2><p>HTML5允许给元素指定非标准的属性，即自定义属性，什么是标准属性，如：id、class、name、style、src等，非标准属性是什么，有什么用途？</p>
 <p>使用前缀data-命名的属性就是自定义属性，这些属性既不包含与渲染有关的信息，也不包含元素的语义信息。除了前缀，命名没有限制，data-后面跟什么都可以。</p>
 <p>主要用于在前端的元素上存储一些较为轻量的数据，以便交互时使用，从而不需要多次重复地获取。</p>
-<p>怎么用呢，可以通过元素的dataset属性来访问。dataset属性是一个DOMStringMap的实例，包含一组键/值对映射。元素的每个data-name属性在dataset中都可以通过data-后面的字符串作为键来访问。<br>（例如，属性data-myname、data-myName可以通过element.dataset.myname访问。</p>
+<p>怎么用呢，可以通过元素的dataset属性来访问。dataset属性是一个DOMStringMap的实例，包含一组键/值对。元素的每个data-name属性在dataset中都可以通过data-后面的字符串作为键来访问。<br>（例如，属性data-myname、data-myName可以通过element.dataset.myname访问。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">div</span> data-myname=<span class="string">'idea'</span> id=<span class="string">"myName"</span>&gt;&lt;/div&gt;</span><br><span class="line">const myName = document.<span class="function"><span class="title">getElementById</span><span class="params">(<span class="string">'myName'</span>)</span></span></span><br><span class="line">console.<span class="function"><span class="title">log</span><span class="params">(myName.dataset)</span></span></span><br></pre></td></tr></table></figure>
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a9d59d1daec949bb95b7bb22003c5677~tplv-k3u1fbpfcp-watermark.image?" alt="dataset.png"></p>
-<p>自定义属性在某种程度上增强了html结构的能力。</p>
-<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>事件是个大话题，会作为单独一篇文来讲，但事件和DOM是关联的，这里提一下。</p>
+<p>自定义属性在某种程度上增强了HTML结构的能力。</p>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>事件是个大话题，后面会作为单独一篇文来讲，但事件和DOM是关联的，这里提一下。</p>
 <p>事件是用户和网页交互的桥梁，需要一个“接口”进行连通，即绑定事件。</p>
 <p>如果要给一个按钮绑定点击事件，可以这样：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="keyword">type</span>=<span class="string">'button</span>' value=<span class="string">'click</span> me!' onclick=<span class="string">"console.log('clicked!')"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
 <p>可以这样：</p>
@@ -225,19 +225,19 @@
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.attachEvent(<span class="string">'onclick'</span>,<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'clicked'</span>)</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
 <p>通常情况下，为了处理兼容和复用，可以封装一个addHandler()方法，将所有代码都在这个方法中处理即可。当然了，现代框架会最大程度的帮开发者节省这些额外成本，很少需要自己再写兼容代码了。</p>
 <p>事件就聊这些，点到为止，下面介绍DOM中的最后一员大将。</p>
-<h2 id="节点观测——MutationObserver"><a href="#节点观测——MutationObserver" class="headerlink" title="节点观测——MutationObserver"></a>节点观测——MutationObserver</h2><p>MutationObserver是什么？概念上，它很接近事件。可以理解为当DOM发生变动会触发Mutation Observer事件。</p>
+<h2 id="节点观测——MutationObserver"><a href="#节点观测——MutationObserver" class="headerlink" title="节点观测——MutationObserver"></a>节点观测——MutationObserver</h2><p>MutationObserver是什么？概念上，它很接近事件，可以理解为当DOM发生变动会触发Mutation Observer事件。</p>
 <p>但是，它与事件有一个本质不同：事件是同步触发，也就是说DOM发生变动立刻会触发相应的事件；Mutation Observer是异步触发，DOM发生变动后并不会马上触发，而是等到当前所有DOM操作都结束后才触发。这样设计是为了应付DOM变动频繁的情况。</p>
-<p>使用MutationObserver可以观察整个文档、DOM树的一部分，或某个元素。还可以观察元素属性、子节点、文本，或者前三者任意组合的变化。</p>
+<p>使用MutationObserver可以观察整个文档、DOM树的一部分，或某个元素。还可以观察元素属性、子节点、文本。</p>
 <p>MutationObserver的实例要通过调用MutationObserver构造函数并传入一个回调函数来创建。</p>
-<p>新创建的MutationObserver实例不会关联DOM的任何部分。要把这个observer与DOM关联起来，需要使用observe()方法。这个方法接收两个必需的参数：要观察其变化的DOM节点，以及一个MutationObserverInit对象。</p>
+<p>新创建的MutationObserver实例不会关联DOM的任何部分。要与DOM关联起来，需要使用observe()方法。这个方法接收两个必需的参数：要观察的DOM节点，以及一个MutationObserverInit对象。</p>
 <p>MutationObserverInit对象用于控制观察哪些方面的变化，是一个键/值对形式配置选项的字典。</p>
 <p>每个回调都会收到一个MutationRecord实例的数组。MutationRecord实例包含的信息包括发生了什么变化，以及DOM的哪一部分受到了影响。因为回调执行之前可能同时发生多个满足观察条件的事件，所以每次执行回调都会传入一个包含按顺序入队的MutationRecord实例的数组。</p>
 <p>默认情况下，只要被观察的元素不被垃圾回收，MutationObserver的回调就会响应DOM变化事件，从而被执行。要提前终止执行回调，可以调用disconnect()方法。</p>
 <p>代码示例如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取目标节点</span></span><br><span class="line"><span class="keyword">const</span> targetNode = <span class="built_in">document</span>.getElementById(<span class="string">'ele'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置（需要观察什么变动）</span></span><br><span class="line"><span class="keyword">const</span> config = &#123; attributes: <span class="literal">true</span>, childList: <span class="literal">true</span>, subtree: <span class="literal">true</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变动时执行的回调</span></span><br><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">mutationsList, observer</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> mutation <span class="keyword">of</span> mutationsList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mutation.type === <span class="string">'childList'</span>) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (mutation.type === <span class="string">'attributes'</span>) &#123;</span><br><span class="line">           <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个观察器实例并传入回调函数</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> MutationObserver(callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上述配置开始观察目标节点</span></span><br><span class="line">observer.observe(targetNode, config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止观察</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure></p>
 <p>需要说明的是，可以通过多次调用observe()方法来复用一个MutationObserver对象观察多个不同的目标节点。这种情况下，MutationRecord的target属性可以标识发生变化事件的目标节点。</p>
 <p>说了这么多，它能用来干什么呢？举个大家熟悉的例子：Vue中的nextTick。</p>
-<p>大家知道，Vue中从数据变化到更新DOM需要过程，想要在DOM更新后执行某个动作，常用到nextTick 方法，而 MutationObserver 就可以实现这样的效果，所以MutationObserver是拿来实现nextTick的方法之一，为什么说之一，上面说过，框架会替开发者做很多工作，比如某功能的最优方案，次优方案，兼容方案等，考虑到MutationObserver的兼容性，还会使用其他替代方案来适配不支持的情况，这里不是重点，不再赘述。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是DOM篇的下半部分，聊了除了DOM节点关系和操作之外的能力，并没有介绍完全，但大体的轮廓已经显现，重要的是，我们理解DOM是什么，它和哪些东西有关联，我们想要一个效果，想做一个功能的时候，它能为我们提供什么。</p>
+<p>大家知道，Vue中从数据变化到更新DOM需要过程，想要在DOM更新后执行某个动作，常用到nextTick 方法，而 MutationObserver 就可以实现这样的效果，所以MutationObserver是拿来实现nextTick的方法之一，为什么说之一，上面说过，框架会替开发者做很多工作，比如某功能的最优方案，次优方案，兼容方案等，考虑到MutationObserver的兼容性，会使用其他替代方案来适配不支持的情况，这里不是重点，不再赘述。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是DOM篇的下半部分，聊到除DOM节点关系和操作之外的能力，并没有介绍完全，但大体的轮廓已经显现，重要的是，理解DOM是什么，它和哪些东西有关联，我们想要一个效果，想做一个功能的时候，它能为我们提供什么。</p>
 <p>它可以是文档，是视口，是容器，是元素，是内容，是接口，是关系，是信息，是工具…是什么完全由我们的需求而定。不论我们使用原生编程，框架编程，还是UI组件库编程，这一点都不会发生改变。</p>
 <p>DOM包含很多细节，是值得不断挖掘的宝藏，这两篇文算是开了个头，鉴于水平有限，也可能某些表达不精准，欢迎交流和指正。下篇见！~</p>
 
