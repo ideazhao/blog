@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-06-12</span></span>
+        <span class="attr">发布于：<span>2021-06-12</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -155,7 +155,7 @@
 <p>这个抽象、封装的过程，就是对象的“创建”。</p>
 <p>上篇文章，我们已经简要介绍了几种创建对象实例的方式，但最后一种class的方式并未深究，现在就来看看class的一些细节。</p>
 <h2 id="class的细节"><a href="#class的细节" class="headerlink" title="class的细节"></a>class的细节</h2><p>首先，我们把完整定义的代码再拿过来：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name,age,work)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.work = work</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> getName()&#123;     </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> setAge(newAge)&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = newAge;</span><br><span class="line">    &#125;</span><br><span class="line">    run()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">"会跑"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> sayName()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"say"</span>+<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以像这样创建实例：</span></span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"程序员"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以这样继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Man</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> man1 = <span class="keyword">new</span> Man(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"男程序员"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Person&#123;</span><br><span class="line">    <span class="constructor"><span class="keyword">constructor</span>(name,age,work)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.work = work</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> getName()&#123;     </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> setAge(newAge)&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = newAge;</span><br><span class="line">    &#125;</span><br><span class="line">    run()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">"会跑"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> sayName()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"say"</span>+<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以像这样创建实例：</span></span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"程序员"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以这样继承</span></span><br><span class="line"><span class="keyword">class</span> Man extends Person&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> man1 = <span class="keyword">new</span> Man(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"男程序员"</span>);</span><br></pre></td></tr></table></figure>
 <p>它有什么细节？</p>
 <p><strong>和构造函数的区别</strong></p>
 <ul>
@@ -170,7 +170,7 @@
 <p><strong>class继承</strong></p>
 <p>前面提到过class可使用extends实现继承，继承而来的类叫“派生类”。</p>
 <p>它可以继承任何拥有[[Construct]]和原型的对象，所以，它不仅可以继承类，还可以继承构造函数。即下面两种写法都是合法的，由此也做到了向后兼容。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">function <span class="type">Person</span>()&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> <span class="title">Person</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>&#123;</span>&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Person</span>&#123;</span>&#125;</span><br><span class="line"></span><br><span class="line">function <span class="type">Person</span>()&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> <span class="title">Person</span>&#123;</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>派生类都会通过原型链访问到类和原型上定义的方法。</p>
 <p>派生类的方法可以通过super关键字引用它们的原型。</p>
 <p>使用super的几个规则：</p>
@@ -185,7 +185,7 @@
 <p>引入可计算属性之前，如果想使用变量的值作为属性，必须先声明对象，然后使用中括号语法来添加属性。比如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nameKey = <span class="string">"name"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person[nameKey] = <span class="string">'idea'</span>;</span><br></pre></td></tr></table></figure>
 <p>有了可计算属性就可以这样写：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    [<span class="meta">nameKey</span>] :<span class="string">'idea'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    [nameKey] :<span class="string">'idea'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>区别就在于能不能在字面量中使用，中括号包围的对象属性键告诉运行时将其作为JavaScript表达式而不是字符串。</p>
 <p>既然是表达式，就不仅仅是变量这么简单，还可以更复杂，比如调用函数，把返回结果作为键等，具体不赘述。</p>
 <h3 id="操作干涉"><a href="#操作干涉" class="headerlink" title="操作干涉"></a>操作干涉</h3><p>不论是访问属性，调用方法，还是继承，我们都是在使用对象，在多数场景中，这就够了，那是否可以在更底层去做点文章呢？有没有应用场景？</p>
@@ -193,10 +193,10 @@
 <p><strong>defineProperty</strong></p>
 <p>通过字面理解，“定义属性”，就知道它可以用来定义已知对象的属性。</p>
 <p>它接收三个参数“要添加属性的对象、属性的名称和一个描述符对象”，仍以上面的对象为例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person,<span class="string">'name'</span>,&#123;</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    value:<span class="string">'idea'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;&#125;</span><br><span class="line">Object.defineProperty(person,<span class="string">'name'</span>,&#123;</span><br><span class="line">    writable:<span class="keyword">true</span>,</span><br><span class="line">    <span class="keyword">value</span>:<span class="string">'idea'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>对象是person，定义了一个可写，值为“idea”的属性name。</p>
 <p>不急着往下看，就看看这个writable，如果设置为false会是什么效果。</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object.defineProperty(person,<span class="string">'name'</span>,&#123;</span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line">person.<span class="built_in">name</span> = <span class="string">"lili"</span></span><br><span class="line">console.<span class="built_in">log</span>(person.<span class="built_in">name</span>)  <span class="comment">//’idea‘</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(person,<span class="string">'name'</span>,&#123;</span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line">person.name = <span class="string">"lili"</span></span><br><span class="line"><span class="built_in">console</span>.log(person.name)  <span class="comment">//’idea‘</span></span><br></pre></td></tr></table></figure>
 <p>非严格模式下，writable为false的属性，赋值行为会被忽略，而严格模式下会直接报错。</p>
 <p>那么自然会想到，当用 new 运算或者字面量形式创建的对象，并非没有对属性的特性进行描述，而是有相应的默认值。</p>
 <p>像这种跟数据属性相关的，可称为“数据属性”，或者它更像一种配置。</p>
@@ -212,7 +212,7 @@
 <p>访问器属性不包含数据值。而是包含一个获取（getter）函数和一个设置（setter）函数，不过这两个函数不是必需的。</p>
 <p>在读取访问器属性时，会调用getter函数，返回一个有效的值。在写入访问器属性时，会调用setter函数并传入新值，这个函数必须决定对数据做出什么修改。</p>
 <p>访问器属性依然有四个特性，其中“Configurable、Enumerable”同数据属性一样，不再赘述，就说下<br>getter 和 setter。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    age_:<span class="number">16</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person,<span class="string">'age'</span>,&#123;</span><br><span class="line">    <span class="keyword">get</span>()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.age_)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(newAge)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.age &gt; <span class="number">18</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"可正常访问"</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"未成年，不可访问"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">person.age <span class="comment">//16</span></span><br><span class="line">person.age = <span class="number">10</span> <span class="comment">// '未成年，不可访问'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    age_:<span class="number">16</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person,<span class="string">'age'</span>,&#123;</span><br><span class="line">    <span class="keyword">get</span>()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.age_)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(newAge)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.age &gt; <span class="number">18</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"可正常访问"</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"未成年，不可访问"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">person.age <span class="comment">//16</span></span><br><span class="line">person.age = <span class="number">10</span> <span class="comment">// '未成年，不可访问'</span></span><br></pre></td></tr></table></figure>
 <p>可以看出，在访问对象属性的时候，进了get方法，打印了年龄数据，设置年龄值的时候，进入了set方法，因为age小于18，输出了“未成年，不可访问”。</p>
 <p>通常情况下，这两个方法是不需要用到的，但既然可以进入到访问或赋值的环节，就能在其中加一些额外的操作来达到自己的目的，比如监听数据变化渲染内容等。</p>
 <p>以上便是关于defineProperty对对象的一些操作了。</p>
@@ -222,18 +222,18 @@
 <p>目标对象既可以直接被操作，也可以通过代理来操作，默认情况下，在代理对象上执行的所有操作都会无障碍地传播到目标对象。因此，在任何可以使用目标对象的地方，都可以通过同样的方式来使用与之关联的代理对象。<strong>在对目标对象的各种操作影响目标对象之前，可以在代理对象中对这些操作加以控制</strong>。</p>
 <p>代理是使用Proxy构造函数创建的。接收两个参数：目标对象和处理程序对象。缺少其中任何一个参数都会抛出TypeError。</p>
 <p>使用代理的主要目的是可以定义捕获器，也就是基本操作的拦截器。简单示例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;</span><br><span class="line">    name:<span class="string">'idea'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> handler = &#123;</span><br><span class="line">    <span class="keyword">get</span>()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'hello idea'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target,handler)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(target.name)  <span class="comment">//'idea'</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy.name)   <span class="comment">//'hello idea'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">target</span> = &#123;</span><br><span class="line">    name:'idea'</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">handler</span> = &#123;</span><br><span class="line">    get()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'hello idea'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> Proxy(<span class="keyword">target</span>,<span class="keyword">handler</span>)</span><br><span class="line"></span><br><span class="line">console.log(<span class="keyword">target</span>.name)  <span class="comment">//'idea'</span></span><br><span class="line">console.log(proxy.name)   <span class="comment">//'hello idea'</span></span><br></pre></td></tr></table></figure>
 <p>所有捕获器都可以访问相应的参数，基于这些参数可以改变被捕获方法的原始行为。</p>
 <p>我们将上面的代理对象改造一下。</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = &#123;</span><br><span class="line">    <span class="comment">//trapTarget : 目标对象</span></span><br><span class="line">    <span class="comment">//property : 属性</span></span><br><span class="line">    <span class="comment">//recevier : 代理对象</span></span><br><span class="line">    get(trapTarget,<span class="keyword">property</span><span class="string"></span>,recevier)&#123;</span><br><span class="line">        <span class="keyword">return</span> trapTarget[<span class="keyword">property</span><span class="string">]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(proxy.name) <span class="comment">//'idea'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const handler = &#123;</span><br><span class="line">    //trapTarget : 目标对象</span><br><span class="line">    //<span class="keyword">property</span><span class="title"> </span>: 属性</span><br><span class="line">    //recevier : 代理对象</span><br><span class="line">    get(trapTarget,<span class="keyword">property</span><span class="title"></span>,recevier)&#123;</span><br><span class="line">        return trapTarget[<span class="keyword">property</span><span class="title"></span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(proxy.name) //'idea'</span><br></pre></td></tr></table></figure>
 <p>可以看到，我们在捕获器中返回了目标对象的属性，这就改变了代理对象的返回值，这只是一种现象，但它的强大，正是基于此可添加的“自定义行为”，或者“重建”。</p>
 <p>所有捕获器都可以基于自己的参数重建原始操作，但并非所有捕获器行为都像get()那么简单。因此，通过手动写码的想法是不现实的。实际上，开发者并不需要手动重建原始行为，而是可以通过调用全局Reflect对象上（封装了原始行为）的同名方法来轻松重建。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = &#123;</span><br><span class="line">    <span class="keyword">get</span>(trapTarget,property,recevier)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(...arguments)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(proxy.name) <span class="comment">//idea</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = &#123;</span><br><span class="line">    <span class="built_in">get</span>(trapTarget,property,recevier)&#123;</span><br><span class="line">        <span class="keyword">return</span> Reflect.<span class="built_in">get</span>(...arguments)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span>(proxy.name) <span class="comment">//idea</span></span><br></pre></td></tr></table></figure>
 <p>基于上面那段代码，把return改了一下，效果是一样的。</p>
 <p>再进一步，甚至可以写成这样：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = &#123;</span><br><span class="line">    <span class="built_in">get</span>:Reflect.<span class="built_in">get</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> handler = &#123;</span><br><span class="line">    <span class="keyword">get</span>:Reflect.<span class="keyword">get</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最“过分”的，如果想创建一个可以捕获所有方法，然后将每个方法转发给对应反射API的空代理，甚至不需要定义处理程序对象。这样写就可以了：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const<span class="built_in"> proxy </span>= new Proxy(target,Reflect)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target,<span class="built_in">Reflect</span>)</span><br></pre></td></tr></table></figure>
 <p>所以，代理和反射通常是成对出现的，也可以见识到它们能够发挥的作用了。</p>
 <h2 id="对象的操作"><a href="#对象的操作" class="headerlink" title="对象的操作"></a>对象的操作</h2><p>相比创建和继承，或者很少涉及的底层干预，实际编码中更高频的是对对象的操作。</p>
 <p>比如：访问属性、调用方法、迭代、拷贝对象、合并对象等。先简单介绍几个。</p>
@@ -243,14 +243,14 @@
 <p>相应的，它们会返回一个由给定对象的自身可枚举属性、值、键值对组成的数组，然后可进行迭代操作。</p>
 <p><strong>解构</strong></p>
 <p>过去，如果我们想拿到对象的某个属性赋给另一个变量，需要这么干。</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mike = &#123;</span><br><span class="line">   <span class="built_in"> name</span>: <span class="string">'mike'</span>,</span><br><span class="line">    age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span><span class="built_in"> name</span> = mike<span class="built_in">.name</span></span><br><span class="line"><span class="keyword">let</span> age = mike.age</span><br></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mike = &#123;</span><br><span class="line">    name: <span class="string">'mike'</span>,</span><br><span class="line">    age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> name = mike.name</span><br><span class="line"><span class="keyword">let</span> age = mike.age</span><br></pre></td></tr></table></figure>
 <p>现在只需要这么干。</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;name, age&#125; = <span class="keyword">node</span><span class="title">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;name, age&#125; = <span class="keyword">node</span><span class="identifier"></span><span class="title">;</span></span><br></pre></td></tr></table></figure>
 <p>解构时，变量名可以不同，可以给默认值，也可以嵌套解构等，这里不赘述。</p>
 <p><strong>合并</strong></p>
 <p>合并另个对象可以怎么做？可以遍历赋值，但不够简洁。现在可以这么做：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> target = &#123;&#125;</span><br><span class="line"><span class="built_in">let</span> <span class="built_in">source</span> = &#123;&#125;</span><br><span class="line">Object.assign(target, <span class="built_in">source</span>);</span><br></pre></td></tr></table></figure>
-<p>还可以使用展开运算符。<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = &#123;<span class="params">...</span>target,<span class="params">...</span>source&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还可以使用展开运算符。<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="decorator">&#123;...target,...source&#125;</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>冻结、封闭</strong></p>
 <p>ES6之后还添加了一些方法用来保护对象不被不明行为或恶意破坏。</p>
 <p>Object.seal()</p>
@@ -272,7 +272,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -332,7 +332,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2019-05-22</span></span>
+        <span class="attr">发布于：<span>2019-05-22</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#CSS、蒙版" title="CSS、蒙版">CSS、蒙版</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -164,7 +164,7 @@
 <p><img src="/img/css_clippath/cp04.png" alt=""></p>
 <p>对，它被一个rect（矩形）裁剪了。</p>
 <p>显然，我们需要的不是矩形，但这样一个功能告诉我们，它可以做到，只要我们把图形形状改变一下即可。</p>
-<p>SVG用<polygon>实现多边形，加上如下代码：</polygon></p>
+<p>SVG用<polygon></polygon>实现多边形，加上如下代码：</p>
 <pre><code>&lt;clipPath id=&quot;clipPath&quot;&gt;
 &lt;polygon points=&quot;40 20, 50 40, 50 50, 20 60&quot;&gt;&lt;/polygon&gt;
 &lt;/clipPath&gt;
@@ -193,7 +193,7 @@ clip-path: polygon(50% 0%, 100% 8%, 100% 90%, 50% 100%, 0% 90%, 0% 8%);
 <p>你肯定关心它的兼容性怎样</p>
 <p><img src="/img/css_clippath/cp09.png" alt=""></p>
 <p>看起来好像没那么好，但考虑到不同产品在平台上需要适配的浏览器范围（移动端为主），以及部分浏览器可加前缀进行兼容，还是可以试用的。这里只是个例，如果你想，可以把形状做成“任何”你想要的！~</p>
-<p>当然，类似这种代码，纯靠手写计算是痛苦的，推荐个工具：<a href="https://bennettfeely.com/clippy" target="_blank" rel="noopener">https://bennettfeely.com/clippy</a></p>
+<p>当然，类似这种代码，纯靠手写计算是痛苦的，推荐个工具：<a href="https://bennettfeely.com/clippy" target="_blank" rel="external">https://bennettfeely.com/clippy</a></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这里的多边形蒙版只是不规则图形在网页中应用的一种，也并不是刚出的新东西，但往往一个新东西出来之后我们很长时间都找不到它跟实际需求的结合点在哪里，似乎都只存在于花里胡哨的demo里，恰巧，这就是个实际的例子，当然还有很多其他图形存在的可能。</p>
 <p>网页元素的多样化，一直在反推技术不断向前发展，新属性/技能的出现，也为开发者提供了很多便利，还是要保持学习、保持思考，才能解锁更多技能~</p>
 
@@ -206,7 +206,7 @@ clip-path: polygon(50% 0%, 100% 8%, 100% 90%, 50% 100%, 0% 90%, 0% 8%);
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -266,7 +266,7 @@ clip-path: polygon(50% 0%, 100% 8%, 100% 90%, 50% 100%, 0% 90%, 0% 8%);
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

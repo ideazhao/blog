@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-12-12</span></span>
+        <span class="attr">发布于：<span>2021-12-12</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#TypeScript" title="TypeScript">TypeScript</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -137,7 +137,7 @@
 <p>你可能会说，不对，JavaScript中也有函数类型——Function，的确，但严格来说它不是独立的类型，属于Object，而且这个function的约束仅仅在于“是不是函数”、“能不能被合法调用”，除此之外，别无它用，而TypeScript显然需要更多。</p>
 <p>更多的什么？函数体是不会被限制的，因为它对外部来说就是个黑盒，须给予充分的自由度，那么开发者就只需要关心“入参”和“返回值”。</p>
 <h2 id="TypeScript中的函数"><a href="#TypeScript中的函数" class="headerlink" title="TypeScript中的函数"></a>TypeScript中的函数</h2><p>看函数类型之前，先看TypeScript中是怎么定义函数的。</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span></span> add(a:<span class="keyword">number</span>,b:<span class="keyword">number</span>):<span class="keyword">number</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a:number,b:number)</span><span class="type">:number</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这就是一个简单、完整，带类型限制的函数。</p>
 <p>哪些限制，我们可以想一想，在JavaScript中：</p>
 <ul>
@@ -152,7 +152,7 @@
 <p>你可能又会问，TypeScript这种限制是否过于死板？如果有一个函数，它需要允许不同情况传不同的参数，有解？有。</p>
 <p><strong>可选参数</strong></p>
 <p>比如，登录功能，我们需要用户输入用户名、密码，可选地输入年龄，就可以这样定义。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">name:<span class="built_in">string</span>,password:<span class="built_in">string</span>,age?:<span class="built_in">number</span></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//登录逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">function</span> <span class="tag">login</span>(<span class="attribute">name</span>:string,<span class="attribute">password</span>:string,age?:number)&#123;</span><br><span class="line">    <span class="comment">//登录逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>只需要在参数名称后加个‘？‘，就可以实现可选参数的定义，这个参数可传可不传，不会导致编译错误。</p>
 <p>但有一点需要注意，可选参数只能跟在常规参数的后面，放前面同样会报错。</p>
 <p>除此之外，跟ES6类似，TypeScript中也有默认参数、剩余参数的概念，此处不再赘述。</p>
@@ -171,12 +171,12 @@
 <p>那么问题来了，TypeScript中怎样给addFunc定义类型？你可能想，数字是number，字符串是string，函数就是这样：</p>
 <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> addFunc:<span class="function"><span class="keyword">function</span> =</span> add</span><br></pre></td></tr></table></figure>
 <p>但这是不行的，TypeScript的编译时类型并没有function，此时该“函数类型”登场了。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> add = <span class="function">(<span class="params">a:<span class="built_in">number</span>,b:<span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type <span class="built_in">add</span> = (<span class="operator">a</span>:<span class="built_in">number</span>,b:<span class="built_in">number</span>) =&gt; <span class="built_in">number</span></span><br></pre></td></tr></table></figure>
 <p>它由”type”关键字和一个类似“函数表达式”的东西构成。</p>
 <p>type代表定义一个类型，后面的表达式包含了“名称”，“参数列表”，“参数类型”和“返回值类型”。</p>
 <p>函数类型其实就是 (a:number,b:number) =&gt; number 这么一段，’add‘是类型别名。</p>
 <p>这样以来，上面的赋值就可以写成这样：    </p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> addFunc:<span class="keyword">add</span> = <span class="keyword">add</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let addFunc:<span class="keyword">add</span> = <span class="keyword">add</span></span><br></pre></td></tr></table></figure>
 <p>是不是一下清晰了。</p>
 <p>为什么用 type 标识，而不是 let、var、const，因为它只是代表一个类型，不是常量，也不是变量，并且编译完成后是会被“干掉”的。</p>
 <p>那它的实际作用又是什么？只用来指定函数变量的类型？这就涉及到上面所列的最后一点了。</p>
@@ -185,7 +185,7 @@
 <h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p>重载是JavaScript中没有的概念，重载函数常用来实现功能类似而所处理的数据类型不同的问题。简单理解就是“一函多用”。JavaScript中的同名函数只会被覆盖。</p>
 <p>TypeScript中多个类型不同但名字相同的函数被称为函数重载。</p>
 <p>和其他语言不同的是，TypeScript中重载的函数不能包含自己的函数体，而只能共用一个实现函数的函数体。示例如下：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a:<span class="built_in">number</span>,b:<span class="built_in">number</span></span>):<span class="title">number</span></span>;  <span class="comment">//加法运算</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a:<span class="built_in">string</span>,b:<span class="built_in">string</span></span>):<span class="title">string</span></span>;  <span class="comment">//字符串拼接</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x:<span class="built_in">any</span>,b:<span class="built_in">any</span></span>):<span class="title">any</span>(<span class="params">   </span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">return</span> x + y  <span class="comment">//加法或字符串拼接的实现</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a:number,b:number)</span><span class="type">:number</span></span>;  <span class="comment">//加法运算</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(a:string,b:string)</span><span class="type">:string</span></span>;  <span class="comment">//字符串拼接</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(x:any,b:any)</span><span class="type">:any</span><span class="params">(   </span><br><span class="line">    return x + y  <span class="comment">//加法或字符串拼接的实现</span></span><br><span class="line">)</span></span></span><br></pre></td></tr></table></figure>
 <p>以上函数重载实现了一个，既能执行数字相加，也能执行字符串拼接的add方法，如果你想，还能做更多。</p>
 <p>但在实现函数的重载时，不是没有任何限制，需遵守以下三个规则：</p>
 <p>（1）实现函数和重载函数必须同名；<br>（2）实现函数的类型必须兼容于任何一个重载函数的类型；<br>（3）重载函数和实现函数之间不能有其他代码。</p>
@@ -203,7 +203,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -263,7 +263,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

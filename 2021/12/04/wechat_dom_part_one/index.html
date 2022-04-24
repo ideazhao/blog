@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-12-04</span></span>
+        <span class="attr">发布于：<span>2021-12-04</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -172,7 +172,7 @@
 <h3 id="文档写入"><a href="#文档写入" class="headerlink" title="文档写入"></a>文档写入</h3><p>document对象有一个古老的已经不太常用的能力，即向网页写入内容。对应4个方法：write()、writeln()、open()和close()。</p>
 <p>其中，write()和writeln()方法都接收一个字符串参数，可以将字符串写入网页中。write()简单地写入文本，而writeln()还会在字符串末尾追加一个换行符（\n）。这两个方法可以用来在页面加载期间动态添加内容。如果想用脚本最快地在浏览器输出点什么，write()是首选。</p>
 <p>但有一点需要注意，在页面渲染期间可以通过document.write()向文档输出内容，但如果<strong>在页面加载完之后再调用document.write()，输出的内容会重写整个页面</strong>，比如onload事件的回调函数中，要格外小心。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.<span class="function"><span class="title">write</span><span class="params">(<span class="string">'hello world'</span>)</span></span></span><br></pre></td></tr></table></figure>
 <p>聊完全局，来看看具体的节点。</p>
 <h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2><p>每个页面都是个元素树，由很多节点组成，所有节点类型都继承Node类型，都共享基本属性和方法。</p>
 <h3 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h3><p>每个节点都有自己的类型归属，比如：元素节点、文本节点，类型值nodeType和常用节点类型对应关系如下：</p>
@@ -183,14 +183,14 @@
 <li>注释：8</li>
 </ul>
 <p>可以通过如下代码，拿到页面中一个div的节点类型：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> div = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</span><br><span class="line">div.nodeType  <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">div</span> = document.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">div</span>.nodeType  <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
 <p>需要注意的是，空格和换行也会被算作节点当中，被当做文本节点处理。</p>
 <p>除了nodeType，nodeName 与 nodeValue也可以用来对节点进行更具体的查询，只是并不总返回合理的值，最好先对节点类型做判断再进行操作。</p>
 <h3 id="节点关系"><a href="#节点关系" class="headerlink" title="节点关系"></a>节点关系</h3><p><strong>子节点</strong></p>
 <p>childNodes是元素子节点的集合，每个节点都有一个childNodes，包含一个NodeList的实例。NodeList是一个类数组对象，用于存储可以按位置存取的有序节点。</p>
 <p>NodeList对象独特的地方在于它是一个对DOM结构的查询，因此<strong>DOM结构的变化会自动地在NodeList中反映出来</strong>。</p>
 <p>可以使用两种方式访问nodeList中的元素——中括号、item()。</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">firstChild</span> = parent.childNodes[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">firstChild</span> = parent.childNodes.item(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let firstChild = parent<span class="class">.childNodes</span>[<span class="number">0</span>]</span><br><span class="line">let firstChild = parent<span class="class">.childNodes</span><span class="class">.item</span>(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 <p>多数开发者倾向于使用中括号，更像访问数组项。</p>
 <p><strong>父节点</strong></p>
 <p>每个节点都有一个parentNode属性，指向其DOM树中的父元素。</p>
@@ -241,7 +241,7 @@
 <h3 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h3><p>有时候，我们需要遍历子元素并对其进行操作，每个元素都可以拥有任意多个子元素和后代元素，元素本身也可以是其他元素的子元素。</p>
 <p>而childNodes属性包含元素所有的子节点，可能是其他元素、文本节点、注释或处理指令。不同浏览器在识别这些节点时的表现有明显不同。</p>
 <p>如下一个经典示例：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;ul&gt;</span></span><br><span class="line">    <span class="tag">&lt;li&gt;</span><span class="tag">&lt;/li&gt;</span></span><br><span class="line">    <span class="tag">&lt;li&gt;</span><span class="tag">&lt;/li&gt;</span></span><br><span class="line">    <span class="tag">&lt;li&gt;</span><span class="tag">&lt;/li&gt;</span></span><br><span class="line"><span class="tag">&lt;/ul&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在解析以上代码时，ul元素会包含7个子元素，3个是li元素，还有4个Text节点（li元素周围的空格）。如果把元素之间的空格删掉，则所有浏览器都会返回同样数量的子节点。</p>
 <p>这种情况下操作元素节点，过往我们要通过nodeType判断一次节点的类型，然后再进行后续操作。</p>
 <p>现在有两个新的选择；</p>
@@ -267,34 +267,34 @@
 <li>创建——createElement()</li>
 </ul>
 <p>最常用的创建DOM是创建元素，像这样：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newNode = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let newNode = document.<span class="function"><span class="title">createElement</span><span class="params">(<span class="string">'div'</span>)</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>尾部增——appendChild()</li>
 </ul>
 <p>在childNodes列表末尾添加节点，appendChild()方法返回新添加的节点。</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.appendChild(<span class="keyword">new</span><span class="type">Node</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.<span class="function"><span class="title">appendChild</span><span class="params">(newNode)</span></span></span><br></pre></td></tr></table></figure>
 <p>需要注意的是，<strong>如果把文档中已经存在的节点传给appendChild()，则这个节点会从之前的位置转移到新位置，即一个节点不会在文档中同时出现在多个地方</strong>。</p>
 <ul>
 <li>前增——insertBefore()</li>
 </ul>
 <p>如果想把节点放到childNodes中的特定位置而不是末尾，可以使用insertBefore()方法。这个方法接收两个参数：要增加的节点和参照节点。调用这个方法后，要增加的节点会变成参照节点的前一个同胞节点，并被返回。</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.insertBefore(<span class="keyword">new</span><span class="type">Node</span>,targetNode)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.<span class="function"><span class="title">insertBefore</span><span class="params">(newNode,targetNode)</span></span></span><br></pre></td></tr></table></figure>
 <p>既然有前增，怎么实现后增呢？这也是一道经典面试题哦~</p>
 <ul>
 <li>替换——replaceChild()</li>
 </ul>
 <p>appendChild()和insertBefore()在插入节点时不会删除任何已有节点。相对地，replaceChild()方法接收两个参数：要插入的节点和要替换的节点。要替换的节点会被返回并从文档树中完全移除，要插入的节点会取而代之。</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.replaceChild(<span class="keyword">new</span><span class="type">Node</span>,targetNode)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.<span class="function"><span class="title">replaceChild</span><span class="params">(newNode,targetNode)</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>移除——removeChild()</li>
 </ul>
 <p>要移除节点而不是替换节点，可以使用removeChild()方法。这个方法接收一个参数，即要移除的节点。被移除的节点会被返回。</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">resNode</span> = parentNode.removeChild(oldNode)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = parentNode.<span class="function"><span class="title">removeChild</span><span class="params">(oldNode)</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>克隆——cloneNode()</li>
 </ul>
 <p>所有节点类型还共享了两个方法。第一个是cloneNode()，会返回与调用它的节点一模一样的节点。cloneNode()方法接收一个布尔值参数，表示是否深复制。在传入true参数时，会进行深复制，即复制节点及其整个子DOM树。如果传入false，则只会复制调用该方法的节点。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> resNode = targetNode.cloneNode(<span class="literal">true</span>)  <span class="comment">//深复制目标节点</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let resNode = targetNode.<span class="function"><span class="title">cloneNode</span><span class="params">(true)</span></span>  <span class="comment">//深复制目标节点</span></span><br></pre></td></tr></table></figure>
 <p>ps：cloneNode()方法不会复制添加到DOM节点的JavaScript属性，比如事件处理程序，只复制HTML属性，以及可选地复制子节点，除此之外则一概不会复制。</p>
 <ul>
 <li>normalize()</li>
@@ -306,7 +306,7 @@
 </ul>
 <p>讲到这里，你会发现以上操作比较适合单个特定元素，而不适合批量操作，相比先创建一堆节点，再把它们以正确的顺序连接起来，直接插入一个HTML字符串要简单（快速）得多，即innerHTML属性。</p>
 <p>浏览器在读取innerHTML属性时，会返回元素所有后代的HTML字符串，包括元素、注释和文本节点。在写入innerHTML时，则会根据提供的字符串值以新的DOM子树替代元素中原来包含的所有节点。</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newNode = document.createElement(<span class="comment">'div')</span></span><br><span class="line">newNode.innerHTML = <span class="comment">'<span class="doctag">&lt;div&gt;</span><span class="doctag">&lt;header&gt;</span><span class="doctag">&lt;/header&gt;</span><span class="doctag">&lt;div&gt;</span><span class="doctag">&lt;/div&gt;</span><span class="doctag">&lt;footer&gt;</span><span class="doctag">&lt;/footer&gt;</span><span class="doctag">&lt;/div&gt;</span>'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newNode = document.createElement(<span class="comment">'div')</span></span><br><span class="line">newNode.innerHTML = <span class="comment">'<span class="xmlDocTag">&lt;div&gt;</span><span class="xmlDocTag">&lt;header&gt;</span><span class="xmlDocTag">&lt;/header&gt;</span><span class="xmlDocTag">&lt;div&gt;</span><span class="xmlDocTag">&lt;/div&gt;</span><span class="xmlDocTag">&lt;footer&gt;</span><span class="xmlDocTag">&lt;/footer&gt;</span><span class="xmlDocTag">&lt;/div&gt;</span>'</span></span><br></pre></td></tr></table></figure>
 <p>在写入模式下，赋给innerHTML属性的值会被解析为DOM子树，并替代元素之前的所有节点。</p>
 <p>所赋的值默认为HTML，其中的所有标签都会以浏览器处理HTML的方式转换为元素，如果赋值中不包含任何HTML标签，则直接生成一个文本节点。</p>
 <p>优点：这种方法的优势在插入大量html更便捷，HTML解析器在浏览器中是底层代码（通常是C++），比JavaScript快得多。</p>
@@ -318,10 +318,10 @@
 <p>我们将其归为两类——修改属性，修改样式。</p>
 <p>其实样式也是属性之一，但从操作目的上二者略微不同。</p>
 <p>先说样式，元素的样式可以是外部样式表的，也可以是行内的，如果是外部样式，通常通过操作class来改变，就是上文提到的classList，如果是行内，则通过style属性，大体是这样：</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> div = document.getElementsByTagName(<span class="string">"div"</span>)[<span class="number">0</span>];</span><br><span class="line">    div.<span class="built_in">style</span>.<span class="built_in">width</span>=<span class="string">"100px"</span>;</span><br><span class="line">    div.<span class="built_in">style</span>.<span class="built_in">height</span>=<span class="string">"100px"</span>;</span><br><span class="line">    div.<span class="built_in">style</span>.backgroundColor=<span class="string">"red"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="keyword">div</span> = document.getElementsByTagName(<span class="variable">"div"</span>)[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">div</span>.style.width=<span class="variable">"100px"</span>;</span><br><span class="line">    <span class="keyword">div</span>.style.height=<span class="variable">"100px"</span>;</span><br><span class="line">    <span class="keyword">div</span>.style.backgroundColor=<span class="variable">"red"</span>;</span><br></pre></td></tr></table></figure>
 <p>先拿到目标节点，然后通过点操作法更改具体的样式，需要注意的是，在css中使用分割线“-”表示的属性，这里要换成驼峰式大小写（示例中的backgroundColor）。</p>
 <p>如果是一次性批量改多个，还可以使用<strong>cssText</strong>属性，相对较快捷。</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.<span class="built_in">style</span>.cssText = '<span class="built_in">width</span>:100px;<span class="built_in">height</span>:100px;backgroud-<span class="built_in">color</span>:red'</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="class">.style</span><span class="class">.cssText</span> = <span class="string">'width:100px;height:100px;backgroud-color:red'</span></span><br></pre></td></tr></table></figure>
 <p>但是，style有个缺陷，在读状态下，它只能拿到行内样式，无法拿到真实表现的样式。什么是真实表现？即元素受多种来源样式规则影响所呈现出的样子。</p>
 <p>有个方法可以帮我们做到这一点——getComputedStyle，这是个挂在全局的方法，使用方式如下：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getComputedStyle</span><span class="params">(ele,<span class="string">'可选参数'</span>)</span></span></span><br></pre></td></tr></table></figure>
@@ -333,11 +333,11 @@
 <li>点操作法</li>
 </ul>
 <p>普通属性也是属性，所以可以用点操作法，比如我们拿到了一个输入框元素，将其设置为禁用状态，就可以这样。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ipt = <span class="built_in">document</span>.querySelector(<span class="string">'ipt'</span>)</span><br><span class="line">    ipt.disabled = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let ipt = document.<span class="function"><span class="title">querySelector</span><span class="params">(<span class="string">'ipt'</span>)</span></span></span><br><span class="line">    ipt<span class="class">.disabled</span> = true</span><br></pre></td></tr></table></figure>
 <ul>
 <li>get/set方法</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ipt = <span class="built_in">document</span>.querySelector(<span class="string">'ipt'</span>)</span><br><span class="line">    ipt.getAttribute(<span class="string">'disabled'</span>)  <span class="comment">// false</span></span><br><span class="line">    ipt.setAttribute(<span class="string">'disabled'</span>,<span class="literal">true</span>)</span><br><span class="line">    ipt.getAttribute(<span class="string">'disabled'</span>)  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let ipt = document.<span class="function"><span class="title">querySelector</span><span class="params">(<span class="string">'ipt'</span>)</span></span></span><br><span class="line">    ipt.<span class="function"><span class="title">getAttribute</span><span class="params">(<span class="string">'disabled'</span>)</span></span>  <span class="comment">// false</span></span><br><span class="line">    ipt.<span class="function"><span class="title">setAttribute</span><span class="params">(<span class="string">'disabled'</span>,true)</span></span></span><br><span class="line">    ipt.<span class="function"><span class="title">getAttribute</span><span class="params">(<span class="string">'disabled'</span>)</span></span>  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>内容够多了，但这也仅是完整DOM体系的冰山一角，文中列一些常见、常用的罢了。</p>
 <p>本文标题是强大的DOM，因为网页上几乎所有东西都跟它相关，掌握了它，就相当于把住了网页的“脉”，需要什么元素，应该以怎样的方式去更改元素，怎样拿到特定元素所包含的数据和具备的能力，怎样更友好地和网页交互，都建立在对DOM的深入掌握之上的。</p>
 <p>哪怕现今的编程倾向于框架化、模板化，数据驱动，也不能包含一切，框架没有的能力怎么办？我们想使用组件库中某个特定的能力怎么办？往上追溯都能看到一些DOM的影子，它就是根基。</p>
@@ -352,7 +352,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -412,7 +412,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2014-08-16</span></span>
+        <span class="attr">发布于：<span>2014-08-16</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -150,7 +150,7 @@
 <h2 id="二、可重用css"><a href="#二、可重用css" class="headerlink" title="二、可重用css"></a>二、可重用css</h2><p>上面两点提到的是针对一个项目里面可以怎样去构思优化，这个就是又多些考虑了，哪些可以重用呢？还真有不少，比如：居中、浮动、清除浮动、清除默认样式，如果更细致一些的话，还可以到字体类型，字体大小，控制元素的显示或隐藏，一段固定高度的空白等等，但我个人认为，也不需要太细，有时候在样式的定义里多加上一个规则的设置或许会比在标签上多加一个类更好，如果一个标签上面有四五个甚至更多的类，至少我是受不了的~<br>这样做的好处还是很大的，至少你不用再每次写样式的时候都去定义body、一堆hx、ul、ol此类的东东，只需要引入一个事先写好的样式表即可。需要居中的元素你看情况是直接定义还是加上事先定义好的类，只定义宽度，所有这些都是为了代码的简洁和编写效率去考虑，哪种比较好就选哪种。<br>我现在是这样做的，用一个重置css文件，一个公共css文件，加一个站点css文件，至于很多人采用过的特殊功能或者版块儿单独出来一个文件，我暂时没有去采用，并不是说不好，或许当我觉得有必要或者有好处的时候，也会采用。<br>另外一点需要提醒，当然，可能是多余的提醒，可重用，并不是说完全的照搬过来，可以根据项目需要进行删减，或者更改，重用文件可以写一份，用到项目里的时候复制一份根据需要设置即可。</p>
 <h2 id="三、模块化"><a href="#三、模块化" class="headerlink" title="三、模块化"></a>三、模块化</h2><p>刚刚学会写css人，都会有个不大好的习惯吧，怎么形容呢，思维像脱缰的野马？还是荒野游魂？呵呵，反正就是想到哪儿写到哪儿，写着写着觉得不对了，再回头改，觉得缺点什么再往上加，等等诸如此类，这都是缺少事先的规划，没有先动脑后动手的结果。一个网页里面有很多内容，它们各不相同，去区分它们不仅仅能使内容更结构化、具可读性，更是为了之后定义css或者后期做修改的时候去查找提供了很大便利，也牵扯到了命名的语义化，不能只是为了不同而随意命名，如果是新闻，命名个“xw”，你当时倒是知道了，过一段时间你还知道么，别人看的时候知道么，这些东西在没形成习惯或者没有在业界达成共识并普遍运用之前，就不要去用。</p>
 <h2 id="四、效果实现"><a href="#四、效果实现" class="headerlink" title="四、效果实现"></a>四、效果实现</h2><p>比如一个页面有多处的阴影，或者多处的遮罩层，它们仅仅是存在于不同的内容里，效果和定位方式都一样，大小尺寸不同而已，特别是在现在这种需要顾及多浏览器兼容的情况下，一定义可能就是带着各种前缀的一大坨，这个时候，你何不只定义一个类呢，我称之为“效果类”，把定位方式，效果实现的代码都写好在一个类，如果哪里需要，就在那里加上这个类，另外再利用特殊性去选择它，定义专有尺寸或者位置即可。这种思想有点类似于其他程序语言里面的封装，然后传参，呵呵。想懒省劲儿就多动动脑吧！~</p>
-<p>关于这方面还有一个不错的资料推荐给大家，鬼哥写的<a href="http://blog.cssforest.org/2014/07/01/%E9%A1%B5%E9%9D%A2%E9%87%8D%E6%9E%84%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" target="_blank" rel="noopener">《页面重构的设计模式》</a></p>
+<p>关于这方面还有一个不错的资料推荐给大家，鬼哥写的<a href="http://blog.cssforest.org/2014/07/01/%E9%A1%B5%E9%9D%A2%E9%87%8D%E6%9E%84%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" target="_blank" rel="external">《页面重构的设计模式》</a></p>
 <p>以上说的这些都是我个人在工作过程中的体会总结，也不是全部，只涉及一些基本的，对大家都有些用处的方法。别的地方可能也有类似的东西，我也是在不断的学习，借鉴，如果说我这篇文章有什么特别之处，那就是我结合了一些别人问过我的问题和自己遇到过的问题，得到的教训等把从初接触写网页的职场新人到具备了一定css基础的人的情况，较完整的过了一遍吧，比较有顺序和逻辑的去看，会看到更多哦。</p>
 <p>其他不多说了，先写这么多，欢迎交流，以后有新的收获或者觉得这篇文章里有不足的地方我会再写一篇加以修正补充！~</p>
 
@@ -163,7 +163,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -223,7 +223,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

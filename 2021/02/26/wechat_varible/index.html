@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-02-26</span></span>
+        <span class="attr">发布于：<span>2021-02-26</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -150,8 +150,8 @@
 <p>而引用类型，存的是一个地址，这个地址又可以存放各种不同类型的数据，包括“基本类型”和“引用类型”。</p>
 <p>如：Object、Array等。</p>
 <p>用一个简单的例子来看它们的区别。</p>
-<p>基本类型<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = <span class="number">3</span>；</span><br><span class="line">var b<span class="comment">;</span></span><br><span class="line"><span class="attribute">b</span> = a<span class="comment">;</span></span><br><span class="line"><span class="attribute">a</span> = <span class="number">4</span><span class="comment">;</span></span><br><span class="line">console.log(a)<span class="comment">;  //4</span></span><br><span class="line">console.log(b)<span class="comment">;  //3</span></span><br></pre></td></tr></table></figure></p>
-<p>引用类型<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var c = &#123;</span><br><span class="line">    <span class="built_in">name</span>:<span class="string">'张三'</span></span><br><span class="line">&#125; </span><br><span class="line">var d;</span><br><span class="line">d = c;</span><br><span class="line">console.<span class="built_in">log</span>(d.<span class="built_in">name</span>);  <span class="comment">//张三</span></span><br><span class="line">c.<span class="built_in">name</span> = <span class="string">'李四'</span>;</span><br><span class="line">console.<span class="built_in">log</span>(d.<span class="built_in">name</span>);  <span class="comment">//李四</span></span><br></pre></td></tr></table></figure></p>
+<p>基本类型<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = <span class="number">3</span>；</span><br><span class="line">var b;</span><br><span class="line">b = a;</span><br><span class="line">a = <span class="number">4</span>;</span><br><span class="line">console.<span class="built_in">log</span>(a);  <span class="comment">//4</span></span><br><span class="line">console.<span class="built_in">log</span>(b);  <span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
+<p>引用类型<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">    name:'张三'</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> <span class="keyword">d</span>;</span><br><span class="line"><span class="keyword">d</span> = c;</span><br><span class="line">console.<span class="literal">log</span>(<span class="keyword">d</span>.name);  <span class="comment">//张三</span></span><br><span class="line">c.name = '李四';</span><br><span class="line">console.<span class="literal">log</span>(<span class="keyword">d</span>.name);  <span class="comment">//李四</span></span><br></pre></td></tr></table></figure></p>
 <p>可以看出，基本类型在传递时，相当于把值拷贝了一份，二者相互不影响，而引用类型的赋值行为仅仅传递了地址，它们指向的仍是同一个空间，所以一个变另一个也会变。</p>
 <p>注意措辞：“赋值行为”。并非不能够做到相互不影响，只是单纯地“赋值”做不到。</p>
 <p>这就引出了前端圈经常讨论的话题——<strong>深拷贝</strong>和<strong>浅拷贝</strong>，先提一下，不细说，领会引用类型是什么即可。</p>
@@ -183,15 +183,15 @@
 <ul>
 <li>在代码的最外层定义一个变量a</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br></pre></td></tr></table></figure>
 <p>它就属于全局，其他任何代码都可以对其进行访问或者修改。</p>
 <ul>
 <li>在函数当中定义一个变量a</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line"><span class="built_in">console</span>.log(a)  <span class="comment">//Uncaught ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span><span class="comment">&#123;</span><br><span class="line">  var a = 10;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="title">test</span><span class="params">()</span>;</span></span><br><span class="line">console.log(a)  <span class="comment">//Uncaught ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
 <p>会得到a并没有定义的报错。</p>
 <p>但也存在另一种“疏忽”的情况，就是未使用 var 关键字</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  a = 10;</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">test</span><span class="params">()</span>;</span></span><br><span class="line">console.log(a)  <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span><span class="comment">&#123;</span><br><span class="line">  a = 10;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="title">test</span><span class="params">()</span>;</span></span><br><span class="line">console.log(a)  <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
 <p>这时a会暴露到全局，又可以被访问，这类疏忽最好不要犯。</p>
 <p>只有“函数”才有自己的作用域吗？严格说不是，但因为那些语句少有使用场景且背离最佳实践，所以暂不了解也没有影响。</p>
 <p><strong>let</strong>和<strong>const</strong></p>
@@ -206,7 +206,7 @@
 </ul>
 <p>一个个看.</p>
 <p><strong>块作用域</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">const</span> b = <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a,b)  <span class="comment">//undefined undefined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    let a = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">const</span> b = <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span>(a,b)  <span class="comment">//undefined undefined</span></span><br></pre></td></tr></table></figure>
 <p>我们在if条件判断的代码里定义了两个变量a,b，外部访问均为undefined，这说明，在if代码块的外部无法正常访问代码块内定义的变量。</p>
 <p><strong>重复定义</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line">Uncaught <span class="built_in">SyntaxError</span>: Identifier <span class="string">'a'</span> has already been declared</span><br></pre></td></tr></table></figure>
@@ -214,15 +214,15 @@
 <p><strong>不被提升</strong></p>
 <p>前面没有说提升，放在这里刚好做比较。</p>
 <p>使用 var 声明的变量，在其作用域内会被提升到最顶部，以便被其他代码使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a)  <span class="comment">//undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span><span class="comment">&#123;</span><br><span class="line">  console.log(a)  //undefined</span><br><span class="line">  var a = 10;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="title">test</span><span class="params">()</span>;</span></span><br></pre></td></tr></table></figure>
 <p>咦，这不是 undefined 么，也不是 10 啊，提升到哪了？</p>
 <p>“坑”就在此。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;  <span class="comment">//这叫'声明'</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>; <span class="comment">//这是在声明的同时定义初始值</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;  <span class="comment">//这叫'声明'</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>; <span class="comment">//这是在声明的同时定义初始值</span></span><br></pre></td></tr></table></figure>
 <p>所以，提升<strong>只是声明被提升，而赋值未提升</strong>，才会看到上面输出的是undefined。</p>
 <p>当然，变量提升不止如此，函数（function）同样，可以在声明函数的前面使用，到函数部分再详聊。</p>
 <p>上面说了最明显也是最重要的三个区别，还有一个区别，即在全局定义变量时，使用 var ，变量属于全局对象 window，而使用 let 和 const 不会这样。</p>
 <p>再来看 let 和 const </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,b);</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">const</span> b = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">test();  <span class="comment">//Uncaught ReferenceError: Cannot access 'a' before initialization</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span><span class="comment">&#123;</span><br><span class="line">    console.log(a,b);</span><br><span class="line">    let a = 10;</span><br><span class="line">    const b = 10;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="title">test</span><span class="params">()</span>;</span>  <span class="comment">//Uncaught ReferenceError: Cannot access 'a' before initialization</span></span><br></pre></td></tr></table></figure>
 <p>这段代码甚至没走到声明变量的地方就报错了，在初始化之前不能访问变量a，就证明 let 和 const 的声明不会被提升。</p>
 <p>值得说明的是，虽然ES6之前的 var 存在提升的现象，但比较提倡的做法仍是在所属代码块的顶部将所有变量一起定义，而不是随意散落在代码段中，ES6中增加了 let 和 const 后更是如此，像这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">let</span> a = <span class="string">""</span>,</span><br><span class="line">   	   b = <span class="number">0</span>,</span><br><span class="line">       c = <span class="literal">true</span>;</span><br><span class="line">   <span class="comment">//其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>说完 let、const 和 var 的区别，说说 let 和 const 的区别。</p>
@@ -231,11 +231,11 @@
 <p>其实ES6之前，我们就需要在程序中定义常量，且约定常量使用大写字母和下划线结合的方式命名，比如：MAX_COUNT。</p>
 <p>至于是否可变，就靠程序员来遵守规则，程序员往往是不可靠的…</p>
 <p>const的出现从语言层面加了限制，使其不可更改。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">const</span> <span class="string">a</span> <span class="string">=</span> <span class="number">7</span><span class="string">;</span></span><br><span class="line">      <span class="string">a</span> <span class="string">=</span> <span class="number">8</span><span class="string">;</span></span><br><span class="line"><span class="string">//Uncaught</span> <span class="attr">TypeError:</span> <span class="string">Assignment</span> <span class="string">to</span> <span class="string">constant</span> <span class="string">variable.</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">7</span>;</span><br><span class="line">      a = <span class="number">8</span>;</span><br><span class="line"><span class="comment">//Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
 <p>可以看到，用 const 定义了一个变量并赋值之后，改变它的值时就报错了。</p>
 <p>but，并不是用 const 声明的一切都不可更改，<strong>const声明的限制只应用到变量类型的最外层</strong>。换句话说，如果变量类型为基本类型，其本身不可更改，如果是引用类型，则引用类型本身受限制，键不受限制。</p>
 <p>像下面这样就可以正常运行。</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const a = &#123;</span><br><span class="line">    <span class="built_in">name</span>:<span class="string">'张三'</span></span><br><span class="line">&#125; </span><br><span class="line">a.<span class="built_in">name</span> = <span class="string">'李四'</span>;</span><br><span class="line">console.<span class="built_in">log</span>(a.<span class="built_in">name</span>)  <span class="comment">//李四</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">    name:<span class="string">'张三'</span></span><br><span class="line">&#125; </span><br><span class="line">a.name = <span class="string">'李四'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.name)  <span class="comment">//李四</span></span><br></pre></td></tr></table></figure>
 <p>综上，现在定义变量依然可以使用 var，但多数项目中都已被 let 或 const 占据，所以，在确定值不变的情况下就用 const，否则可使用let。</p>
 <h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>很多人在刚学编程时不会想到，<strong>命名</strong>会是个让人头疼的问题。</p>
 <p>有几个方面原因：</p>
@@ -273,14 +273,14 @@
 <ul>
 <li>常见面试题之 for循环——输出几？</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( var <span class="built_in">i</span>=<span class="number">1</span>; <span class="built_in">i</span>&lt;=<span class="number">5</span>; <span class="built_in">i</span>++) &#123; </span><br><span class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span><span class="params">()</span> &#123; </span></span><br><span class="line">        console.<span class="built_in">log</span>( <span class="built_in">i</span> ); </span><br><span class="line">        &#125;, <span class="built_in">i</span>*<span class="number">1000</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( var i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123; </span><br><span class="line">    setTimeout( <span class="function">function <span class="title">timer</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        console.<span class="built_in">log</span>( i ); </span><br><span class="line">        &#125;, i*<span class="number">1000</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>setTimeout是定时器函数，由“时间间隔”和“回调函数”组成，可以在某间隔时间后执行特定动作，如上是打印一个值。</p>
 <p>按道理，这段代码应该是隔一秒输出一个数字，从1到6。</p>
 <p>实际情况是，连续输出5个6，为什么？</p>
 <p>一、for中用var定义的变量会泄露到全局</p>
 <p>二、setTimeout是异步函数，javascript代码在浏览器中执行的任务是有优先顺序的，当异步函数执行的时候，外层循环已经进行完毕，即i的值已经被加到6。</p>
 <p>ES6之前，解决这个问题的常见方法是“闭包”，这个后面会聊，但ES6之后，有了更方便的处理方案，就是使用let来声明变量i。修改如下：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( let <span class="built_in">i</span>=<span class="number">1</span>; <span class="built_in">i</span>&lt;=<span class="number">5</span>; <span class="built_in">i</span>++) &#123; </span><br><span class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span><span class="params">()</span> &#123; </span></span><br><span class="line">        console.<span class="built_in">log</span>( <span class="built_in">i</span> ); </span><br><span class="line">        &#125;, <span class="built_in">i</span>*<span class="number">1000</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( let i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123; </span><br><span class="line">    setTimeout( <span class="function">function <span class="title">timer</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        console.<span class="built_in">log</span>( i ); </span><br><span class="line">        &#125;, i*<span class="number">1000</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个时候，当循环每进行一次，变量i都进入了一个独立的作用域当中，然后被单独输出，就会得到预期的结果。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此，关于“变量”的讨论告一段落。</p>
 <p>标题叫“小角色，大用途”，因为变量就像是程序大楼的一砖一瓦，很不起眼，却无处不在。</p>
@@ -298,7 +298,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -358,7 +358,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

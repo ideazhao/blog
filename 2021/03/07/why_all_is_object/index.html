@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-03-07</span></span>
+        <span class="attr">发布于：<span>2021-03-07</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -162,7 +162,7 @@
 <p>就来源于“包装类型”。</p>
 <p>数字、字符串和布尔值对应的包装类型就是“Number、String、Boolean”。</p>
 <p>像这样一段代码</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span> = <span class="number">1</span>;</span><br><span class="line">a.<span class="built_in">toString</span>();</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let <span class="literal">a</span> = <span class="number">1</span><span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>.toString()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>当运行的时候，会在内部经历三个过程：</p>
 <ul>
 <li>创建Number类型的实例</li>
@@ -173,7 +173,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 <p>使其具备了和对象一样的可访问属性和可调用方法。</p>
 <p>值得注意的是第三步也很关键，即销毁实例，虽然在以上代码执行的当时，变量具备了调用方法或者访问属性的能力，但是，在执行完毕之后实例会被立即销毁，恢复它本来“身份”，这就使得你想再给它添加属性或者方法是不会生效的。</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = <span class="number">1</span>;</span><br><span class="line">a.<span class="built_in">toString</span>();</span><br><span class="line">a.<span class="built_in">name</span> = <span class="string">'a的名字'</span>;</span><br><span class="line">console.<span class="built_in">log</span>(a.<span class="built_in">name</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="literal">a</span> = <span class="number">1</span><span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>.toString()<span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>.name = '<span class="literal">a</span>的名字'<span class="comment">;</span></span><br><span class="line">console.log(<span class="literal">a</span>.name)<span class="comment">; // undefined</span></span><br></pre></td></tr></table></figure>
 <p>String 和 Boolean 原理同 Number，不再赘述。</p>
 <p>除了以上三者，JavaScript中还有几种基本的引用类型，这里一并介绍：</p>
 <p><strong>Date(日期)</strong></p>
@@ -182,14 +182,14 @@
 <p><strong>RegExp</strong></p>
 <p>正则，一般以正则表达式的形式存在，而正则表达式通常被用来<strong>检索、替换</strong>符合某个<strong>规则</strong>的文本**。</p>
 <p>比如我们最常见的，邮箱、电话号码、身份证号，当用户输入一个有格式要求的信息时，在前端交互上就要对数据进行校验，如果格式不符，就提示用户输入正确格式的内容，如果在提交之后再发现不对，体验就很不好了。</p>
-<p>示例：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^[<span class="number">0</span><span class="number">-9</span>]*<span class="symbol">$</span>  <span class="comment">//匹配数字  </span></span><br><span class="line">^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;<span class="symbol">$</span>  <span class="comment">//匹配汉字</span></span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^[<span class="number">0</span>-<span class="number">9</span>]*$  <span class="comment">//匹配数字  </span></span><br><span class="line">^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$  <span class="comment">//匹配汉字</span></span><br></pre></td></tr></table></figure></p>
 <p>正则表达式有很多符号的属性和规则，能够发挥的作用十分强大，这里不再赘述，读者可以找专门的资料进一步了解。</p>
 <h2 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h2><p>介绍完基本引用类型，再看集合引用类型。</p>
 <p><strong>Array</strong></p>
 <p>数组用来存储一系列同类型的数据，当然，通常我们是这么做的，但JavaScript中的常规数组不受类型限制，允许存储任意类型的数据。</p>
 <p>为什么说数组是对象呢？它和上面提到的一样，具有包装类型 Array。</p>
 <p>当我们对其进行访问时：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">a.length   <span class="comment">// 访问属性  3</span></span><br><span class="line">a.push(<span class="number">4</span>)  <span class="comment">//调用方法  [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">a.length   <span class="comment">// 访问属性  3</span></span><br><span class="line">a.push(<span class="number">4</span>)  <span class="comment">//调用方法  [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
 <p>均会调起包装类所具备的属性和方法来为我们服务。</p>
 <p><strong>Object</strong></p>
 <p>按理说，讲对象应该第一个提到<strong>Object</strong>，为什么现在才提：</p>
@@ -209,7 +209,7 @@
 <p>Set类型也是ES6后新增的，它跟Map很像，大多数方法和API也是共有的。</p>
 <p>但它不是专门用来存储键值对，而是存储值，可以存储任何类型的值。</p>
 <p>示例：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">a</span> = <span class="built_in">new</span> Set([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment"> //初始化</span></span><br><span class="line"><span class="keyword">a</span>.<span class="built_in">add</span>(<span class="number">4</span>) <span class="comment"> //添加一个值</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>); <span class="comment"> //&#123;1,2,3,4&#125;</span></span><br><span class="line"><span class="keyword">a</span>.<span class="built_in">add</span>(<span class="number">4</span>) <span class="comment"> //重复添加的值无效</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="operator">a</span> = <span class="built_in">new</span> Set([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment"> //初始化</span></span><br><span class="line"><span class="operator">a</span>.<span class="built_in">add</span>(<span class="number">4</span>) <span class="comment"> //添加一个值</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="operator">a</span>); <span class="comment"> //&#123;1,2,3,4&#125;</span></span><br><span class="line"><span class="operator">a</span>.<span class="built_in">add</span>(<span class="number">4</span>) <span class="comment"> //重复添加的值无效</span></span><br></pre></td></tr></table></figure>
 <p>Set使用add()方法添加值，Set同样会维护值的插入顺序且不允许值有重复，这一点给开发过程中的一些场景提供了很大便利，比如常见的数组去重，往常我们需要专门写个方法处理，现在只需要将数组使用Set方法处理一次就好。</p>
 <p>PS:Set其他内容同上略过。</p>
 <h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>聊完以上几种类型，就是函数了，函数也是对象？虽然我们很少像常规对象那样来用，但它也是对象。</p>
@@ -219,7 +219,7 @@
 <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">color</span> = <span class="string">"red;"</span></span><br><span class="line"><span class="built_in">let</span> o = &#123;</span><br><span class="line">    <span class="built_in">color</span>:<span class="string">"blue"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getColor</span><span class="params">()</span>&#123;</span></span><br><span class="line">    console.<span class="built_in">log</span>(this.<span class="built_in">color</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">let</span> objectColor = getColor.call(o);</span><br><span class="line">objectColor();  <span class="comment">// "blue"</span></span><br></pre></td></tr></table></figure>
 <p>如果没有call，输出会是 “red”，现在是 “blue”。</p>
 <p>除此之外，函数曾经有过一种重要用途——<strong>构造函数</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.job = job;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      alert(<span class="keyword">this</span>.name);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"tom"</span>,<span class="number">18</span>,<span class="string">"teacher"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"lili"</span>,<span class="number">16</span>,<span class="string">"doctor"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, age, job)</span></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.job = job;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">      alert(<span class="keyword">this</span>.name);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"tom"</span>,<span class="number">18</span>,<span class="string">"teacher"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"lili"</span>,<span class="number">16</span>,<span class="string">"doctor"</span>);</span><br></pre></td></tr></table></figure>
 <p>在ES以前的版本当中，这曾是很流行也很经典的一种定义“类”和创建“实例”的模式。<br>这里的函数和普通函数没什么区别，区别就在于使用了new关键字，从而触发了内部的一些特殊处理，这里点到为止~</p>
 <h2 id="其他内置对象"><a href="#其他内置对象" class="headerlink" title="其他内置对象"></a>其他内置对象</h2><p><strong>Math</strong></p>
 <p>除了Date对象，Math对象是另一个非常有用的内置对象，有很多实用的方法，比如：</p>
@@ -259,7 +259,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -319,7 +319,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

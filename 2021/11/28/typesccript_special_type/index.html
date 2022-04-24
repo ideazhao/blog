@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword" content="undefined">
+    <meta name="keyword"  content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
+                    <span>主页</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
+                    <span>标签</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
+                    <span>存档</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
+                    <span>关于</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">search</span>
+            <span id="begin-search">搜索</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2021-11-28</span></span>
+        <span class="attr">发布于：<span>2021-11-28</span></span>
         
-        <span class="attr">Tags：/
+        <span class="attr">标签：/
         
         <a class="tag" href="/tags/#TypeScript" title="TypeScript">TypeScript</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -140,11 +140,11 @@
 <p>TypeScript中的变量是需要在定义时声明类型的，或者，会根据定义时所赋值的类型来“推测”类型。在之后的编码中，类型就不允许更改了，否则会报错。</p>
 <p>但有时候，这种情况是需要被允许的，比如：和未知第三方进行交互。该怎么办呢，any可以派上用场啦。</p>
 <p>any是TypeScript中比较特殊的一个类型，它被称为任意类型，通过它声明的变量可以被赋予任何类型的值。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">a</span>:<span class="keyword">any</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">a</span> = <span class="string">'hello'</span></span><br><span class="line"><span class="keyword">a</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">a</span> = undefined</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="tag">a</span>:any = <span class="number">0</span></span><br><span class="line"><span class="tag">a</span> = <span class="string">'hello'</span></span><br><span class="line"><span class="tag">a</span> = null</span><br><span class="line"><span class="tag">a</span> = undefined</span><br></pre></td></tr></table></figure>
 <p>但使用时也要格外小心，因为TypeScript不会再检查类型了，就有可能出现调用某类型特有方法的时候报错的情况，比如期待类型是number，有toFixed()方法，而得到的值却是string 类型，就会报错，这样就失去了使用TypeScript的好处了。</p>
 <p><strong>允许赋值给不同类型</strong></p>
 <p>除了可以将任意类型的值赋给any类型的变量，还可以将any类型的值赋给其他任何类型的变量。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">a</span>:<span class="built_in">number</span></span><br><span class="line">let b:<span class="keyword">string</span> = <span class="string">'hello'</span></span><br><span class="line"><span class="keyword">a</span> = b</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let <span class="tag">a</span>:number</span><br><span class="line">let <span class="tag">b</span>:string = <span class="string">'hello'</span></span><br><span class="line"><span class="tag">a</span> = b</span><br></pre></td></tr></table></figure>
 <p>总结一句话就是：<strong>它能逃过TypeScript编译器的类型检测，并和TypeScript中其他所有类型都相互兼容</strong>。</p>
 <p>既然any类型如此随意，那作为强类型编程语言的TypeScript为什么要引入它呢？答案很简单，因为有时候我们可能需要在TypeScript代码中跟一些现有的JavaScript代码（库）交互，而JavaScript代码返回的数据的类型是未知的，但TypeScript又要求数据必须有一个类型，此时any便是这样一个类型。</p>
 <h2 id="unknown"><a href="#unknown" class="headerlink" title="unknown"></a>unknown</h2><p><strong>可以被赋予任何类型的值</strong></p>
@@ -154,30 +154,30 @@
 <h2 id="void"><a href="#void" class="headerlink" title="void"></a>void</h2><p><strong>没有任何类型</strong></p>
 <p>void 和 any 相反，它表示没有任何类型。</p>
 <p>尽管如此，void类型的变量还是可以被赋予一个特殊的值，即undefined。但声明可被赋值为undefined的变量不是void类型的作用所在，其真正的作用是<strong>指定函数的返回类型</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>):<span class="title">void</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span><span class="type">:void</span></span>&#123;</span><br><span class="line">    console.log(<span class="string">'hello'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样的定义就表明，函数 hello 不返回任何值。并且，函数的返回类型一旦被指定为void，它便不能返回任何类型的值（undefined除外）。</p>
 <p>不过，有一种特殊情况是，返回空。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span>:void</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span><span class="type">:void</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>事实上，这两种情况都归为——“函数返回了undefined”。</p>
 <h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>never表示不存在的值的类型。我们可以声明一个never类型的变量，但无法给这个变量赋任何类型的值。</p>
 <p>既然如此，never的用途是什么呢？</p>
 <p>它可以用于指定一个永远无法返回的函数的返回类型。</p>
 <p>什么函数不会返回值呢？比如：错误处理函数，无限循环函数。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span><span class="params">()</span>:never</span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">'错误'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span><span class="params">()</span>:never</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        console.log(<span class="string">'事情已经完成了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span><span class="params">()</span><span class="type">:never</span></span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">'错误'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span><span class="params">()</span><span class="type">:never</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        console.log(<span class="string">'事情已经完成了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>大多数函数总能顺利地执行到终点，但对于以上两个函数来说，它们要么因为抛出了异常而终止了执行，要么因为无限循环而不可能结束。因此，它们都不存在返回值，或说都返回了一个不存在的值。</p>
 <p>那么，指定一个函数的返回类型为never有什么实际意义呢？大多数情况下，我们不会期望一个函数抛出异常或陷入无限循环中，但在希望获得编译器完整性检查时，就可以这么做。</p>
 <h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><p>特殊类型讲完了，还可以顺便聊聊“类型断言”，什么是“类型断言”。</p>
 <p>在很多其他编程语言中都有类型转换（Type Cast）的概念，但TypeScript中并不存在，因为类型转换发生在运行时，而TypeScript只能获得编译时支持。</p>
 <p>作为补偿，TypeScript提供了另一个被称为类型断言（TypeAssertion）的概念。通过类型断言，我们可以告诉TypeScript编译器，我们明确地知道某个变量具备更加精确的类型。</p>
 <p>以下是一个未使用类型断言的例子：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re<span class="variable">s:any</span> = <span class="string">'未知字符串'</span> </span><br><span class="line"><span class="keyword">let</span> resLength:<span class="keyword">number</span> = <span class="keyword">res</span>.length</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> res:<span class="built_in">any</span> = <span class="string">'未知字符串'</span> </span><br><span class="line"><span class="keyword">let</span> resLength:<span class="built_in">number</span> = res.length</span><br></pre></td></tr></table></figure>
 <p>正常情况下，我们理解的字符串是具备length属性的，编辑器也会给出提示，但是，这里res被定义了any类型，代码编译会正常通过，编辑器却无法给出提示，这时候，类型断言就派上用场。</p>
 <p>加入断言后，上面代码可以改成下面这样：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strRe<span class="variable">s:string</span> = <span class="symbol">&lt;string&gt;</span><span class="keyword">res</span></span><br><span class="line"><span class="keyword">res</span>.length:<span class="keyword">number</span> = strRes.length</span><br><span class="line"></span><br><span class="line">//或者还有一种更简洁的 <span class="keyword">as</span> 写法</span><br><span class="line"><span class="keyword">let</span> resLength:<span class="keyword">number</span> = (<span class="keyword">res</span> <span class="keyword">as</span> <span class="built_in">string</span>).length</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let strRes:<span class="keyword">string</span> = &lt;<span class="keyword">string</span>&gt;res</span><br><span class="line">res.<span class="built_in">length</span>:<span class="built_in">number</span> = strRes.<span class="built_in">length</span></span><br><span class="line"><span class="comment"></span><br><span class="line">//或者还有一种更简洁的 as 写法</span></span><br><span class="line">let resLength:<span class="built_in">number</span> = (res <span class="keyword">as</span> <span class="keyword">string</span>).<span class="built_in">length</span></span><br></pre></td></tr></table></figure>
 <p>使用了断言之后，浏览器就能“感知”到原先被使用未知类型的变量具体是什么类型，就可以改善开发体验。</p>
 <p>在使用类型断言时，我们需要注意两点：</p>
 <p>一、不能进行类型不兼容的类型断言；<br>二、类型断言无法修改变量的运行时类型。</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re<span class="variable">s:any</span> = <span class="string">'未知字符串'</span> </span><br><span class="line"><span class="keyword">let</span> resLength:<span class="keyword">number</span> = <span class="keyword">res</span> <span class="keyword">as</span> <span class="keyword">number</span></span><br><span class="line">resLength = resLength * <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> res:<span class="built_in">any</span> = <span class="string">'未知字符串'</span> </span><br><span class="line"><span class="keyword">let</span> resLength:<span class="built_in">number</span> = res as <span class="built_in">number</span></span><br><span class="line">resLength = resLength * <span class="number">2</span></span><br></pre></td></tr></table></figure>
 <p>字符串不能是 number，第二行无效；字符串没有乘法运算，第三行无效。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此，TypeScript中的特殊类型就聊完了，为什么单聊这些呢，因为我们往往会重点学习那些更具体，更实用的类型，而不自觉地忽略掉这些特殊类型，把它们弄懂了，知道怎么用，还是有利于更好地使用 TypeScript的，一起加油吧！</p>
 
@@ -190,7 +190,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">donate</button>
+        <button id="donate-button">赞赏</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -250,7 +250,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
