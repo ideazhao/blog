@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-04-12</span></span>
+        <span class="attr">Post：<span>2022-04-12</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -157,7 +157,7 @@
 <h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>事件绑定有多种方式，并不都常用，但需要了解它们之间的差异和发展过程。</p>
 <p>这里涉及到两个概念：<strong>绑定方式、处理程序</strong></p>
 <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>第一种是在HTML中直接绑定，这是在网页开发初期最为常见的方式。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> onclick=<span class="string">"console.log('点击事件发生了')"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">"console.log('点击事件发生了')"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这段代码给div绑定了点击事件，使用“on” + “事件名称”给元素设置属性的方式。</p>
 <p>这里执行的console方法就是“事件处理程序”，它不仅可以用来执行脚本，还可以调用在页面其他地方定义的方法。</p>
 <p>这种方式直观明了，但它的弊端是与HTML结构过于耦合，出于职责分离的原则，我们不希望改动脚本代码的时候还要去动结构，所以通常不推荐。</p>
@@ -180,7 +180,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">"#myBtn"</span>)</span><br><span class="line">    btn.addEventListener(<span class="string">'click'</span>,handler,<span class="literal">false</span>)</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'clicked'</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>聊到这儿，都是在聊绑定，但事件不是绑定了就万事大吉，就可以放着不管，还需要在合适的时机进行移除，为什么移除，因为事件处理程序本身也是一段代码，被放到内存中，用完了，或者长期不用，不移除就会白白占用空间，是一种浪费。</p>
 <p>DOM0级处理程序的移除可以直接置空。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn<span class="class">.onclick</span> = null</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">btn.onclick</span> = null</span><br></pre></td></tr></table></figure>
 <p>DOM2级中使用removeEventListener()，并且，通过addEventListener()添加的事件处理程序只能使用removeEventListener()并传入同样的参数来移除。这意味着使用addEventListener()添加的匿名函数无法移除。</p>
 <p><strong>面试题——addEventListener方法的第三个参数可以是什么</strong></p>
 <p>你可能会问，前面不是说了第三个参数是布尔值？平时也是这么用的，有时甚至直接不写，怎么还问“可以是什么”？</p>
@@ -214,7 +214,7 @@
 <h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>前面我们讲了，当需要跟网页产生交互的时候，事件提供了这个接口，这个接口，连接了“事件类型”和“事件处理程序”，前面也说，处理程序可以写逻辑，可以调方法，但除此之外，有相当一部分的操作，是需要我们拿到操作对象的某些数据的，比如：表单、表格、列表。这个数据，可以是业务数据，可以是设备相关的数据，也可以是跟事件相关的数据。</p>
 <p>事件对象就担当了这样一个角色，他包含了触发事件的元素、事件类型，以及可能与特定事件相关的其他数据。例如，鼠标操作的位置信息，键盘操作中被按下的键的信息等。</p>
 <p>而这个事件对象，从哪来呢，还记得前面的绑定事件吗？都会给事件绑定一个处理程序，<strong>事件对象就是作为处理程序的入参被传进去</strong>。</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>&#123;</span><br><span class="line">      console.<span class="built_in">log</span>(‘事件对象:’,event)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(‘事件对象:’,event)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="有什么"><a href="#有什么" class="headerlink" title="有什么"></a>有什么</h3><p>每种事件都有这个对象，但不同的事件对象包含不同的属性和方法。这就在减少信息冗余的同时提供了针对性。</p>
 <p>所有事件对象都会包含下表列出的这些公共属性和方法：</p>
 <p><code>target</code>：事件目标，常在获取节点内容时使用</p>
@@ -243,7 +243,7 @@
 <p>创建event对象之后，需要使用事件相关的信息来初始化。每种类型的event对象都有特定的方法，可以使用相应数据来完成初始化。方法的名字并不相同，这取决于调用createEvent()时传入的参数。</p>
 <p>事件模拟的最后一步是触发事件。为此要使用dispatchEvent()方法，这个方法存在于所有支持事件的DOM节点之上。dispatchEvent()方法接收一个参数，即表示要触发事件的event对象。</p>
 <p>比如模拟一个鼠标事件：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let btn = document.<span class="function"><span class="title">querySelector</span><span class="params">(<span class="string">"#myBtn"</span>)</span></span></span><br><span class="line">let event = document.<span class="function"><span class="title">createEvent</span><span class="params">(<span class="string">'MouseEvents'</span>)</span></span></span><br><span class="line">event.<span class="function"><span class="title">initMouseEvent</span><span class="params">(<span class="string">'click'</span>,true,true...)</span></span></span><br><span class="line">btn.<span class="function"><span class="title">dispatchEvent</span><span class="params">(event)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> btn = document.querySelector(<span class="string">"#myBtn"</span>)</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">event</span> = document.createEvent(<span class="string">'MouseEvents'</span>)</span><br><span class="line"><span class="keyword">event</span>.initMouseEvent(<span class="string">'click'</span>,<span class="literal">true</span>,<span class="literal">true</span>...)</span><br><span class="line">btn.dispatchEvent(<span class="keyword">event</span>)</span><br></pre></td></tr></table></figure>
 <p>整个过程跟EventEmitter的实现有点类似，只是使用了原生提供的方法，而且创建了事件对象相关的信息。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这是本系列的第十四篇，在讲了不同数据类型，函数，DOM 和 BOM之后，加上这篇的事件，不仅网页的各元素之间可以串联起来，人和网页也能产生交互了，似乎已经接近了具有完备功能网页的模样，但是，仍有一些东西，特别对于现代网页来说很重要的东西尚未提及。</p>
 <p>革命尚未成功，不过它越来越近了，让我们一起期待最后的几块拼图吧。</p>
@@ -257,7 +257,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -317,7 +317,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
