@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        【读书笔记】Vue设计与实现(一) - 灵感之见
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/idea.png" />
+        </div>
+        <div class="name">
+            <i>灵感_idea</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue3的权衡和核心要素"><span class="toc-text">Vue3的权衡和核心要素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue3的设计思路"><span class="toc-text">Vue3的设计思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件的本质"><span class="toc-text">组件的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板的工作原理—编译器"><span class="toc-text">模板的工作原理—编译器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue是不同模块组成的有机整体"><span class="toc-text">Vue是不同模块组成的有机整体</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="site-slogan-mobile">
+            <i> 学习让人快乐，而分享加倍 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        【读书笔记】Vue设计与实现(一)
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-04-24</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>本书是期盼已久的关于Vue3.0版本解读的一本国产书，填补了这个领域的空白，此书登场，恐怕无人能出其右，好书要多读，细读。</p>
+<p>所以我计划配合书的章节安排，做一系列记录，不会很深，给大家作为了解，若觉得不错，可以选择入手，不论是对框架层的理解，还是技术层的启发，相信会得到不少的帮助。</p>
+<p>全书共六篇，每篇作为一个记录。</p>
+<p>第一篇包含三章内容，这三章内容基本从全局的角度，从设计思路上，捋清楚了Vue做了什么，以及怎么做的，为后面继续深入了解打下基础。</p>
+<h2 id="Vue3的权衡和核心要素"><a href="#Vue3的权衡和核心要素" class="headerlink" title="Vue3的权衡和核心要素"></a>Vue3的权衡和核心要素</h2><p>编译时还是运行时<br>区分开发环境对代码做不同处理<br>tree-shaking：没用到的代码不进入最终的代码包中<br>特性开关：可选择性的不使用某些特性，也减少包体积<br>友好的错误提示、错误处理：决定了开发者的使用体验和对代码中的异常处理<br>良好的TS支持：使用TS编写和提供TS支持是完全不同的概念<br>不同的打包文件适用不同场景：打包文件有几种，分别适用浏览器、node等环境</p>
+<h2 id="Vue3的设计思路"><a href="#Vue3的设计思路" class="headerlink" title="Vue3的设计思路"></a>Vue3的设计思路</h2><p>什么是声明式描述：<br>对于网页结构、属性绑定、事件绑定，等各类操作，不需要开发者自行编写代码指令，只需要声明”做什么“即可。<br>Vue当中也并不是必须使用声明式，render方法其实是一种“<strong>虚拟DOM描述型UI</strong>”，h()函数的返回值是个对象。<br>虚拟DOM到真实DOM的渲染过程，就是<strong>遍历对象的key，创建元素，设置属性和绑定方法</strong>的过程，最后塞到页面容器中去。<br>创建DOM并渲染的过程看起来并不复杂，<strong>真正复杂的是更新节点</strong>，会有多种不同情况，需要分别处理。</p>
+<h2 id="组件的本质"><a href="#组件的本质" class="headerlink" title="组件的本质"></a>组件的本质</h2><p><strong>组件的本质就是一组DOM元素的封装</strong>。<br>虚拟DOM的tag属性，此时变为“组件函数”。<br>使用 mountElement 和 mountComponent 来区分是原生元素还是组件。<br>然后执行组件函数，返回的是组件内的虚拟DOM，此虚拟DOM和上文提到的虚拟DOM是一致的，继续调用render方法渲染即可。<br>既然组件函数返回的是一个虚拟DOM对象，是不是说明，组件也可以用对象来表达，是的，可以，只是这个对象中必须要有个函数来产出渲染结果。</p>
+<h2 id="模板的工作原理—编译器"><a href="#模板的工作原理—编译器" class="headerlink" title="模板的工作原理—编译器"></a>模板的工作原理—编译器</h2><p>编译器的作用，就是将模板编译为渲染函数。<br>模板在它的眼里就是普通的字符串，需要<strong>分析字符串，并生成与之功能相同的渲染函数</strong>，并添加到script标签块的组件对象上。<br>编译器需要分析哪些数据会变更，哪些不会，好消息是编译器能够识别动态和静态属性，并为其打上标签，即patchFlags。</p>
+<h2 id="Vue是不同模块组成的有机整体"><a href="#Vue是不同模块组成的有机整体" class="headerlink" title="Vue是不同模块组成的有机整体"></a>Vue是不同模块组成的有机整体</h2><p>作为一个声明式UI框架，模板编译，渲染视图，就是它的核心工作，框架是由不同模块负责完成的，这些模块相互配合、相互制约，才构成了一个有机整体。</p>
+
+        
+            <div class="donate-container">
+    <div>
+        <img src="/img/pencil.jpg" alt="" class="i-pencil">
+    </div>
+    <div class="site-slogan">
+        <i> 学习让人快乐，而分享加倍 </i>
+    </div>
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
