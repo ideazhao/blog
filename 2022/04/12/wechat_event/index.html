@@ -138,7 +138,7 @@
 </blockquote>
 <p>前面的十多篇文章，介绍了很多模块的知识，数字、字符串、对象、DOM、函数…</p>
 <p>但如果告诉你，对于基础的Web页面，JavaScript代码是不必要的，你怎么看，前面的东西白说了？非也。</p>
-<p>网页的结构由HTML负责，美观的布局由CSS负责，对于页面展示，这些就够了，但当一个网页呈现在用户面前，用户想要跟它进行交互，让它对用户的行为作出反应，怎么办？这就需要事件。</p>
+<p>网页的结构由HTML负责，美观的布局由CSS负责，对于页面展示，这些就够了，但当一个网页呈现在用户面前，用户想要跟它进行交互，让它对用户的行为做出反应，怎么办？这就需要事件。</p>
 <p>有了事件，就能够在“用户和网页”、“用户和浏览器”之间建立联系。事件就和JavaScript有关了。</p>
 <p>所以，事件的两个特点：</p>
 <ul>
@@ -146,16 +146,16 @@
 <li>由客户端提供</li>
 </ul>
 <h2 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h2><p>事件的类型有很多，逐个介绍不现实，也无必要，大致可分这几类：</p>
-<p>外设事件：click、mouseenter/up/down、keyup/down/press…</p>
-<p>表单事件：input、change…</p>
-<p>界面事件：load、select、scroll…</p>
-<p>焦点事件：focus、blur…</p>
-<p>设备事件：orientationchange、deviceorientation、devicemotion…</p>
-<p>触屏事件：touchstart/end/move、gesturestart/change/end…</p>
+<p><code>外设事件</code>：click、mouseenter/up/down、keyup/down/press…</p>
+<p><code>表单事件</code>：input、change…</p>
+<p><code>界面事件</code>：load、select、scroll…</p>
+<p><code>焦点事件</code>：focus、blur…</p>
+<p><code>设备事件</code>：orientationchange、deviceorientation、devicemotion…</p>
+<p><code>触屏事件</code>：touchstart/end/move、gesturestart/change/end…</p>
 <p>事件有很多形式，我们只需要理解一件事情——<strong>用户所有的操作，或者网页状态的变化，都会对应着某个事件</strong>，如果想趁此机会做点什么，将其绑定到目标元素即可，元素绑定了事件，就在人机之间建立了联系。</p>
 <p>下面看看有哪些绑定事件的方式。</p>
 <h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>事件绑定有多种方式，并不都常用，但需要了解它们之间的差异和发展过程。</p>
-<p>这里涉及到两个概念：绑定方式、处理程序</p>
+<p>这里涉及到两个概念：<strong>绑定方式、处理程序</strong></p>
 <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>第一种是在HTML中直接绑定，这是在网页开发初期最为常见的方式。</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> onclick=<span class="string">"console.log('点击事件发生了')"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>这段代码给div绑定了点击事件，使用“on” + “事件名称”给元素设置属性的方式。</p>
@@ -184,59 +184,49 @@
 <p>DOM2级中使用removeEventListener()，并且，通过addEventListener()添加的事件处理程序只能使用removeEventListener()并传入同样的参数来移除。这意味着使用addEventListener()添加的匿名函数无法移除。</p>
 <p><strong>面试题——addEventListener方法的第三个参数可以是什么</strong></p>
 <p>你可能会问，前面不是说了第三个参数是布尔值？平时也是这么用的，有时甚至直接不写，怎么还问“可以是什么”？</p>
-<p>没错，在旧版本的DOM中， <code>addEventListener()</code>的第三个参数是一个布尔值，表示是否在捕获阶段调用事件处理程序。但随着时间的推移，这已经不能满足大家对于事件处理程序更多的操作需求，怎么办，继续加参数？与其在方法之中添加更多参数，倒不如把第三个参数改为一个可以包含不同属性的对象来的方便，然后通过不同的设置达到目的就好。</p>
-<p>答案：<code>可以是布尔值，也可以是一个对象</code>。</p>
+<p>没错，在旧版本的DOM中， addEventListener()的第三个参数是一个布尔值，表示是否在捕获阶段调用事件处理程序。但随着时间的推移，这已经不能满足大家对于事件处理程序更多的操作需求，怎么办，继续加参数？与其在方法之中添加更多参数，倒不如把第三个参数改为一个可以包含不同属性的对象来的方便，然后通过不同的设置达到目的就好。</p>
+<p>答案：<strong>可以是布尔值，也可以是一个对象</strong>。</p>
 <p>问题又来了，对象里面可以设置什么。</p>
-<ul>
-<li><code>capture</code>:  表示listener会在该类型的事件捕获阶段传播到事件对象时触发。</li>
-<li><code>once</code>:  表示listener 在添加之后最多只调用一次。如果是 <code>true，</code> listener 会在其被调用之后自动移除。</li>
-<li><code>passive</code>: 设置为true时，表示 <code>listener</code> 永远不会调用 <code>preventDefault()</code>。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。</li>
-<li><code>signal</code>：该 <code>AbortSignal</code> 的 [<code>abort()</code>] 方法被调用时，监听器会被移除。</li>
-</ul>
+<p><code>capture</code>:  表示listener会在该类型的事件捕获阶段传播到事件对象时触发。</p>
+<p><code>once</code>:  表示listener 在添加之后最多只调用一次。如果是 true，listener 会在其被调用之后自动移除。</p>
+<p><code>passive</code>: 设置为true时，表示listener永远不会调用preventDefault()。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。</p>
+<p><code>signal</code>：该AbortSignal的abort()方法被调用时，监听器会被移除。</p>
 <p>了解到这些，下次碰到这个问题，你应该知道怎么应对了~</p>
 <h3 id="IE"><a href="#IE" class="headerlink" title="IE"></a>IE</h3><p>看到这位，大家心里是咯噔一下，还是微微一笑呢？浏览器的兼容已经不是现阶段最大的问题了，特别是有了一些工具之后，我们不需要每人都手写一份兼容代码放到项目里，但了解还是要的。</p>
-<p>IE实现了与DOM类似的方法，即<strong>attachEvent()和detachEvent()</strong>。</p>
-<p>这两个方法接收两个同样的参数：事件处理程序的名字和事件处理函数。因为IE8及更早版本只支持事件冒泡，所以使用attachEvent()添加的事件处理程序会添加到冒泡阶段。</p>
+<p>IE实现了与DOM类似的方法，即attachEvent()和detachEvent()。</p>
+<p>这两个方法接收两个同样的参数：<strong>事件处理程序的名字和事件处理函数</strong>。因为IE8及更早版本只支持事件冒泡，所以使用attachEvent()添加的事件处理程序会添加到冒泡阶段。</p>
 <p>在IE中使用attachEvent()与使用DOM0方式的主要区别是事件处理程序的作用域。使用DOM0方式时，事件处理程序中的this值等于目标元素。而使用attachEvent()时，事件处理程序是在全局作用域中运行的，因此this等于window。</p>
 <h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>客户端为我们提供了事件，也提供了绑定方法，这不就齐了，事件流又是什么？</p>
-<p>可以回想一下，前面聊DOM的时候，页面的元素节点组成了DOM树，而这棵树反应到页面上，就是一个个顺序摆放或者<code>嵌套起来矩形盒子</code>。</p>
+<p>可以回想一下，前面聊DOM的时候，页面的元素节点组成了DOM树，而这棵树反应到页面上，就是一个个顺序摆放或者<strong>嵌套起来矩形盒子</strong>。</p>
 <p>假想一下：现在有一个列表，有列表项，列表项有个footer元素，footer元素里有个button按钮，那么，我点击button的时候，是在点击谁呢？</p>
 <p>你说我在点击button，没错，但同样我是在点击footer，我也是在点击整个列表，</p>
 <p>理论上讲，页面上的元素均可点击，但作为开发者，我们想要往哪个元素上绑定事件，又由哪个元素来响应行为呢？这就涉及到事件流。</p>
-<p>事件流，即<code>事件传播的流向</code>。</p>
+<p>事件流，即<strong>事件传播的流向</strong>。</p>
 <p>事件流有两种：<strong>事件冒泡</strong>和<strong>事件捕获</strong>，它们分别是由IE和Netscape团队提出的。</p>
 <h3 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h3><p>事件被定义为从最具体的元素开始触发，然后一直向上传播，直至文档。即从内向外。</p>
 <h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><p>和事件冒泡相反，最外层的节点最先收到事件，最具体的节点最后收到事件。即由外向内。</p>
 <p>事件捕获实际上是为了在事件到达最终目标前拦截事件。</p>
 <p>到这里，你可能要问了，到底现在浏览器是支持哪个？冒泡还是捕获呢？答案是：两个都支持，只是有个对应的流程。</p>
-<h3 id="事件流-1"><a href="#事件流-1" class="headerlink" title="事件流"></a>事件流</h3><p>DOM2 Events规范规定事件流分为3个阶段：<code>事件捕获、到达目标和事件冒泡</code>。事件捕获最先发生，为提前拦截事件提供了可能。然后，实际的目标元素接收到事件。最后一个阶段是冒泡，最迟要在这个阶段响应事件。请看图示：</p>
+<h3 id="事件流-1"><a href="#事件流-1" class="headerlink" title="事件流"></a>事件流</h3><p>DOM2 Events规范规定事件流分为3个阶段：<strong>事件捕获、到达目标和事件冒泡</strong>。事件捕获最先发生，为提前拦截事件提供了可能。然后，实际的目标元素接收到事件。最后一个阶段是冒泡，最迟要在这个阶段响应事件。请看图示：</p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c81beb7d105453bbe1437807750ce20~tplv-k3u1fbpfcp-watermark.image?" alt="555ce5668d7c445e7d6516ee9443813f.jpeg"></p>
 <p>有关“事件流”先介绍到这，后面有相关的运用。</p>
 <h2 id="事件对象（event）"><a href="#事件对象（event）" class="headerlink" title="事件对象（event）"></a>事件对象（event）</h2><p>“JavaScript中万物皆对象”，事件也不例外，但事件对象是什么，从哪来，有什么用途呢。</p>
 <h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>前面我们讲了，当需要跟网页产生交互的时候，事件提供了这个接口，这个接口，连接了“事件类型”和“事件处理程序”，前面也说，处理程序可以写逻辑，可以调方法，但除此之外，有相当一部分的操作，是需要我们拿到操作对象的某些数据的，比如：表单、表格、列表。这个数据，可以是业务数据，可以是设备相关的数据，也可以是跟事件相关的数据。</p>
 <p>事件对象就担当了这样一个角色，他包含了触发事件的元素、事件类型，以及可能与特定事件相关的其他数据。例如，鼠标操作的位置信息，键盘操作中被按下的键的信息等。</p>
-<p>而这个事件对象，从哪来呢，还记得前面的绑定事件吗？都会给事件绑定一个处理程序，<code>事件对象就是作为处理程序的入参被传进去</code>。</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>&#123;</span><br><span class="line">      console.<span class="built_in">log</span>(‘事件对象’：event)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>而这个事件对象，从哪来呢，还记得前面的绑定事件吗？都会给事件绑定一个处理程序，<strong>事件对象就是作为处理程序的入参被传进去</strong>。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>&#123;</span><br><span class="line">      console.<span class="built_in">log</span>(‘事件对象:’,event)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="有什么"><a href="#有什么" class="headerlink" title="有什么"></a>有什么</h3><p>每种事件都有这个对象，但不同的事件对象包含不同的属性和方法。这就在减少信息冗余的同时提供了针对性。</p>
 <p>所有事件对象都会包含下表列出的这些公共属性和方法：</p>
-<ul>
-<li><p>target：事件目标，常在获取节点内容时使用</p>
-</li>
-<li><p>currentTarget：处理程序所在的元素</p>
-</li>
-<li><p>type：事件类型，在一个处理程序处理多个事件时很有用。</p>
-</li>
-<li><p>preventDefault()方法：用于阻止特定事件的默认动作。</p>
-</li>
-<li><p>stopPropagation()方法：用于立即阻止事件流在DOM结构中传播，取消后续的事件捕获或冒泡。</p>
-</li>
-<li><p>eventPhase属性：可用于确定事件流当前所处的阶段。如果事件处理程序在捕获阶段被调用，则eventPhase等于1；如果事件处理程序在目标上被调用，则eventPhase等于2；如果事件处理程序在冒泡阶段被调用，则eventPhase等于3。不过要注意的是，虽然“到达目标”是在冒泡阶段发生的，但其eventPhase仍然等于2。</p>
-</li>
-</ul>
+<p><code>target</code>：事件目标，常在获取节点内容时使用</p>
+<p><code>currentTarget</code>：处理程序所在的元素</p>
+<p><code>type</code>：事件类型，在一个处理程序处理多个事件时很有用。</p>
+<p><code>preventDefault()</code>：用于阻止特定事件的默认动作。</p>
+<p><code>stopPropagation()</code>：用于立即阻止事件流在DOM结构中传播，取消后续的事件捕获或冒泡。</p>
+<p><code>eventPhase</code>：可用于确定事件流当前所处的阶段。如果事件处理程序在捕获阶段被调用，则eventPhase等于1；如果事件处理程序在目标上被调用，则eventPhase等于2；如果事件处理程序在冒泡阶段被调用，则eventPhase等于3。不过要注意的是，虽然“到达目标”是在冒泡阶段发生的，但其eventPhase仍然等于2。</p>
 <p>由于数量繁多，这里没有列举完全，关于特定事件的特定属性也略过，有需要大家可以去查阅文档，或者直接写一段代码打印出来便知。</p>
 <p><strong>面试题——target 和 currentTarget 的区别</strong></p>
 <p>在事件处理程序内部，this对象始终等于currentTarget的值，而target只包含事件的实际目标。如果事件处理程序直接添加在了意图的目标，则this、currentTarget和target的值是一样的，否则它们就会是不同的值。</p>
-<h2 id="内存与性能"><a href="#内存与性能" class="headerlink" title="内存与性能"></a>内存与性能</h2><p>看起来，事件仅仅跟交互相关，而交互动作又跟性能有什么关系？</p>
+<h2 id="内存与性能"><a href="#内存与性能" class="headerlink" title="内存与性能"></a>内存与性能</h2><p>看起来，事件仅仅跟交互相关，交互动作跟性能有什么关系？</p>
 <p>这就不得不重提上面聊过的两个东西：<strong>事件绑定</strong> 和 <strong>处理程序</strong>。</p>
 <p>事件绑定，即为元素绑定事件处理程序所需访问DOM的次数，这会在前期造成整个页面可交互时间的延迟。</p>
 <p>处理程序：即所定义的可调用的函数，函数也是对象，会占用内存空间，对象越多，对性能的影响就越明显。</p>
@@ -255,7 +245,7 @@
 <p>比如模拟一个鼠标事件：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let btn = document.<span class="function"><span class="title">querySelector</span><span class="params">(<span class="string">"#myBtn"</span>)</span></span></span><br><span class="line">let event = document.<span class="function"><span class="title">createEvent</span><span class="params">(<span class="string">'MouseEvents'</span>)</span></span></span><br><span class="line">event.<span class="function"><span class="title">initMouseEvent</span><span class="params">(<span class="string">'click'</span>,true,true...)</span></span></span><br><span class="line">btn.<span class="function"><span class="title">dispatchEvent</span><span class="params">(event)</span></span></span><br></pre></td></tr></table></figure>
 <p>整个过程跟EventEmitter的实现有点类似，只是使用了原生提供的方法，而且创建了事件对象相关的信息。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这是本系列的第十四篇，在讲了不同数据类型，函数，DOM 和 BOM之后，加上这篇的事件，不仅网页的各元素之间可以串联起来，设备和人也能互动了，似乎已经接近了具有完备功能网页的模样，但是，仍有一些东西，特别对于现代网页来说很重要的东西尚未提及。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这是本系列的第十四篇，在讲了不同数据类型，函数，DOM 和 BOM之后，加上这篇的事件，不仅网页的各元素之间可以串联起来，人和网页也能产生交互了，似乎已经接近了具有完备功能网页的模样，但是，仍有一些东西，特别对于现代网页来说很重要的东西尚未提及。</p>
 <p>革命尚未成功，不过它越来越近了，让我们一起期待最后的几块拼图吧。</p>
 
         
