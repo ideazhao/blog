@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        【轻聊前端】网页动态化，前后通信的发展历程 - 灵感之见
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/idea.png" />
+        </div>
+        <div class="name">
+            <i>灵感_idea</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#发展历程"><span class="toc-text">发展历程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CGI（Common-Gateway-Interface）"><span class="toc-text">CGI（Common Gateway Interface）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ASP-PHP-JSP"><span class="toc-text">ASP/PHP/JSP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#“无破坏”刷新、前后端分离"><span class="toc-text">“无破坏”刷新、前后端分离</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iframe——模拟异步传输"><span class="toc-text">iframe——模拟异步传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ajax——真正的异步交互"><span class="toc-text">Ajax——真正的异步交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ajax请求"><span class="toc-text">Ajax请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fetch-API"><span class="toc-text">Fetch API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实时交互"><span class="toc-text">实时交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主流方案"><span class="toc-text">主流方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Socket"><span class="toc-text">Web Socket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Beacon-API"><span class="toc-text">Beacon API</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工具"><span class="toc-text">工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结语"><span class="toc-text">结语</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="site-slogan-mobile">
+            <i> 学习让人快乐，而分享加倍 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        【轻聊前端】网页动态化，前后通信的发展历程
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-06-12</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#分享" title="分享">分享</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <blockquote>
+<p>现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（十五）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面的文章，我们聊了数据，操作数据的方法，网页载体，宿主，交互，工具箱已经很丰富。</p>
+<p>但是，需要思考一个重要问题，我们一直在讨论语言本身，而网页，首先是用来呈现信息的——“信息从哪来？”</p>
+<p>可以在html里写，但如果这样，它会一直不变，而且每个人都一样。</p>
+<p>故而，信息“动态化”，是Web的重要特点之一，毫不夸张地说，它改变和引领了一个时代。</p>
+<p>如果你是新手，从手敲代码输入内容，到从数据库拉取内容，是一种突破和跨越，即便老手，仍旧每天在和数据打交道，拿到准确无误的信息依然令人兴奋。</p>
+<p>网页只有具备了动态化的内容，才是丰富的，和用户产生联系的。</p>
+<p>本文就聊聊前后端通信的发展历程。</p>
+<h1 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h1><h2 id="CGI（Common-Gateway-Interface）"><a href="#CGI（Common-Gateway-Interface）" class="headerlink" title="CGI（Common Gateway Interface）"></a>CGI（Common Gateway Interface）</h2><p>CGI，出现于1993年，距今快30年历史，它定义了Web服务器与外部程序之间的通信接⼝标准，Web服务器可以通过CGI执⾏外部程序，让外部程序根据请求⽣成动态内容。可以使用不同的编程语言编写。</p>
+<p>缺点是效率低，编程困难。</p>
+<h2 id="ASP-PHP-JSP"><a href="#ASP-PHP-JSP" class="headerlink" title="ASP/PHP/JSP"></a>ASP/PHP/JSP</h2><p>它们出现的时间、特点，不尽相同，但较CGI更简单，效率更高。它们有一个共同点，页面是由后端处理完之后生成返回给前端，前后端有相当一部分代码耦合在一起。</p>
+<p>通过这些方式同样能做到内容动态刷新，但有几个缺点。</p>
+<p>（1）刷新时网页一片空白，影响用户体验。</p>
+<p>（2）多数情况下，需要更新的只是网页中很小一部分，但这种方式会刷新整个页面，网络传输中传送了额外的信息，使速度变慢，增加了传输负担。</p>
+<p>以上两种方式已经显得陈旧，虽然仍会有公司，包括大公司，由于历史原因仍有使用，但不作为讨论的重点，知道即可。</p>
+<h1 id="“无破坏”刷新、前后端分离"><a href="#“无破坏”刷新、前后端分离" class="headerlink" title="“无破坏”刷新、前后端分离"></a>“无破坏”刷新、前后端分离</h1><h2 id="iframe——模拟异步传输"><a href="#iframe——模拟异步传输" class="headerlink" title="iframe——模拟异步传输"></a>iframe——模拟异步传输</h2><p>什么是异步传输？它如何模拟？上面提到了页面的整体传输，一片空白。异步传输就是局部更新，iframe可以用来实现局部化。</p>
+<p>iframe是一种HTML标记，它会创建包含另外一个文档的内联框架，通过iframe框架可以在当前页面显示其他页面的信息。</p>
+<p>具体操作，是将iframe的src属性设置为对另外一个页面的连接请求，并在当前页面通过JavaScript动态更新iframe的内容，就可以将服务端的数据响应到客户端，这样就不会出现主页面空白，等待刷新的现象，减少了刷新的内容，提高了速度。</p>
+<blockquote>
+<p>至此，在当前时间节点，能被称为”老历史“的已经回顾完成，接下来的内容，才是当下需要学习和掌握的重点。</p>
+</blockquote>
+<h2 id="Ajax——真正的异步交互"><a href="#Ajax——真正的异步交互" class="headerlink" title="Ajax——真正的异步交互"></a>Ajax——真正的异步交互</h2><p>在Web发展历程中，Ajax具有转折性意义。</p>
+<p>2005年，Jesse James Garrett撰写了一篇文章，“Ajax—A New Approach toWeb Applications”。文中描绘了一个被他称作Ajax（AsynchronousJavaScript+XML，即异步JavaScript加XML）的方案。</p>
+<p>它不是一门独立的技术，而是使用JavaScript对象——XMLHttpRequest跟XML相结合得出的实现方案。现在我们知道，它不局限于XML，只是名字被保留下来。</p>
+<p>Ajax通过异步通信和响应完成页面的<strong>局部刷新</strong>，以此改善传统Web中大量不必要的整页刷新。</p>
+<p>Ajax出现之后，Google就在Google地图、Google搜索建议、Gmail等投入使用，效果很棒，随后在全世界逐渐流行开来。</p>
+<h3 id="Ajax请求"><a href="#Ajax请求" class="headerlink" title="Ajax请求"></a>Ajax请求</h3><p><strong>创建</strong></p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> requestMethod(<span class="class"><span class="keyword">type</span>,<span class="title">url</span>,<span class="title">data</span>,<span class="title">contentType</span>)&#123;</span></span><br><span class="line">    <span class="keyword">let</span> XHR = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    XHR.<span class="keyword">open</span>(<span class="class"><span class="keyword">type</span>,<span class="title">url</span>,<span class="title">true</span>)</span></span><br><span class="line">    XHR.setRequestHeader('Content-<span class="class"><span class="keyword">type</span>',<span class="title">contentType</span>)</span></span><br><span class="line">    XHR.send(data)</span><br><span class="line">    XHR.onreadystatechange = <span class="keyword">function</span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(XHR.readyState == <span class="number">4</span> &amp;&amp; XHR.status == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">// 请求成功返回内容</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>过程略显繁琐，不论是以前还是现在，都会有第三方工具提供更加简洁和强大的封装，后面会聊，现在先让我们深入细节。</p>
+</blockquote>
+<p><strong>type——请求类型</strong></p>
+<p>小tips：请求类型跟JavaScript无关，属于HTTP协议的范畴。</p>
+<p>常见的有以下几种：</p>
+<ul>
+<li>get：用于获取数据</li>
+<li>post：用于创建数据</li>
+<li>put：用于更新数据</li>
+<li>delete：用于删除数据</li>
+<li>options：判定服务器内容是否允许客户端访问</li>
+</ul>
+<p>不常见的有：head、trace、connect、patch，感兴趣的可自行了解。</p>
+<p>请求类型看起来很丰富，能充分应对各种需求，但你可能在很多项目中只看到get和post，这就是它”灵活“的地方，虽各有用途，但你用或者不用，并没有强制性，不会被阻止。建议还是应用合适的方法。</p>
+<p><strong>url——请求地址</strong></p>
+<p>前端发送请求是向服务端地址发起的，需要服务端提供。</p>
+<p><strong>data——请求传参</strong></p>
+<p>传参是需要注意的一点，不同的请求方式和后端处理不同的时候，都会不同。</p>
+<p>主要有两种方式，一种是作为查询字符串（query），另一种放在消息体（body）。查询通常对应get，消息体通常对应post。</p>
+<p>传输的数据类型即contentType，常见的有以下三种：</p>
+<p>（1）application/x-www-form-urlencoded：原生form表单，放在body，数据按照key1=val1&amp;key2=val2的方式进行编码，key 和 val 都进行了URL转码。</p>
+<p>（2）multipart/form-data：通常表单上传文件时使用该种方式。</p>
+<p>（3）application/json：消息主体是序列化后的JSON字符串。</p>
+<p><strong>请求回调</strong></p>
+<p>请求发出之后，我们需要知道什么时候返回结果，状态是什么，内容是什么。</p>
+<p>成功了是一种处理，失败又是另一种。怎么判断呢？——onreadystatechange。</p>
+<p>在这个回调中，有两个属性值可用于判断：readyState 和 status。</p>
+<p>readyState代表请求的状态，跟结果无关，每当readyState的值发生变化，都会触发readystatechange事件。可以借此机会检查readyState的值。一般来说，我们需要关心的readyState值是4，表示数据已就绪。<strong>为保证跨浏览器兼容，onreadystatechange事件处理程序应该在调用open()之前赋值</strong>。</p>
+<p>如果readyState值为4，就需要判断status，它保存着HTTP状态码，当它的值是2xx或3xx，表示请求顺利完成，完成后，我们就拿到返回的数据进行后续处理和展示。</p>
+<p>还有一些小工具，在某些场景很有用。</p>
+<ul>
+<li>loadstart：接收到第一个字节时触发</li>
+<li>progress：获取响应进度</li>
+<li>error：请求出错时触发</li>
+<li>abort：用来取消发出的请求</li>
+<li>load：成功接收完响应时触发，和readyState值为4时类似</li>
+<li>loadend：在通信完成时，且在error、abort或load之后触发</li>
+</ul>
+<p><strong>请求头（Request Headers）</strong></p>
+<p>每个请求在发送时都会携带请求头，用于传递除数据之外的信息。常见的有：请求方法、协议、接收的数据类型、请求来源、缓存策略等，数量繁多，每种都有其特定的作用，这里不展开。</p>
+<p>开发者需要额外关注的，是自定义的请求头，通常是前后端约定用于接口鉴权，如果需要，可以使用setRequestHeader()方法。它接收两个参数：字段的名称和值。</p>
+<p>为保证请求头被发送，须在open()之后、send()之前调用setRequestHeader()。</p>
+<p><strong>状态码</strong></p>
+<p>上面提到过状态码，状态码能够帮助我们判断请求结果是否可用，如果不可用，发生了什么类型的异常，从而更合理地进行后续处理。</p>
+<p>主要分类如下：</p>
+<ul>
+<li>1XX 表示消息</li>
+<li>2XX 表示成功</li>
+<li>3XX 表示重定向</li>
+<li>4XX 表示客户端错误</li>
+<li>5XX 表示服务端错误</li>
+</ul>
+<p>这就是为什么说status是2xx或者3xx代表请求顺利完成，因为这两种是没有出错且和数据相关的。状态码种类同样繁多，且每个项目规范不一，酌情使用，这里不再展开。</p>
+<p>Ajax为Web发展立了大功，现在仍占据主流，但随着时间推移，它终将会被替代，替代者可能就是下面要登场的这位。</p>
+<h2 id="Fetch-API"><a href="#Fetch-API" class="headerlink" title="Fetch API"></a>Fetch API</h2><p>顾名思义，”获取“。</p>
+<p>Fetch API能够执行XMLHttpRequest对象的所有任务，且更容易使用，接口更现代化。</p>
+<p>它在使用上和Ajax有很大不同，主要是：</p>
+<ul>
+<li>fetch()暴露在全局，可直接调用</li>
+<li>XMLHttpRequest可以通过open的第三个参数选择是否异步（true为异步，false为同步），Fetch必须异步</li>
+<li>请求完成返回一个Promise，回调里包含返回对象</li>
+<li>使用这个对象的属性和方法获取资源并进行转换</li>
+<li>能够在包括主页面执行线程、模块和工作线程中使用</li>
+</ul>
+<p>看个示例：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(response.status == <span class="number">200</span>)&#123;</span><br><span class="line">        response.json().<span class="keyword">then</span>(data=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>看代码就一目了然，直接调用fetch，参数url、响应response、属性status、方法json()、有用的数据data。</p>
+<p>其中，方法有多种选择：blob、formData、json、text。</p>
+<p>只使用URL时，fetch()会发送GET请求，只包含最低限度的请求头。要进一步配置如何发送请求，需要传入可选的第二个参数——init对象。init中包含但不限于：</p>
+<ul>
+<li>method：请求的类型</li>
+<li>cache：控制浏览器和HTTP缓存的交互</li>
+<li>headers：指定请求头部</li>
+<li>mode：指定请求模式，决定来自跨源请求的响应是否有效</li>
+<li>signal:支持通过AbortController中断进行中的fetch请求</li>
+</ul>
+<p>比如可以像这样发送请求：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> payload = <span class="type">JSON</span>.stringify(&#123;</span><br><span class="line">    name:'idea'</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> jsonHeader = &#123;</span><br><span class="line">    '<span class="type">Content</span>-<span class="type">Type</span>':'application/json'</span><br><span class="line">&#125;</span><br><span class="line">fetch('send-json',&#123;</span><br><span class="line">    <span class="keyword">method</span>:'<span class="type">POST</span>',</span><br><span class="line">    body:payload,</span><br><span class="line">    headers:jsonHeader</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，fetch请求不会帮你判断状态是否真正可用，只要响应完成，就会返回为resolve，所以，要在回调中用response.status和response.ok来判断，如果因为服务器没有响应而导致浏览器超时，这样的失败会导致reject。</p>
+<p>同样，fetch支持通过AbortController/AbortSignal中断请求。调用AbortController. abort()会中断所有网络传输，适合希望停止传输大型负载的情况。中断进行中的fetch()请求会导致包含错误的拒绝。</p>
+<p>fetch的大体使用就是这样，还有很多细节，可自行查阅。</p>
+<h2 id="实时交互"><a href="#实时交互" class="headerlink" title="实时交互"></a>实时交互</h2><p>以上介绍的内容，在页面的生命周期，或者响应用户操作层面足够了，但有一些情况难以胜任，即实时交互。比如，你发出一个请求，后端处理结果的时机是不确定的，需要一个过程，这时候该怎么响应呢？</p>
+<h3 id="主流方案"><a href="#主流方案" class="headerlink" title="主流方案"></a>主流方案</h3><p>有4种主流方案：</p>
+<ul>
+<li>轮询：客户端<strong>定时</strong>发送请求，就像普通请求一样。</li>
+<li>长轮询：客户端发送请求，服务端接收到请求后进行<strong>阻塞，并保持连接</strong>，当服务端有数据需要响应时，使用保持住的连接进行响应，并<strong>关闭连接</strong>。</li>
+<li>长连接：和上一种类似，但最后不关闭连接，而是<strong>继续保持</strong>。</li>
+<li>推送：客户端与服务端建立连接后，<strong>服务端可以直接向客户端推送数据</strong>。</li>
+</ul>
+<p>这几种都可以满足实时更新服务端信息的目的，下面介绍的属于最后一种。</p>
+<h3 id="Web-Socket"><a href="#Web-Socket" class="headerlink" title="Web Socket"></a>Web Socket</h3><p>iframe、AJAX都是基于HTTP协议进行Web交互。HTTP协议的工作模式对于构建实时Web应用存在诸多的限制，只能先由客户端提交请求，服务器端响应请求，并非是由服务器向客户端进行主动推送。</p>
+<p>随着HTML 5标准的推出，提出了一种新的浏览器服务器通信协议—WebSocket协议。通过该协议可以在浏览器和服务器之间构建一条<strong>全双工的通信连接</strong>，支持服务器端向客户端主动推送信息，实现实时刷新页面的功能。</p>
+<p>为了使用Web Socket，需要在Web服务器上运行一个程序（也叫Web Socket服务器）。这个程序负责协调各方通信，而且启动后就会不间断地运行下去。</p>
+<p>前端使用示例：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:8080'</span>)</span><br><span class="line">ws.onopen = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    ws.send()</span><br><span class="line">&#125;</span><br><span class="line">ws.onmessage = <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;</span><br><span class="line">ws.onerror = <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;</span><br><span class="line">ws.onclose = <span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>以<code>ws</code>开头的url，是一个表示Web Socket连接的新协议，还可以是<code>wss</code>表示安全加密。</p>
+<p>创建WebSocket对象后，页面就会尝试连接服务器。然后就是使用WebSocket对象的4个事件：onOpen、onMessage、onError、onClose。分别对应”建立连接、收到消息、发生异常、连接关闭“。</p>
+<p>连接成功后，需要向服务器发送一条消息。发送消息要使用WebSocket对象的send()方法，这个方法接收纯文本内容作为参数。</p>
+<p>Web Socket在前端的使用就是这样，但使用之前要理解两点。</p>
+<p>第一，Web Socket是一种专用手段，比较适合开发聊天室、大型多人游戏，或者端到端的协作工具，而不是每一种类型。在适合的场景使用才好。</p>
+<p>第二，Web Socket方案做起来可能比较复杂。JavaScript代码很简单，服务端代码不好写，要对多线程和网络模型有深刻理解。</p>
+<p>到这里，关于前后端数据通信基本介绍完了，但是，还有一个角色，虽然跟业务数据无关，也属于这个范畴。</p>
+<h2 id="Beacon-API"><a href="#Beacon-API" class="headerlink" title="Beacon API"></a>Beacon API</h2><p>介绍之前，先聊一个话题——<strong>数据上报</strong>。</p>
+<p>一般的请求是用来拉取动态数据的，但还有一类请求，它不是来展示数据，而是帮助统计数据，什么数据呢？跟用户行为相关的数据。这个动作称为”数据上报“。</p>
+<p>上报的对象是服务器，至于是自有，还是第三方，看情况定。</p>
+<p>过去，解决这个问题有如下几种方案：</p>
+<ul>
+<li>发起一个同步 <code>XMLHttpRequest</code> </li>
+<li>使用<code>&lt;img&gt;</code>元素</li>
+<li>创建一个几秒的 no-op 循环</li>
+</ul>
+<p>一个奇怪的角色出现了，Image对象，你可能会问，这两者似乎完全不搭，是怎么产生联系的。大体有以下几点：</p>
+<ul>
+<li>数据上报不需要回馈，对页面没有、也不应该有实际的展示或者交互影响。</li>
+<li>方法足够轻量，性能消耗小。</li>
+<li>图片作为替换元素，有src属性可用来传递url</li>
+<li>兼容性极好</li>
+</ul>
+<p>有优点也有缺点，它的缺点：</p>
+<ul>
+<li>请求方式只能是get</li>
+<li>url长度受限</li>
+<li>响应数据类型受限，状态处理受限</li>
+<li>用户代理会延迟文档卸载，以完成挂起的图片加载</li>
+</ul>
+<p>既然以上几种方案都互有优劣，有没有一种结合它们优点的方式？</p>
+<p>Beacon API就是。</p>
+<p>语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">navigator</span><span class="class">.sendBeacon</span>(<span class="tag">url</span>);</span><br><span class="line"><span class="tag">navigator</span><span class="class">.sendBeacon</span>(<span class="tag">url</span>, <span class="tag">data</span>);</span><br></pre></td></tr></table></figure>
+<p>sendBeacon有两个参数：URL和要在请求中发送的数据data。data参数是可选的，其类型可以是ArrayBufferView、Blob、DOMString 或FormData。如果浏览器成功的以队列形式排列了用于传递的请求，则该方法返回“<code>true</code>”，否则返回“<code>false</code>”。</p>
+<p>当我们写了这些代码，它会<strong>尝试在卸载文档之前将数据发送到服务器</strong>。时机过早可能错失收集数据的机会。所以时机控制很重要，恰恰这是开发人员难以做到的，API帮我们解决了。</p>
+<p>有几点要说明：</p>
+<ul>
+<li>sendBeacon()并不是只能在页面生命周期末尾使用，而是任何时候都可以使用。</li>
+<li>浏览器保证在原始页面已经关闭的情况下也会发送请求。</li>
+<li>状态码、超时和其他网络原因造成的失败是不透明的，不能通过编程方式处理。</li>
+</ul>
+<p>嗯，这次真结束了~</p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>通信方法部分聊完了，简单介绍几个工具，</p>
+<p>第三方封装的请求Jquery.ajax()、axios。</p>
+<p>接口调试工具mock、postman、apipost、apifox等。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>前后通信，接口调试，是现代Web必有的环节，当我们写好页面结构和布局，就是它了。</p>
+<p>本文需要重点关注的是Ajax、Fetch、其次Websocket，最后Beacon。</p>
+<p>文章够长，希望你有收获，下篇见。</p>
+
+        
+            <div class="donate-container">
+    <div>
+        <img src="/img/pencil.jpg" alt="" class="i-pencil">
+    </div>
+    <div class="site-slogan">
+        <i> 学习让人快乐，而分享加倍 </i>
+    </div>
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
