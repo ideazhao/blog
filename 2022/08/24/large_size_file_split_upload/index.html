@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
+    <meta name="keyword"  content="undefined">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        大文件分片上传及相关优化 - 灵感之见
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
+    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/idea.png" />
+        </div>
+        <div class="name">
+            <i>灵感_idea</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求背景"><span class="toc-text">需求背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件切割"><span class="toc-text">文件切割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发起请求"><span class="toc-text">发起请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="site-slogan-mobile">
+            <i> 学习让人快乐，而分享加倍 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        大文件分片上传及相关优化
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-08-24</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#JavaScript、上传" title="JavaScript、上传">JavaScript、上传</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>我们的多数项目都在处理文件，文档、音频、图片、视频。大文件的上传对网络、接口稳定性都是不小的考验，失败的几率很高，且常常无法获得上传进度，会造成很不好的体验，如果文件上传都无法成功，后续的操作就谈不上了。</p>
+<p>所以，提高上传成功率，让用户对较长的上传过程有所感知，就是我们优化的目标。</p>
+<h2 id="文件切割"><a href="#文件切割" class="headerlink" title="文件切割"></a>文件切割</h2><p>两个要点：</p>
+<p>定标准：不是所有文件都分片，超过某个大小的文件才采取分片处理，比如：50MB。</p>
+<p>分片大小：定一个合理的分片大小（SIZE），保证片数不过多的情况下，单片的传输效率。</p>
+<p>代码示例：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let <span class="built_in">index</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">index</span> &lt; <span class="keyword">file</span>.<span class="built_in">size</span>) &#123;</span><br><span class="line">    tasks.push(&#123; filename: <span class="built_in">index</span> / <span class="built_in">SIZE</span>, fileChunk: <span class="keyword">file</span>.slice(<span class="built_in">index</span>, <span class="built_in">index</span> + <span class="built_in">SIZE</span>), <span class="string">'content-length'</span>: <span class="keyword">file</span>.<span class="built_in">size</span> % <span class="built_in">SIZE</span> &#125;);</span><br><span class="line">    <span class="built_in">index</span> += <span class="built_in">SIZE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发起请求"><a href="#发起请求" class="headerlink" title="发起请求"></a>发起请求</h2><p>分割之后就是向后端发请求，传输文件片。这里涉及的要点：</p>
+<p><strong>并行/阻塞</strong>：组装参数，加入列表，遍历执行，是并行还是阻塞，如果需要一片一片，就阻塞，如果不需要，可以并行，但看情况需不需要进行并行数量的控制，在文件过大的情况下，分片数可能达到数百甚至上千，并行数过高可能引起浏览器崩溃。</p>
+<p>实现：并行就直接发请求，阻塞则使用async/await。</p>
+<p><strong>手动取消</strong>：允许用户有手动取消的操作，取消过后，尚未进行的请求需要中断，而不是继续在浏览器中允许。</p>
+<p>实现：设置一个状态位，当状态为暂停，中断循环。</p>
+<p><strong>断点续传</strong>：是否可中断，即断点续传。断点续传的场景包括：手动暂停、网络异常停止、手动刷新页面等。断点续传可使用户在上传大文件时不必因为中途的失败而完全从头开始，这是个漫长的过程，体验很不好。</p>
+<p>实现：每次成功的请求记录当前索引，因某种原因中断重新启动时，从索引位的下一位开始。</p>
+<p><strong>失败重试</strong>：常见于大文件，由于请求数过多，中途难免因为网络情况、请求超时、后端报错等情况而出错，如果没有重试机制，一旦某一次请求失败，整个就失败了，失败率会明显增高，失败重试则会大大改善这一情况。</p>
+<p>实现：封装一个重试的方法，把请求、重试次数、重试间隔、参数、失败回调等传进去。捕获错误，间隔一定时长（如2s）进行重试，同时进行计数，当达到计数次数停止重试，抛出错误。</p>
+<p>如果非极端情况，重试的请求都是会发送成功。</p>
+<p>注意点：</p>
+<p>如果是单个固定请求的重试，不必传参数，写到封装的方法中即可，但分片上传时每次的参数都不同，就需要传入参数。</p>
+<p>重试的是一个新的请求，不是上次请求的结果，所以需要封装为一个函数，每次调用重新发起，而不是将上次的请求再次传入。</p>
+<p>代码示例：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 请求api的接口封装</span><br><span class="line">function asyncApiRequest(params: <span class="type">any</span>): <span class="type">Promise</span>&lt;<span class="type">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> formdata = params[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> fileHandler.getFileApi(formdata)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sleep = (timeout: number) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> new <span class="type">Promise</span>((resolve) =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            resolve('');</span><br><span class="line">        &#125;, timeout);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requestRetry = async (</span><br><span class="line">    asyncRequest: <span class="type">Function</span>,</span><br><span class="line">    time: number,</span><br><span class="line">    delay: number,</span><br><span class="line">    errorHanndler: <span class="type">Function</span>,</span><br><span class="line">    ...params: <span class="type">any</span></span><br><span class="line">): <span class="type">Promise</span>&lt;<span class="type">any</span>&gt; =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="literal">result</span> = await asyncRequest(params);</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">result</span>) <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">        throw new <span class="type">Error</span>('超时请求抛出');</span><br><span class="line">    &#125; catch (err) &#123;</span><br><span class="line">        <span class="keyword">if</span> (time--) &#123;</span><br><span class="line">            await sleep(delay);</span><br><span class="line">            <span class="keyword">return</span> await requestRetry(asyncRequest, time, delay, errorHanndler, ...params);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            errorHanndler();</span><br><span class="line">            throw new <span class="type">Error</span>('请求失败');</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>文件分片在“重文件”型项目中很常见，如上传下载工具、网盘，我们的项目主要也是一些文件处理工具，所以是需要理解和掌握，并投入使用来改善用户体验的。</p>
+
+        
+            <div class="donate-container">
+    <div>
+        <img src="/img/pencil.jpg" alt="" class="i-pencil">
+    </div>
+    <div class="site-slogan">
+        <i> 学习让人快乐，而分享加倍 </i>
+    </div>
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js" type="text/javascript"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
