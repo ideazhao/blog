@@ -133,28 +133,74 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>我们的多数项目都在处理文件，文档、音频、图片、视频。大文件的上传对网络、接口稳定性都是不小的考验，失败的几率很高，且常常无法获得上传进度，会造成很不好的体验，如果文件上传都无法成功，后续的操作就谈不上了。</p>
+        <h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>关于分片上传，是个老生常谈的话题，但并不是每个项目中都会采用，为什么不用，以及为什么用，都是需要考虑清楚的。</p>
+<p>上传文件往往需要走这么几个步骤：</p>
+<ul>
+<li>判断类型</li>
+<li>判断大小</li>
+<li>拿到上传地址</li>
+<li>往地址推送文件</li>
+</ul>
+<p>当文件符合要求，且比较小的时候，成功率是比较高的，但如果文件大，上传的路径又复杂，再加上网络问题，失败率就会陡增，这时候该怎么改善体验呢？</p>
+<p>很典型的一个场景，迅雷、百度云盘，这些都是允许用户主动暂停，或者允许进行一半失败了，接着进行的。</p>
+<p>即使不是这样的场景，我们也希望达到两个目的：</p>
+<p>一、大文件不因中途出了一点点问题就彻底失败。<br>二、上传过程可以获知当前进度，让用户知道传了多少，还要等待多久。</p>
 <p>所以，提高上传成功率，让用户对较长的上传过程有所感知，就是我们优化的目标。</p>
-<h2 id="文件切割"><a href="#文件切割" class="headerlink" title="文件切割"></a>文件切割</h2><p>两个要点：</p>
-<p>定标准：不是所有文件都分片，超过某个大小的文件才采取分片处理，比如：50MB。</p>
-<p>分片大小：定一个合理的分片大小（SIZE），保证片数不过多的情况下，单片的传输效率。</p>
+<h2 id="文件切割"><a href="#文件切割" class="headerlink" title="文件切割"></a>文件切割</h2><p>想要分片，首先要有切割的方法，有这样一个的方法——<strong>slice()</strong></p>
+<p>不如我们顺便看看他提供了多少方法。</p>
+<p>通常情况下， File 对象是来自用户在一个<code>&lt;input&gt;</code>元素上选择文件后返回的<code>FileList</code>对象，也可以是来自由拖放操作生成的 <code>DataTransfer</code>对象。</p>
+<p>File包含：</p>
+<ul>
+<li>name</li>
+<li>size</li>
+<li>type</li>
+</ul>
+<p>File本身没有提供方法，但它从 <code>Blob</code>接口继承了slice()方法。</p>
+<p>文件的话题还蛮大的，先介绍到这，后面可以单独再聊。接下来看切割文件。</p>
+<p>示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file.slice(<span class="number">0</span>, <span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>)</span><br></pre></td></tr></table></figure>
+<p>就是将文件从开头切割至2M大小的地方。</p>
+<p>接下来只需要确定两点：</p>
+<ul>
+<li><p>定标准：不是所有文件都分片，分片其实增加了传输的过程，如果文件比较小，就不必要分片，超过某个大小的文件才采取分片处理，比如：50MB。</p>
+</li>
+<li><p>分片大小：定一个合理的分片大小（SIZE），保证片数不过多的情况下，单片的传输效率。</p>
+</li>
+</ul>
 <p>代码示例：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let <span class="built_in">index</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">index</span> &lt; <span class="keyword">file</span>.<span class="built_in">size</span>) &#123;</span><br><span class="line">    tasks.push(&#123; filename: <span class="built_in">index</span> / <span class="built_in">SIZE</span>, fileChunk: <span class="keyword">file</span>.slice(<span class="built_in">index</span>, <span class="built_in">index</span> + <span class="built_in">SIZE</span>), <span class="string">'content-length'</span>: <span class="keyword">file</span>.<span class="built_in">size</span> % <span class="built_in">SIZE</span> &#125;);</span><br><span class="line">    <span class="built_in">index</span> += <span class="built_in">SIZE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let <span class="built_in">index</span> = <span class="number">0</span>,// 记录当前已经切割的分片大小</span><br><span class="line">    tasks = [];  // 请求参数列表</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">index</span> &lt; <span class="keyword">file</span>.<span class="built_in">size</span>) &#123;</span><br><span class="line">    // 这里向参数列表添加参数项，具体可由你们前后端协定</span><br><span class="line">    tasks.push(&#123; filename: <span class="built_in">index</span> / <span class="built_in">SIZE</span>, fileChunk: <span class="keyword">file</span>.slice(<span class="built_in">index</span>, <span class="built_in">index</span> + <span class="built_in">SIZE</span>), <span class="string">'content-length'</span>: <span class="keyword">file</span>.<span class="built_in">size</span> % <span class="built_in">SIZE</span> &#125;);</span><br><span class="line">    <span class="built_in">index</span> += <span class="built_in">SIZE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造好要发请求的参数集合后，就可以发请求了。</p>
 <h2 id="发起请求"><a href="#发起请求" class="headerlink" title="发起请求"></a>发起请求</h2><p>分割之后就是向后端发请求，传输文件片。这里涉及的要点：</p>
-<p><strong>并行/阻塞</strong>：组装参数，加入列表，遍历执行，是并行还是阻塞，如果需要一片一片，就阻塞，如果不需要，可以并行，但看情况需不需要进行并行数量的控制，在文件过大的情况下，分片数可能达到数百甚至上千，并行数过高可能引起浏览器崩溃。</p>
+<p><strong>并行/阻塞</strong>：拿到列表后遍历执行，是并行还是阻塞。如果需要一片接一片的传，就阻塞；如果不需要，可以并行，但要注意并行数量的控制，在文件大的情况下，分片数可能达到数百甚至上千，并行数过高可能引起浏览器崩溃。</p>
+<blockquote>
 <p>实现：并行就直接发请求，阻塞则使用async/await。</p>
-<p><strong>手动取消</strong>：允许用户有手动取消的操作，取消过后，尚未进行的请求需要中断，而不是继续在浏览器中允许。</p>
+</blockquote>
+<p><strong>手动取消</strong>：上传过程可能很长，允许用户中途手动取消，取消后，尚未进行的请求需要中断，而不是继续在浏览器中运行。</p>
+<blockquote>
 <p>实现：设置一个状态位，当状态为暂停，中断循环。</p>
-<p><strong>断点续传</strong>：是否可中断，即断点续传。断点续传的场景包括：手动暂停、网络异常停止、手动刷新页面等。断点续传可使用户在上传大文件时不必因为中途的失败而完全从头开始，这是个漫长的过程，体验很不好。</p>
+</blockquote>
+<p><strong>断点续传</strong>：是否可中断，即断点续传。断点续传的场景包括：手动暂停、网络异常停止、手动刷新页面等。</p>
+<p>断点续传可使用户在上传大文件时不必因为中途的失败而完全从头开始，这可能是个漫长的过程，体验很不好。</p>
+<blockquote>
 <p>实现：每次成功的请求记录当前索引，因某种原因中断重新启动时，从索引位的下一位开始。</p>
-<p><strong>失败重试</strong>：常见于大文件，由于请求数过多，中途难免因为网络情况、请求超时、后端报错等情况而出错，如果没有重试机制，一旦某一次请求失败，整个就失败了，失败率会明显增高，失败重试则会大大改善这一情况。</p>
-<p>实现：封装一个重试的方法，把请求、重试次数、重试间隔、参数、失败回调等传进去。捕获错误，间隔一定时长（如2s）进行重试，同时进行计数，当达到计数次数停止重试，抛出错误。</p>
-<p>如果非极端情况，重试的请求都是会发送成功。</p>
+</blockquote>
+<p><strong>失败重试</strong>：常见于大文件，由于请求数过多，中途难免因为网络情况、请求超时、后端报错等情况而出错，如果没有重试机制，一旦某一次请求失败，整个就失败了，失败率明显增高，失败重试则会大大改善这一情况。</p>
+<p>重试也需要一个更加合理的机制，如：间隔一段时间再重试，而不是瞬间重试，重试不是无止境，试几次之后可以提示用户上传异常，让用户自己选择是继续重试，还是放弃。</p>
+<blockquote>
+<p>实现：封装一个重试的方法，把请求、重试次数、重试间隔、参数、失败回调等传进去。</p>
+<p>捕获错误，间隔一定时长（如2s）进行重试，同时进行计数，当达到计数次数停止重试，抛出错误。</p>
+</blockquote>
+<p>如果非极端情况，重试的请求都会发送成功，这就大大改善了用户体验。</p>
+<p>当然，还有两个很小的点。</p>
+<ul>
+<li>一般重复的请求我们是会有取消机制的，否则用户多次发起请求，结果都会返回，会造成数据错误，但在这里，多个分片的请求可能会命中你的重复请求取消，要做特殊处理。</li>
+<li>请求报错我们往往会在响应拦截器中给予相应message的提示，但在请求失败重试的过程中，这个提示就不需要了，因为这个动作是不需要用户有感知的，后台默默执行就好。</li>
+</ul>
+<p>下面看代码示例：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 请求api的接口封装</span><br><span class="line">function asyncApiRequest(params: <span class="type">any</span>): <span class="type">Promise</span>&lt;<span class="type">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> formdata = params[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> fileHandler.getFileApi(formdata)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sleep = (timeout: number) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> new <span class="type">Promise</span>((resolve) =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            resolve('');</span><br><span class="line">        &#125;, timeout);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requestRetry = async (</span><br><span class="line">    asyncRequest: <span class="type">Function</span>,</span><br><span class="line">    time: number,</span><br><span class="line">    delay: number,</span><br><span class="line">    errorHanndler: <span class="type">Function</span>,</span><br><span class="line">    ...params: <span class="type">any</span></span><br><span class="line">): <span class="type">Promise</span>&lt;<span class="type">any</span>&gt; =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="literal">result</span> = await asyncRequest(params);</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">result</span>) <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">        throw new <span class="type">Error</span>('超时请求抛出');</span><br><span class="line">    &#125; catch (err) &#123;</span><br><span class="line">        <span class="keyword">if</span> (time--) &#123;</span><br><span class="line">            await sleep(delay);</span><br><span class="line">            <span class="keyword">return</span> await requestRetry(asyncRequest, time, delay, errorHanndler, ...params);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            errorHanndler();</span><br><span class="line">            throw new <span class="type">Error</span>('请求失败');</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>注意点：</p>
 <p>如果是单个固定请求的重试，不必传参数，写到封装的方法中即可，但分片上传时每次的参数都不同，就需要传入参数。</p>
 <p>重试的是一个新的请求，不是上次请求的结果，所以需要封装为一个函数，每次调用重新发起，而不是将上次的请求再次传入。</p>
-<p>代码示例：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 请求api的接口封装</span><br><span class="line">function asyncApiRequest(params: <span class="type">any</span>): <span class="type">Promise</span>&lt;<span class="type">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> formdata = params[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> fileHandler.getFileApi(formdata)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sleep = (timeout: number) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> new <span class="type">Promise</span>((resolve) =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            resolve('');</span><br><span class="line">        &#125;, timeout);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requestRetry = async (</span><br><span class="line">    asyncRequest: <span class="type">Function</span>,</span><br><span class="line">    time: number,</span><br><span class="line">    delay: number,</span><br><span class="line">    errorHanndler: <span class="type">Function</span>,</span><br><span class="line">    ...params: <span class="type">any</span></span><br><span class="line">): <span class="type">Promise</span>&lt;<span class="type">any</span>&gt; =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="literal">result</span> = await asyncRequest(params);</span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">result</span>) <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">        throw new <span class="type">Error</span>('超时请求抛出');</span><br><span class="line">    &#125; catch (err) &#123;</span><br><span class="line">        <span class="keyword">if</span> (time--) &#123;</span><br><span class="line">            await sleep(delay);</span><br><span class="line">            <span class="keyword">return</span> await requestRetry(asyncRequest, time, delay, errorHanndler, ...params);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            errorHanndler();</span><br><span class="line">            throw new <span class="type">Error</span>('请求失败');</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>文件分片在“重文件”型项目中很常见，如上传下载工具、网盘，我们的项目主要也是一些文件处理工具，所以是需要理解和掌握，并投入使用来改善用户体验的。</p>
 
         
