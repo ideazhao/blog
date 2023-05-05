@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2014-10-05</span></span>
+        <span class="attr">Post：<span>2014-10-05</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -139,7 +139,7 @@
 <p>一、图片裁剪的方式<br>二、为什么要裁剪，裁剪完之后做了哪些动作？</p>
 <h2 id="先来说第一点"><a href="#先来说第一点" class="headerlink" title="先来说第一点"></a>先来说第一点</h2><p>不要觉得这是有多麻烦，多深奥，大家都玩儿过一种智力游戏吧，叫做“你能用几刀把一个正方形切成九块？”或者说“只用几刀你能把什么切成多少块”，等等。图片裁剪是一个道理，是不是瞬间觉得亲切很多？它就是横竖各两刀来把你所选取的图片切成九份，就是很多资料里说的“九宫格”模样，是怎么切的呢？注意，切的次数是4，这个数字蛮熟悉的吧，margin、padding、border等这些都是有四个方向的规则吧，此处也一样，遵循上、右、下、左，那是怎么测量的呢？你应该猜到了，是从边缘向里测量，也就是上边缘向下，右边缘向左，依次类推。像其他规则一样，你同样可以简写之，写一个，两个、三个都没问题，有注意事项会在下面奉上！~</p>
 <h2 id="再说第二点"><a href="#再说第二点" class="headerlink" title="再说第二点"></a>再说第二点</h2><p>或许会有人说，我看你说怎么测量，怎么裁剪，头都大了，到底是要干嘛啊？我就用个边框还搞这么复杂。相信我，并不复杂，为了更好的说明裁剪完成之后干嘛，来拿张图片，这也是w3c教程网的图片</p>
-<p><img src="border-image/1.png" alt=""></p>
+<p><img src="border-image/1.png" alt></p>
 <p>先这么粗糙的给大家画一幅，已经切成九块了对吧，那接下来，要干嘛呢，要发功了！呵呵，开玩笑。</p>
 <p>图片边框的绘制进入了最后一步，也是最关键的一步：</p>
 <p>切记，四个角是不动的，也就是说，当你应用了这个图片作为边框，四个角还是红色菱形，你也控制不了它（除了尺寸）。那中间呢，中间也是不显示的，大漠哥的文章里把它称为“盲区”，是的，拿掉！就只剩四个黄色菱形了。接下来，我们就来正经的讲一下，会发生什么。我做一个形象的比喻吧，给元素加上这么一个边框，就相当于找了一个图片，然后按你想要的区域把中间掏空，接下来向四周撑开！</p>
@@ -148,21 +148,21 @@
 <p>round（平铺）</p>
 <pre><code>.box{border-image:url(&quot;../images/border.png&quot;) 27 round;border-width:27px;width:800px;height:100px;background:#0CC;}
 </code></pre><p>效果</p>
-<p><img src="border-image/2.png" alt=""> </p>
+<p><img src="border-image/2.png" alt> </p>
 <p>repeat（重复）</p>
 <pre><code>.box{border-image:url(&quot;../images/border.png&quot;) 27 repeat;border-width:27px;width:800px;height:100px;background:#0CC;}
 </code></pre><p>效果</p>
-<p><img src="border-image/3.png" alt=""> </p>
+<p><img src="border-image/3.png" alt> </p>
 <p>stretch（拉伸）</p>
 <pre><code>.box{border-image:url(&quot;../images/border.png&quot;) 27 stretch;border-width:27px;width:800px;height:100px;background:#0CC;}
 </code></pre><p>效果</p>
-<p><img src="border-image/4.png" alt=""></p>
+<p><img src="border-image/4.png" alt></p>
 <p>注：IE开发者平台还给出了另一种方式：space，据我测试，跟repeat没看出来有什么区别，你可以试试，如果有新发现欢迎交流~</p>
 <p>好吧，三种展示完了，相信用过背景图片或者设置过电脑桌面图片的人，对平铺和拉伸都很熟悉吧，这个不难理解。现在该说注意事项了。</p>
 <p>短短的一段代码到底藏有多少玄机呢？（故弄玄虚了哈~）</p>
 <p>1、图片路径一定不要错，可为绝对或相对路径<br>2、大家应该注意到裁剪的数值，用了27，这是因为图片的宽高均为81，使用27能把它的边进行三等分，剪出三个完整菱形，说白了就是好看，你想用多大用多大，这个不影响你成功的使用它，当然，要在原图尺寸范围内，你也可以尝试0或者81是什么效果~另外，它没带单位，是的，它默认单位就是“px”，带上单位反而会错！！<br>3、使用显示方式的时候你可以只写一个，就像我上面那样，也可以写两个，但切记，你不能以此类推的说，可不可以写三个或者四个呢？不行！不仅诸如 round repeat stretch这样的不行，round repeat round和round repeat round repeat这样看似合理的也是不行的！！当然，你不写也可以，默认值是 stretch。</p>
 <p>给出stretch round 结合的效果，注意，前面一个控制上下，后面一个控制左右。</p>
-<p><img src="border-image/5.png" alt=""></p>
+<p><img src="border-image/5.png" alt></p>
 <p>4、边框的宽度，首先这个是必须设置的，不然是不会有任何反应的，另外，边框的宽度和原始图片无关，原始图片只是你用来做选取的，你所设置的边框宽度比选取的部分更大或者更小都没有关系，可以是任意的正常数值，你所选取的部分图片会等比例缩放以正常显示</p>
 <p>以上四点，便是需要注意的基本的东西，任何一点出错你都将看不到任何效果，如果你在练习的时候出现问题，可以先检查一下，另外，注意单词的拼写这样的低级错误不要犯。</p>
 <p>其实，你还是会有一些困惑的，不是么</p>
@@ -172,13 +172,13 @@
 <p>border-image: url(“图片路径”) 裁剪尺寸 /边框宽度 /边框图象超出边框的量 显示方式;</p>
 <p>看到这个你会说，怎么比刚才多出两个呢，是的，这个是把所有的都缩写到一条规则里了，而且要按照格式来，比如“/”是<br>不能去掉的，不然整条规则又一命呜呼了，那边框图象超出边框的量是什么意思呢？我们所设定的边框图象是占据了所定<br>义的固定宽度的空间，默认超出为0；下面给出超出5px的样子。</p>
 <pre><code>.box{border-image:url(&quot;../images/border.png&quot;) 27 /30px /5px stretch round;
-</code></pre><p><img src="border-image/6.png" alt=""></p>
+</code></pre><p><img src="border-image/6.png" alt></p>
 <p>看到区别了么？四边都超出去了5px，作为常理，像这种用来控制距离的东西，可以正<br>就可以负咯？不好意思，这个真没有！~但是它可以遵循上、右、下、左的规则，也可以简写。</p>
 <p>总结，如果你想简写</p>
 <p>border-image: url(“图片路径”) 裁剪尺寸 /边框宽度;</p>
 <p>这个组合就是必须的了。其他用来锦上添花。</p>
-<p>说了这么多，不知你是否已经明了？如果还是没明白，那么请动手做一下吧，只要提到的那四条注意事项不出错，基本就没问题了。另附大漠哥文章<a href="http://www.w3cplus.com/content/css3-border-image" target="_blank" rel="external">css3-border-image</a>，个人认为，你先能做出来基本的效果再看收获会更大，还有惊喜，不然可能很晕。</p>
-<p>IE开发人员中心<a href="http://msdn.microsoft.com/library/ie/dn384064.aspx" target="_blank" rel="external">相关内容</a></p>
+<p>说了这么多，不知你是否已经明了？如果还是没明白，那么请动手做一下吧，只要提到的那四条注意事项不出错，基本就没问题了。另附大漠哥文章<a href="http://www.w3cplus.com/content/css3-border-image" target="_blank" rel="noopener">css3-border-image</a>，个人认为，你先能做出来基本的效果再看收获会更大，还有惊喜，不然可能很晕。</p>
+<p>IE开发人员中心<a href="http://msdn.microsoft.com/library/ie/dn384064.aspx" target="_blank" rel="noopener">相关内容</a></p>
 <p>欢迎一起交流学习，加入我的企鹅群你将得到更多哦！~web前端~美是编出来的：152128548</p>
 
         
@@ -190,7 +190,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -250,7 +250,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

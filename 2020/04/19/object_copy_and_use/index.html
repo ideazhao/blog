@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,19 +119,19 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-04-19</span></span>
+        <span class="attr">Post：<span>2020-04-19</span></span>
         
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-        <span>/</span>
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#总结" title="总结">总结</a>
         <span>/</span>
         
+        <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+        <span>/</span>
+        
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -162,7 +162,7 @@
 <p>所以下面的操作可以实现浅拷贝。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj2 = <span class="built_in">Object</span>.assign(&#123;&#125;, obj1);</span><br></pre></td></tr></table></figure>
 <p>它还可以做到下面这种类似合并的效果。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; a: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; b: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = &#123; c: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.assign(o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.assign(o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;</span></span><br></pre></td></tr></table></figure>
 <p>“浅拷贝“说差不多了，来看看”深拷贝”。</p>
 <h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>明白了浅拷贝，就能推测出深拷贝应该是怎样。思路如下：</p>
 <ul>
@@ -191,7 +191,7 @@
 <p>不少人推荐这种方法，因为它支持循环引用和大量的内置类型，细节处理好，一般不会出错，相比之下用着放心。</p>
 <p>用法就是引用cloneDeep.js文件，直接使用就好：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> target = cloneDeep(src);</span><br></pre></td></tr></table></figure>
-<p>想研究源码的可以戳这里<a href="https://github.com/lodash/lodash/blob/master/cloneDeep.js" target="_blank" rel="external">cloneDeep</a></p>
+<p>想研究源码的可以戳这里<a href="https://github.com/lodash/lodash/blob/master/cloneDeep.js" target="_blank" rel="noopener">cloneDeep</a></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文旨在分享”常见常新“的对象拷贝问题，以及”浅“、”深“拷贝的对比和代码实现。</p>
 <p>这个问题之所以常见，其一是有用，其二，涉及的知识点较多：</p>
 <ul>
@@ -215,7 +215,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -275,7 +275,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

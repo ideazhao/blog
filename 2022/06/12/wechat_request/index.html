@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-06-12</span></span>
+        <span class="attr">Post：<span>2022-06-12</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -162,7 +162,7 @@
 <p>Ajax通过异步通信和响应完成页面的<strong>局部刷新</strong>，以此改善传统Web中大量不必要的整页刷新。</p>
 <p>Ajax出现之后，Google就在Google地图、Google搜索建议、Gmail等投入使用，效果很棒，随后在全世界逐渐流行开来。</p>
 <h3 id="Ajax请求"><a href="#Ajax请求" class="headerlink" title="Ajax请求"></a>Ajax请求</h3><p><strong>创建</strong></p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> requestMethod(<span class="class"><span class="keyword">type</span>,<span class="title">url</span>,<span class="title">data</span>,<span class="title">contentType</span>)&#123;</span></span><br><span class="line">    <span class="keyword">let</span> XHR = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    XHR.<span class="keyword">open</span>(<span class="class"><span class="keyword">type</span>,<span class="title">url</span>,<span class="title">true</span>)</span></span><br><span class="line">    XHR.setRequestHeader('Content-<span class="class"><span class="keyword">type</span>',<span class="title">contentType</span>)</span></span><br><span class="line">    XHR.send(data)</span><br><span class="line">    XHR.onreadystatechange = <span class="keyword">function</span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(XHR.readyState == <span class="number">4</span> &amp;&amp; XHR.status == <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">// 请求成功返回内容</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">function</span> requestMethod(<span class="class"><span class="keyword">type</span>,url,<span class="keyword">data</span>,contentType)&#123;</span></span><br><span class="line"><span class="class">    <span class="title">let</span> <span class="type">XHR</span> = <span class="title">new</span> <span class="type">XMLHttpRequest</span>()</span></span><br><span class="line"><span class="class">    <span class="type">XHR</span>.<span class="title">open</span>(<span class="title">type</span>,<span class="title">url</span>,<span class="title">true</span>)</span></span><br><span class="line"><span class="class">    <span class="type">XHR</span>.<span class="title">setRequestHeader</span>('<span class="type">Content</span>-<span class="title">type'</span>,<span class="title">contentType</span>)</span></span><br><span class="line"><span class="class">    <span class="type">XHR</span>.<span class="title">send</span>(<span class="title">data</span>)</span></span><br><span class="line"><span class="class">    <span class="type">XHR</span>.<span class="title">onreadystatechange</span> = <span class="title">function</span>()&#123;</span></span><br><span class="line"><span class="class">        <span class="title">if</span>(<span class="type">XHR</span>.<span class="title">readyState</span> == 4 &amp;&amp; <span class="type">XHR</span>.<span class="title">status</span> == 200)&#123;</span></span><br><span class="line"><span class="class">            // 请求成功返回内容</span></span><br><span class="line"><span class="class">        &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>过程略显繁琐，不论是以前还是现在，都会有第三方工具提供更加简洁和强大的封装，后面会聊，现在先让我们深入细节。</p>
 </blockquote>
@@ -229,7 +229,7 @@
 <li>能够在包括主页面执行线程、模块和工作线程中使用</li>
 </ul>
 <p>看个示例：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(response.status == <span class="number">200</span>)&#123;</span><br><span class="line">        response.json().<span class="keyword">then</span>(data=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(<span class="function">(<span class="params">response</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(response.status == <span class="number">200</span>)&#123;</span><br><span class="line">        response.json().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>看代码就一目了然，直接调用fetch，参数url、响应response、属性status、方法json()、有用的数据data。</p>
 <p>其中，方法有多种选择：blob、formData、json、text。</p>
 <p>只使用URL时，fetch()会发送GET请求，只包含最低限度的请求头。要进一步配置如何发送请求，需要传入可选的第二个参数——init对象。init中包含但不限于：</p>
@@ -241,7 +241,7 @@
 <li>signal:支持通过AbortController中断进行中的fetch请求</li>
 </ul>
 <p>比如可以像这样发送请求：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> payload = <span class="type">JSON</span>.stringify(&#123;</span><br><span class="line">    name:'idea'</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> jsonHeader = &#123;</span><br><span class="line">    '<span class="type">Content</span>-<span class="type">Type</span>':'application/json'</span><br><span class="line">&#125;</span><br><span class="line">fetch('send-json',&#123;</span><br><span class="line">    <span class="keyword">method</span>:'<span class="type">POST</span>',</span><br><span class="line">    body:payload,</span><br><span class="line">    headers:jsonHeader</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> payload = <span class="type">JSON</span>.stringify(&#123;</span><br><span class="line">    name:<span class="symbol">'idea'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> jsonHeader = &#123;</span><br><span class="line">    <span class="symbol">'Content</span>-<span class="type">Type'</span>:<span class="symbol">'application</span>/json'</span><br><span class="line">&#125;</span><br><span class="line">fetch(<span class="symbol">'send</span>-json',&#123;</span><br><span class="line">    method:<span class="symbol">'POST'</span>,</span><br><span class="line">    body:payload,</span><br><span class="line">    headers:jsonHeader</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>需要注意的是，fetch请求不会帮你判断状态是否真正可用，只要响应完成，就会返回为resolve，所以，要在回调中用response.status和response.ok来判断，如果因为服务器没有响应而导致浏览器超时，这样的失败会导致reject。</p>
 <p>同样，fetch支持通过AbortController/AbortSignal中断请求。调用AbortController. abort()会中断所有网络传输，适合希望停止传输大型负载的情况。中断进行中的fetch()请求会导致包含错误的拒绝。</p>
 <p>fetch的大体使用就是这样，还有很多细节，可自行查阅。</p>
@@ -292,7 +292,7 @@
 <p>既然以上几种方案都互有优劣，有没有一种结合它们优点的方式？</p>
 <p>Beacon API就是。</p>
 <p>语法如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">navigator</span><span class="class">.sendBeacon</span>(<span class="tag">url</span>);</span><br><span class="line"><span class="tag">navigator</span><span class="class">.sendBeacon</span>(<span class="tag">url</span>, <span class="tag">data</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">navigator</span><span class="selector-class">.sendBeacon</span>(<span class="selector-tag">url</span>);</span><br><span class="line"><span class="selector-tag">navigator</span><span class="selector-class">.sendBeacon</span>(<span class="selector-tag">url</span>, <span class="selector-tag">data</span>);</span><br></pre></td></tr></table></figure>
 <p>sendBeacon有两个参数：URL和要在请求中发送的数据data。data参数是可选的，其类型可以是ArrayBufferView、Blob、DOMString 或FormData。如果浏览器成功的以队列形式排列了用于传递的请求，则该方法返回“<code>true</code>”，否则返回“<code>false</code>”。</p>
 <p>当我们写了这些代码，它会<strong>尝试在卸载文档之前将数据发送到服务器</strong>。时机过早可能错失收集数据的机会。所以时机控制很重要，恰恰这是开发人员难以做到的，API帮我们解决了。</p>
 <p>有几点要说明：</p>
@@ -318,7 +318,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -378,7 +378,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

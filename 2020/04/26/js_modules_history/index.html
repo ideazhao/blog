@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-04-26</span></span>
+        <span class="attr">Post：<span>2020-04-26</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#JavaScript、模块化、总结" title="JavaScript、模块化、总结">JavaScript、模块化、总结</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -155,7 +155,7 @@
 <p>这么一来，在一定程度上解决了命名的问题，但是它的属性仍然是暴露的，可以被外部更改。比如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myModule.name = <span class="string">'李四'</span>;</span><br><span class="line">myModule.getName() <span class="comment">// ‘李四’</span></span><br></pre></td></tr></table></figure>
 <p>还是不够理想。</p>
-<h3 id="匿名闭包"><a href="#匿名闭包" class="headerlink" title="匿名闭包"></a>匿名闭包</h3><p>这种方式在项目中有不少应用，是利用了闭包的特性——私有数据和共享方法，关于这一点，我们在<a href="https://ideazhao.com/2020/03/22/js_closure/" target="_blank" rel="external">闭包</a>中有提及。</p>
+<h3 id="匿名闭包"><a href="#匿名闭包" class="headerlink" title="匿名闭包"></a>匿名闭包</h3><p>这种方式在项目中有不少应用，是利用了闭包的特性——私有数据和共享方法，关于这一点，我们在<a href="https://ideazhao.com/2020/03/22/js_closure/" target="_blank" rel="noopener">闭包</a>中有提及。</p>
 <p>代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//module.js</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">'idea'</span></span><br><span class="line">  <span class="comment">//操作数据的函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;name&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//暴露方法</span></span><br><span class="line">  <span class="built_in">window</span>.myModule = &#123; getName &#125; </span><br><span class="line">&#125;)(<span class="built_in">window</span>)</span><br></pre></td></tr></table></figure>
 <p>这个时候，可以通过<code>myModule.getName()</code>来获取<code>name</code>，但无法通过<code>myModule.name</code>访问<code>name</code>。</p>
@@ -165,7 +165,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//module.js</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window,$</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">'idea'</span></span><br><span class="line">  <span class="comment">//操作数据的函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">    $(<span class="string">'body'</span>).css(<span class="string">'color'</span>, <span class="string">'red'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//暴露方法</span></span><br><span class="line">  <span class="built_in">window</span>.myModule = &#123; getName &#125; </span><br><span class="line">&#125;)(<span class="built_in">window</span>,jQuery)</span><br></pre></td></tr></table></figure>
 <p>当然，这里的jQuery是另一个地方定义好的模块，通过这种方式引入，就可以在myModule内部使用，而且这就是现代模块实现的思想来源，只是方式不同。</p>
 <p>说了上面那么多，模块的实现也有了一些改变和优化，但还有一个东西是没有变的，文件的组织方式，像上面的代码，在页面中会是这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"jquery-1.10.1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"module.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">  myModule.getName()</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"jquery-1.10.1.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">" src="</span><span class="built_in">module</span>.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;script type="</span>text/javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  myModule.getName()</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>我们解决了命名冲突，数据保护，和引入依赖，但没有解决依赖与文件加载顺序的强相关性，另外还存在请求过多的问题。</p>
 <p>所以，仍然需要更好的方案来解决这些问题。</p>
 <h2 id="模块化规范"><a href="#模块化规范" class="headerlink" title="模块化规范"></a>模块化规范</h2><p>上面都是开发者运用语言本身的特性不断摸索出来的成果，各有用武之地，但又都存在不足。</p>
@@ -214,7 +214,7 @@
 <p>RequireJS是一个遵守AMD规范的工具库，用于客户端的模块管理。它通过define方法，将代码定义为模块；通过require方法，实现代码的模块加载，使用时需要下载和导入项目。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无依赖模块</span></span><br><span class="line"><span class="comment">// msg.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> msg = <span class="string">'www.baidu.com'</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getMsg</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> msg.toUpperCase()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123; getMsg &#125; <span class="comment">// 暴露模块</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//有依赖模块</span></span><br><span class="line"><span class="comment">// showMsg.js</span></span><br><span class="line">define([<span class="string">'msg'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">getMsg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">'idea'</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">showMsg</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(msg.getMsg() + name)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123; showMsg &#125; <span class="comment">// 暴露模块</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>使用的时候只需要像下面这样:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 引入<span class="built_in">require</span>.js并指定js主文件的入口 --&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">data-main</span>=<span class="value">"js/main"</span> <span class="attribute">src</span>=<span class="value">"js/libs/require.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 引入<span class="built_in">require</span>.js并指定js主文件的入口 --&gt;</span><br><span class="line">&lt;script data-main=<span class="string">"js/main"</span> src=<span class="string">"js/libs/require.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD规范可说是站在巨人的肩膀上，它整合了CommonJS和AMD规范的特点，专门用于浏览器模块异步加载。</p>
 <p>直接看代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无依赖</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>)</span>&#123;</span><br><span class="line">  exports.xxx = value  </span><br><span class="line">  <span class="built_in">module</span>.exports = value</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -223,7 +223,7 @@
 <p>相比之下，CMD规范推崇代码职责更单一，且没有全局require，看起来，头部较轻，所需模块就近引入。</p>
 <p><strong>SeaJS</strong></p>
 <p>CMD规范的集大成者是SeaJS，笔者之前所在的组就是使用SeaJS作为模块加载器。它的使用同RequireJS类似，需要下载和引入页面。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/libs/sea.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="actionscript"></span><br><span class="line">  seajs.<span class="keyword">use</span>(<span class="string">'./js/modules/main'</span>)</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/libs/sea.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  seajs.use('./js/modules/main')</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
 <p>看完以上几个方案，是时候介绍原生实现了。</p>
 <h3 id="ES6模块"><a href="#ES6模块" class="headerlink" title="ES6模块"></a>ES6模块</h3><p>ES6之前没有专门的模块机制，为提供这些能力，ES6引入两个关键字。</p>
 <ul>
@@ -242,7 +242,7 @@
 <ul>
 <li>export default</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// <span class="label">xxx.js</span></span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"My name is idea!"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a; <span class="comment">// 只能有一个</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以使用任意变量接受</span></span><br><span class="line"><span class="keyword">import</span> b <span class="keyword">from</span> <span class="string">"./xxx.js"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// xxx.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"My name is idea!"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> a; <span class="comment">// 只能有一个</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以使用任意变量接受</span></span><br><span class="line"><span class="keyword">import</span> b <span class="keyword">from</span> <span class="string">"./xxx.js"</span>;</span><br></pre></td></tr></table></figure>
 <p>这种称为默认导出，就是什么都不管，默认就是它，跟构建工具当中的默认任务类似，直接跑就是。</p>
 <p>不过它看起来方便，却可能引起一些潜在的问题，这些问题超出本文讨论范围，相信大家能够以最好的方式去使用它们~</p>
 <p>以上两种方法都非刚需，看各自的编码喜好和需要使用。</p>
@@ -260,7 +260,7 @@
 <p>按理说，对于任何一种工具或者工作方式，我们不必知道它是怎么来的，只需知道当下哪种最好用以及怎么用，就可以了，但对它们产生的背景和发展历史有所了解能让我们更加有的放矢，在没人替我们做选择，或者遇到问题时，能有自己的判断和解决方法。</p>
 <p>就聊到这儿了，不保证完全正确，欢迎交流，下篇见！~</p>
 <p>参考：</p>
-<p><a href="https://github.com/ljianshu/Blog/issues/48" target="_blank" rel="external">前端模块化详解</a><br><a href="http://shouce.jb51.net/webpack/amd.html" target="_blank" rel="external">AMD规范</a><br>《JavaScript忍者秘籍》等</p>
+<p><a href="https://github.com/ljianshu/Blog/issues/48" target="_blank" rel="noopener">前端模块化详解</a><br><a href="http://shouce.jb51.net/webpack/amd.html" target="_blank" rel="noopener">AMD规范</a><br>《JavaScript忍者秘籍》等</p>
 
         
             <div class="donate-container">
@@ -271,7 +271,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -331,7 +331,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

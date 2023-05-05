@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-02-02</span></span>
+        <span class="attr">Post：<span>2022-02-02</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -189,7 +189,7 @@
 <p>好的，到这里我们已经讨论了滚动相关的话题，但是，都是借助不同元素间的关系以及属性，通过计算判断得来的，还有个更新、更便利的方案。</p>
 <h2 id="区域滚动——scrollIntoView"><a href="#区域滚动——scrollIntoView" class="headerlink" title="区域滚动——scrollIntoView()"></a>区域滚动——scrollIntoView()</h2><p>DOM规范中没有涉及的一个问题是如何滚动页面中的某个区域，为填充这方面的缺失，不同浏览器实现了不同的控制滚动的方式，在所有方法中，HTML5选择了标准化scrollIntoView()。</p>
 <p>这个方法便利到什么程度呢？如果你想将一个id为box的元素滚动到与视口顶部对齐，只需要这样。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">div</span> id=<span class="string">'box'</span>&gt;</span><br><span class="line">  此区域滚动</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">const box = document.<span class="function"><span class="title">getElementById</span><span class="params">(<span class="string">'box'</span>)</span></span></span><br><span class="line">box.<span class="function"><span class="title">scrollIntoView</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">'box'</span>&gt;</span><br><span class="line">  此区域滚动</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">box</span> = document.getElementById(<span class="string">'box'</span>)</span><br><span class="line"><span class="built_in">box</span>.scrollIntoView()</span><br></pre></td></tr></table></figure>
 <p>这里需要注意两点：</p>
 <p>1、容器要可滚动，且DOM加载完成<br>2、剩余空间足够滚动到目标位置</p>
 <p>就能达到正确的效果。</p>
@@ -211,12 +211,12 @@
 <p>使用前缀data-命名的属性就是自定义属性，这些属性既不包含与渲染有关的信息，也不包含元素的语义信息。除了前缀，命名没有限制，data-后面跟什么都可以。</p>
 <p>主要用于在前端的元素上存储一些较为轻量的数据，以便交互时使用，从而不需要多次重复地获取。</p>
 <p>怎么用呢，可以通过元素的dataset属性来访问。dataset属性是一个DOMStringMap的实例，包含一组键/值对。元素的每个data-name属性在dataset中都可以通过data-后面的字符串作为键来访问。<br>（例如，属性data-myname、data-myName可以通过element.dataset.myname访问。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="tag">div</span> data-myname=<span class="string">'idea'</span> id=<span class="string">"myName"</span>&gt;&lt;/div&gt;</span><br><span class="line">const myName = document.<span class="function"><span class="title">getElementById</span><span class="params">(<span class="string">'myName'</span>)</span></span></span><br><span class="line">console.<span class="function"><span class="title">log</span><span class="params">(myName.dataset)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built-in">div</span> data-myname=<span class="string">'idea'</span> id=<span class="string">"myName"</span>&gt;&lt;/<span class="built-in">div</span>&gt;</span><br><span class="line">const myName = document.getElementById(<span class="string">'myName'</span>)</span><br><span class="line">console.<span class="built-in">log</span>(myName.dataset)</span><br></pre></td></tr></table></figure>
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a9d59d1daec949bb95b7bb22003c5677~tplv-k3u1fbpfcp-watermark.image?" alt="dataset.png"></p>
 <p>自定义属性在某种程度上增强了HTML结构的能力。</p>
 <h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>事件是个大话题，后面会作为单独一篇文来讲，但事件和DOM是关联的，这里提一下。</p>
 <p>事件是用户和网页交互的桥梁，需要一个“接口”进行连通，即绑定事件。</p>
-<p>如果要给一个按钮绑定点击事件，可以这样：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="keyword">type</span>=<span class="string">'button</span>' value=<span class="string">'click</span> me!' onclick=<span class="string">"console.log('clicked!')"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果要给一个按钮绑定点击事件，可以这样：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">type</span>=<span class="string">'button'</span> <span class="attribute">value</span>=<span class="string">'click me!'</span> <span class="attribute">onclick</span>=<span class="string">"console.log('clicked!')"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
 <p>可以这样：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">'button'</span> value=<span class="string">'click me!'</span> id=<span class="string">"myBtn"</span>/&gt;</span><br><span class="line"><span class="keyword">let</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">"#myBtn"</span>)</span><br><span class="line">    btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'clicked'</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>还可以这样：</p>
@@ -233,7 +233,7 @@
 <p>MutationObserverInit对象用于控制观察哪些方面的变化，是一个键/值对形式配置选项的字典。</p>
 <p>每个回调都会收到一个MutationRecord实例的数组。MutationRecord实例包含的信息包括发生了什么变化，以及DOM的哪一部分受到了影响。因为回调执行之前可能同时发生多个满足观察条件的事件，所以每次执行回调都会传入一个包含按顺序入队的MutationRecord实例的数组。</p>
 <p>默认情况下，只要被观察的元素不被垃圾回收，MutationObserver的回调就会响应DOM变化事件，从而被执行。要提前终止执行回调，可以调用disconnect()方法。</p>
-<p>代码示例如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取目标节点</span></span><br><span class="line"><span class="keyword">const</span> targetNode = <span class="built_in">document</span>.getElementById(<span class="string">'ele'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置（需要观察什么变动）</span></span><br><span class="line"><span class="keyword">const</span> config = &#123; attributes: <span class="literal">true</span>, childList: <span class="literal">true</span>, subtree: <span class="literal">true</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变动时执行的回调</span></span><br><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">mutationsList, observer</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> mutation <span class="keyword">of</span> mutationsList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mutation.type === <span class="string">'childList'</span>) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (mutation.type === <span class="string">'attributes'</span>) &#123;</span><br><span class="line">           <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个观察器实例并传入回调函数</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> MutationObserver(callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上述配置开始观察目标节点</span></span><br><span class="line">observer.observe(targetNode, config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止观察</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure></p>
+<p>代码示例如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取目标节点</span></span><br><span class="line"><span class="keyword">const</span> targetNode = <span class="built_in">document</span>.getElementById(<span class="string">'ele'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置（需要观察什么变动）</span></span><br><span class="line"><span class="keyword">const</span> config = &#123; <span class="attr">attributes</span>: <span class="literal">true</span>, <span class="attr">childList</span>: <span class="literal">true</span>, <span class="attr">subtree</span>: <span class="literal">true</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变动时执行的回调</span></span><br><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">mutationsList, observer</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> mutation <span class="keyword">of</span> mutationsList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mutation.type === <span class="string">'childList'</span>) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (mutation.type === <span class="string">'attributes'</span>) &#123;</span><br><span class="line">           <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个观察器实例并传入回调函数</span></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> MutationObserver(callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上述配置开始观察目标节点</span></span><br><span class="line">observer.observe(targetNode, config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止观察</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure></p>
 <p>需要说明的是，可以通过多次调用observe()方法来复用一个MutationObserver对象观察多个不同的目标节点。这种情况下，MutationRecord的target属性可以标识发生变化事件的目标节点。</p>
 <p>说了这么多，它能用来干什么呢？举个大家熟悉的例子：Vue中的nextTick。</p>
 <p>大家知道，Vue中从数据变化到更新DOM需要过程，想要在DOM更新后执行某个动作，常用到nextTick 方法，而 MutationObserver 就可以实现这样的效果，所以MutationObserver是拿来实现nextTick的方法之一，为什么说之一，上面说过，框架会替开发者做很多工作，比如某功能的最优方案，次优方案，兼容方案等，考虑到MutationObserver的兼容性，会使用其他替代方案来适配不支持的情况，这里不是重点，不再赘述。</p>
@@ -250,7 +250,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -310,7 +310,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

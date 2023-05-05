@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2015-12-01</span></span>
+        <span class="attr">Post：<span>2015-12-01</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -173,7 +173,7 @@
 <p>网页本身是个二维的平面空间，有了各种元素的堆砌之后，怎么在网页里摆放它们的位置？ 首先每种元素都有其“自带”的表现特性，这个“自带”，来自于浏览器（由于不同浏览器对其的标准不一，就有了后来的reset，这里不细说，想了解更多可以到关于reset那些事儿系列了解)，是否占满一行，是否有边距，是否有特定格式和大小等。如果只是把元素赤裸裸的丢到网页当中去，它也会有一个样子，只不过没那么美观（可以去看看CSS魔法的博客，已裸奔多年~），这也能算是一种简陋的布局，所以，我对“div、table”这类的答案视之为沾边，但不准确，因为它们主要充当了包裹网页内容的容器这么个角色，是css得以施展的载体，参与了网页制作的一环，本身并没有很强的布局能力。</p>
 <p><strong>广义的“盒”</strong></p>
 <p>很多教程会把“盒模型”给单独列出来，当年我在学那些教程的时候一直好奇”盒模型”是个什么？这跟网页制作怎么扯上关系的，后来知道了之后曾奇怪为什么起那么个名字~虽然形象，但觉得并不是很助于第一印象的理解。 先来看普遍意义上的盒： </p>
-<p><img src="basic-layout/1.jpg" alt=""></p>
+<p><img src="basic-layout/1.jpg" alt></p>
 <p>我给定义一个广义的“盒”，是因为，随着技术的发展进步，和网页设计的创意无限，元素的排列不再那么规矩，形状也不会那么规则，视觉效果更丰富，我们已经越来越多的需要用到一些技巧和新的属性。 罗列下来大致有width、height、padding、margin、border、outline、box-shadow、background、:after/:before、transform、box-sizing等，至于利用canvas、svg等做出的更加匪夷所思效果的，另当别论。</p>
 <h2 id="布局家族"><a href="#布局家族" class="headerlink" title="布局家族"></a>布局家族</h2><p>说了半天，终于要扯到正题上来，网页就是由各种容器按照一定的秩序进行摆放，那么不管是作用于它本身，还是外部兄弟元素、父子元素之间位置的，都算，哪些呢？ 先看元素本身，我们知道大致分为“块级”和“行内”，这是两种基本形态——“占据整行”和“可在同一行并排放”，差不多够了，那么为什么需要float，它不是用来实现“块级元素横着放”的吗？很多人喜欢的用法，这就要说最初的设计意图——“图文混排的文字环绕”了。 除去元素本身，css的哪些是跟布局有关，你可以拿来对它进行control的？</p>
 <p>width/height 宽/高</p>
@@ -199,7 +199,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -259,7 +259,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

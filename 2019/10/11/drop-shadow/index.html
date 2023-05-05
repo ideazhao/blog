@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-10-11</span></span>
+        <span class="attr">Post：<span>2019-10-11</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -147,10 +147,10 @@
   box-shadow: 0 3px 10px 1px rgba(0, 0, 0, .5);
 }
 </code></pre><p>效果如下：</p>
-<p><img src="/img/drop-shadow/box-shadow.png" alt=""></p>
+<p><img src="/img/drop-shadow/box-shadow.png" alt></p>
 <p>这是最常规的实现，我们可以任意修改阴影的偏移值和半径、颜色，达到我们想要的效果。</p>
 <p>但有时我们会遇到这样的效果，</p>
-<p><img src="/img/drop-shadow/box-shadow-single.png" alt=""></p>
+<p><img src="/img/drop-shadow/box-shadow-single.png" alt></p>
 <p>乍一看，也很普通，但你会发现，当我们按照常规写法去写阴影的时候，它会出现三种可能情况：</p>
 <ul>
 <li>偏移量很小，四边都有阴影</li>
@@ -166,18 +166,18 @@
 <p>不妨来看看浏览器是怎么制造阴影的。我们把代码改成这样：</p>
 <pre><code>box-shadow: 0px 55px 0px 0px rgba(0, 0, 0, .7);
 </code></pre><p>盒子背后的秘密被暴露了出来，</p>
-<p><img src="/img/drop-shadow/shadow-back.png" alt=""></p>
+<p><img src="/img/drop-shadow/shadow-back.png" alt></p>
 <p>哇偶，原来它只是在我们盒子的背后绘制了一个一模一样的形状：</p>
 <ul>
 <li>改变模糊半径，它会从边缘到中心逐渐变模糊</li>
 <li>改变扩展半径，会改变它的大小</li>
 </ul>
 <p>看到这里，你应该明白了什么，从上图可看出，阴影的初始大小跟元素完全吻合，那么，给予它一个单边的偏移值，再给它负的扩展半径，它就能成为一个——三边都躲在元素背后，只有一边露出来的单边阴影~</p>
-<p><img src="/img/drop-shadow/single-test.png" alt=""></p>
+<p><img src="/img/drop-shadow/single-test.png" alt></p>
 <p>(发现长得有点像U盘，哈哈)</p>
 <p>你一定想尝试，模糊半径负值会怎样？嗯，它没了…</p>
 <h2 id="次常用——text-shadow"><a href="#次常用——text-shadow" class="headerlink" title="次常用——text-shadow"></a>次常用——text-shadow</h2><p>说text-shadow次常用，是因为它涉及到一定特效，常规字体一般是不需要的，什么样的效果呢？比如：</p>
-<p><img src="/img/drop-shadow/text-shadow.png" alt=""></p>
+<p><img src="/img/drop-shadow/text-shadow.png" alt></p>
 <p>这样的效果在一些活动页是少不了的，因为纯色会显得太素，视觉效果适当地丰富，能使得用户更兴奋。实现代码如下：</p>
 <pre><code>.textshadow{
   color: #FFF;
@@ -194,7 +194,7 @@
               -3px 4px #808d93,
               -4px 3px #cdd2d5,
               -4px 5px #808d93;
-</code></pre><p><img src="/img/drop-shadow/3d-shadow.png" alt=""></p>
+</code></pre><p><img src="/img/drop-shadow/3d-shadow.png" alt></p>
 <p><strong>火焰</strong></p>
 <pre><code>text-shadow: 0 0 20px #fefcc9,
              10px -10px 30px #feec85,
@@ -203,7 +203,7 @@
              -20px -40px 40px #cd4606,
              0 -50px 65px #973716,
              10px -70px 70px #451b0e;
-</code></pre><p><img src="/img/drop-shadow/huoyan-shadow.png" alt=""></p>
+</code></pre><p><img src="/img/drop-shadow/huoyan-shadow.png" alt></p>
 <p>你可能会说，这样的场景很少，不实用。我同意，但<strong>创意并不一定很常用，还可以体现可能性</strong>。</p>
 <h2 id="drop-shadow，拯救不开心"><a href="#drop-shadow，拯救不开心" class="headerlink" title="drop-shadow，拯救不开心"></a>drop-shadow，拯救不开心</h2><p>主角终于登场，怎么叫不开心？常规方法突然不适用，一筹莫展的时候。</p>
 <p>先来看一个之前分享过的效果——渐变字体。</p>
@@ -212,35 +212,35 @@
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 </code></pre><p>效果：</p>
-<p><img src="/img/drop-shadow/text-clip.png" alt=""></p>
+<p><img src="/img/drop-shadow/text-clip.png" alt></p>
 <p>这个时候，我们可能还需要给它加个投影，就像这样</p>
-<p><img src="/img/drop-shadow/clip-shadow.png" alt=""></p>
+<p><img src="/img/drop-shadow/clip-shadow.png" alt></p>
 <p>你会想到什么呢？box-shadow？</p>
-<p><img src="/img/drop-shadow/clip-box.png" alt=""></p>
+<p><img src="/img/drop-shadow/clip-box.png" alt></p>
 <p>好尴尬…</p>
 <p>text-shadow？</p>
-<p><img src="/img/drop-shadow/clip-text-shadow.png" alt=""></p>
+<p><img src="/img/drop-shadow/clip-text-shadow.png" alt></p>
 <p>这是刚从煤窝里爬出来吗？</p>
 <p>为什么？我们再次揭开谜底吧。</p>
 <p>将代码改一下</p>
 <pre><code>text-shadow: 0 10px 0px rgba(0,0,0,.9);
 </code></pre><p>我们看到似曾相识的一幕</p>
-<p><img src="/img/drop-shadow/text-shadow-true.png" alt=""></p>
+<p><img src="/img/drop-shadow/text-shadow-true.png" alt></p>
 <p>跟box-shadow类似，text-shadow在字体本身的位置上，绘制了一个一样形状的图层，只不过，这里有个层级的问题，正常情况下，阴影在字体后，而当我们把字体填充色设置为transparent，用它来裁剪背景时，阴影就盖到了背景之上，这样就得不到我们想要的效果。</p>
 <p>所以，无解？</p>
 <p>有个人不答应——drop-shadow</p>
 <p>试一下，将代码改成</p>
 <pre><code>filter:drop-shadow(0 6px 2px rgba(0,0,0,.9));
-</code></pre><p><img src="/img/drop-shadow/clip-drop-shadow.png" alt=""></p>
+</code></pre><p><img src="/img/drop-shadow/clip-drop-shadow.png" alt></p>
 <p>nice！</p>
 <p>故事到这里，当然没有结束。</p>
 <p>这里的阴影如果没有实现，只能算小挫折，大不了咱不要了…（如果设计师放过你的话~）</p>
 <p>曾经的我呢，也仅仅是知道了这个方法可以解决上面的问题，并未深究，直到有一天，还是先看问题：</p>
-<p><img src="/img/drop-shadow/tooltips.png" alt=""></p>
+<p><img src="/img/drop-shadow/tooltips.png" alt></p>
 <p>这个效果你一定做过，也不难，不过这个呢？</p>
-<p><img src="/img/drop-shadow/tooltips-shadow.png" alt=""></p>
+<p><img src="/img/drop-shadow/tooltips-shadow.png" alt></p>
 <p>对，只是加了个阴影，但是，通过前面的内容我们知道，这个阴影肯定不能用box-shadow，它将会是这样：</p>
-<p><img src="/img/drop-shadow/tooltips-boxshadow.png" alt=""></p>
+<p><img src="/img/drop-shadow/tooltips-boxshadow.png" alt></p>
 <p>甚至有看到很多开源的库都是这样写的，不知出于什么考虑。</p>
 <p>我们曾经用drop-shadow解决了上面的问题，可以故技重施吗？答案是：可以。</p>
 <p>只需要在气泡容器上加这行样式即可：</p>
@@ -266,7 +266,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -326,7 +326,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

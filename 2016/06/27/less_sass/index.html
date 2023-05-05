@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2016-06-27</span></span>
+        <span class="attr">Post：<span>2016-06-27</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -151,44 +151,44 @@
 <li>该值所有的表现都与变量有关（非巧合）。</li>
 </ul>
 <p>基本上，没有理由声明一个永远不需要更新或者只在单一地方使用的变量。一般来说，变量长这个样子的</p>
-<p><img src="/img/less_sass/1.png" alt=""></p>
+<p><img src="/img/less_sass/1.png" alt></p>
 <p>不同的处理器前面的符号不同。</p>
 <p><strong>2、嵌套</strong></p>
 <p>来看一张大家都熟悉的代码段</p>
-<p><img src="/img/less_sass/2.png" alt=""></p>
+<p><img src="/img/less_sass/2.png" alt></p>
 <p>明显可以看出，上面这段代码，在选择器部分，行与行之间都有一些重复，这样对于我们的书写带来很多重复。而处理器所提供的嵌套规则，使得我们免于不断的去写已经有了的父容器，可以直接在后面书写子容器的选择器，比如可以像这样：</p>
-<p><img src="/img/less_sass/3.png" alt=""></p>
+<p><img src="/img/less_sass/3.png" alt></p>
 <p>当代码量足够多的时候，这样就相当提高效率。</p>
 <p><strong>3、模块化管理、易维护</strong></p>
 <p>当我们在做中、大型项目的时候，往往一个功能或者模块，会在很多页面都用到，如果我们把它们单独的放到所有页面对应的代码中，那么每次修改，我们都要去改所有的代码段，这显然是低效的，如果将它们放到一个大的公共文件中，有很可能造成冗余，或许，你会说，可以放在一个单独的文件中，然后引入到页面中，就行了，这样是可以，但是会多出来一个文件的请求，如果有多个，那么从维护性和性能两方面考虑的话，就得不偿失了。所以，我们可以使用处理器中的@import规则，把复用代码段提取，然后在需要的页面引入，这样，同样能达到“一处变、处处变”的效果，而且，不会有多余的请求发出，一个页面可以只有一个css文件即可。</p>
 <p>比如这样：</p>
-<p><img src="/img/less_sass/4.png" alt=""></p>
+<p><img src="/img/less_sass/4.png" alt></p>
 <p>我们可以把一个固定的组件，封装为一个单独的文件，然后在需要的文件里引入即可，这样方便维护，也不会在不需要的页面里放多余的代码段。</p>
 <p><strong>4、Mixins</strong></p>
 <p>在css中，有些时候，需要写一些不情愿，但又不得不去写的复杂代码段，最典型的例子就是CSS3的效果，为了兼容不同浏览器，加一堆浏览器前缀。如果使用的频次较高，这仍然会成为不小的成本。虽然我们可以用编辑器的插件去快速补全，那么也是需要重复操作的，何不让我们只写一次然后都复用之呢？</p>
 <p>Mixins给我们提供的就是实现大段样式的重用，我们可以把需要写的东西事先封装起来，然后给其数值部分设置为参数，这样，我们在需要用到类似东西的时候，就可以直接调用已经定义好的mixin，对于尺寸大小的不同，只需要传入不同参数即可。</p>
-<p><img src="/img/less_sass/5.png" alt=""></p>
+<p><img src="/img/less_sass/5.png" alt></p>
 <p>上面列出了一个参数的例子，我们知道，css属性里面很多时候不止一个值，这里也不局限只是一个属性，所以多个参数也是允许的，这样大家可能还会有个困惑，多个参数我是需要严格按照顺序书写吗？其实不必，sass给我们提供了  $name: value 的格式，比如我们可以这样定义：</p>
-<p><img src="/img/less_sass/6.png" alt=""></p>
+<p><img src="/img/less_sass/6.png" alt></p>
 <p>只要对应的设置value就好。</p>
 <p><strong>5、extend扩展/继承</strong></p>
 <p>这可以说是处理器的一个亮点，你定义了一个类，后面如果有另一个类需要用到和已经定义了的类同样的属性和值，那么你可以通过@extend来直接引用已经定义的类，来再次使用它定义过的规则。</p>
 <p>这样不会多出来很多重复代码段吗？可能你跟我有过同样的困惑，其实它生成的，是一个群组选择器，也就是多个类共用一段css样式规则，这样做的好处是，在你想定义有共性又有差异的一组元素时，不需要写多个类，只需要写它单独定义的类即可。</p>
 <p>我个人认为，这样的写法，如果是在数量不多的时候，跟提取一个基类，再追加扩展类的成本是差不多的。并显示不出优势在哪里，只不过是多写了几个类在html里还是css里，那么如果是html的重复单元数量很多，差异项又不多的时候，使用这种方法是会更好一些，因为不需要有跟html的每一项进行绑定的基类了。亮点就在于你所定义的这个可以扩展的类，是不需要添加到html里面的，只是在编译之前的sass层面用来定义了一段公共块便于引用。比如：</p>
-<p><img src="/img/less_sass/7.png" alt=""></p>
-<p><img src="/img/less_sass/8.png" alt=""></p>
+<p><img src="/img/less_sass/7.png" alt></p>
+<p><img src="/img/less_sass/8.png" alt></p>
 <p>此处“.error”这个类，就是sass层面所定义的复用类，不必使用在html中。</p>
 <p>那么问题来了，我们是否有必要去定义一个从来不需要在html中使用的类？可能你觉得它的影响微乎其微，但从sass3.2之后，追求极致的开发者还是给出了对应的特性，那就是“%placeholder”，选择器占位符，有了它之后，我们就不需要定义一个没有实际作用的类了，当然，你可以选择去定义一个类并使用它，都随你~</p>
 <p><strong>6、运算</strong></p>
 <p>涉及到运算的，肯定就是数字相关，加减乘除，那么能进行怎样的运算呢？如下：</p>
-<p><img src="/img/less_sass/9.png" alt=""></p>
+<p><img src="/img/less_sass/9.png" alt></p>
 <p>上图所示，可以用属性名直接计算，也可以使用数值，数值当中的单位需要统一，也可以缺省，甚至你可以写一个不存在的单位，编译的时候都不会报错，但如果前后不同，就会报错了。</p>
 <p>应用场景：</p>
 <p>猛一想，没有哪里需要用到，但是，我们仍然是落入了惯性思维的圈子，其实平时的很多计算我们都是心算或者计算器来算，然后写到样式里面了，比如说，当一个容器需要被几等分的时候，每一项需要多少；当一种布局需要一边定宽一边自适应时，自适应的这边应该是多宽。等等，这些都是可以使用运算来搞定的，维护起来也更容易些。</p>
 <p>其实现在css3已经加入了”calc()”这个具备计算能力的函数，但是，在某些仍不支持它的浏览器中，预处理器的计算能够弥补这一不足。</p>
 <p><strong>7、函数</strong></p>
 <p>我们知道在很多编程语言里都有函数的概念，但早期的css是没有的，那么预处理器就给我们提供了一些函数，比如：</p>
-<p><img src="/img/less_sass/10.png" alt=""></p>
+<p><img src="/img/less_sass/10.png" alt></p>
 <p>这里定义了两个变量和一个函数，函数有一个参数“$n”,通过编译，执行了函数之后，有了右边的css代码。<br>当然，这是个自定义的函数，预处理器有自己的一些内置函数，比如：</p>
 <p><strong>颜色函数：</strong></p>
 <p> rgb($red,$green,$blue)：根据红、绿、蓝三个值创建一个颜色；</p>
@@ -199,27 +199,27 @@
 <p> round($value)：将数值四舍五入，转换成一个最接近的整数；</p>
 <p> ceil($value)：将大于自己的小数转换成下一位整数；</p>
 <p> floor($value)：将一个数去除他的小数部分；</p>
-<p>以上列出的是sass中有的，是不是似曾相识？还有其他非常多的函数，多到什么程度呢，多到你怀疑它们是用来干嘛的~有兴趣，可以轻戳这里了解<a href="http://sass-lang.com/documentation/Sass/Script/Functions.html" target="_blank" rel="external">http://sass-lang.com/documentation/Sass/Script/Functions.html</a></p>
+<p>以上列出的是sass中有的，是不是似曾相识？还有其他非常多的函数，多到什么程度呢，多到你怀疑它们是用来干嘛的~有兴趣，可以轻戳这里了解<a href="http://sass-lang.com/documentation/Sass/Script/Functions.html" target="_blank" rel="noopener">http://sass-lang.com/documentation/Sass/Script/Functions.html</a></p>
 <p>是的，即使我鼓励大家用预处理器，但是不得不说，平时我们的项目中用不到这么多，所以，大家大概知道就好。</p>
 <p><strong>8、条件判断</strong></p>
 <p>提起条件判断，我们就会想到if…else…那么，css中有需要使用它的地方？刚开始我也是觉得没有，因为很多需要判断的地方，我们都交给js去做了，对吧？所以，还是有用武之地的。比如：</p>
 <p>当浏览器版本低于IE9的时候，使用哪段样式；当我们某个元素需要切换状态的时候，使用哪段样式。等等。就像下面这样。</p>
-<p><img src="/img/less_sass/11.png" alt=""></p>
+<p><img src="/img/less_sass/11.png" alt></p>
 <p><strong>9、循环</strong></p>
 <p>循环的出现意味着存在本不可能出现在Sass中的复杂逻辑。在使用循环之前，务必确定这么做是有道理的，并且确认这么做可以解决问题。</p>
 <p>我们会好奇的是，在哪里循环，用来干嘛？</p>
 <p>说实话，一时能想到的用处真的不多，当我们需要用到它的时候，其实和js里面的循环用途类似，需要处理一组有着相同性质且有规律的东西，比如，一个列表的li，一个表格的tr、td，或者较有规律的雪碧图，再或者，你在自己能够驾驭的范围内自定义的一个属性或属性值列表。<br>比如像这样：</p>
-<p><img src="/img/less_sass/12.png" alt=""></p>
+<p><img src="/img/less_sass/12.png" alt></p>
 <p>哇偶，酷毙了，是不是有些没想到还可以这样？其实从这里面就可以更明显的看出css和一些传统编程语言的差距在哪里，重复的事情，只做一次。</p>
 <h2 id="是什么让你还在犹豫？我猜你可能有以下几处困惑"><a href="#是什么让你还在犹豫？我猜你可能有以下几处困惑" class="headerlink" title="是什么让你还在犹豫？我猜你可能有以下几处困惑"></a>是什么让你还在犹豫？我猜你可能有以下几处困惑</h2><p><strong>1、变量的特殊化</strong></p>
 <p>这一点，是我本人，也是同事，都存在过的顾虑——我现在定了一个变量，全站都用，那如果我需要修改其中一处，或者产品经理非要改掉其中一处，怎么办？</p>
 <p>曾经，我以为这个就是它的一个缺陷，后来才知道是浅尝辄止就否定它。真实情况是这样：</p>
-<p><img src="/img/less_sass/13.png" alt=""></p>
+<p><img src="/img/less_sass/13.png" alt></p>
 <p>从图中可以看出，sass能够轻松搞定这种特殊化，这就是作用域的问题，全局变量和局部变量，和其他编程语言里的没什么不同~就是这么简单。</p>
 <p><strong>2、伪类、伪元素、容器外部嵌套，这些怎么办？</strong></p>
 <p>怎么办呢？，一个“&amp;”就可以解决啦！下面看是如何实现的。</p>
-<p><img src="/img/less_sass/14.png" alt=""><br>这是伪类和伪元素，那么容器的外部嵌套呢？这个相信你也有想过对么，当我写了一大串的嵌套之后，如果需要在外部加父容器进行限制的话，难道还要在外面套一层吗，显得太low了吧，其实，你可以这样：</p>
-<p><img src="/img/less_sass/15.png" alt=""><br>只要把你想要套在外面的选择器写在前面，后面跟“&amp;”就可以搞定了。</p>
+<p><img src="/img/less_sass/14.png" alt><br>这是伪类和伪元素，那么容器的外部嵌套呢？这个相信你也有想过对么，当我写了一大串的嵌套之后，如果需要在外部加父容器进行限制的话，难道还要在外面套一层吗，显得太low了吧，其实，你可以这样：</p>
+<p><img src="/img/less_sass/15.png" alt><br>只要把你想要套在外面的选择器写在前面，后面跟“&amp;”就可以搞定了。</p>
 <p><strong>3、选择器层级过多</strong></p>
 <p>使用过预处理器的人，应该都有过这方面的担心，因为这个时候嵌套是很随意且轻松的，写一个最外面的父选择器，然后就一层层的往里套了，就有可能导致，生成的css代码出现层级过多的问题。其实就这个问题的话，个人以为，首先要从源头解决，什么是源头，就是你对自己代码结构的规划，html结构的合理精简，一般情况下，不会出现多于4层的容器嵌套，当然，如果你是从页面容器到最里面一层数的话，那超过的可能性就很大了，但觉得没多少人会这么去写吧？所以，按照模块化，组件化的思想去组织代码，就不会出现层级过多的问题。</p>
 <p><strong>4、生成冗余代码</strong></p>
@@ -236,24 +236,24 @@
 <p>好的，原因知道了，有问题咱们就有对策是吧，我们在自己定义的所有样式规则之前引用不就可以了？而且再退一步说，谁告诉你sass编译完了之后还存在@import这么个东西的？，它只是在编译之前方便我们编写代码的一种方法而已，是不是觉得上当了？~所以，完全不用担心咯。</p>
 <h2 id="你可能忽略的一些点"><a href="#你可能忽略的一些点" class="headerlink" title="你可能忽略的一些点"></a>你可能忽略的一些点</h2><p><strong>1、属性嵌套</strong></p>
 <p>你很容易就会知道选择器之间的嵌套，但是，不仅是选择器，属性也是可以嵌套的哦，如下：</p>
-<p><img src="/img/less_sass/16.png" alt=""></p>
-<p><img src="/img/less_sass/17.png" alt=""></p>
+<p><img src="/img/less_sass/16.png" alt></p>
+<p><img src="/img/less_sass/17.png" alt></p>
 <p><strong>2、!default、!global</strong></p>
 <p>写css的时候，我们都会面临着一些维护问题，比如，类名的定义，冲突的避免，sass只是变着法的在写css，所以，问题是同样的，特别是在团队合作的时候。所以当你给定义变量的时候，给变量加上了!default，那么其他开发者定义了自己要用的变量之后，再引入了你的库，就不会担心二者有冲突，比如这样：</p>
-<p><img src="/img/less_sass/18.png" alt=""></p>
-<p><img src="/img/less_sass/19.png" alt=""></p>
+<p><img src="/img/less_sass/18.png" alt></p>
+<p><img src="/img/less_sass/19.png" alt></p>
 <p>哪里不对劲呢，写在后面的变量权重反而更低？是的，！default的作用在这里就是降级让路，定义一个默认变量值，别的值都可以覆盖它。</p>
 <p>而”!global”的作用恰恰相反，是用来升级覆盖，回到前面看过的一个例子再来看</p>
-<p><img src="/img/less_sass/20.png" alt=""></p>
+<p><img src="/img/less_sass/20.png" alt></p>
 <p>本来局部变量只是在局部起作用，是不会改变全局的，但是这里加上了“!global”了之后，.sub-wrap-three的值变成了.sub-wrap-two里面定义的300px。</p>
 <p><strong>3、 嵌套导入</strong></p>
 <p>通过前面的内容，我们已经知道了，sass是可以导入我们封装起来的模块样式的，其实不止如此，还可以在定义的样式当中进行导入。比如这样：</p>
-<p><img src="/img/less_sass/21.png" alt=""></p>
-<p><img src="/img/less_sass/22.png" alt=""><br><strong>4、list和map</strong></p>
+<p><img src="/img/less_sass/21.png" alt></p>
+<p><img src="/img/less_sass/22.png" alt><br><strong>4、list和map</strong></p>
 <p>其实上面那么多东西，就足以令任何一个页面仔头大了，可是sass仍不止这些，还有比较复杂的数据结构，比如：list和map。</p>
 <p>list，就相当于js中的数组。用来定义一组可以访问和使用的值。比如：</p>
-<p><img src="/img/less_sass/23.png" alt=""><br>map，是一种映射任何类型的键值对。跟什么差不多呢，你猜对了，json~比如：</p>
-<p><img src="/img/less_sass/24.png" alt=""><br><strong>5、警告和错误</strong></p>
+<p><img src="/img/less_sass/23.png" alt><br>map，是一种映射任何类型的键值对。跟什么差不多呢，你猜对了，json~比如：</p>
+<p><img src="/img/less_sass/24.png" alt><br><strong>5、警告和错误</strong></p>
 <p>什么鬼，还有完没完？这些又是用来干嘛的？</p>
 <p>@debug;  @warn;  @error，就是这三位。<br>@debug，主要是用作调试 SassScript，这个不是我们关注的重点。<br>@warn，和我们通常的认知差不多，不会把程序给卡住无法执行，而是能够预测风险并提醒开发者。<br>@error，将会中断编译器的下一步进程。基本上，它们中断编译并像堆栈跟踪一样在输出流中显示相关信息，这对调试很有帮助。</p>
 <h2 id="说了这么多，该如何选择？"><a href="#说了这么多，该如何选择？" class="headerlink" title="说了这么多，该如何选择？"></a>说了这么多，该如何选择？</h2><p>先来看看简史：</p>
@@ -261,10 +261,10 @@
 <p>Less 由 Alexis Sellier 于 2009 年创建。使用js编写。既可以在 客户端 上运行 (支持IE 6+, Webkit, Firefox)，也可以借助Node.js或者Rhino在服务端运行。</p>
 <p>stylus的第一次提交是在2010年11月。来自Node.js社区。</p>
 <p>从这个时间线可以看出，sass最早，目前三者都有人使用。其中，sass和less都有官网的中文翻译。<br>如下：</p>
-<p>sass <a href="http://www.sass.hk/" target="_blank" rel="external">http://www.sass.hk/</a>                  sass设计指南   <a href="http://sass-guidelin.es/zh/" target="_blank" rel="external">http://sass-guidelin.es/zh/</a><br>less  <a href="http://less.bootcss.com/" target="_blank" rel="external">http://less.bootcss.com/</a><br>而stylus没有，只有张鑫旭早在2012年翻译的中文文档  <a href="http://www.zhangxinxu.com/jq/stylus/" target="_blank" rel="external">http://www.zhangxinxu.com/jq/stylus/</a></p>
-<p>他也写过一篇文章，文中说，他没有选用sass的原因是ruby  <a href="http://www.zhangxinxu.com/wordpress/2012/06/stylus-nodejs-expressive-dynamic-robust-css/。" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2012/06/stylus-nodejs-expressive-dynamic-robust-css/。</a><br>显然，从实际使用上来说，是不需要用到ruby的，故而，不应成为大家不用它的原因。</p>
+<p>sass <a href="http://www.sass.hk/" target="_blank" rel="noopener">http://www.sass.hk/</a>                  sass设计指南   <a href="http://sass-guidelin.es/zh/" target="_blank" rel="noopener">http://sass-guidelin.es/zh/</a><br>less  <a href="http://less.bootcss.com/" target="_blank" rel="noopener">http://less.bootcss.com/</a><br>而stylus没有，只有张鑫旭早在2012年翻译的中文文档  <a href="http://www.zhangxinxu.com/jq/stylus/" target="_blank" rel="noopener">http://www.zhangxinxu.com/jq/stylus/</a></p>
+<p>他也写过一篇文章，文中说，他没有选用sass的原因是ruby  <a href="http://www.zhangxinxu.com/wordpress/2012/06/stylus-nodejs-expressive-dynamic-robust-css/。" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2012/06/stylus-nodejs-expressive-dynamic-robust-css/。</a><br>显然，从实际使用上来说，是不需要用到ruby的，故而，不应成为大家不用它的原因。</p>
 <p>所以，其实你选用哪种都可以，就目前来看，sass是最强大，也是被很多人推荐使用的，bootstrap的新版也是抛弃less投奔sass而去，既然差别不大，何不选一个更好用的呢？~</p>
-<p>##工具<br>预处理器已经是css的工具了，那么它还有工具吗？答案是肯定的，比如，sass的工具<a href="http://compass-style.org/" target="_blank" rel="external">compass</a>，less的工具<a href="http://ecomfe.github.io/est/" target="_blank" rel="external">est</a>。这些工具，为预处理提供了很多封装好的东西可以直接拿来用，可以说，是帮你懒到家了哈。详情大家自己点击链接看哈，就不多说了。</p>
+<p>##工具<br>预处理器已经是css的工具了，那么它还有工具吗？答案是肯定的，比如，sass的工具<a href="http://compass-style.org/" target="_blank" rel="noopener">compass</a>，less的工具<a href="http://ecomfe.github.io/est/" target="_blank" rel="noopener">est</a>。这些工具，为预处理提供了很多封装好的东西可以直接拿来用，可以说，是帮你懒到家了哈。详情大家自己点击链接看哈，就不多说了。</p>
 <p>##如果实在不感冒呢？<br>是的，你可能会觉得才华横溢的你用css完全能够胜任现在的工作，那么为什么还要去了解预处理器看起来那么复杂的语法（其实不复杂~），不妨可以使用它的部分特性，比如嵌套、mixin、模块化等等，总之，不需要排斥它，它可以给你带来一些便利，又何乐而不为呢？~</p>
 
         
@@ -276,7 +276,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -336,7 +336,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

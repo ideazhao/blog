@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2014-08-30</span></span>
+        <span class="attr">Post：<span>2014-08-30</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#思考，技术栈" title="思考，技术栈">思考，技术栈</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -136,15 +136,15 @@
         <p>在文章开头，按照惯例（哪儿来的惯例~），先闲聊一下抒发一点点感想吧。</p>
 <p>此次文章的想法来源于我正在做的项目当中的作品评论功能，此前我是没做过的，当时拿到设计稿之后，感觉，挺简单，不就一个列表而已，后来，到最后，也真的挺简单，可是，也真的，相当复杂。做的过程中遇到过很多问题，反复的去查看手册，向同行、前辈们请教，在此一并感谢了~当然，还有同行说：不是有插件么，实现起来挺方便的。在这里我要说为什么我没有用那些插件，首先就是，初看觉得挺简单的，自己应该能搞定，再者，我真的不想再去搬代码，然后要去研究，去把它改成自己项目当中要的样子，多余的还要去掉等等等等。所以，我就这么上路了，也就有了现在满满的收获。技术圈永远那么和谐又充满爱对吧，so，拿来跟大家分享一下。当然，此文只涉及前端实现，不涉及后台。顺序是：案例功能分析、所用技术罗列（jq）、注意事项、结束语~</p>
 <p>先来说功能，按区域一一道来：</p>
-<h2 id="一、输入框"><a href="#一、输入框" class="headerlink" title="一、输入框"></a>一、输入框</h2><p><img src="need-practice/1.png" alt=""></p>
-<p><img src="need-practice/2.png" alt=""></p>
+<h2 id="一、输入框"><a href="#一、输入框" class="headerlink" title="一、输入框"></a>一、输入框</h2><p><img src="need-practice/1.png" alt></p>
+<p><img src="need-practice/2.png" alt></p>
 <p>借用一下大家灰常熟悉的QQ空间评论框，当然，我们要谈的功能不会这么多，只要输入，发表，即可，你要记得我这里说的是“即可”哦。</p>
 <p>第一步，输入框我们要用什么做呢，你觉得这不是个需要考虑的事儿？是的，可以用textarea，但是，div可不可以呢，这也可以吗？！如果你不知道，那么就去看看“contenteditable”这个属性，点到为止。然后你会觉得，本以为我知道的差不多了，到底还有多少我不知道的啊？</p>
 <p>第二步，它里面好像有字呢 ——“说点什么吧”，这个怎么实现呢，你知道QQ怎么实现的吗？这哥们儿用了两个div，my god！当时我那个对它满满的钦佩，点击之前是一个div里面装的是“说点什么吧”，点击之后隐藏之，显示另外一个空的div。说实话我用的也是这种方法。只因那一瞬间的震撼，方法千百种，只要你敢想呐，不过后来我就悟到，其实没必要这样，你可以只用一个div，给里面填上几个字，获取焦点的时候清空即可，注意，这里就有一个小陷阱哦，我说的是获取焦点的时候清空，那，如果我输入了文字，鼠标点击了其他地方再回来，oh，它也空了，这可不行，所以，需要做条件判断，判断什么？内容，怎么判断，可爱的——if！粉末登场咯！点到为止！~哦，对了，忘了一个，你需要获取文本内容！~</p>
 <p>第三步，如果我点击了之后，啥也没输入，又点了出来，这是再正常不过的操作，这里可能会涉及两个东东，一、点击此物一个反应，点击除此物之外的区域，另一个反应。二、获得焦点的时候一个反应，失去焦点的时候另一个反应。<br>点到为止！~</p>
 <p>第四步，我点击了，也输入内容了，那就发表吧，爽歪歪，很多童鞋都知道下面要干嘛，评论嘛，一个列表嘛，点击发表新建列表项，插入嘛！停！because，哪里来的列表？是的，还没有评论的时候，是木有列表滴，是的，你需要新建列表！建完之后，你得把它插入，这里有两个插入，列表插入和列表项插入，问题又来了，怎么插入，内部还是外部？最前还是最后，还是在某个特定位置？都可以，点到为止！~oh，停！我怎么知道列表在不在呀，难道每次发表的时候都去新建啊？当然不是，那，你还需要判断ul是否存在，方法不止一种，可以结束了，oh，好像还漏了一点，到底有完没完啊？！~我发表之后，输入框怎么办呢，文字要赋给新建列表项，然后呢，将其清空还是怎样，或许你突然觉得，我点击完发表，那输入框不就算是失去焦点了吗？那点击事件和失去焦点事件，到底哪个说了算啊？它是不是会自动的回到”说点什么吧”呢？能不能呢，你去试试吧！~</p>
 <p>到此，关于输入框的东西告一段落，可能还没完，可能~额，还记得之前说的那个”即可“么，别打我哈！</p>
-<h2 id="二、列表"><a href="#二、列表" class="headerlink" title="二、列表"></a>二、列表</h2><p><img src="need-practice/3.png" alt=""></p>
+<h2 id="二、列表"><a href="#二、列表" class="headerlink" title="二、列表"></a>二、列表</h2><p><img src="need-practice/3.png" alt></p>
 <p>为了不暴露他人隐私，我就拿我和韬哥的一段来给大家看看吧，他应该不会介意~先说明我们做的不一定是这个样子，随你做成什么样，但道理都一样。</p>
 <p>第一步、首先，列表项大家都懂对吧，而且，形式一样，功能一样，长得一样，那既然都一样，我们会想到两个东西，一个是可以对其中的样式都用”类“定义，另一个就是”克隆“，而且如果你用克隆（clone），里面的一个参数取”true“的时候，那简直是，你可能就不用再掉进下面我要说的一个大坑里了，我说的是可能，我的项目里并没有用，至于原因我记不起了，大家可以自己试试。</p>
 <p>第二步、每条评论都是可以操作的是吧，比如，你发表的评论，别人是可以回复的，如果，诸如：回复、删除等等不显示出来，移入哪条评论区，那条评论的操作才显示出来，移出就消失掉呢？这个不难，加上移入移出事件。<br>点到。。</p>
@@ -174,7 +174,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -234,7 +234,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

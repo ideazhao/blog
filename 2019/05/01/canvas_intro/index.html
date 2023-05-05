@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-05-01</span></span>
+        <span class="attr">Post：<span>2019-05-01</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#Canvas、学习" title="Canvas、学习">Canvas、学习</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -186,17 +186,17 @@ ctx.arc(200, 200, 40, 0, 36, false);
 ctx.closePath();
 ctx.fillStyle=&quot;rgb(2,100,30)&quot;;//填充颜色
 ctx.fill();//填充
-</code></pre><p><img src="/img/canvas_intro/canvas_01.png" alt=""><br><img src="/img/canvas_intro/canvas_02.png" alt=""></p>
+</code></pre><p><img src="/img/canvas_intro/canvas_01.png" alt><br><img src="/img/canvas_intro/canvas_02.png" alt></p>
 <p>这只是一个很简单的效果，我们也看到了路径之后其他设置项的出现，就是填充颜色，这只是其中之一，但这里暂时不详述，我们先看看，除了图形，canvas还能做什么？</p>
 <h2 id="文本和图片"><a href="#文本和图片" class="headerlink" title="文本和图片"></a>文本和图片</h2><p>文本很好实现，直接上代码：</p>
 <pre><code>ctx.font = &quot;48px serif&quot;; //字号、字体类型
 ctx.fillText(&quot;Hello world&quot;, 10, 300); // 文字内容和位置
 </code></pre><p>但其实文字也是有两种效果的，填充和轮廓，上面这种是填充：</p>
-<p><img src="/img/canvas_intro/canvas_03.png" alt=""></p>
+<p><img src="/img/canvas_intro/canvas_03.png" alt></p>
 <p>如果把第二行代码换成：</p>
 <pre><code>ctx.strokeText(&quot;Hello world&quot;, 10, 50);
 </code></pre><p>就是轮廓了</p>
-<p><img src="/img/canvas_intro/canvas_04.png" alt=""></p>
+<p><img src="/img/canvas_intro/canvas_04.png" alt></p>
 <p>除此之外，还有一些对齐方式和文本方向的设置，先略去。</p>
 <p>来看看图片</p>
 <p>图片分为两块，处理图片和绘制图片。</p>
@@ -214,7 +214,7 @@ img.src = &apos;myImage.png&apos;; // 设置图片源地址
     }
     img.src = &apos;/img/canvas_intro/canvas_01.png&apos;;
 </code></pre><p>上面这段代码，我把当前页面的三角形拿了过来，就是跟前面那个效果一样的了</p>
-<p><img src="/img/canvas_intro/canvas_01.png" alt=""></p>
+<p><img src="/img/canvas_intro/canvas_01.png" alt></p>
 <p>这里只是把图像放入我们的工作区，如果想在这个区域画别的图形亦可，代码接着往下写就好了，有时候这可以为我们节省成本，比如，稍复杂一点的图像作为背景，简单的图形作为前景画出。</p>
 <p>那其实这个方法也不止这么简单，它有两个变种</p>
 <p><strong>缩放</strong></p>
@@ -224,7 +224,7 @@ img.src = &apos;myImage.png&apos;; // 设置图片源地址
 <p><strong>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)</strong></p>
 <p>一长串参数看着有点头皮发麻，但就因为这样，才能让我们去操作细节，它是用来裁切图像的。</p>
 <p>前面四个用来处理图片源的剪切起始位置和大小，就跟我们平时截图一个道理，后面的参数，是将裁切后的图像，放置在画布的什么位置，以及那个区域的大小。如下所示：</p>
-<p><img src="/img/canvas_intro/canvas_slice.jpg" alt=""></p>
+<p><img src="/img/canvas_intro/canvas_slice.jpg" alt></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这篇文从零开始介绍了canvas的工具箱里有哪些工具，虽然尚不完整，作为开端，已经够多，先到这，更多功能我们下篇再聊~</p>
 
         
@@ -236,7 +236,7 @@ img.src = &apos;myImage.png&apos;; // 设置图片源地址
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -296,7 +296,7 @@ img.src = &apos;myImage.png&apos;; // 设置图片源地址
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

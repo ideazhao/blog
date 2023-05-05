@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2015-06-12</span></span>
+        <span class="attr">Post：<span>2015-06-12</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -167,55 +167,55 @@ up,.down{
 /*    z-index: 0;
 */  }
 </code></pre><p>如图</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/1.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/1.jpg" alt></p>
 <p>1、我们把z-index的注释去掉</p>
 <p>纹丝不动</p>
 <p>2、把up和down的定位加上</p>
 <p>依然纹丝不动，好吧是的，这个时候不动是正常的，它就不该动。</p>
 <p>3、为了能看出差别，父容器定位加上，子元素绝对定位</p>
 <p>如图</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/2.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/2.jpg" alt></p>
 <p>第一种情况出现了，视野之中，只剩下down，到这里为止，似乎也没跟我们要说的扯上什么关系，但其实是有关系的，我们给它们设置了z-index:0;那么它们现在就是在同样的层级，当是同样层级时，后面会覆盖前面。</p>
 <p>再来看</p>
 <p>4、去掉定位，使用margin负值把down拉上去</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/3.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/3.jpg" alt></p>
 <p>设置z-index，up为2，down为1，纹丝不动</p>
 <p>改为定位</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/4.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/4.jpg" alt></p>
 <p>旧景重现，but这个时候up在down上面。这是第二个注意点，需要使用定位，才能让z-index起作用！</p>
 <p>那么，哪种定位呢？我们来试试一个相对一个绝对，为了看得方便，给down设置绝对，并设置top值。层级仍然不变</p>
 <p>如图</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/5.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/5.jpg" alt></p>
 <p>如我们所愿，改一下试试，up为1，down为2</p>
 <p>如图</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/6.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/6.jpg" alt></p>
 <p>哇偶，没问题</p>
 <p>5、那如果想跟父元素调调呢？</p>
 <p>如元素设为2，子元素设为1</p>
 <p>如图</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/6.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/6.jpg" alt></p>
 <p>啊？！我真的没骗你，代码已经改了，可是为什么是这样，好吧难道是值不够大？那再改改，父元素改成10，还是不动，100，还是不动，使大招，999！！偶，还是不行，要吐血了。我们总是想使用暴力手段来尝试一些错误的东西，实际上是在跟自己过不去~这是为什么呢？</p>
 <p>因为，只要你的子元素使用了大于等于0的值，那么它就永远在父元素上面，不管父元素设置了多么大的z-index值，不信？那么是不是我们给z-index设置为0，子元素设置-1就可以了？</p>
 <p>看图</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/7.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/7.jpg" alt></p>
 <p>看来没有想的那么简单</p>
 <p>去掉父元素的z-index试试</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/8.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/8.jpg" alt></p>
 <p>哇，它们消失了，那么这个时候父元素的z-index值是多少呢？借助浏览器来看一下</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/9.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/9.jpg" alt></p>
 <p>好的，看来父元素跟子元素不玩儿这个，它们不互相攀比~</p>
 <p>6、还有一点，子元素的子元素会是个什么情况呢？</p>
 <p>我们索性来直接给它们里面直接套一层div，然后再看会是啥情况</p>
 <p>尝试设置up为2，down为1，up子元素为1，down子元素为2</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/10.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/10.jpg" alt></p>
 <p>好吧，我们又和哈哈见面了，可以看出，子元素设置了什么不重要，只要父元素设置了更低的z-index值，则子元素是无能为力的。</p>
 <p>然而这就这样结束了么？别忘了我们刚才没有给mod设置z-index值的时候，up和down是什么表现？</p>
 <p>是的，那么尝试不给down设置值，而只给它的子元素设置z-index，为了看得更清楚，给down定位到偏下位置。</p>
 <p>如下，设置为1</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/10.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/10.jpg" alt></p>
 <p>老朋友又见面了。。。</p>
 <p>设置为2</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/11.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/11.jpg" alt></p>
 <p>哇哈哈，down的子元素就酱紫完成了对父元素和up的超越，为什么同时超越了up？别忘了，down是在up之后。</p>
 <p>那如果把父元素的z-index清掉，只比较子元素呢，是的，它们同样遵循着”同级后在上，谁高谁在上“的原则。</p>
 <p>好了，说了这么多，来个小结：</p>
@@ -229,7 +229,7 @@ up,.down{
 <p>zoom这个东西大家经常看到使用，而且是对IE浏览器使用。其实是用来缩放的。</p>
 <p>很多文章说它是IE专有属性，其实未必。在火狐和chrome下，它依然会起作用，其他的我没测，不好发表看法。</p>
 <p>这里是来自caniuse的兼容表</p>
-<p><img src="zindex-zoom-and-the-brothers-home-front/12.jpg" alt=""></p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/12.jpg" alt></p>
 <p>另外两点表现比较诡异，</p>
 <p>1、缩放了高度，宽度未变</p>
 <p>2、缩放只是看起来，而并未对元素进行真正的缩放</p>
@@ -256,7 +256,7 @@ up,.down{
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -316,7 +316,7 @@ up,.down{
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

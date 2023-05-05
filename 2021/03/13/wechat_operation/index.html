@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2021-03-13</span></span>
+        <span class="attr">Post：<span>2021-03-13</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -143,40 +143,40 @@
 <h2 id="两元运算"><a href="#两元运算" class="headerlink" title="两元运算"></a>两元运算</h2><p>什么是两元，“元”就是参与运算的数据的个数，两元即有两个数据参与运算。</p>
 <p><strong>（完全）等于/不等于</strong></p>
 <p>先说等于，这很简单，但新手程序员都需要一段时间适应，即JavaScript中的等于和数学中的不一样，需要用“==”符号，而不是“=”，“=”在JavaScript中代表“赋值”。</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span><span class="comment">(a = 3)</span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(a = <span class="number">3</span>)</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这是把3赋给a，而不是判断两者是否相等，须多加注意。</p>
 <p>另外，数学当中只有等于、大于、小于之类，没有”不等于“，而程序里加入了“不等于”，这就可以用一个运算统一两种情况。写法如下：</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">a</span>!=b</span><br></pre></td></tr></table></figure>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a!=b</span><br></pre></td></tr></table></figure>
 <p>按照功能来说，这么写就够了，但并不保险，因为一个小小的是否相等，浏览器都会试图对它进行类型转换之后再比较。比如</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="string">' '</span>  <span class="regexp">//</span><span class="literal">true</span>  这里是空串儿，不是<span class="string">''</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="regexp">//</span><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">0</span> == <span class="string">' '</span>  //<span class="literal">true</span>  这里是空串儿，不是<span class="string">''</span></span><br><span class="line"><span class="attr">null</span> == undefined //<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>0和空格字符显然是两个概念，null 和 undefined 也不能等同。不能判定为相等，但返回是true，所以，在判断两个值是否相等时，建议使用“完全运算符”。示例如下：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> === ‘ ’ <span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span> <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">0</span> === ‘ ’ //<span class="literal">false</span></span><br><span class="line"><span class="attr">null</span> === undefined //<span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>完全运算符会在比较的同时检查类型，类型不一样就肯定不等。完全不等即“!==”。</p>
 <p>这样就能准确判定了。</p>
 <p><strong>取模（余数）</strong></p>
 <p>相比之下，取模（%）运算不是很常见，它的效果是这样的：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="number">55</span> % <span class="number">10</span>;  // <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">let</span> <span class="string">result</span> <span class="string">=</span> <span class="number">55</span> <span class="string">%</span> <span class="number">10</span><span class="string">;</span>  <span class="string">//</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
 <p>即看两数是否能整除，如果不能，得到余数。</p>
 <p>应用场景有：判断是不是某个数的整数倍（本职），通过这个本职，可以判断一个数字是不是2的整数倍，进而判断“奇/偶”。</p>
 <p><strong>指数</strong></p>
 <p>以前，我们求一个数字的多少次方，可以用上一篇文提到的Math对象的pow方法：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="type">Math</span>.pow(<span class="number">3</span>,<span class="number">2</span>);  //<span class="number">9</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="built_in">Math</span>.pow(<span class="number">3</span>,<span class="number">2</span>);  <span class="comment">//9</span></span><br></pre></td></tr></table></figure>
 <p>ES7之后引进了新的操作符——**，于是可以写成下面这样。</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="number">3</span>**<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">let result</span> = 3**2;</span><br></pre></td></tr></table></figure>
 <p>书写上更简洁。</p>
 <p><strong>赋值</strong></p>
 <p>前面说了“=”是赋值，但除此之外还有一系列有关<strong>运算后赋值</strong>的简化写法。统一的表达式是：<strong>变量 运算符= 变量（常量）</strong>。</p>
 <p>意思就是，将某变量进行运算之后再把值赋给原变量。示例如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a += <span class="number">1</span>;  <span class="comment">//等同于 a = a+1 下同</span></span><br><span class="line">a -= <span class="number">1</span>;</span><br><span class="line">a *= <span class="number">1</span>;</span><br><span class="line">a /= <span class="number">1</span>;</span><br><span class="line">a %= <span class="number">2</span>；</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a += <span class="number">1</span>;  <span class="comment">//等同于 a = a+1 下同</span></span><br><span class="line">a -= <span class="number">1</span>;</span><br><span class="line">a *= <span class="number">1</span>;</span><br><span class="line">a /= <span class="number">1</span>;</span><br><span class="line">a %= <span class="number">2</span>；</span><br></pre></td></tr></table></figure>
 <p><strong>逻辑操作</strong></p>
 <p>什么是逻辑？在JavaScript中逻辑运算得到的结果是“真/假”、“是/否”，即判断一个条件成立与否。</p>
 <p>“&amp;&amp;”——与操作，均为真，结果才是真。</p>
 <p>最为直观的：</p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="literal">true</span> &amp;&amp; <span class="literal">false</span>;  //<span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>但平时一般不会这么直接操作布尔值，而是使用其他运算得出的结果。比如：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = a &gt; <span class="number">3</span> &amp;&amp; a &lt; <span class="number">5</span>;  // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">a</span> = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">result</span> = a &gt; <span class="number">3</span> &amp;&amp; a &lt; <span class="number">5</span>;  // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>“||”——或操作，有一个为真即为真，否则是假。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = <span class="number">4</span>;</span><br><span class="line">let result1 = a &lt; <span class="number">3</span> || a &gt; <span class="number">5</span>; <span class="comment">// false</span></span><br><span class="line">let result2 = a &gt; <span class="number">3</span> || a &gt; <span class="number">5</span>; <span class="comment">// true</span></span><br><span class="line">let result3 = a &gt; <span class="number">3</span> || a &lt; <span class="number">5</span>;  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">let</span> <span class="string">a</span> <span class="string">=</span> <span class="number">4</span><span class="string">;</span></span><br><span class="line"><span class="string">let</span> <span class="string">result1</span> <span class="string">=</span> <span class="string">a</span> <span class="string">&lt;</span> <span class="number">3</span> <span class="string">||</span> <span class="string">a</span> <span class="string">&gt;</span> <span class="number">5</span><span class="string">;</span> <span class="string">//</span> <span class="literal">false</span></span><br><span class="line"><span class="string">let</span> <span class="string">result2</span> <span class="string">=</span> <span class="string">a</span> <span class="string">&gt;</span> <span class="number">3</span> <span class="string">||</span> <span class="string">a</span> <span class="string">&gt;</span> <span class="number">5</span><span class="string">;</span> <span class="string">//</span> <span class="literal">true</span></span><br><span class="line"><span class="string">let</span> <span class="string">result3</span> <span class="string">=</span> <span class="string">a</span> <span class="string">&gt;</span> <span class="number">3</span> <span class="string">||</span> <span class="string">a</span> <span class="string">&lt;</span> <span class="number">5</span><span class="string">;</span>  <span class="string">//</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>这两种运算符为日常开发的很多场景提供了便捷的判断方式，常用于流程控制中的条件判断，但有时候会被自己绕进去，比如，当需要a和b两种场景都适用时，可能会因为这个“和”字，本能地选择了“与”运算，即“&amp;&amp;”，这就不对了，都适用的意思是“a”或者“b”，要用“||”才对。</p>
 <p>另外，逻辑运算符不仅仅能用来得到“是”或“否”，还有一种常见的用法，称为“短路运算”。</p>
 <p>先看一段代码：</p>
@@ -184,51 +184,51 @@
 <p>第一种情况，当a有值且不为false(包括隐式类型转换)，result得到b，否则得到a。</p>
 <p>第二种情况，当a有值且不为false（包括类型转换），就不往后看了，result得到a，否则得到b。</p>
 <p>但上面的写法显得略繁琐，如果使用“短路运算”，可以像下面这样：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = a &amp;&amp; b;</span><br><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = a || b;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">let result</span> = a &amp;&amp; b;</span><br><span class="line"><span class="attribute">let result</span> = a || b;</span><br></pre></td></tr></table></figure>
 <p>效果是一样的。</p>
 <p>短路的写法为我们提供了赋值的“优先级”。逻辑运算的思路并没有改变，只是会发生赋值的动作。</p>
 <p>所以，当我们要在两个值之间做取舍时，就可以考虑使用“短路算法”，一行代码搞定，简洁、清晰。</p>
 <h2 id="一元运算"><a href="#一元运算" class="headerlink" title="一元运算"></a>一元运算</h2><p>先说两元是因为两元大家都熟悉，易接受，一元也很好理解，一个操作符，一个操作数。</p>
 <p><strong>+/-</strong></p>
 <p>“+”和”-“除了作为两元操作，同样可作为一元使用，最常见的就是“正负数”。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+<span class="number">1</span></span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+1</span></span><br><span class="line"><span class="deletion">-1</span></span><br></pre></td></tr></table></figure>
 <p>但是，如果不是直接放在数字的前面，而是变量的前面，就会有不同。</p>
 <p>比如：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = '<span class="number">1</span>'; </span><br><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = +a;  // <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = -a;  //-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">a</span> = <span class="string">'1'</span>; </span><br><span class="line">let <span class="built_in">result</span> = +<span class="keyword">a</span>; <span class="comment"> // 1</span></span><br><span class="line">let <span class="built_in">result</span> = -<span class="keyword">a</span>; <span class="comment"> //-1</span></span><br></pre></td></tr></table></figure>
 <p>这段代码里，a原本是字符串的“1”，在前面加上了“+”或“-”号之后，就转变成了数字，为什么呢？因为在字符串前面加代表“正负”的符号是没有意义的，JavaScript会试图使其变得合理。</p>
 <p>注意两个字“试图”，说明并不总成功，如果值没法转换成数字，就会失败。</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let <span class="literal">a</span> = '<span class="literal">a</span>'<span class="comment">;</span></span><br><span class="line">+<span class="literal">a</span>  //NaN</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">'a'</span>;</span><br><span class="line">+a  <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
 <p>虽然一元操作符有这么一个功能，仍属于隐式转换的范畴，只有当拿到的值和想要的值的类型不匹配的时候才需要用到，如果对自己的操作很确定，且从代码的易读性出发的话，可以直接使用Number()方法进行显式转换。</p>
 <p><strong>++/–</strong></p>
 <p>说完一个的，说说两个的，两个叫“自增”或“自减”，因为没有另外的数据跟它结合，也正因为没有数据结合，每次都只能“自增”或“自减”1。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">a</span>++ <span class="comment"> //自增1</span></span><br><span class="line"><span class="operator">a</span><span class="comment">--  //自减1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">a</span>++ <span class="comment"> //自增1</span></span><br><span class="line"><span class="keyword">a</span><span class="comment">--  //自减1</span></span><br></pre></td></tr></table></figure>
 <p>功能简单，但放的位置就有讲究了，放前放后有区别。</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span>  <span class="literal">result</span> = a++;   // 符号在后，先赋值后增加</span><br><span class="line"><span class="keyword">let</span>  <span class="literal">result</span> = ++a;   // 符号在前，先增加后赋值</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let  <span class="built_in">result</span> = <span class="keyword">a</span>++;  <span class="comment"> // 符号在后，先赋值后增加</span></span><br><span class="line">let  <span class="built_in">result</span> = ++<span class="keyword">a</span>;  <span class="comment"> // 符号在前，先增加后赋值</span></span><br></pre></td></tr></table></figure>
 <p>这两种运算符常被用在需要重复执行的代码段，经过多次运算后达到一个临界值，再进行其他操作，或停止操作，最常见的就是for循环。</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for<span class="comment">(let i = 0;i&lt;=length;i++)</span>&#123;</span><br><span class="line">    <span class="comment">//执行操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">(let i = <span class="number">0</span>;i&lt;=length;i++)</span></span>&#123;</span><br><span class="line">    <span class="comment">//执行操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>每循环一圈儿，i加1，直到达到length停止。</p>
 <p><strong>!</strong></p>
 <p>“!”叫“取反”运算符，按说它也属于逻辑运算，是对结果的值进行取反，结果是真，取反后是假，结果是假，取反后是真。</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="literal">a</span> = <span class="literal">false</span><span class="comment">;</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="literal">a</span>)&#123;</span><br><span class="line">    //<span class="literal">a</span>为假时执行的操作,假不只是<span class="literal">false</span>，还包括能够布尔转换为假的其他值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">if</span>(!a)&#123;</span><br><span class="line">    <span class="comment">//a为假时执行的操作,假不只是false，还包括能够布尔转换为假的其他值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>你可以在任何需要的时候使用“!”运算符，一个常用场景就是状态切换。</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="function_start"><span class="keyword">on</span></span> = <span class="constant">true</span>;</span><br><span class="line">function changeStatus()&#123;</span><br><span class="line">    <span class="function_start"><span class="keyword">on</span></span> =!<span class="function_start"><span class="keyword">on</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">on</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeStatus</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">on</span> =!<span class="keyword">on</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>给需要切换状态的元素绑定点击事件，然后执行函数changeStatus，每点击一次，就会变为相反的值，从而达到反复点击切换状态的效果。</p>
 <h2 id="三元运算"><a href="#三元运算" class="headerlink" title="三元运算"></a>三元运算</h2><p>三元运算，又叫“条件运算”。JavaScript当中三元运算符也很常见。格式如下：</p>
 <p><strong>表达式？值1：值2</strong></p>
 <p>示例：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = a&gt;<span class="number">2</span>?'真':'假';</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">let a</span> = 3;</span><br><span class="line"><span class="attribute">let result</span> = a&gt;2?<span class="string">'真'</span>:<span class="string">'假'</span>;</span><br></pre></td></tr></table></figure>
 <p>这段代码表达的是，当a的值大于2，取前值，否则取后值。即根据表达式是否成立来决定值是什么。</p>
 <p>这个运算和前面聊的“||”运算的效果有相似的地方，各位可根据具体情况选择使用。</p>
 <h2 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h2><p><strong>+</strong>的连接性</p>
 <p>关于“+”，我们习惯的作用是数字相加，但到了JavaScript领域，“+”还有另一个常见的作用是“连接字符串”。如下：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = 'a'+'b';   // <span class="string">"ab"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">'a'</span>+<span class="string">'b'</span>;   <span class="comment">// "ab"</span></span><br></pre></td></tr></table></figure>
 <p>虽然字符串本身也有连接的方法，相比之下，“+”更直接和简洁。</p>
 <p>但如果仅此而已，就没什么可注意的，JavaScript世界最大的不确定就是“拿到的变量是什么”。</p>
 <p>如果是这样：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="number">1</span> + 'b';</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">let result</span> = 1 + <span class="string">'b'</span>;</span><br></pre></td></tr></table></figure>
 <p>数字和字符串相加，得到的什么呢？是“1b”。</p>
 <p>可能你会说了，后面那个是b，没法转换成数字，才有的这个结果。那换一下：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="number">1</span> + '<span class="number">2</span>';</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">let result</span> = 1 + <span class="string">'2'</span>;</span><br></pre></td></tr></table></figure>
 <p>结果是“12”，显然上面的猜测并不对。</p>
 <p>当使用“+”号进行二元运算的时候，任何一方的数据是字符串类型，或者被转换成了字符串类型，结果都是字符串类型。比如：</p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">result</span> = <span class="string">""</span>;</span><br><span class="line"><span class="literal">result</span> + <span class="number">2</span>  //<span class="string">"2"</span></span><br><span class="line"><span class="literal">result</span> + undefined  // <span class="string">"undefined"</span>  </span><br><span class="line"><span class="literal">result</span> + null   //  <span class="string">"null"</span></span><br></pre></td></tr></table></figure>
@@ -241,11 +241,11 @@
 <li>比较的是ASCII码值</li>
 </ul>
 <p>这样的算法就会出现如下情况：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">100</span> &lt; <span class="number">20</span>   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">100 </span>&lt; <span class="number">20</span>   //true</span><br></pre></td></tr></table></figure>
 <p>事实上这个结果是不对的，我故意这样写，因为有时候，用眼睛看着是数字的，其类型可能是字符串，可能比较的是“100”和“20”，就会出现上面的情况。</p>
 <p>用 charCodeAt() 方法可以查看字符的ASCII码值，’1’是49，而’2’是50。比较完第一位就已经分出大小了。</p>
 <p>再看个例子：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'13'</span> &gt; <span class="string">'123'</span>   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'13'</span> &gt; <span class="string">'123'</span>   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>首位1是相等的，第二位3的ASCII码比2的ASCII码大，出结果。</p>
 <p>所以，在进行数据排序的时候，一定要注意类型，否则可能和预期不一致，数字如此，字母或其他特殊符号也是一样，不再赘述。</p>
 <p><strong>对象的隐式转换</strong></p>
@@ -286,7 +286,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -346,7 +346,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

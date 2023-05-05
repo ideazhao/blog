@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2015-05-09</span></span>
+        <span class="attr">Post：<span>2015-05-09</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#CSS" title="CSS">CSS</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -137,8 +137,8 @@
 <p>拿一些细节方面来说，比如渐变，圆角，阴影，半透明，这几个应该是被用的最多，效果也很好的方法。其中前三个，都可以做到比较好的退化，甚至说牺牲，因为很多时候，即使它们在一些浏览器里有，另一些浏览器里没有，看起来也能让人接受，不会产生太大的影响，半透明就不同了，透明和不透明的差别还是蛮大的，那么今天就来聊聊“透明”。</p>
 <p>透明还分为两种，<strong>半透明的纯色</strong> ，<strong>背景透明的图片</strong>。</p>
 <h2 id="背景透明的图片"><a href="#背景透明的图片" class="headerlink" title="背景透明的图片"></a>背景透明的图片</h2><p>大家都知道这个在IE6下会不支持，图片是有格式的，what格式会出问题？ 我们网页中常用格式jpg、png24/png8、gif，其中后面两者是透明的，而会出现问题的只是png24格式，见下图</p>
-<p><img src="say-opacity/1.jpg" alt=""></p>
-<p>应该看出来了，它不仅仅是背景不透明还会出现比较明显的锯齿。 其实说到这里，想到一个问题，还管IE6干嘛。。。不过真有一部分需求是要管的，所以， 如果还有兴趣做了解的话，那么大家可以看看这篇文章 <a href="http://blog.csdn.net/mosliang/article/details/6760028" target="_blank" rel="external">使IE6下PNG背景透明的七种方法任你选</a></p>
+<p><img src="say-opacity/1.jpg" alt></p>
+<p>应该看出来了，它不仅仅是背景不透明还会出现比较明显的锯齿。 其实说到这里，想到一个问题，还管IE6干嘛。。。不过真有一部分需求是要管的，所以， 如果还有兴趣做了解的话，那么大家可以看看这篇文章 <a href="http://blog.csdn.net/mosliang/article/details/6760028" target="_blank" rel="noopener">使IE6下PNG背景透明的七种方法任你选</a></p>
 <p>那图片就不用多谈了（好懒呐~）</p>
 <h2 id="半透明背景色"><a href="#半透明背景色" class="headerlink" title="半透明背景色"></a>半透明背景色</h2><p>Css的什么属性可以做到这点呢？</p>
 <p>Opacity：0~1，取值为小数（常见1位小数，多位亦可）。纯控制透明度，适用IE9及以上浏览器和其他主流浏览器。</p>
@@ -149,7 +149,7 @@
 <p>其实我在想怎么不能有一个东西搞定所有？事实证明这是有难度的，技术在发展，标准在行进，厂商支持也不同。</p>
 <h2 id="哪里会有问题呢？"><a href="#哪里会有问题呢？" class="headerlink" title="哪里会有问题呢？"></a>哪里会有问题呢？</h2><p>不少需求里面都会需要用背景透明，那么该怎样去选择这些透明来为自己服务呢？</p>
 <p>现在做技术的同行有些是“实用主义”，不管方法是怎样，可以达到目的就行；有些是“能用主义”，只要找到一种方法行，就用了。这两种情况一般都不会去深究，只看效果，通常遇到这样的问题的路径就是想起“opacity”一用，好像不对，一下都变得朦胧了，比如这样</p>
-<p><img src="say-opacity/2.jpg" alt=""></p>
+<p><img src="say-opacity/2.jpg" alt></p>
 <p>然后查查还有什么比较好的解决方案，找到了rgba，一用果然不亦乐乎，</p>
 <p>再一看，浏览器支持貌似不好啊！连IE8都挂了。</p>
 <h2 id="那到底该怎么办！"><a href="#那到底该怎么办！" class="headerlink" title="那到底该怎么办！"></a>那到底该怎么办！</h2><p>其实上面已经给出办法了不是么，只是需要说的是二者的不同使用场景，</p>
@@ -179,9 +179,9 @@ html:
 &lt;img src=&quot;images/pngdemo_8.png&quot;&gt;
 &lt;/div&gt;
 </code></pre><p>对比效果</p>
-<p><img src="say-opacity/3.jpg" alt=""></p>
+<p><img src="say-opacity/3.jpg" alt></p>
 <p>没做特殊设置的下场</p>
-<p><img src="say-opacity/4.jpg" alt=""></p>
+<p><img src="say-opacity/4.jpg" alt></p>
 <p>需要指出的是，rgba（）它是用来定义色值的，也就是说，它不专属于背景，比如我们偶尔也会碰到透明的边框等等，也是同样适用的，除了在个别浏览器下可能支持会有小的差异。</p>
 <p>还有一种不常用的HSLA，它和rgba异曲同工，比如background:hsla(165, 35%, 50%, 0.2);这样，设置颜色和透明度。 具体如下：</p>
 <p>使用色调Hue(H)、饱和度Saturation(s)和亮度Lightness(L)来设置颜色。</p>
@@ -189,7 +189,7 @@ html:
 <p>Saturation值是一个百分比：0%是灰度，100%饱和度最高。</p>
 <p>Lightness值也是一个百分比：0%是最暗，50%均值，100%最亮。</p>
 <p>好了，这次聊的不多，不过还是希望能够帮到一部分朋友。问题多多，来日方长，咱下次见呗！~</p>
-<p>推荐文章：<a href="http://www.cnblogs.com/PeunZhang/p/4089894.html" target="_blank" rel="external">css实现背景透明文字不透明</a></p>
+<p>推荐文章：<a href="http://www.cnblogs.com/PeunZhang/p/4089894.html" target="_blank" rel="noopener">css实现背景透明文字不透明</a></p>
 <p>欢迎关注微信公众号：css3china 前端周末</p>
 <p>QQ：152128548</p>
 
@@ -202,7 +202,7 @@ html:
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -262,7 +262,7 @@ html:
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 

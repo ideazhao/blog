@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -16,8 +16,8 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css" type="text/css">
-    <link rel="stylesheet" href="/css/gitment.css" type="text/css">
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
@@ -52,32 +52,32 @@
             <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
-                    <span>主页</span>
+                    <span>HOME</span>
                 </a>
             </li>
             <li >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
-                    <span>标签</span>
+                    <span>TAGS</span>
                 </a>
             </li>
             <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
-                    <span>存档</span>
+                    <span>ARCHIVES</span>
                 </a>
             </li>
             <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>关于</span>
+                    <span>ABOUT</span>
                 </a>
             </li>
             
             <li>
                 <a id="search">
                     <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span>SEARCH</span>
                 </a>
             </li>
             
@@ -96,7 +96,7 @@
         <div class="search-input">
             <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
             <input id="search-input"/>
-            <span id="begin-search">搜索</span>
+            <span id="begin-search">search</span>
         </div>
         <div class="search-result-container" id="search-result-container">
 
@@ -119,16 +119,16 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-03-17</span></span>
+        <span class="attr">Post：<span>2022-03-17</span></span>
         
-        <span class="attr">标签：/
+        <span class="attr">Tags：/
         
         <a class="tag" href="/tags/#分享" title="分享">分享</a>
         <span>/</span>
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
 </span>
 </span>
     </div>
@@ -144,15 +144,15 @@
 <h4 id="开关和位置"><a href="#开关和位置" class="headerlink" title="开关和位置"></a>开关和位置</h4><p>打开——open</p>
 <p>open()接收4个参数：</p>
 <ul>
-<li>URL：要打开的网页地址（<a href="http://baidu.com）" target="_blank" rel="external">http://baidu.com）</a></li>
+<li>URL：要打开的网页地址（<a href="http://baidu.com）" target="_blank" rel="noopener">http://baidu.com）</a></li>
 <li>目标窗口：可传窗口的名称，将内容打开至一个已有窗口，或是新建一个命名窗口；也可以传_self（自身）、_parent(父窗口)、_top（最外层窗口）或_blank（新的空白窗口）。</li>
 <li>特性字符串：一个逗号分隔的字符串，用于指定新窗口包含的特性。(宽、高、位置、大小是否可变、是否显示菜单栏等)</li>
 <li>新窗口的替代性：这个替代指的是在浏览器历史记录中，只有在不打开新窗口时才会使用</li>
 </ul>
 <p>window.open()方法返回一个对新建窗口的引用，与普通window对象没有区别，只是为<strong>控制</strong>新窗口提供了方便。</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.<span class="keyword">open</span>(<span class="symbol">'www</span>.baidu.com',<span class="symbol">'newWindow'</span>,<span class="symbol">'width</span>=<span class="number">400</span>,height=<span class="number">400</span>,left=<span class="number">10</span>,top=<span class="number">10</span>,resizable=yes')</span><br></pre></td></tr></table></figure>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.<span class="keyword">open</span>(<span class="symbol">'www</span>.baidu.com',<span class="symbol">'newWindow'</span>,<span class="symbol">'width</span>=<span class="number">400</span>,height=<span class="number">400</span>,left=<span class="number">10</span>,top=<span class="number">10</span>,resizable=yes')</span><br></pre></td></tr></table></figure>
 <p>关闭——close</p>
-<p>比如：如果要关闭打开的窗口，可以这样：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let newWindow = window.<span class="function"><span class="title">open</span><span class="params">(<span class="string">'http://baidu.com'</span>,<span class="string">'newWindow'</span>)</span></span></span><br><span class="line">newWindow.<span class="function"><span class="title">close</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure></p>
+<p>比如：如果要关闭打开的窗口，可以这样：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">new</span><span class="type">Window</span> = window.open(<span class="string">'http://baidu.com'</span>,<span class="string">'newWindow'</span>)</span><br><span class="line"><span class="keyword">new</span><span class="type">Window</span>.close()</span><br></pre></td></tr></table></figure></p>
 <p>window对象的位置可以通过不同的属性和方法来确定。</p>
 <p>现代浏览器提供了screenLeft和screenTop属性，用于表示窗口相对于屏幕左侧和顶部的位置，返回值的单位是CSS像素。</p>
 <p>可以使用moveTo()和moveBy()方法移动窗口，使用resizeTo()和resizeBy()方法缩放窗口。这些方法都接收两个参数，一个是改变到多少，一个是改变多少，比较容易理解。</p>
@@ -161,16 +161,16 @@
 <h4 id="像素比"><a href="#像素比" class="headerlink" title="像素比"></a>像素比</h4><p>什么是像素比？我们知道，CSS当中有像素来作为Web开发的统一单位，但设备也有它自己的像素概念，称为“物理像素”，一个物理像素相当于多少CSS像素呢，window.devicePixelRatio就是用来表示物理像素与逻辑像素之间的缩放系数的。</p>
 <p>不同像素密度的屏幕下就会有不同的缩放系数，以便把物理像素转换为CSS像素。</p>
 <p>其实还有另一个东西跟它担当着类似角色，就是DPI，单位像素密度，我们在做响应式的时候，有一种不太好的实践是根据屏幕的尺寸设定某种规则，但尺寸的范围是不确定的，很容易顾此失彼，有所遗漏，而使用像素比，就能够较为容易的覆盖到更多设备，同时不用设定多个范围。</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@media</span> only <span class="function">screen <span class="title">and</span> <span class="params">(min-device-pixel-ratio: <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line"> <span class="comment">/*use CSS to swap out your low res images with high res ones here*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> <span class="keyword">only</span> screen <span class="keyword">and</span> (<span class="attribute">min-device-pixel-ratio:</span> <span class="number">2</span>) &#123;</span><br><span class="line"> <span class="comment">/*use CSS to swap out your low res images with high res ones here*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h4><p>聊DOM的时候，我们提过一个东西——滚动尺寸，也提到一个方法scrollTo()，这个方法，就是和视口相关的。</p>
 <p>视口，可以直观理解为可见的网页区域。</p>
 <p>文档相对于视口滚动距离的属性有两对，返回同样的值：</p>
 <p>window.pageXoffset/window.scrollX</p>
 <p>window.pageYoffset/window.scrollY</p>
 <p>可以使用scroll()、scrollTo()和scrollBy()方法滚动页面。这3个方法都接收表示相对视口距离的x和y坐标，这两个参数在前两个方法中表示要<strong>滚动到</strong>的坐标，在最后一个方法中表示<strong>滚动的距离</strong>。比如：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.<span class="function"><span class="title">scrollBy</span><span class="params">(<span class="number">0</span>,<span class="number">100</span>)</span></span></span><br><span class="line">window.<span class="function"><span class="title">scrollTo</span><span class="params">(<span class="number">100</span>,<span class="number">100</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.scrollBy(<span class="number">0</span>,<span class="number">100</span>)</span><br><span class="line">window.scrollTo(<span class="number">100</span>,<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
 <p>这几个方法也都接收一个ScrollToOptions，可以通过behavior属性告诉浏览器是否平滑滚动，来优化体验。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">window</span><span class="class">.scrollTo</span>(&#123;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">100</span>,</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">100</span>,</span><br><span class="line">    <span class="attribute">behavior</span>:<span class="string">'smooth'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">window</span><span class="selector-class">.scrollTo</span>(&#123;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">100</span>,</span><br><span class="line">    top:<span class="number">100</span>,</span><br><span class="line">    behavior:<span class="string">'smooth'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><p>window对象的属性在全局作用域中有效，所以很多浏览器API及相关构造函数都以window对象属性的形式暴露出来。</p>
 <p>网页中定义的所有对象、变量和函数都以window作为其Global对象，都可以访问其上定义的全局方法，比如很常见的parseInt()，不需要定义，直接使用即可。</p>
 <p>通过var声明的全局变量和函数都会自动成为window对象的属性和方法。</p>
@@ -190,7 +190,7 @@
 <li>hash：跟在#号后的散列值 (#content)</li>
 <li>href：当前页面的完整URL </li>
 <li>search：问号开头的查询字符串 (?username=’idea’)</li>
-<li>host：服务器名和端口号（www.xxx.com:80)</li>
+<li>host：服务器名和端口号（<a href="http://www.xxx.com:80" target="_blank" rel="noopener">www.xxx.com:80</a>)</li>
 <li>protocol：页面使用的协议（http、https）</li>
 <li>origin：URL的源地址</li>
 </ul>
@@ -198,7 +198,7 @@
 <p><strong>查询字符串</strong></p>
 <p>查询字符串通常用于在当前页面获取相应信息，然后再通过请求拉取需要的数据，我们要拿到它的字段和值，问题是URL中的查询字符串并不易用，虽然location.search返回了从问号开始直到URL末尾的所有内容，但没有办法逐个访问每个查询参数，这时候，就需要一个专门的处理方法。</p>
 <p>比如，在百度输入一个关键字“查找”，浏览器地址栏会出现类似如下的查询字符串。</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//?wd=查找&amp;rsv_spt=1&amp;rsv_iqid=0xcb3e</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//?wd=查找&amp;rsv_spt=1&amp;rsv_iqid=0xcb3e</span></span><br></pre></td></tr></table></figure>
 <p>观察规律：</p>
 <ul>
 <li>？开头</li>
@@ -206,17 +206,17 @@
 <li>一组字符串的key和value是‘=’分割</li>
 </ul>
 <p>这样以来思路就出来了，先截取，再分割。看代码。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">QueryString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> qs = location.search.length &gt; <span class="number">0</span> ? location.search.substring(<span class="number">1</span>):<span class="string">''</span>,</span><br><span class="line">    args = &#123;&#125;;</span><br><span class="line">    <span class="keyword">const</span> qsList = qs.split(<span class="string">'&amp;'</span>).map(kv=&gt;kv.split(<span class="string">'='</span>))</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> qsList)&#123;</span><br><span class="line">        <span class="keyword">let</span> name = <span class="built_in">decodeURIComponent</span>(item[<span class="number">0</span>]),</span><br><span class="line">            value = <span class="built_in">decodeURIComponent</span>(item[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span>(name.length)&#123;</span><br><span class="line">            args[name] = value</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> args</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> QueryString()&#123;</span><br><span class="line">    <span class="keyword">let</span> qs = location.search.length &gt; <span class="number">0</span> ? location.search<span class="built_in">.substring</span>(<span class="number">1</span>):<span class="string">''</span>,</span><br><span class="line">    args = &#123;&#125;;</span><br><span class="line">    const qsList = qs.split(<span class="string">'&amp;'</span>).<span class="keyword">map</span>(kv=&gt;kv.split(<span class="string">'='</span>))</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> <span class="type">item</span> <span class="keyword">of</span> qsList)&#123;</span><br><span class="line">        <span class="keyword">let</span><span class="built_in"> name</span> = decodeURIComponent(<span class="type">item</span>[<span class="number">0</span>]),</span><br><span class="line">            <span class="keyword">value</span> = decodeURIComponent(<span class="type">item</span>[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">if</span><span class="built_in">(name</span>.length)&#123;</span><br><span class="line">            args<span class="built_in">[name</span>] = <span class="keyword">value</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> args</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>值得一提的是，这会出现在某些公司的面试题中，虽然现在需要手动处理的情况不多，方法还是要了解。</p>
 <p>除此之外，其实还有一个原生 API 能够帮我们做到类似的事情——<strong>URLSearchParams</strong>。是不是很兴奋，因为往往原生能力的升级意味着便捷，没错，URLSearchParams提供了一组标准API方法，通过它们可以检查和修改查询字符串。给URLSearchParams构造函数传入一个查询字符串，就可以创建一个实例。实例上暴露了get()、set()和delete()等方法，可以对查询字符串执行相应操作。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//?wd=查找&amp;rsv_spt=1&amp;rsv_iqid=0xcb3e</span></span><br><span class="line">let searchParams = new <span class="function"><span class="title">URLSearchParams</span><span class="params">()</span></span></span><br><span class="line">searchParams.<span class="function"><span class="title">has</span><span class="params">(<span class="string">'wd'</span>)</span></span>  <span class="comment">//true</span></span><br><span class="line">searchParams.<span class="function"><span class="title">get</span><span class="params">(<span class="string">'wd'</span>)</span></span>  <span class="comment">// 查找</span></span><br><span class="line">searchParams.<span class="function"><span class="title">delete</span><span class="params">(<span class="string">'wd'</span>)</span></span> <span class="comment">// ?rsv_spt=1&amp;rsv_iqid=0xcb3e</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//?wd=查找&amp;rsv_spt=1&amp;rsv_iqid=0xcb3e</span></span><br><span class="line"><span class="keyword">let</span> searchParams = <span class="keyword">new</span> URLSearchParams()</span><br><span class="line">searchParams.has(<span class="string">'wd'</span>)  <span class="comment">//true</span></span><br><span class="line">searchParams.<span class="keyword">get</span>(<span class="string">'wd'</span>)  <span class="comment">// 查找</span></span><br><span class="line">searchParams.delete(<span class="string">'wd'</span>) <span class="comment">// ?rsv_spt=1&amp;rsv_iqid=0xcb3e</span></span><br></pre></td></tr></table></figure>
 <p>大多数支持URLSearchParams的浏览器也支持将URLSearchParams的实例用作可迭代对象，其中每一项是查询键值对，这样就可以使用迭代方法很方便地获取它们的值了。</p>
 <p><strong>网址导航</strong></p>
 <p>可通过修改location对象修改浏览器的地址。</p>
 <p>比如，使用assign()方法，并传入一个URL。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="function"><span class="title">assign</span><span class="params">(<span class="string">'www.baidu.com'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location.<span class="built_in">assign</span>(<span class="string">'www.baidu.com'</span>)</span><br></pre></td></tr></table></figure>
 <p>当然，还有大家更熟悉的：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location<span class="class">.href</span> = <span class="string">'www.baidu.com'</span></span><br><span class="line">window<span class="class">.location</span> = <span class="string">'www.baidu.com'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">location.href</span> = <span class="string">'www.baidu.com'</span></span><br><span class="line"><span class="attr">window.location</span> = <span class="string">'www.baidu.com'</span></span><br></pre></td></tr></table></figure>
 <p>这两种方法相当于隐式调用了assign()方法，最常用的是第二种——设置href。</p>
 <p>不仅如此，还有很多属性的修改也会造成当前页面的变动，比如：hash、search、hostname、pathname和port等。</p>
 <p>其中，除了hash，其他属性变化都会使页面重新加载。这一点很关键哦，现在流行的单页应用框架就是用hash来模拟前进和后退，同时不会因导航变化触发页面刷新。</p>
@@ -311,7 +311,7 @@
         <i> 学习让人快乐，而分享加倍 </i>
     </div>
     <div class="donate-button">
-        <button id="donate-button">赞赏</button>
+        <button id="donate-button">donate</button>
     </div>
     <div class="donate-img-container hide" id="donate-img-container">
         <img id="donate-img" src="" data-src="/img/wechat-pay.jpg">
@@ -371,7 +371,7 @@
     window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js" type="text/javascript"></script>
+<script src="/js/index.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
