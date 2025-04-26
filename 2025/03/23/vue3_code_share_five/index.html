@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Vuejs技术内幕：用算法优雅解决复杂问题 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家黄轶所编写的 《Vue.js技术内幕》  “算法在什么时候派上用场？” 这个问题，我请教过不少同行朋友，大家观点各异，难有确切答案。 因为我们似乎都只在面试时会碰到算法题，项目中很少。但其实不然，尼古拉斯·威茨（Niklaus Wirth）有句名言 —“程序=算法+数据结构”。 所以，大家平时写的程序也">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs技术内幕：用算法优雅解决复杂问题">
+<meta property="og:url" content="http://yoursite.com/2025/03/23/vue3_code_share_five/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家黄轶所编写的 《Vue.js技术内幕》  “算法在什么时候派上用场？” 这个问题，我请教过不少同行朋友，大家观点各异，难有确切答案。 因为我们似乎都只在面试时会碰到算法题，项目中很少。但其实不然，尼古拉斯·威茨（Niklaus Wirth）有句名言 —“程序=算法+数据结构”。 所以，大家平时写的程序也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-26T02:27:20.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs技术内幕：用算法优雅解决复杂问题">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家黄轶所编写的 《Vue.js技术内幕》  “算法在什么时候派上用场？” 这个问题，我请教过不少同行朋友，大家观点各异，难有确切答案。 因为我们似乎都只在面试时会碰到算法题，项目中很少。但其实不然，尼古拉斯·威茨（Niklaus Wirth）有句名言 —“程序=算法+数据结构”。 所以，大家平时写的程序也">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2025/03/23/vue3_code_share_five/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>10年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/18/vue3_code_share_three/" class="title">Vue.js技术内幕：数据响应式之2.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-17T16:00:00.000Z" itemprop="datePublished">2025-01-18</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#性能下限"><span class="toc-number">1.</span> <span class="toc-text">性能下限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diff算法"><span class="toc-number">2.</span> <span class="toc-text">diff算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引图"><span class="toc-number">3.</span> <span class="toc-text">索引图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最长递增子序列"><span class="toc-number">4.</span> <span class="toc-text">最长递增子序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动"><span class="toc-number">5.</span> <span class="toc-text">移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译优化"><span class="toc-number">6.</span> <span class="toc-text">编译优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">7.</span> <span class="toc-text">小结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-vue3_code_share_five" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vuejs技术内幕：用算法优雅解决复杂问题
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2025/03/23/vue3_code_share_five/" class="article-date">
+	  <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2025/03/23/vue3_code_share_five/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家<strong>黄轶</strong>所编写的 <strong>《Vue.js技术内幕》</strong></p>
+</blockquote>
+<p>“算法在什么时候派上用场？”</p>
+<p>这个问题，我请教过不少同行朋友，大家观点各异，难有确切答案。</p>
+<p>因为我们似乎都只在面试时会碰到算法题，项目中很少。但其实不然，尼古拉斯·威茨（Niklaus Wirth）有句名言 —“<strong>程序=算法+数据结构</strong>”。</p>
+<p>所以，大家平时写的程序也都在应用算法，只是算法本身有“优劣”之分，更优的算法，要么节省内存，要么提升效率。</p>
+<p>前面的文章，我们聊了Vue组件的创建和响应式原理，这些决定了Vue的运行机制，以及开发者的使用方式。</p>
+<p>但隐藏在这些东西背后的，起重要作用的还有算法，它对用户和开发者都”不可见“，却切实影响使用体验。</p>
+<h2 id="性能下限"><a href="#性能下限" class="headerlink" title="性能下限"></a>性能下限</h2><p>在使用框架之前，修改页面元素通常需要开发者使用原生API修改DOM，而DOM操作是出了名的开销大，由此产生过不少性能优化原则，如：减少查询次数、批量更新DOM、避免主线程复杂操作等。</p>
+<p>这个阶段，代码执行的效率如何，全靠程序员的编码水平和编码习惯。</p>
+<p>当开始使用Vue、React这类框架，所提倡的第一件事，就是不直接操作DOM，只操作数据，由数据驱动视图，所以使用框架的时候并不代表不动DOM，只是这件事交由框架去做。</p>
+<p>于是，就有了“<strong>框架为代码保证性能下限</strong>”的说法。</p>
+<h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>Vue需要进行复杂计算的地方就是组件更新，要对比分析新旧虚拟DOM的差异，然后决定如何操作，更新有几种情况：从有到无、从无到有、从有到有。</p>
+<p>前两种好办，只需删除或者添加，第三种”从有到有“就涉及到对比差异，也就是常说的”diff“。</p>
+<p>diff算法的目标：<strong>在已知旧子节点DOM结构和vnode以及新子节点的vnode的情况下，低成本完成节点更新</strong>。</p>
+<p>从一个简单的列表看：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"a"</span>&gt;a&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"b"</span>&gt;b&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"c"</span>&gt;c&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"d"</span>&gt;d&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>假如变成这样：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"a"</span>&gt;a&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"b"</span>&gt;b&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"e"</span>&gt;e&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"c"</span>&gt;c&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"d"</span>&gt;d&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>是在b节点的后面插入了一个e。</p>
+<p>如果是这样：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"a"</span>&gt;a&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"b"</span>&gt;b&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">li</span> <span class="built_in">key</span>=<span class="string">"d"</span>&gt;d&lt;/<span class="built_in">li</span>&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>也能一眼看出中间少了个c。</p>
+<p>说是”一眼看出“，只代表我们脑中处理的速度快，但处理的步骤一个也没少，我们是从头一个个看的，先对比第一个，再对比第二个…直到遇到一个差异点。</p>
+<p>转换成更规范的语言，就是”同步节点“，从头部进行叫同步头部节点，从尾部进行叫同步尾部节点。</p>
+<p>当同步完成后，只会有三种情况：</p>
+<ul>
+<li>新子节点有剩余，需要添加新节点</li>
+<li>旧子节点有剩余，需要删除多余节点</li>
+<li>存在未知子序列</li>
+</ul>
+<p>单纯地添加和删除比较简单，但如果面对未知的子序列，diff算法会怎么做，才是重点。</p>
+<h2 id="索引图"><a href="#索引图" class="headerlink" title="索引图"></a>索引图</h2><p>当无法直接识别是否保留或者移动元素时，似乎只能进行遍历来对比差异，遍历旧的子序列，识别其节点在新的子序列中是否存在，这就需要双重循环，双重循环的时间复杂度是O (n2)。</p>
+<p>为了优化，算法中有一种策略叫”<strong>空间换时间</strong>“，即用更多的内存占用换取更快的速度，这就需要建立”<strong>索引图</strong>“。</p>
+<p>大家应该都熟悉，开发过程会给v-for生成的列表项分配唯一的key，但可能不清楚这个key在diff过程中起到的作用，在进行新旧对比过程中，如果key相同，就认为它们是同一节点，直接执行更新，索引图也是根据key建立的。</p>
+<p>核心代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> patchKeyedChildren= <span class="function">(<span class="params">c1,c2</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> l2 = c2.length;</span><br><span class="line">  <span class="comment">// 旧子节点尾部索引</span></span><br><span class="line">  <span class="keyword">let</span> e1 = c1.length - <span class="number">1</span></span><br><span class="line">  <span class="comment">// 新子节点尾部索引</span></span><br><span class="line">  <span class="keyword">let</span> e2 = l2 - <span class="number">1</span></span><br><span class="line">  <span class="comment">// 旧子序列开始索引</span></span><br><span class="line">  <span class="keyword">const</span> s1 = i</span><br><span class="line">  <span class="comment">// 新子序列开始索引</span></span><br><span class="line">  <span class="keyword">const</span> s2 = i</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 根据key建立新子序列的索引图</span></span><br><span class="line">  <span class="keyword">const</span> keyToNewIndexMap = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">  <span class="keyword">for</span>(i = s2; i&lt;= e2;i++)&#123;</span><br><span class="line">    <span class="keyword">const</span> nextChild = c2[i]</span><br><span class="line">    keyToNewIndexMap.set(nextChild.key,i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这段代码中c1代表旧子序列，c2代表新子序列，它做的事情就是遍历新子序列，并将其key和索引建立对应关系，存储在叫 keyToNewIndexMap 的 Map 结构中。</p>
+<p>建立完就需要遍历旧子序列，通过这两次遍历，目的是找到节点操作（增、删、改）的依据。</p>
+<p>先看遍历前的准备工作：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">patched</span> = <span class="number">0</span>,</span><br><span class="line">const <span class="attr">toBePatched</span> = e2 - s2 + <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">move</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">maxNewIndexSoFar</span> = <span class="number">0</span></span><br><span class="line">const <span class="attr">newIndexToOldIndexMap</span> = new Array(toBePatched)</span><br><span class="line">for(<span class="attr">i</span> = <span class="number">0</span>;i &lt; toBePatched;i++)&#123;</span><br><span class="line"> newIndexToOldIndexMap[i] = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上这段代码：</p>
+<ul>
+<li>patched：已更新计数</li>
+<li>toBePatched：待更新计数</li>
+<li>maxNewIndexSoFar：存储上次newIndex</li>
+<li>move：标识是否有移动</li>
+<li>建立了一个名为newIndexToOldIndexMap的数组，存储新子序列和旧子序列索引间的映射关系，用于确定最长递增子序列</li>
+</ul>
+<p>准备做完，开始遍历：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i = s1;i&lt;= e1;i++)&#123;</span><br><span class="line">  const prevChild = c1[i]</span><br><span class="line">  <span class="keyword">if</span>(patched == toBePatched)&#123;</span><br><span class="line">    <span class="comment">// 所有子序列都已更新删除剩余节点</span></span><br><span class="line">  &#125;</span><br><span class="line">  let <span class="keyword">new</span><span class="type">Index</span> = keyToNewIndexMap.<span class="keyword">get</span>(prevChild.key)</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">new</span><span class="type">Index</span> == undefined)&#123;</span><br><span class="line">    <span class="comment">// 旧子序列已不存在于新子序列中，删除节点</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 更新新子序列中的元素在旧子序列中的索引</span></span><br><span class="line">    <span class="keyword">new</span><span class="type">IndexToOldIndexMap</span>[<span class="keyword">new</span><span class="type">Index</span> - s2] = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">new</span><span class="type">Index</span> == maxNewIndexSoFar)&#123;</span><br><span class="line">      maxNewIndexSoFar = <span class="keyword">new</span><span class="type">Index</span></span><br><span class="line"><span class="type"></span>    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      moved = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 更新旧子序列中匹配的节点</span></span><br><span class="line">    patched++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码：</p>
+<ul>
+<li>根据前面建立的从key到索引的映射 keyToNewIndexMap，查找旧子序列节点在新子序列中的索引，如果找不到，说明应该删除；如果找到了，将它在旧子序列中的索引更新到 newIndexToOldIndexMap 中。</li>
+<li>比较maxNewIndexSoFar 和 newIndex，一旦发现二者不相等，就说明有移动，设置 moved 标志位，并更新 patched。</li>
+</ul>
+<p>当找到了需要移动的节点，接下来就需要进行移动，但我们先了解一样东西——最长递增子序列。</p>
+<h2 id="最长递增子序列"><a href="#最长递增子序列" class="headerlink" title="最长递增子序列"></a>最长递增子序列</h2><p>最长递增子序列（Longest Increasing Subsequence, LIS） 是一个经典的计算机科学问题，也是一道常见面试题。</p>
+<p>定义如下：</p>
+<blockquote>
+<p>给定一个序列（通常是数组或列表），找到其中最长的严格递增的子序列。子序列不要求连续，但必须保持元素的相对顺序。</p>
+</blockquote>
+<p>比如：</p>
+<p>输入序列：<code>[10, 9, 2, 5, 3, 7, 101, 18]</code></p>
+<p>最长递增子序列：<code>[2, 3, 7, 101]</code> 或 <code>[2, 5, 7, 101]</code></p>
+<p>为什么在这里提到它？聪明的你应该能想到，在前面建立的索引图，不正是一个数字序列吗？</p>
+<p>为什么需要这个序列？想象一下，当新旧列表中不一致的情况较多时，如果从头到尾逐个排列，势必会浪费不少动作，因为它们中的一部分是不需要动的。</p>
+<p>什么样的不需要动？本身就是从小到大排列的不需要动，这就是为什么需要寻找”递增序列“，还要找”最长“，就是为了减少移动，提高效率。</p>
+<p>接下来就可以看移动的过程了。</p>
+<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><p>这个过程，Vue采用了倒序形式进行遍历新子序列，因为可以更方便地使用最后更新的节点作为锚点。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前节点移动时生成最长递增子序列</span></span><br><span class="line"><span class="keyword">const</span> increaseingNewIndexSequence = moved </span><br><span class="line"> ? getSequence(newIndexToOldIndexMap)</span><br><span class="line"> :EMPTY_ARR</span><br><span class="line"><span class="keyword">let</span> j = increaseingNewIndexSequence.length - <span class="number">1</span></span><br><span class="line"><span class="comment">// 倒序遍历，使用最后更新的节点作为锚点</span></span><br><span class="line"><span class="keyword">for</span>(i = toBePatched - <span class="number">1</span>; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">  <span class="keyword">const</span> newIndex = s2 + i</span><br><span class="line">  <span class="keyword">const</span> nextChild = c2[nextIndex]</span><br><span class="line">  <span class="comment">// 锚点指向上一个更新的节点，如果nextIndex超过新子节点的长度，则指向parentAnchor</span></span><br><span class="line">  <span class="keyword">const</span> anchor = nextIndex + <span class="number">1</span> &lt; l2 ? c2[nextIndex + <span class="number">1</span>].el : parentAnchor</span><br><span class="line">  <span class="keyword">if</span>(newIndexToOldIndexMap[i] === <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// 挂载新的子节点</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(moved)&#123;  </span><br><span class="line">  <span class="comment">// 没有最长子序列，或者当前节点索引不在最长子序列中，执行移动</span></span><br><span class="line">    <span class="keyword">if</span>(j = <span class="number">0</span> || i!== increaseingNewIndexSequence[j])&#123;</span><br><span class="line">      move(nextChild,container, anchor, <span class="number">2</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 倒序递增子序列</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下面两个序列为例：</p>
+<blockquote>
+<p>旧子节点：c、d、e</p>
+<p>新子节点：e、c、d、i</p>
+</blockquote>
+<p>此时新子节点的长度为4，最长递增子序列就是c、d 索引组成的[1,2]，倒序遍历时首先碰到 i，它在newIndexToOldIndexMap中的值是0，说明是新节点，直接挂载。</p>
+<p>下一个遍历到的是d，走moved判断分支，发现为true，而且d的索引存在于递增子序列中，则执行j–倒序递增子序列，j变为了0。</p>
+<p>接下来遇到c，而c的情况和d一样，j变为-1。</p>
+<p>最后遇到e，j 为-1，且e的索引不在递增子序列中，就需要做移动，把e移动到上一个更新的节点，也就是c节点的前面。</p>
+<p>至此完成了两件事：</p>
+<ul>
+<li>i 作为新节点直接挂载</li>
+<li>e 作为需要移动的节点，往前移动了两位，从 c、d、e、变为 e、c、d</li>
+</ul>
+<p>至此，完成了这样两个简单列表的对比和元素变更。</p>
+<p>简单的是这样，复杂的也是一样道理。</p>
+<p>所以，整个流程总结一句话：<strong>建立新旧子序列的映射关系，并通过状态位的标识进行增删，或者生成最长递增子序列，对顺序不一致的做移动</strong>。</p>
+<p>算法所体现的不仅仅是单次的任务成本，更是一种随着量变而来的趋势，量越大，“优劣”算法的差异就越明显。Vue,js 3.x就是做了这样的优化，它结合“贪心”和“二分查找”法，使得其复杂度由原本的O (n2)，变成了 O（nl o g 2 n）。</p>
+<p>假设处理 <strong>10,000</strong> 条数据，做个对比：</p>
+<p>n2=100,000,000n2=100,000,000</p>
+<p>n×log⁡2n≈132,877n×log2n≈132,877</p>
+<p>差距约为 <strong>99,867,123</strong>。优化效果很明显。</p>
+<h2 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h2><p>除了算法，框架还会从其他层面着手进行优化，比如：Vue中从template编译生成render函数的过程。</p>
+<p>Vuejs 2.x更新的粒度是组件级，但组件内或许只有很少的内容需要更新，这就导致成本的浪费，Vuejs 3.x通过对静态模板分析，生成了Block Tree，它基于动态节点切割嵌套区块，将vnode的更新性能由模板整体大小提升为动态内容数量相关，是非常大的性能突破。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>至此，我们把Vuejs中的一个关键点diff算法的核心思想讲完了，它结合了“深度遍历、递归、最长递增子序列”等多种方法技巧。当然，这不是全貌，也不是从开始就这样，每个事物都要经历不断改进才能变得更好。</p>
+<p>借此，我们能够对它有一个大概的了解，或者说找到一些启发，知道解决类似的问题应该怎样思考。</p>
+<p>本篇文，是基于《Vue.js技术内幕》源码分享的最后一篇，虽有不舍，但我们需要继续往前走。</p>
+<p>下一本会是什么，我们拭目以待！~</p>
+<p>更多好文第一时间接收，可关注公众号：<strong>前端说书匠</strong></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2025/03/23/vue3_code_share_five/" title="Vuejs技术内幕：用算法优雅解决复杂问题" target="_blank" rel="external">http://yoursite.com/2025/03/23/vue3_code_share_five/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2025/03/31/javascript_high_level_design_one/" title="JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2025/03/09/vue3_code_share_four/" title="Vuejs技术内幕：数据响应式之3.x版"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

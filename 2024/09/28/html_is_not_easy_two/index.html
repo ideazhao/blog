@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>HTML并不简单：看似普通的元素 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  上篇文聊到，HTML不是想象那么简单，大家平时缺少系统地了解，而在需要的时候不懂得怎么使用，那到底体现在哪里？ 本篇介绍几个元素和相关特性，便知晓。 a元素a元素很常见，常用于链接跳转。但有几种场景，a元素相关的知识能够发挥特别的效用。 锚点定位锚点定位是a元素的老牌功能了，但现在一些新晋开">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML并不简单：看似普通的元素">
+<meta property="og:url" content="http://yoursite.com/2024/09/28/html_is_not_easy_two/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  上篇文聊到，HTML不是想象那么简单，大家平时缺少系统地了解，而在需要的时候不懂得怎么使用，那到底体现在哪里？ 本篇介绍几个元素和相关特性，便知晓。 a元素a元素很常见，常用于链接跳转。但有几种场景，a元素相关的知识能够发挥特别的效用。 锚点定位锚点定位是a元素的老牌功能了，但现在一些新晋开">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-26T01:58:41.463Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML并不简单：看似普通的元素">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  上篇文聊到，HTML不是想象那么简单，大家平时缺少系统地了解，而在需要的时候不懂得怎么使用，那到底体现在哪里？ 本篇介绍几个元素和相关特性，便知晓。 a元素a元素很常见，常用于链接跳转。但有几种场景，a元素相关的知识能够发挥特别的效用。 锚点定位锚点定位是a元素的老牌功能了，但现在一些新晋开">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2024/09/28/html_is_not_easy_two/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>10年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/18/vue3_code_share_three/" class="title">Vue.js技术内幕：数据响应式之2.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-17T16:00:00.000Z" itemprop="datePublished">2025-01-18</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a元素"><span class="toc-number">1.</span> <span class="toc-text">a元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#锚点定位"><span class="toc-number">1.0.1.</span> <span class="toc-text">锚点定位</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#登录刷新"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">登录刷新</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#追踪来源"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">追踪来源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#点击下载"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">点击下载</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重识列表"><span class="toc-number">2.</span> <span class="toc-text">重识列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无序列表"><span class="toc-number">2.0.1.</span> <span class="toc-text">无序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有序列表属性"><span class="toc-number">2.0.2.</span> <span class="toc-text">有序列表属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义列表"><span class="toc-number">2.0.3.</span> <span class="toc-text">定义列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结"><span class="toc-number">2.0.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-html_is_not_easy_two" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML并不简单：看似普通的元素
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/09/28/html_is_not_easy_two/" class="article-date">
+	  <time datetime="2024-09-27T16:00:00.000Z" itemprop="datePublished">2024-09-28</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/09/28/html_is_not_easy_two/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自阅文集团前端专家<strong>张鑫旭</strong>所编写的 <strong>《HTML并不简单》</strong></p>
+</blockquote>
+<p>上篇文聊到，HTML不是想象那么简单，大家平时缺少系统地了解，而在需要的时候不懂得怎么使用，那到底体现在哪里？</p>
+<p>本篇介绍几个元素和相关特性，便知晓。</p>
+<h2 id="a元素"><a href="#a元素" class="headerlink" title="a元素"></a>a元素</h2><p><code>a</code>元素很常见，常用于链接跳转。但有几种场景，<code>a</code>元素相关的知识能够发挥特别的效用。</p>
+<h4 id="锚点定位"><a href="#锚点定位" class="headerlink" title="锚点定位"></a>锚点定位</h4><p>锚点定位是<code>a</code>元素的老牌功能了，但现在一些新晋开发伙伴可能不熟悉，比如，我们点击页面中一个引用链接，跳到另一个页面，不仅跳到页面，还要定位到相应位置，这样体验就好很多，不用再上下滚动去找，怎么实现呢？</p>
+<p>很简单，设置<code>href</code>属性的时候以<code>#</code>开头即可，比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#example"</span>&gt;</span>去看案例<span class="tag">&lt;/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器就会自动检测页面中<code>id</code>为<code>example</code>的元素，并且滚动到它的上边缘。</p>
+<p>当然，除了锚点，它还有个有用的细节，就是如果写成下面这样：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#top"</span>&gt;</span>返回顶部<span class="tag">&lt;/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>点击的时候页面会回滚到顶部，就不用我们自己去写<code>scroll</code>之类的方法了，是不是很方便？</p>
+<h5 id="登录刷新"><a href="#登录刷新" class="headerlink" title="登录刷新"></a>登录刷新</h5><p>有一种常见的需求场景，A页面需要用户登录，登录操作在B页面进行，会有点击A页面跳转到新开B页面的行为，在登录完成后，正常来讲，得更新用户信息，但此时A页面并不会进行重新请求，因为难以得知登录完成这样一个状态变化，而往往我们希望达到这样的效果。</p>
+<p>用什么方法呢？</p>
+<p>你可能想用<code>visibilitychange</code>事件，可能也想到<code>postMessage</code>跨页面通信，但这些方案都需要额外的成本，增加了复杂度，有一种更简单高效的方法。</p>
+<p>只需要给A页面的<code>a</code>链接添加<code>rel=“opener”</code>，跳转登录成功后，在B页面执行如下代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">window</span><span class="selector-class">.opener</span><span class="selector-class">.location</span><span class="selector-class">.reload</span>();</span><br></pre></td></tr></table></figure>
+<p>原页面就会自行重载，这样就会重新请求用户信息了，又get到一个妙招！</p>
+<h5 id="追踪来源"><a href="#追踪来源" class="headerlink" title="追踪来源"></a>追踪来源</h5><p>再看另一个场景，有时候，我们想追踪用户的来源，知道他是从哪个页面点击跳转来的，以便在此基础上进行引流优化，如果是项目内就好办，我们做路由的记录或者监听即可，但如果跨项目，就不太好办，好像没有一个专门的API能帮助记录。</p>
+<p>但其实是有的，它就是 <code>document.referer</code>，在用于跳转的<code>a</code>元素没有设置<code>noreferer</code>的情况下，此属性可以拿到进入当前页面的前一个页面路径。很多知名站点，如百度、谷歌就是通过<code>document.referer</code>记录PV数据的。</p>
+<p>另外，此属性还能帮助实现简单的返回功能，相信你也想到了，不再赘述。</p>
+<h5 id="点击下载"><a href="#点击下载" class="headerlink" title="点击下载"></a>点击下载</h5><p>通常情况，遇到下载功能，你会怎么实现？</p>
+<p>可能会想借助三方工具，比如：<code>FileSaver.js</code>，但其实非必要，浏览器内置了下载的能力，就是<code>a</code>元素的<code>download</code>属性，直接给<code>a</code>元素加上<code>download</code>属性，就代表告诉浏览器，当前点击行为的意图不是打开预览，而是下载，如果想自定义下载的文件名，给<code>download</code>赋值即可。像下面这样：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a <span class="attribute">href</span>=<span class="string">"example.jpg"</span> <span class="attribute">download</span>=<span class="string">"下载的图片.jpg"</span>&gt;下载&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>但有一点要注意，如果涉及跨域资源，这种情况还比较常见，静态资源和网站代码不是存在一个服务器，那么就需要在服务端配置<code>Content-Disposition</code>值为<code>attachment</code>，才能顺利下载。</p>
+<h2 id="重识列表"><a href="#重识列表" class="headerlink" title="重识列表"></a>重识列表</h2><p>大家平时最常用的列表是<code>ol、ul</code>，分别代表有序列表和无序列表。</p>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>但除<code>ul</code>之外，还有一个元素能用作无序列表，就是<code>menu</code>。</p>
+<p>两者的语法和默认样式一致，区别在于语义，<code>menu</code>适合用在交互性列表，<code>ul</code>适合用在陈述性列表。</p>
+<p>比如，列表项中有链接或者按钮，就可用<code>menu</code>，否则就用<code>ul</code>。</p>
+<p>于是，在看到下面这段代码时，是不是比每天看到一堆<code>ul</code>清爽多了？</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">menu</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">button</span>&gt;</span>复制<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">button</span>&gt;</span>粘贴<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">button</span>&gt;</span>剪切<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="有序列表属性"><a href="#有序列表属性" class="headerlink" title="有序列表属性"></a>有序列表属性</h4><p>有序列表通常都有自己的编号，比如：1、2、3，如果想修改，我们会用CSS的<code>list-style-type</code>属性做设置，但还有另一种方式，就是使用HTML自己的属性，分别是<code>ol</code>元素的<code>type、start</code>属性和<code>li</code>元素的<code>value</code>属性。</p>
+<p>比如，当我们想让有序列表类型为大写字母，可以这样写:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">"A"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>想让它从第三个字母，而不是第一个字母开始，可以这样写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">"A"</span> <span class="attr">start</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>也可以这样写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">"A"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上两种写法，都会渲染出C、D、E这样排列的一组列表。</p>
+<p>除此之外，如果你想改变序号的排列顺序，让序号倒着排，可以设置<code>reversed&gt;</code>属性。比如这样：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">reversed</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>项目<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>列表的顺序就变成3、2、1。</p>
+<h4 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h4><p>什么是定义列表，可能很多人不知道，或者久了不用没印象了。直接看代码。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>html<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>超文本标记语言<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>css<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>层叠样式表<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>javascript<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>脚本语言<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码比较容易理解，就是“术语”跟“解释”的一个组合，这种情况，很多人平时习惯用<code>div</code>和<code>p</code>元素，或者统一使用<code>ul</code>结合<code>div</code>之类。</p>
+<p>但是有专门的元素可用干嘛不用呢？</p>
+<p>当然，它不止能包裹<code>dt</code>和<code>dd</code>，还能跟<code>p</code>元素，<code>div</code>等元素配合嵌套，所以不用担心放不了其他元素而受限制。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>篇幅原因，本文介绍到这，相信读者朋友还不过瘾，不着急，本篇当做引子，我们下篇继续。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2024/09/28/html_is_not_easy_two/" title="HTML并不简单：看似普通的元素" target="_blank" rel="external">http://yoursite.com/2024/09/28/html_is_not_easy_two/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/10/01/html_is_not_easy_three/" title="HTML并不简单：自带交互的元素"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/09/23/html_is_not_easy_one/" title="HTML并不简单：最适合的编程启蒙语言"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
