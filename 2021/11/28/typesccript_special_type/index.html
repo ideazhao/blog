@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>【TypeScript逐点击破】特殊类型及应用场景 | 灵感之见</title>
+  <meta name="description" content="我们知道，JavaScript是弱类型语言，可以为变量赋予任意类型的值，且可以随时对其进行改变（const除外）。 这会造成很多的“运行时”的未知问题，而TypeScript的出现，把变量类型检查加入进来，且提前到了“编译期”，可以帮助我们提前暴露一些潜在的问题。 但除了常规的“string、number”等类型之外，为了考虑更多特殊情况，TypeScript也具备一些特殊类型，来简单介绍一下，帮">
+<meta name="keywords" content="TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【TypeScript逐点击破】特殊类型及应用场景">
+<meta property="og:url" content="http://yoursite.com/2021/11/28/typesccript_special_type/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="我们知道，JavaScript是弱类型语言，可以为变量赋予任意类型的值，且可以随时对其进行改变（const除外）。 这会造成很多的“运行时”的未知问题，而TypeScript的出现，把变量类型检查加入进来，且提前到了“编译期”，可以帮助我们提前暴露一些潜在的问题。 但除了常规的“string、number”等类型之外，为了考虑更多特殊情况，TypeScript也具备一些特殊类型，来简单介绍一下，帮">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-12-12T13:21:54.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【TypeScript逐点击破】特殊类型及应用场景">
+<meta name="twitter:description" content="我们知道，JavaScript是弱类型语言，可以为变量赋予任意类型的值，且可以随时对其进行改变（const除外）。 这会造成很多的“运行时”的未知问题，而TypeScript的出现，把变量类型检查加入进来，且提前到了“编译期”，可以帮助我们提前暴露一些潜在的问题。 但除了常规的“string、number”等类型之外，为了考虑更多特殊情况，TypeScript也具备一些特殊类型，来简单介绍一下，帮">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2021/11/28/typesccript_special_type/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#any"><span class="toc-number">1.</span> <span class="toc-text">any</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unknown"><span class="toc-number">2.</span> <span class="toc-text">unknown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#void"><span class="toc-number">3.</span> <span class="toc-text">void</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#never"><span class="toc-number">4.</span> <span class="toc-text">never</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型断言"><span class="toc-number">5.</span> <span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-typesccript_special_type" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【TypeScript逐点击破】特殊类型及应用场景
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/11/28/typesccript_special_type/" class="article-date">
+	  <time datetime="2021-11-27T16:00:00.000Z" itemprop="datePublished">2021-11-28</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/TypeScript/">TypeScript</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/TypeScript/">TypeScript</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/28/typesccript_special_type/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>我们知道，JavaScript是弱类型语言，可以为变量赋予任意类型的值，且可以随时对其进行改变（const除外）。</p>
+<p>这会造成很多的“运行时”的未知问题，而TypeScript的出现，把变量类型检查加入进来，且提前到了“编译期”，可以帮助我们提前暴露一些潜在的问题。</p>
+<p>但除了常规的“string、number”等类型之外，为了考虑更多特殊情况，TypeScript也具备一些特殊类型，来简单介绍一下，帮助大家区分。</p>
+<h2 id="any"><a href="#any" class="headerlink" title="any"></a>any</h2><p><strong>允许被赋予不同类型的值</strong></p>
+<p>TypeScript中的变量是需要在定义时声明类型的，或者，会根据定义时所赋值的类型来“推测”类型。在之后的编码中，类型就不允许更改了，否则会报错。</p>
+<p>但有时候，这种情况是需要被允许的，比如：和未知第三方进行交互。该怎么办呢，any可以派上用场啦。</p>
+<p>any是TypeScript中比较特殊的一个类型，它被称为任意类型，通过它声明的变量可以被赋予任何类型的值。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">a</span>:<span class="keyword">any</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">a</span> = <span class="string">'hello'</span></span><br><span class="line"><span class="keyword">a</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">a</span> = undefined</span><br></pre></td></tr></table></figure>
+<p>但使用时也要格外小心，因为TypeScript不会再检查类型了，就有可能出现调用某类型特有方法的时候报错的情况，比如期待类型是number，有toFixed()方法，而得到的值却是string 类型，就会报错，这样就失去了使用TypeScript的好处了。</p>
+<p><strong>允许赋值给不同类型</strong></p>
+<p>除了可以将任意类型的值赋给any类型的变量，还可以将any类型的值赋给其他任何类型的变量。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">a</span>:<span class="built_in">number</span></span><br><span class="line">let b:<span class="keyword">string</span> = <span class="string">'hello'</span></span><br><span class="line"><span class="keyword">a</span> = b</span><br></pre></td></tr></table></figure>
+<p>总结一句话就是：<strong>它能逃过TypeScript编译器的类型检测，并和TypeScript中其他所有类型都相互兼容</strong>。</p>
+<p>既然any类型如此随意，那作为强类型编程语言的TypeScript为什么要引入它呢？答案很简单，因为有时候我们可能需要在TypeScript代码中跟一些现有的JavaScript代码（库）交互，而JavaScript代码返回的数据的类型是未知的，但TypeScript又要求数据必须有一个类型，此时any便是这样一个类型。</p>
+<h2 id="unknown"><a href="#unknown" class="headerlink" title="unknown"></a>unknown</h2><p><strong>可以被赋予任何类型的值</strong></p>
+<p>unknown 和 any 极为相似，它可以被赋予任何类型的值，我们必须要合理地使用未知类型，因为它同样容易带来意外的运行时错误。</p>
+<p>为了尽可能地避免这样的错误，TypeScript对未知类型做了一个限制，那就是<strong>不允许我们将未知类型的值赋给其他类型（any除外）的变量</strong>。</p>
+<p>这就是它跟 any 的不同之处了，它和其他类型并不是相互兼容的，它只可以被赋值，不能将自己赋值给其他类型。</p>
+<h2 id="void"><a href="#void" class="headerlink" title="void"></a>void</h2><p><strong>没有任何类型</strong></p>
+<p>void 和 any 相反，它表示没有任何类型。</p>
+<p>尽管如此，void类型的变量还是可以被赋予一个特殊的值，即undefined。但声明可被赋值为undefined的变量不是void类型的作用所在，其真正的作用是<strong>指定函数的返回类型</strong>。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span>:void</span>&#123;</span><br><span class="line">    console.log(<span class="string">'hello'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的定义就表明，函数 hello 不返回任何值。并且，函数的返回类型一旦被指定为void，它便不能返回任何类型的值（undefined除外）。</p>
+<p>不过，有一种特殊情况是，返回空。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span>:void</span>&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>事实上，这两种情况都归为——“函数返回了undefined”。</p>
+<h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>never表示不存在的值的类型。我们可以声明一个never类型的变量，但无法给这个变量赋任何类型的值。</p>
+<p>既然如此，never的用途是什么呢？</p>
+<p>它可以用于指定一个永远无法返回的函数的返回类型。</p>
+<p>什么函数不会返回值呢？比如：错误处理函数，无限循环函数。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span><span class="params">()</span>:never</span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">'错误'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span><span class="params">()</span>:never</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        console.log(<span class="string">'事情已经完成了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大多数函数总能顺利地执行到终点，但对于以上两个函数来说，它们要么因为抛出了异常而终止了执行，要么因为无限循环而不可能结束。因此，它们都不存在返回值，或说都返回了一个不存在的值。</p>
+<p>那么，指定一个函数的返回类型为never有什么实际意义呢？大多数情况下，我们不会期望一个函数抛出异常或陷入无限循环中，但在希望获得编译器完整性检查时，就可以这么做。</p>
+<h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><p>特殊类型讲完了，还可以顺便聊聊“类型断言”，什么是“类型断言”。</p>
+<p>在很多其他编程语言中都有类型转换（Type Cast）的概念，但TypeScript中并不存在，因为类型转换发生在运行时，而TypeScript只能获得编译时支持。</p>
+<p>作为补偿，TypeScript提供了另一个被称为类型断言（TypeAssertion）的概念。通过类型断言，我们可以告诉TypeScript编译器，我们明确地知道某个变量具备更加精确的类型。</p>
+<p>以下是一个未使用类型断言的例子：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re<span class="variable">s:any</span> = <span class="string">'未知字符串'</span> </span><br><span class="line"><span class="keyword">let</span> resLength:<span class="keyword">number</span> = <span class="keyword">res</span>.length</span><br></pre></td></tr></table></figure>
+<p>正常情况下，我们理解的字符串是具备length属性的，编辑器也会给出提示，但是，这里res被定义了any类型，代码编译会正常通过，编辑器却无法给出提示，这时候，类型断言就派上用场。</p>
+<p>加入断言后，上面代码可以改成下面这样：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strRe<span class="variable">s:string</span> = <span class="symbol">&lt;string&gt;</span><span class="keyword">res</span></span><br><span class="line"><span class="keyword">res</span>.length:<span class="keyword">number</span> = strRes.length</span><br><span class="line"></span><br><span class="line">//或者还有一种更简洁的 <span class="keyword">as</span> 写法</span><br><span class="line"><span class="keyword">let</span> resLength:<span class="keyword">number</span> = (<span class="keyword">res</span> <span class="keyword">as</span> <span class="built_in">string</span>).length</span><br></pre></td></tr></table></figure>
+<p>使用了断言之后，浏览器就能“感知”到原先被使用未知类型的变量具体是什么类型，就可以改善开发体验。</p>
+<p>在使用类型断言时，我们需要注意两点：</p>
+<p>一、不能进行类型不兼容的类型断言；<br>二、类型断言无法修改变量的运行时类型。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re<span class="variable">s:any</span> = <span class="string">'未知字符串'</span> </span><br><span class="line"><span class="keyword">let</span> resLength:<span class="keyword">number</span> = <span class="keyword">res</span> <span class="keyword">as</span> <span class="keyword">number</span></span><br><span class="line">resLength = resLength * <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>字符串不能是 number，第二行无效；字符串没有乘法运算，第三行无效。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此，TypeScript中的特殊类型就聊完了，为什么单聊这些呢，因为我们往往会重点学习那些更具体，更实用的类型，而不自觉地忽略掉这些特殊类型，把它们弄懂了，知道怎么用，还是有利于更好地使用 TypeScript的，一起加油吧！</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2021/11/28/typesccript_special_type/" title="【TypeScript逐点击破】特殊类型及应用场景" target="_blank" rel="external">http://yoursite.com/2021/11/28/typesccript_special_type/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/12/04/wechat_dom_part_one/" title="【轻聊前端】强大的DOM（上）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/11/06/after_leave_tencent_two_years/" title="离开腾讯这两年"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>JavaScript高级程序设计(第5版)：程序中的数据表达 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自曾供职于Google的知名前端技术专家马特·弗里斯比编写的 《JavaScript高级程序设计》(第5版)  本文开始，我们将由浅入深介绍程序是怎么从零慢慢构建起来的。 虽然是以JavaScript这门语言描述，但其他语言也类似，且不论是小程序还是大项目，10行代码还是10000行，都是如此。 数据如何存在代码中的数据并不神秘，现实怎么存在，它就">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计(第5版)：程序中的数据表达">
+<meta property="og:url" content="http://yoursite.com/2025/05/11/javascript_high_level_design_two/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自曾供职于Google的知名前端技术专家马特·弗里斯比编写的 《JavaScript高级程序设计》(第5版)  本文开始，我们将由浅入深介绍程序是怎么从零慢慢构建起来的。 虽然是以JavaScript这门语言描述，但其他语言也类似，且不论是小程序还是大项目，10行代码还是10000行，都是如此。 数据如何存在代码中的数据并不神秘，现实怎么存在，它就">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-05-11T14:11:04.582Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计(第5版)：程序中的数据表达">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自曾供职于Google的知名前端技术专家马特·弗里斯比编写的 《JavaScript高级程序设计》(第5版)  本文开始，我们将由浅入深介绍程序是怎么从零慢慢构建起来的。 虽然是以JavaScript这门语言描述，但其他语言也类似，且不论是小程序还是大项目，10行代码还是10000行，都是如此。 数据如何存在代码中的数据并不神秘，现实怎么存在，它就">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2025/05/11/javascript_high_level_design_two/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据如何存在"><span class="toc-number">1.</span> <span class="toc-text">数据如何存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义与作用域"><span class="toc-number">2.</span> <span class="toc-text">定义与作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#作用域"><span class="toc-number">2.0.1.</span> <span class="toc-text">作用域</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#专属特性"><span class="toc-number">4.</span> <span class="toc-text">专属特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特性来源"><span class="toc-number">5.</span> <span class="toc-text">特性来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原始值与引用值"><span class="toc-number">6.</span> <span class="toc-text">原始值与引用值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">7.</span> <span class="toc-text">小结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-javascript_high_level_design_two" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript高级程序设计(第5版)：程序中的数据表达
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2025/05/11/javascript_high_level_design_two/" class="article-date">
+	  <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2025/05/11/javascript_high_level_design_two/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自曾供职于Google的知名前端技术专家<strong>马特·弗里斯比</strong>编写的 <strong>《JavaScript高级程序设计》(第5版)</strong></p>
+</blockquote>
+<p>本文开始，我们将由浅入深介绍程序是怎么从零慢慢构建起来的。</p>
+<p>虽然是以JavaScript这门语言描述，但其他语言也类似，且不论是小程序还是大项目，10行代码还是10000行，都是如此。</p>
+<h2 id="数据如何存在"><a href="#数据如何存在" class="headerlink" title="数据如何存在"></a>数据如何存在</h2><p>代码中的数据并不神秘，现实怎么存在，它就怎么存在，只不过要用代码进行定义。</p>
+<p>比如：小明，8岁</p>
+<p>用代码表示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const name = &quot;小明&quot;；</span><br><span class="line">let age = 8；</span><br></pre></td></tr></table></figure>
+<p>有印象的朋友应该记得，这叫”<strong>变量</strong>“。</p>
+<p>程序中的一切都离不开变量，那么变量存在的意义是什么。</p>
+<p>举个例子，假设需要执行一个加法：</p>
+<p>1 + 1 永远等于2，那么a+b呢？</p>
+<p>就不知道了，因为相加的不是数字而是标识符，计算结果取决于a、b代表几，这里的“代表”就是一个会变化的东西，故称为变量。</p>
+<p>因为变量的存在，一个算式不会固定地返回一个结果，而是<strong>随着情况的变化返回多种不同的结果</strong>，这就是它存在的意义。</p>
+<h2 id="定义与作用域"><a href="#定义与作用域" class="headerlink" title="定义与作用域"></a>定义与作用域</h2><p>既然一切离不开变量，就要在需要的地方定义它，为了便于识别，JavaScript提供了三个关键字：<strong>var、const、let</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;小明&quot;；</span><br><span class="line">const name = &quot;小明&quot;；</span><br><span class="line">let name = &quot;小明&quot;；</span><br></pre></td></tr></table></figure>
+<p>以上三种方式均是可行的，但使用时有区别，主要体现在：</p>
+<p>1、作用域</p>
+<p>2、是否可修改</p>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>顾名思义，能够起作用的区域，在一定范围内，能访问，能修改，否则会报错。</p>
+<p>为什么需要这个范围？</p>
+<p>想象一下，我们的代码可能分布在很多文件中，文件内又会有多个代码块，如果变量的作用范围不设限，哪里都能访问和修改，岂不乱了套，管理起来就是灾难。</p>
+<p>先说var，这是ES6之前唯一可用的关键字，它具备<strong>函数作用域</strong>的特性，具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    console.log(message)  // undefined</span><br><span class="line">	var message = &apos;hi&apos;</span><br><span class="line">    console.log(message); // &apos;hi&apos;</span><br><span class="line">&#125;</span><br><span class="line">console.log(message) // 出错</span><br></pre></td></tr></table></figure>
+<p>上面这段代码，定义了一个test函数，其中定义了message变量，通过在不同的时机打印变量值可以看到函数作用域的特点，在函数中定义，就只在函数中可用。</p>
+<p>第一行的执行结果是undefined，undefined的意思是，变量存在，但没有值，这也是var的特性 — ”<strong>声明提升</strong>“，即允许在赋值之前访问，不报错，不影响程序执行，只是没有值。</p>
+<p>在ES6之前，只有两种作用域：<strong>函数作用域、全局作用域</strong>。要么只在函数中可用，要么整个文档都可用。</p>
+<p>下面这段代码，看起来变量name被一对花括号封闭在代码块中，但实际上无法限制它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">	var name = &apos;Bob&apos;</span><br><span class="line">&#125;</span><br><span class="line">console.log(name) // Bob&apos;&apos;</span><br></pre></td></tr></table></figure>
+<p>所以，在 var 独自为王的时代，变量所带来的隐患较多。</p>
+<p>ES6之后，就有了块级作用域，也就是使用let或者const来定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">    console.log(age);  // ReferenceError: age 未定义</span><br><span class="line">	let age = 26;</span><br><span class="line">	console.log(age)；  // 26</span><br><span class="line">&#125;</span><br><span class="line">console.log(age);  // ReferenceError: age 未定义</span><br></pre></td></tr></table></figure>
+<p>这段代码中，展示了let和var的两点区别：</p>
+<p>1、代码块内定义的变量，外部无法访问</p>
+<p>2、即便在代码块内，定义之前也无法访问，这种现象叫“<strong>暂时性死区</strong>“，与var的”<strong>变量提升</strong>“相对应</p>
+<p>既然let能够提供块级作用域，还需要const干什么呢，和let有什么不同？</p>
+<p><strong>const</strong> 是  <strong>&quot;constant&quot;（常量）</strong>  的缩写，用于声明一个不可重新赋值的变量。不可重新赋值，意味着两点：</p>
+<p>1、定义的同时必须赋值</p>
+<p>2、后续不允许修改</p>
+<p>那什么情况适合使用常量呢？全局共用，且不允许业务代码对其进行改动的变量，如：版本号、公共访问地址等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 未初始化</span><br><span class="line">const age； // 错误</span><br><span class="line"></span><br><span class="line">// 尝试修改</span><br><span class="line">const age = 26;</span><br><span class="line">age = 36;  // TypeError</span><br></pre></td></tr></table></figure>
+<p>好，三种变量定义方式介绍完，更推荐怎样做呢？</p>
+<p>三条原则：</p>
+<ul>
+<li>非必要不用var，会修改的变量用let，其他都用const，特别对于公共常量，推荐”AA_BB”式全大写格式；</li>
+<li><p>尽量少定义全局变量，目的是减少不必要的冲突和修改；</p>
+<p>还有一个好处是，局部变量用完后大概率被销毁，能释放内存，全局变量长期占内存；</p>
+</li>
+<li>不定义不必要的变量，多一个变量就多一份理解和维护成本。</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>JavaScript中的变量被称为”松散类型“，松散意为对类型没限制。</p>
+<p>定义时不需声明类型，定义后允许被改为另一种类型。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let message = &quot;hi&quot;</span><br><span class="line">message = 100;</span><br></pre></td></tr></table></figure>
+<p>定义时是字符串，后被改为数字，在语法层面是允许的。</p>
+<p>但正因如此，导致代码运行的不确定性大大增加，就有了现在所流行的TypeScript。</p>
+<p>虽说JavaScript定义变量时不需要声明类型，但它仍然具备类型。</p>
+<p>JavaScript有七种简单数据类型和一种复杂数据类型。</p>
+<p><strong>简单类型</strong>：String、Number、Boolean、Undefined、Null、BigInt、Symbol</p>
+<p><strong>复杂类型</strong>：Object</p>
+<p>所有数据，都是用以上类型来表达的，但怎么理解简单和复杂？</p>
+<p>简单，可理解为直给，而复杂，可以包含任意简单或复杂类型。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 简单类型</span><br><span class="line">const name = &quot;小明&quot;</span><br><span class="line">const age = 26</span><br><span class="line"></span><br><span class="line">// 复杂类型</span><br><span class="line">const person = &#123;</span><br><span class="line">	name:&quot;小明&quot;,</span><br><span class="line">	age:26,</span><br><span class="line">	tools:[&quot;铅笔&quot;,&quot;橡皮&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上这段代码，包含了上篇文提到的变量name，对象person和数组tools，展现了各自在定义上的特点。</p>
+<h2 id="专属特性"><a href="#专属特性" class="headerlink" title="专属特性"></a>专属特性</h2><p>既然有这么多类型，只是表示上的区别吗，肯定不是，它们各有各的特性，这是理所当然，也是应用需要。</p>
+<p>比如：</p>
+<p>1、数字能用来做数学运算、比较大小，其他类型不能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 2, b = 3;</span><br><span class="line">a * b // 6</span><br><span class="line">Math.min(a,b) // 2</span><br></pre></td></tr></table></figure>
+<p>2、字符串可以做拼接、裁剪等，其他大部分类型不能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = &apos;ab&apos;, b = &apos;cd&apos;;</span><br><span class="line">a + b // &apos;abcd&apos;</span><br><span class="line">&apos;abcd&apos;.slice(1,3) // &apos;bc&apos;</span><br></pre></td></tr></table></figure>
+<p>3、布尔值多用于条件逻辑中的“真”、“假”判断，其他类型不能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">	// 执行这里</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可能会说，还有这样的代码呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(a &gt; b)&#123;</span><br><span class="line">	// 执行这里</span><br><span class="line">&#125;</span><br><span class="line">// 或者</span><br><span class="line">if(a)&#123;</span><br><span class="line">	// 执行这里</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对，这样的代码，只是看起来没有直接使用布尔值，但 a &gt; b 的结果仍是个布尔值，要么是true，要么是false。</p>
+<p>而a本身具备一个合理可用的值，那么它也会被转换为布尔值true。</p>
+<h2 id="特性来源"><a href="#特性来源" class="headerlink" title="特性来源"></a>特性来源</h2><p>你应该注意到了，在数字类型中，用到了Math，字符串类型中用到了slice，它们怎么来的？</p>
+<p>其实，就算是最基本的类型，有时候也被赋予一种类型叫“<strong>包装类型</strong>”，包装类型可以创建一个对象，每种对象包含着若干属性和方法，就像字符串，当它调用slice方法时，实际执行的是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;abcd&apos;.slice(1,3)  // 代码</span><br><span class="line"></span><br><span class="line">new String(&apos;abcd&apos;).slice(1,3)  // 内部执行</span><br></pre></td></tr></table></figure>
+<p>于是它就有了一堆方法可用，如：slice、substring、concat、trim等等。同理，布尔和数字类型在调用它们的方法时，执行的是 new Boolean() 和 new Number()，需要注意的是，这种创建没有可持续性，用完即毁，想接着再把它当对象用就不行了。</p>
+<p>Math就更强大了，它是“<strong>内置对象</strong>”，顾名思义，不需要开发者创建，直接可用。</p>
+<p>当我们写的代码开始执行时，全局上下文中会存在两个内置对象：<strong>Global</strong> 和 <strong>Math</strong>。</p>
+<p>你可能想说，Global是什么，没见过呀，Global意思是全局对象，它在浏览器中的实现就是window对象，这个大家就熟悉了，所有的全局变量和函数，都归属于它；而Math包含很多数学方法，像上面提到的求最大值、最小值，还有绝对值，中学时我们学过的sin(正弦)、cos(余弦)等，它都具备，这就给一些需要数学计算的场景提供了方便，如图形绘制。</p>
+<h2 id="原始值与引用值"><a href="#原始值与引用值" class="headerlink" title="原始值与引用值"></a>原始值与引用值</h2><p>这里提一下二者的区别，因为前面介绍的“数字、字符串、布尔”都属于原始值，引用值还没介绍完。</p>
+<p>除了前面见过的最基本的Object，还有很多类型属于引用值类型，比如：用于表示日期的Date，用于做字符匹配的RegExp，数组、函数等，都属于引用值类型。</p>
+<p>什么是引用？程序中的变量，都会被存在计算机中，对于原始值来说，存储的是内容本身，采用栈结构，而引用值不存内容，只存一个引用指针（地址），采用堆结构。</p>
+<p>它们的区别是，当发生赋值行为，原始值会创建一份值的副本，而引用值只会复制指针。</p>
+<p>结果就是，当原始值发生了类似 a = b 的传递，后续对于a的改变不会影响b，但引用类型中，后续对a的改动会同步到b，这也就引出了一个老生常谈的话题“深/浅拷贝”。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>行文至此，已经聊了很多有关数据定义和特性相关内容，说多不多，说少也不少。</p>
+<p>不多，是因为常用的确实不多，但每种类型背后所包含的细节不少，限于篇幅无法一一提及，而且一些东西虽然不常用，一旦需要，还挺高效，比如RegExp。</p>
+<p>不论多与少，我们把它们都当做工具箱里可以随时取用的工具就可以了，像你家工具箱里有起子、扳手、透明胶、针等等，不用把它们都记下来，需要用的时候去找就行，用多了就记住了，可能某一天你还觉得不够用。</p>
+<p>从下篇文开始，会对本篇未展开的，但在编程中比较常见，比较重要的关键知识点做进一步分享，欢迎关注~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2025/05/11/javascript_high_level_design_two/" title="JavaScript高级程序设计(第5版)：程序中的数据表达" target="_blank" rel="external">http://yoursite.com/2025/05/11/javascript_high_level_design_two/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2025/04/23/ten_years_reading_record/" title="微信读书10年陪伴，当阅读照进现实"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

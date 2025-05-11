@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>【轻聊前端】高级数据结构的基石——数组 | 灵感之见</title>
+  <meta name="description" content="现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（九）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。  上一篇我们聊了对象，对象是属性和方法的集合体，代表包含某">
+<meta name="keywords" content="分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【轻聊前端】高级数据结构的基石——数组">
+<meta property="og:url" content="http://yoursite.com/2021/07/18/wechat_array/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（九）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。  上一篇我们聊了对象，对象是属性和方法的集合体，代表包含某">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2023-05-07T09:44:34.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【轻聊前端】高级数据结构的基石——数组">
+<meta name="twitter:description" content="现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（九）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。  上一篇我们聊了对象，对象是属性和方法的集合体，代表包含某">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2021/07/18/wechat_array/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组定义"><span class="toc-number">1.</span> <span class="toc-text">数组定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字面量"><span class="toc-number">1.1.</span> <span class="toc-text">字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-构造函数"><span class="toc-number">1.2.</span> <span class="toc-text">Array()构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展可迭代对象"><span class="toc-number">1.3.</span> <span class="toc-text">扩展可迭代对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-of-和Array-from"><span class="toc-number">1.4.</span> <span class="toc-text">Array.of()和Array.from()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见数组方法及应用"><span class="toc-number">2.</span> <span class="toc-text">常见数组方法及应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型判断——Array-isArray"><span class="toc-number">2.1.</span> <span class="toc-text">类型判断——Array.isArray()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加及删除——push-pop-、unshift-shift"><span class="toc-number">2.2.</span> <span class="toc-text">添加及删除——push()/pop()、unshift()/shift()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任意位置添加或删除——splice-slice"><span class="toc-number">2.3.</span> <span class="toc-text">任意位置添加或删除——splice()/slice()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特定元素的索引——indexOf-findIndex"><span class="toc-number">2.4.</span> <span class="toc-text">特定元素的索引——indexOf()/findIndex()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找元素——includesOf-find"><span class="toc-number">2.5.</span> <span class="toc-text">查找元素——includesOf()/find()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#填充——fill"><span class="toc-number">2.6.</span> <span class="toc-text">填充——fill()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序——sort"><span class="toc-number">2.7.</span> <span class="toc-text">排序——sort()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并——concat-扩展运算"><span class="toc-number">2.8.</span> <span class="toc-text">合并——concat()/扩展运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回新数组——map-filter"><span class="toc-number">2.9.</span> <span class="toc-text">返回新数组——map()/filter()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代处理——forEach"><span class="toc-number">2.10.</span> <span class="toc-text">迭代处理——forEach()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元素判断——some-every"><span class="toc-number">2.11.</span> <span class="toc-text">元素判断——some()/every()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用拓展"><span class="toc-number">3.</span> <span class="toc-text">应用拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#去重"><span class="toc-number">3.1.</span> <span class="toc-text">去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和"><span class="toc-number">3.2.</span> <span class="toc-text">求和</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拍平"><span class="toc-number">4.</span> <span class="toc-text">拍平</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#”高级“数据结构"><span class="toc-number">5.</span> <span class="toc-text">”高级“数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#树"><span class="toc-number">5.1.</span> <span class="toc-text">树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#队列"><span class="toc-number">5.2.</span> <span class="toc-text">队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#栈"><span class="toc-number">5.3.</span> <span class="toc-text">栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-wechat_array" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【轻聊前端】高级数据结构的基石——数组
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/07/18/wechat_array/" class="article-date">
+	  <time datetime="2021-07-17T16:00:00.000Z" itemprop="datePublished">2021-07-18</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/分享/">分享</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/18/wechat_array/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（九）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。</p>
+</blockquote>
+<p>上一篇我们聊了对象，对象是属性和方法的集合体，代表包含某些信息或能力的个体。</p>
+<p>这篇我们来聊另外一种集合体——数组，它代表一系列的数据。</p>
+<p>数组同样无处不在，每当你需要多于一个数据的传输或者展示的时候，就会用到数组。</p>
+<p>我们从定义说起。</p>
+<h2 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h2><p>数组，即一组数据，表现形如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>JavaScript中，数组元素可以是任意类型，但通常，同一类型的一组数据更常见，也更有实际意义。</strong></p>
+<p>可以用下面几种方式定义数组：</p>
+<ul>
+<li>字面量</li>
+<li>Array()构造函数</li>
+<li>对可迭代对象使用…扩展操作符</li>
+<li>工厂方法Array.of()和Array.from()</li>
+</ul>
+<h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><p>最简单直观，也是最常用之一。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>这里有两个需要注意的现象：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,,<span class="number">3</span>]  <span class="comment">//访问arr[1]会是undefined</span></span><br><span class="line"><span class="keyword">let</span> arr = [,,] <span class="comment">//数组长度会是2</span></span><br></pre></td></tr></table></figure>
+<p>很多时候，我们会初始化一个空数组，然后根据业务逻辑向其中添加元素，后面“方法”段落会讲到。</p>
+<h3 id="Array-构造函数"><a href="#Array-构造函数" class="headerlink" title="Array()构造函数"></a>Array()构造函数</h3><p>构造函数创建数组是最合理的方式之一。就像下面这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)   <span class="comment">//[1, 2, 3, 4]</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>)  <span class="comment">// [ &lt;1 empty item&gt; ]</span></span><br><span class="line"><span class="keyword">let</span> arr3 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'1'</span>)  <span class="comment">// [ '1' ]</span></span><br></pre></td></tr></table></figure>
+<p>看似简单的形式中暗藏玄机：</p>
+<ul>
+<li>当构造函数的参数是多项时，会将每一项作为元素创建出来。</li>
+<li>当仅有一个数字时，表示数组的长度，元素并未填充，访问也会是undefined。</li>
+<li>仅有一个非数字，则又会创建一个单个元素的数组。</li>
+</ul>
+<h3 id="扩展可迭代对象"><a href="#扩展可迭代对象" class="headerlink" title="扩展可迭代对象"></a>扩展可迭代对象</h3><p>迭代在编程中是个老概念，表示可使用某些方法访问集合中的所有元素，但在JavaScript中，<strong>可迭代对象</strong>是ES6后引入的新概念——iterable。</p>
+<p>哪些类型可迭代？比如：数组、Map、Set，类数组对象——arguments对象，DOM NodeList对象，Generator对象，字符串等。</p>
+<p>我们一个个试一下。</p>
+<p><strong>string</strong></p>
+<p>直接看代码。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str1 = <span class="string">'hello world'</span></span><br><span class="line"><span class="meta">[</span><span class="params">...</span>str1<span class="meta">]</span>  //  <span class="meta">[</span><span class="string">"h"</span>, <span class="string">"e"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"o"</span>, <span class="string">" "</span>, <span class="string">"w"</span>, <span class="string">"o"</span>, <span class="string">"r"</span>, <span class="string">"l"</span>, <span class="string">"d"</span><span class="meta">]</span></span><br></pre></td></tr></table></figure>
+<p>前面章节我们聊字符串的时候，讲过一个split()方法，可以将字符串以某种字符作为分界创建一个数组，而这里，可以直接使用扩展运算符进行转换，只是这种“粉碎性”的效果使用场景不多。</p>
+<p><strong>Map</strong></p>
+<p>Map是ES6新引入的一种对象，用于保存键值对，并且能够记住键的原始插入顺序。</p>
+<p>咦，保存键值对，这不是我们熟悉的Object？</p>
+<p>确实，在Map出现之前，很多相似的需求都是使用Object来实现的，但它们有几点重要区别：</p>
+<ul>
+<li>Map默认不包含任何键，只包含显式插入的键，而Object有原型, 也就包含原型上的键。</li>
+<li>Map的键可以是任意值，Object的键必须是一个String或Symbol。</li>
+<li>Map中的key是有序的，Object的键无序。</li>
+<li>Map的键值对个数可通过size属性获取，Object只能手动计算。</li>
+</ul>
+<p>先创建一个Map简单认识一下：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let map1 = <span class="keyword">new</span> Map();</span><br><span class="line">map1.<span class="built_in">set</span>(<span class="string">'a'</span>,<span class="number">1</span>)</span><br><span class="line">map1.<span class="built_in">set</span>(<span class="string">'b'</span>,<span class="number">2</span>) <span class="comment">// &#123;"a" =&gt; 1, "b" =&gt; 2&#125;</span></span><br><span class="line">map1.<span class="built_in">size</span> <span class="comment">// 2</span></span><br><span class="line">map1.<span class="built_in">get</span>(<span class="string">'a'</span>) <span class="comment">// 1</span></span><br><span class="line">map1.<span class="keyword">delete</span>(<span class="string">'a'</span>) <span class="comment">//&#123; 'b' =&gt; 2 &#125;</span></span><br></pre></td></tr></table></figure>
+<p>从上面Map对象操作和访问元素的情况可以更明显地看出它和Object的区别了。</p>
+<p>怎样用Map转换数组呢，只需使用扩展运算符。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let arr6 = [...map1]  //[ [ <span class="string">'a'</span>, <span class="number">1</span> ], [ <span class="string">'b'</span>, <span class="number">2</span> ] ]</span><br></pre></td></tr></table></figure>
+<p>用扩展运算符轻松地将map转换成了数组，但是，<strong>它并不是对象数组，而是个以原对象的键和值为元素的二维数组</strong>，需要格外注意。</p>
+<p><strong>Set</strong></p>
+<p>和Map一样，Set也是ES6提供的新的集合工具，跟数组类似，也是包含一组数据，只是它不允许添加重复的数据。看代码：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let <span class="keyword">set</span>1 = new Set<span class="params">()</span>;</span><br><span class="line"><span class="keyword">set</span>1.add<span class="params">(1)</span></span><br><span class="line"><span class="keyword">set</span>1.add<span class="params">(2)</span> <span class="string">//</span> &#123; 1, 2 &#125;</span><br><span class="line"><span class="keyword">set</span>1.add<span class="params">(2)</span> <span class="string">//</span> &#123; 1, 2 &#125;</span><br><span class="line"><span class="keyword">set</span>1.size <span class="string">//2</span></span><br><span class="line"><span class="keyword">set</span>1.delete<span class="params">(1)</span> <span class="string">//</span>&#123;2&#125;</span><br><span class="line">let arr5 = [<span class="string">...set1</span>]  <span class="string">//</span>[ 1, 2 ]</span><br></pre></td></tr></table></figure>
+<p>以上代码我们创建了一个包含两个元素的Set，然后同样使用扩展运算符轻松地将其转化为了数组。</p>
+<p><strong>类数组</strong></p>
+<p>类数组，是和数组形似，但不具备全部数组特性的数据形式，较为常见的，就是arguments对象和DOM NodeList对象。</p>
+<p>arguments可用来获取函数的参数列表。</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function <span class="function"><span class="keyword">func</span><span class="params">()</span>&#123;</span></span><br><span class="line">    console.<span class="built_in">log</span>(arguments)  // [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, callee: ƒ, Symbol(Symbol.iterator): ƒ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>而NodeList则是我们使用js获取DOM节点时拿到的，比如说，页面上有两个类名为‘item’的DOM元素。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="keyword">let</span> itemDom =<span class="built_in"> document</span>.getElementsByClassName(<span class="string">'item'</span>)</span><br><span class="line">// HTMLCollection:[div.<span class="type">item</span>,div.<span class="type">item</span>]</span><br></pre></td></tr></table></figure>
+<p>如上所示,使用getElementsByClassName就会拿到的一个HTMLCollection，包含两个类名为item的div。</p>
+<p>它们都长得像数组，但除了能访问length属性之外，就没有其他数组的能力了，如果想利用那些能力，就要进行转换，在ES6之前，通常通过Array在原型上的方法来做到这一点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arsArray = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>) </span><br><span class="line">    <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ES6之后就简洁一些<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arsArray = [...arguments] </span><br><span class="line">    <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Array-of-和Array-from"><a href="#Array-of-和Array-from" class="headerlink" title="Array.of()和Array.from()"></a>Array.of()和Array.from()</h3><p>Array.from()的作用效果和扩展运算符类似，但又有所区别。</p>
+<p>Array.of()——创建一个具有可变数量的新数组实例。<br>Array.from()——从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。</p>
+<p>我们只举一个例子就好。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arsArray = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(arsArray)  <span class="comment">// [1, 2, 3, 4, 5, callee: ƒ, Symbol(Symbol.iterator): ƒ]</span></span><br><span class="line">&#125;</span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>Array.from()将函数的参数转换成了一个真正的数组。</p>
+<p>而Array.of()更像Array()，比如我们可以这样：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span>.<span class="keyword">of</span>(<span class="number">1</span>);         <span class="comment">// [1]</span></span><br><span class="line"><span class="keyword">Array</span>.<span class="keyword">of</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);   <span class="comment">// [1, 2, 3]</span></span><br><span class="line"><span class="keyword">Array</span>.<span class="keyword">of</span>(<span class="number">7</span>) <span class="comment">//[7]</span></span><br></pre></td></tr></table></figure>
+<p>可看出，它跟Array()的一点明显不同是，当只传入一个数字时，是当做单个元素处理，而不是元素个数。</p>
+<p>好了，到此，创建数组的介绍先告一段落。</p>
+<p>创建数组只是第一步，我们或许会从头创建，或者会将类数组转换为数组，再或者，会将其他类型转换为数组（比如字符串），这些操作的目的，大都是利用数组所具备的方法为具体的目标服务的，接下来，我们就来看看数组有哪些强大的方法，以及如何使用。</p>
+<h2 id="常见数组方法及应用"><a href="#常见数组方法及应用" class="headerlink" title="常见数组方法及应用"></a>常见数组方法及应用</h2><p>数组的方法多且用途广，它们是数组强大的关键。</p>
+<p>如果你是初学者，不要指望靠看就能记住，想当年，笔者把《高程》3 的数组章节看了几遍都没记住，不过，并不代表没有帮助记忆的方法，将其和实际应用场景相结合，就可更好地记忆。</p>
+<p>我们逐一清点。</p>
+<h3 id="类型判断——Array-isArray"><a href="#类型判断——Array-isArray" class="headerlink" title="类型判断——Array.isArray()"></a>类型判断——Array.isArray()</h3><p>有些时候，我们要判断拿到的数据是不是数组，否则可能出现方法调用报错的情况，以前判断数组不是很方便，会选用以下几种方式：</p>
+<ul>
+<li>instanceof</li>
+</ul>
+<p>判断运算符的左侧是否是右侧类型的一个实例，即 a instanceof b。此时我们将b设为Array即可，返回布尔值。</p>
+<ul>
+<li>constructor</li>
+</ul>
+<p>前面我们聊创建对象的时候，提到过constructor，引用类型都有对应的constructor，数组实例的constructor是Array，所以，可用a.constructor == Array是否为true来检查a是否为数组实例。</p>
+<ul>
+<li>Object.prototype.toString.call()</li>
+</ul>
+<p>这个方法，旨在将实例的类型转为字符串然后输出，如果实例是数组类型，则会输出’[object Array]’，进而可以做出判断。因为前两个方法可能存在一些不确定的问题，这个方法，曾被认为是最准确和可靠的方法，判断其他引用类型也同样。</p>
+<p>ES6的出现提供了新的判断方法——isArray()，只需要Array.isArray(obj)即可判断obj是否为数组，提供了极大的便利。</p>
+<h3 id="添加及删除——push-pop-、unshift-shift"><a href="#添加及删除——push-pop-、unshift-shift" class="headerlink" title="添加及删除——push()/pop()、unshift()/shift()"></a>添加及删除——push()/pop()、unshift()/shift()</h3><p>数组被创建后，可能有元素，也可能没有元素，这两组方法，常被用来动态地向数组中添加或者删除元素，只是它们的方式有所局限，只能从数组的两端进行操作，但对于适合的场景来说够用了。</p>
+<p>什么是适合的场景？只要求符合条件的元素，不讲究顺序，也没有其他附加条件，就可以这样简单粗暴地处理。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [],ele;</span><br><span class="line"><span class="keyword">if</span>(ele &gt; <span class="number">1</span>)&#123;</span><br><span class="line">    arr.push(ele)  <span class="comment">//对应的删除即pop()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外一对同理，不再赘述。</p>
+<h3 id="任意位置添加或删除——splice-slice"><a href="#任意位置添加或删除——splice-slice" class="headerlink" title="任意位置添加或删除——splice()/slice()"></a>任意位置添加或删除——splice()/slice()</h3><p>既然上面的方法有局限，这组就更灵活，它的灵活体现在不再局限位置，可在任意位置进行添加、删除、替换，至于是哪一种，取决于传参的情况。</p>
+<p>参数格式：splice(index,nums,item1,…..,itemX)</p>
+<p>它们分别代表：</p>
+<p>index——开始位置</p>
+<p>nums——空出位置数</p>
+<p>item1,…..,itemX——从空出的位置添加进哪些元素</p>
+<p>前两个参数必填，第三个选填。由此可得出：</p>
+<p>只要给index赋一个合法的值，就可以选定操作位置，第二位如果是0，则不删除元素，此时若第三个参数有值，则往指定位置<strong>添加元素</strong>。</p>
+<p>如果第二个参数是非0的正整数，则删除指定数量的元素，此时第三个参数如有数据，则填到删除了元素的位置，起到<strong>元素替换</strong>的效果。</p>
+<p>那么slice()又是什么，它有何不同？</p>
+<p>slice看起来跟splice很像，只差一个字母，但用途大不同，主要两点区别：</p>
+<p>一、slice接收两个参数，begin 和 end，决定了截取源数组的哪些部分，截取出的部分包括begin，但不包括end</p>
+<p>二、slice返回一个新数组，这个新数组是源数组的一个浅拷贝，源数组不受影响</p>
+<p>所以，这两种方法的使用可简单概括为：如果想要在源数组的基础上做处理，截取某部分，但不改变源数组，用slice，其他情况用splice。</p>
+<h3 id="特定元素的索引——indexOf-findIndex"><a href="#特定元素的索引——indexOf-findIndex" class="headerlink" title="特定元素的索引——indexOf()/findIndex()"></a>特定元素的索引——indexOf()/findIndex()</h3><p>前面的方法中，我们提到了“元素”和‘位置’，很多时候并不知道某元素所在的位置，要动态获取，这时候查找索引就派上了用场。</p>
+<p>这两种方法所得结果类似，但用法存在差异。</p>
+<ul>
+<li>indexOf(searchElement[, fromIndex])</li>
+</ul>
+<p>indexOf()方法需要传入具体的查找元素，和起始索引（可选）。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">nums.indexOf(<span class="number">3</span>); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>findIndex()方法则是传入一个回调函数</li>
+</ul>
+<p>函数支持三个可选参数：元素、索引、数组本身。通常，使用前两个，甚至一个参数就够了。像下面这样：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">let targetIndex = nums.findIndex(target =&gt; target  == <span class="number">3</span>) <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>要特别注意的是，有时候结果可能跟期望不同，即当数组中有多个相同目标元素的时候，它们都只会返回第一个目标元素的位置。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br><span class="line">nums.indexOf(<span class="number">3</span>); <span class="comment">//2</span></span><br><span class="line">let targetIndex = nums.findIndex(target =&gt; target  == <span class="number">3</span>) <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>这是正常情况，如果异常，比如元素不存在，二者均会返回-1。</p>
+<h3 id="查找元素——includesOf-find"><a href="#查找元素——includesOf-find" class="headerlink" title="查找元素——includesOf()/find()"></a>查找元素——includesOf()/find()</h3><p>上一组方法，是找到某元素在数组中的位置，当然，顺便可以通过返回值是不是-1来判断元素是否存在，而这一组方法，则是直接得到元素是否存在于数组中。</p>
+<ul>
+<li>includesOf()——返回布尔值</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br><span class="line">nums.includes(<span class="number">1</span>) <span class="comment">//true</span></span><br><span class="line">nums.includes(<span class="number">8</span>) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>find()-返回目标值本身</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br><span class="line">nums.includes(<span class="number">1</span>) <span class="comment">//1</span></span><br><span class="line">nums.includes(<span class="number">8</span>) <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="填充——fill"><a href="#填充——fill" class="headerlink" title="填充——fill()"></a>填充——fill()</h3><p>上面讲创建数组的时候，说可以创建一个空数组，然后往里添加，也可使用字面量创建现成的数组，也可使用splice对数组进行增、删、改，但还有一种方式可以用来改变数组——fill()。</p>
+<p>看看用法。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="keyword">Array</span>()</span><br><span class="line">arr.<span class="built_in">fill</span>(<span class="number">1</span>) <span class="comment">//[]</span></span><br></pre></td></tr></table></figure>
+<p>哦豁~好像翻车了，说好的填充呢，怎么还是空数组？</p>
+<p>且慢，fill()方法不是这么用滴，使用它的前提是，数组中已有一定数量的元素。比如：</p>
+<p>可以这样：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = new Array(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">arr.fill(<span class="number">5</span>) <span class="comment">// [ 5, 5, 5, 5 ]</span></span><br></pre></td></tr></table></figure>
+<p>也可以这样</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="keyword">Array</span>(<span class="number">4</span>)</span><br><span class="line">arr.<span class="built_in">fill</span>(<span class="number">5</span>) <span class="comment">// [ 5, 5, 5, 5 ]</span></span><br></pre></td></tr></table></figure>
+<p>由此，能够得出一个快速建立具备某数量的非空数组的方法。</p>
+<p>现在来看看完整语法：arr.fill(value[, start[, end]])</p>
+<p>似曾相识吧，它也接收两个位置参数，一个起始位置，一个结束位置，上面我们没有传的时候，它们默认是从头到尾，我们可以设定试试看。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">arr.fill(<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>) <span class="comment">// [ 1, 2, 5, 5, 5, 6 ]</span></span><br></pre></td></tr></table></figure>
+<p>但是，fill()方法有个易犯的错误，当填充的元素是引用类型时，其填充的值都会是同一个引用，比如，初始化一个商品列表。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> goods = &#123;</span><br><span class="line">    name:<span class="string">'珠宝'</span>,</span><br><span class="line">    price:<span class="number">10</span>,</span><br><span class="line">    weight:<span class="string">'20'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> goodsList = <span class="keyword">new</span> <span class="keyword">Array</span>(<span class="number">8</span>)</span><br><span class="line">goodsList.<span class="built_in">fill</span>(goods)</span><br></pre></td></tr></table></figure>
+<p>此时的商品列表数据会是这样：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">10</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>然后我们编辑第一个商品，将价格改为8</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">goodsList[0].price</span> = <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>却发现每个商品的价格都被改变了。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">8</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>这显然不是想要的效果。</p>
+<p>不仅如此，别忘了数组也是引用类型，所以，在初始化二维数组时同样会有这个问题，因此，如果有这样一个需求——在页面初始化时，需要准备好一组待编辑/修改的数据项，就不适合用这种方法来创建了。</p>
+<h3 id="排序——sort"><a href="#排序——sort" class="headerlink" title="排序——sort()"></a>排序——sort()</h3><p>排序是个常见需求，凡涉及列表，定有排序，按时间、按价格、按销量等。</p>
+<p>最简单的，给一组数字排序。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const numSort = [<span class="number">3</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">4</span>].sort()</span><br><span class="line">numSort <span class="comment">//[1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
+<p>这么简单，有什么可说？</p>
+<p>当然有，一个小例子就成功欺骗了我们，它是按照数字大小从小到大排列？非也，不信再看。</p>
+<p>我们将上面的数组改一下：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const numSort = [<span class="number">3</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">6</span>,<span class="number">20</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">4</span>].sort()</span><br><span class="line"><span class="comment">//[1, 10, 2, 20, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
+<p>神奇的事情发生了，10比2小？20比3小？</p>
+<p>注意了，sort()方法实际接收一个函数，以函数的返回值来指定按某种顺序排列，<strong>如果省略函数，则按照将元素转为字符串的各字符的Unicode位点进行排序</strong>。所以，如果这里想要按照数字的真实大小排序，可以这样写。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">3</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">6</span>,<span class="number">20</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">4</span>].sort((a,b) =&gt; a-b)</span><br></pre></td></tr></table></figure>
+<p>依据是什么？是排序函数的算法规则：</p>
+<ul>
+<li>如果 a - b 小于 0 ，a 会被排列到 b 之前；</li>
+<li>如果 a - b 等于 0 ，a 和 b 的相对位置不变；</li>
+<li>如果 a - b 大于 0 ，b 会被排列到 a 之前。</li>
+</ul>
+<p>如果比较对象是字符串，方法也一样，所以，一般情况下，不要偷懒，我们可以充分运用这个特点，对需要的规则进行定制。</p>
+<p>上面讨论的是对数字或者字符串进行排序，日常需求中，往往不会这么简单，可能会对一列包含多个属性的对象数组进行排序，比如开始提到的：价格、销量等。</p>
+<p>怎样根据某个属性对数组排序。</p>
+<p>其实也不难，同样道理，拿上面的商品列表（goodsList）为例，如果以价格排序，只需要这样：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">goodList.sort(<span class="function"><span class="params">(a,b)</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a.price - b.price)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>就可以了。</p>
+<p>说了排序，顺便说下反转（reverse），反转也是一种排序，只是它没什么规则可言，直接将一组元素首尾颠倒，[1,2,3]会变成[3,2,1]，[‘a’,’f’,’c’]变成[ ‘c’, ‘f’, ‘a’ ]。</p>
+<h3 id="合并——concat-扩展运算"><a href="#合并——concat-扩展运算" class="headerlink" title="合并——concat()/扩展运算"></a>合并——concat()/扩展运算</h3><p>理想情况下，我们获取一个数组，操作一个数组是最好，但有时数据来源不止一个，可能是两个或多个，在展示或传递的时候，又需要合为一个，就要用合并方法，传统方法是concat()。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const primary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], </span><br><span class="line">      middle = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>], </span><br><span class="line">      high = [<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>];</span><br><span class="line">const grade = primary.concat(middle,high)  </span><br><span class="line"><span class="comment">//[1,  2, 3, 4,  5,  6,  7, 8, 9, 10, 11, 12]</span></span><br></pre></td></tr></table></figure>
+<p>但是，如果觉得仅此而已，就又错了。</p>
+<ul>
+<li>concat()不仅可以用来合并数组，还可以合并一个数组和其他类型的值，比如数字、字符串等。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">primary.concat(7,8)</span> <span class="string">//</span> <span class="string">[1,</span>  <span class="number">2</span><span class="string">,</span> <span class="number">3</span><span class="string">,</span> <span class="number">4</span><span class="string">,</span>  <span class="number">5</span><span class="string">,</span>  <span class="number">6</span><span class="string">,</span> <span class="number">7</span><span class="string">,</span> <span class="number">8</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>concat()在合并数组时，不改变原数组，而是返回新数组，但是，新数组包含的是原数组的浅拷贝。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">const</span> <span class="string">primary</span> <span class="string">=</span> <span class="string">[&#123;a:1&#125;],</span> </span><br><span class="line">      <span class="string">middle</span> <span class="string">=</span> <span class="string">[&#123;b:2&#125;];</span></span><br><span class="line"><span class="string">const</span> <span class="string">grade</span> <span class="string">=</span> <span class="string">primary.concat(middle)</span></span><br><span class="line"><span class="string">//[</span> <span class="string">&#123;</span> <span class="attr">a:</span> <span class="number">1</span> <span class="string">&#125;,</span> <span class="string">&#123;</span> <span class="attr">b:</span> <span class="number">2</span> <span class="string">&#125;</span> <span class="string">]</span></span><br><span class="line"><span class="string">primary[0].a</span> <span class="string">=</span> <span class="number">2</span></span><br><span class="line"><span class="string">middle[0].b</span> <span class="string">=</span> <span class="number">3</span></span><br><span class="line"><span class="string">//</span> <span class="string">[</span> <span class="string">&#123;</span> <span class="attr">a:</span> <span class="number">2</span> <span class="string">&#125;,</span> <span class="string">&#123;</span> <span class="attr">b:</span> <span class="number">3</span> <span class="string">&#125;</span> <span class="string">]</span></span><br></pre></td></tr></table></figure>
+<p>引用类型总是带给我们“惊喜”，在使用时要多加注意。</p>
+<p>当然，扩展运算符依然是简洁。上面的操作只需要这样就可以：</p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const grade = [.<span class="built_in">..primary</span>,.<span class="built_in">..middle</span>,.<span class="built_in">..high</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="返回新数组——map-filter"><a href="#返回新数组——map-filter" class="headerlink" title="返回新数组——map()/filter()"></a>返回新数组——map()/filter()</h3><p>新数组是什么意思？</p>
+<p>大部分情况下，我们拿到的数据都是由对象组成的数组，对象是集合，会包含很多东西，它本身的数据、它关联的其他数据等，少则几条，多则几十条，但在传递或者展示的时候并不需要把它们都带着，或者，我们需要在原有基础上进行处理，这时候就可以按需返回处理后的新数组。</p>
+<p>比如下面这样：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">1000</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'手机'</span>, <span class="string">price:</span> <span class="number">2000</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'电脑'</span>, <span class="string">price:</span> <span class="number">5000</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>我们得到一个商品列表，但只需要把name拿出来用，就可以这样。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nameList = goodsList.<span class="keyword">map</span>(<span class="type">item</span>=&gt;&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">item</span><span class="built_in">.name</span></span><br><span class="line">&#125;)</span><br><span class="line">[<span class="string">'珠宝'</span>.<span class="string">'手机'</span>,...,<span class="string">'电脑'</span>]</span><br></pre></td></tr></table></figure>
+<p>又或者，我们需要在原价的基础上，对所有商品进行打折处理，就可以这样：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let priceDiscountList = goodsList.map(item=&gt;&#123;</span><br><span class="line">    item.price *= <span class="number">0.5</span> </span><br><span class="line">    <span class="keyword">return</span> item</span><br><span class="line">&#125;)</span><br><span class="line">[</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'珠宝'</span>, <span class="string">price:</span> <span class="number">500</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'手机'</span>, <span class="string">price:</span> <span class="number">1000</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'电脑'</span>, <span class="string">price:</span> <span class="number">2500</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>当然，实际项目中这个环节不会这么干，不然每有变动都要改JS逻辑代码，从易用性、效率和维护上都不利，只是借此说明用法。</p>
+<p>介绍完map，再看filter，从字面意思很好理解，过滤，符合条件才会被筛选出来，它同样是接收一个函数。</p>
+<p>比如我们将价格超过500的找出来。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let priceLowList = goodsList.filter(item=&gt;&#123;</span><br><span class="line">    <span class="keyword">return</span> item.price &gt; <span class="number">500</span></span><br><span class="line">&#125;)</span><br><span class="line">[</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'手机'</span>, <span class="string">price:</span> <span class="number">1000</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;,</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  &#123; <span class="string">name:</span> <span class="string">'电脑'</span>, <span class="string">price:</span> <span class="number">2500</span>, <span class="string">weight:</span> <span class="string">'20'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>这两个方法在实际项目中极为常见，唯独需要注意的是它们的工作方式，它们都是生成新的数组，map需要返回的是<strong>数组元素</strong>，fliter则是<strong>筛选条件</strong>，千万记得”<strong>return</strong>“哦！</p>
+<h3 id="迭代处理——forEach"><a href="#迭代处理——forEach" class="headerlink" title="迭代处理——forEach()"></a>迭代处理——forEach()</h3><p>这个方法，和上面两个极为相似，从底子上，都是可以访问到数组的每个元素，然后进行相应处理，区别在于，此方法仅用于迭代，好比以前常用的for循环，当然，功能的简单意味着可操作空间更大。</p>
+<p>比如，我们可以这样实现类似map的效果。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nameList = []</span><br><span class="line">goodsList.forEach(<span class="type">item</span>=&gt;&#123;</span><br><span class="line">    nameList.push(<span class="type">item</span><span class="built_in">.name</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>也可以这样实现类似filter的效果。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> priceLowList = []</span><br><span class="line">goodsList.forEach(<span class="type">item</span>=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="type">item</span>.price &gt; <span class="number">500</span>)&#123;</span><br><span class="line">        priceLowList.push(<span class="type">item</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>是的，你可以写任何想要的逻辑，且它的执行效率比for循环更高，也更符合函数式编程范式。</p>
+<h3 id="元素判断——some-every"><a href="#元素判断——some-every" class="headerlink" title="元素判断——some()/every()"></a>元素判断——some()/every()</h3><p>同样用于检查，接收回调函数，写入判断逻辑，区别在于，some()是“存在符合”即为true，而every()是“所有符合”才为true，类似 || 和 &amp;&amp;。比较简单，不再赘述。</p>
+<h2 id="应用拓展"><a href="#应用拓展" class="headerlink" title="应用拓展"></a>应用拓展</h2><p>不论学什么，人们习惯于追求“知”、“会”，缺少往“活”的方向继续挖掘，但往往“活”用的东西能带来更多益处和惊喜。</p>
+<p>接下来看看数组是怎样在更多应用方案中施展拳脚的。</p>
+<h3 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h3><p>当用户的操作是大量的、不确定的，难免有重复，有时候我们只需要知道某个值是否存在，而不是多个重复的值，这时就需要对数组进行去重（当然，还有其他方法保证单一值，这里重点是去重）。</p>
+<p>去重方法有很多，原理是类似的——通过遍历数组做比较，保证值唯一。列三种大家参考：</p>
+<ul>
+<li>includes</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span><span class="params">(arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">Array</span>.isArray(arr)) &#123;</span><br><span class="line">        console.log(<span class="string">'type error!'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> <span class="keyword">array</span> =[];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>( !<span class="keyword">array</span>.includes( arr[i]) ) &#123;   <span class="comment">//检测数组是否有某个值</span></span><br><span class="line">            <span class="keyword">array</span>.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">array</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>filter</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span><span class="params">(arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span><span class="params">(item, index, arr)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素</span></span><br><span class="line">      <span class="keyword">return</span> arr.indexOf(item, <span class="number">0</span>) === index;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Set</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h3><p>求和的需求不是特别常见，但也是要掌握的。</p>
+<ul>
+<li>递归</li>
+</ul>
+<p>不考虑复杂度的情况下，递归是能比较容易想到的。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(arr)</span></span> &#123;</span><br><span class="line">  var <span class="built_in">len</span> = arr.length;</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">len</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">len</span> == <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>] + sum(arr.slice(<span class="number">1</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>循环</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(arr)</span> &#123;</span></span><br><span class="line">  var s = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (var <span class="built_in">i</span>=arr.<span class="built_in">length</span><span class="number">-1</span>; <span class="built_in">i</span>&gt;=<span class="number">0</span>; <span class="built_in">i</span>--) &#123;</span><br><span class="line">    s += arr[<span class="built_in">i</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>reduce()</li>
+</ul>
+<p>上面介绍方法时本该包含这个方法，但放在这里更加合适，先看看它是什么。</p>
+<p>完整参数列表：</p>
+<p>reduce(accumulator, currentValue, index, array)</p>
+<p> previousValue：上一次调用回调返回的值，或者是提供的初始值（initialValue）<br> currentValue：当前被处理的元素<br> index：当前元素的索引<br> array：调用reduce的数组</p>
+<p>只看前两项，就可以看出答案，previousValue不就是循环方案中设置的s？而currentValue就是arr[i]，那么求和只需要这样：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span><span class="params">(prev, curr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> prev + curr;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>reduce能做的事还有很多，甚至有些可称为“奇技淫巧”，鉴于篇幅，这里不多做介绍，等系列文章结束后，还会跟大家详聊。</p>
+<h2 id="拍平"><a href="#拍平" class="headerlink" title="拍平"></a>拍平</h2><p>这个词儿比较接地气，拍平，意味着操作之前是不平的，怎么叫不平？比如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,[<span class="number">2</span>,<span class="number">3</span>],<span class="number">4</span>,[<span class="number">5</span>,[<span class="number">6</span>,<span class="number">7</span>]]]</span><br></pre></td></tr></table></figure>
+<p>这个数组中既有元素，又有数组，数组还套数组，是有层次嵌套的，这时候，如果我们想把它们当做一维或者二维数组处理，显然是会出错的，就要进行降维。</p>
+<p>ES5之前，“拍平”不是那么容易，而ES6出现了新的“真香”方法——flat()，这个方法，前面也没说，嗯~</p>
+<p>怎么拍呢，如果上面的数组，想变成二维数组，就这样：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">arrFlat.flat(1)</span>  </span><br><span class="line"><span class="string">//</span> <span class="string">[</span> <span class="number">1</span><span class="string">,</span> <span class="number">2</span><span class="string">,</span> <span class="number">3</span><span class="string">,</span> <span class="number">4</span><span class="string">,</span> <span class="number">5</span><span class="string">,</span> <span class="string">[</span> <span class="number">6</span><span class="string">,</span> <span class="number">7</span> <span class="string">]</span> <span class="string">]</span></span><br></pre></td></tr></table></figure>
+<p>彻底拍平就这样：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">arrFlat.flat(2)</span>  </span><br><span class="line"><span class="string">//</span> <span class="string">[</span> <span class="number">1</span><span class="string">,</span> <span class="number">2</span><span class="string">,</span> <span class="number">3</span><span class="string">,</span> <span class="number">4</span><span class="string">,</span> <span class="number">5</span><span class="string">,</span> <span class="number">6</span><span class="string">,</span> <span class="number">7</span> <span class="string">]</span></span><br></pre></td></tr></table></figure>
+<p>默认情况是只处理一层的，即flat()等效于flat(1)。</p>
+<h2 id="”高级“数据结构"><a href="#”高级“数据结构" class="headerlink" title="”高级“数据结构"></a>”高级“数据结构</h2><p>现在大家出去面试，比较紧张两样东西，一是”原理“，二是”算法“。</p>
+<p>算法离不开数据结构，JavaScript原生数据结构很少，语言本身只提供了基础能力，但由基础能力可衍生出更复杂或者有特殊用途的结构。</p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>上面已经提到数组套数组，其实，较为常见的”树“，就是数组套数组，一个父节点包含多个子节点，子节点可能也包含子节点，就成了树。</p>
+<p>最常见的，行政区域树，组织架构树等，每涉及到树，基本上都会有增、删、改，或者级联选择，先知道就好，暂不赘述。</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>队列是有先进先出（FIFO）限制的数组，正像平时我们排队，只能队尾进，队头出，不能插队。</p>
+<p>队列的应用也是处理有序的不能插队的任务，比如：叫号系统、购票系统等。</p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈和队列类似，但它是后进先出（LIFO），可想象为叠盘子，放的时候从下往上，拿的时候从上往下。</p>
+<p>应用有函数调用栈，括号匹配问题等。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>数组是大话题，虽然听起来没有那么高大上，应用非常多，也是某些”高级数据结构“的基石。</p>
+<p>本文尽量做到繁简得当，但难免会有一些东西没介绍，也会有些朋友觉得内容多，都正常，大家掌握程度不同嘛，有什么问题需要深入交流的，欢迎踊跃留言。</p>
+<p>此文之后，系列进行到第九篇，先是介绍简单类型，再是对象，然后是数组，不知读者朋友是否看到了此中的逻辑，能猜到下一篇聊什么吗？~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2021/07/18/wechat_array/" title="【轻聊前端】高级数据结构的基石——数组" target="_blank" rel="external">http://yoursite.com/2021/07/18/wechat_array/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/09/05/wechat_function/" title="【轻聊前端】JavaScript世界的一等公民——函数"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/06/12/wechat_object_two/" title="【轻聊前端】有“对象”之后"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

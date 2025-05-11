@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>HTML并不简单：小角色的大用途 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  笔者第一次接触移动端适配的时候，完全没概念，什么样是做了适配，什么样是没做？不明白。 直到我把按照PC端写的页面用手机打开，傻眼了，怎么那么小，什么也看不清，然后我就开始搜，怎么做移动端适配。 找到的第一个十分有用的答案，是下面这行代码： 1&amp;lt;meta name=&quot;viewport&quot;">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML并不简单：小角色的大用途">
+<meta property="og:url" content="http://yoursite.com/2024/10/08/html_is_not_easy_four/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  笔者第一次接触移动端适配的时候，完全没概念，什么样是做了适配，什么样是没做？不明白。 直到我把按照PC端写的页面用手机打开，傻眼了，怎么那么小，什么也看不清，然后我就开始搜，怎么做移动端适配。 找到的第一个十分有用的答案，是下面这行代码： 1&amp;lt;meta name=&quot;viewport&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-26T02:08:15.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML并不简单：小角色的大用途">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  笔者第一次接触移动端适配的时候，完全没概念，什么样是做了适配，什么样是没做？不明白。 直到我把按照PC端写的页面用手机打开，傻眼了，怎么那么小，什么也看不清，然后我就开始搜，怎么做移动端适配。 找到的第一个十分有用的答案，是下面这行代码： 1&amp;lt;meta name=&quot;viewport&quot;">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2024/10/08/html_is_not_easy_four/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动刷新"><span class="toc-number">1.</span> <span class="toc-text">自动刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SEO"><span class="toc-number">2.</span> <span class="toc-text">SEO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Graph协议"><span class="toc-number">3.</span> <span class="toc-text">Open Graph协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全区域"><span class="toc-number">4.</span> <span class="toc-text">安全区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态栏颜色"><span class="toc-number">5.</span> <span class="toc-text">状态栏颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Favicon图标"><span class="toc-number">6.</span> <span class="toc-text">Favicon图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源预加载"><span class="toc-number">7.</span> <span class="toc-text">资源预加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本依赖"><span class="toc-number">8.</span> <span class="toc-text">脚本依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#type-‘module’"><span class="toc-number">9.</span> <span class="toc-text">type=‘module’</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-html_is_not_easy_four" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML并不简单：小角色的大用途
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/10/08/html_is_not_easy_four/" class="article-date">
+	  <time datetime="2024-10-07T16:00:00.000Z" itemprop="datePublished">2024-10-08</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/10/08/html_is_not_easy_four/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自阅文集团前端专家<strong>张鑫旭</strong>所编写的 <strong>《HTML并不简单》</strong></p>
+</blockquote>
+<p>笔者第一次接触移动端适配的时候，完全没概念，什么样是做了适配，什么样是没做？不明白。</p>
+<p>直到我把按照PC端写的页面用手机打开，傻眼了，怎么那么小，什么也看不清，然后我就开始搜，怎么做移动端适配。</p>
+<p>找到的第一个十分有用的答案，是下面这行代码：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">name</span>=<span class="string">"viewport"</span> <span class="attribute">content</span>=<span class="string">"width=device-width,initial-scale=1.0"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这段代码的用途是什么，如果没有这里的<code>width=device-width</code>，在移动端，网页默认会缩放，按照980px大小的宽度渲染，以便在屏幕内完整显示，这就解释了为什么内容会变小。</p>
+<p>如果要更完整，内容正常展示的同时，不允许用户进行缩放，则是下面这样：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attr">name="viewport"</span> <span class="attr">content="width=device-width,</span> <span class="attr">initial-scale=1.0,</span> <span class="attr">maximum-scale=1.0,</span> <span class="attr">user-scalable=no"&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由此可见，不止我们所认为的，用于承载页面内容的元素才有用，其他一些“不起眼”的元素也很有用。</p>
+<h3 id="自动刷新"><a href="#自动刷新" class="headerlink" title="自动刷新"></a>自动刷新</h3><p>现在给一个需求，让页面每2秒钟刷新一次，你会怎么做？可能会想到定时器，每2秒调用一次<code>reload()</code>方法。但其实只要这样就可以：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">http-equiv</span>=<span class="string">"refresh"</span> <span class="attribute">content</span>=<span class="string">"2;url='xxx'"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>其中的关键是<code>http-equiv</code>，<code>http-equiv</code>的用途很多，除此之外，它还可以以这样的方式禁用缓存：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">http-equiv</span>=<span class="string">"cache-control"</span> <span class="attribute">content</span>=<span class="string">"no-cache"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h3><p>随着移动互联网时代各种APP盛行，SEO对于站点的重要性没有以往那么高了，但不代表它不重要，仍有很多用户是来自搜索引擎，SEO同样是由HTML来承担的。</p>
+<p>对于一个页面而言，最重要的信息就是“标题”“描述”和“关键字”，简称<code>TDK</code>，因为这些信息会直接展示在搜索结果列表页。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>你并不精通HTML<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">"你并不精通HTML配套学习站点"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"HTML、HTMLAPI"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码就是本书配套官网首页的<code>TDK</code>设置，搜索引擎会将这些信息展示在搜索结果中。</p>
+<p>有自己搭建个人博客站点的朋友，SEO是非常值得做好的，因为平时大家查知识点，搜问题解决方案，还是会使用搜索引擎。</p>
+<h3 id="Open-Graph协议"><a href="#Open-Graph协议" class="headerlink" title="Open Graph协议"></a>Open Graph协议</h3><p>这个看起来会陌生，但只是大家平时较少注意，用了也没有深究。</p>
+<p>Open Graph协议直译为开放图谱协议，也被称为OG标签，任何页面只要遵守该协议，在被分享到社交媒体SNS网站上时，社交网站就会提取最有效的信息呈现给用户。</p>
+<p>基本用法如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">propery</span>=<span class="string">"og:title"</span> <span class="attribute">content</span>=<span class="string">"文章标题"</span>&gt;</span><br><span class="line">&lt;meta <span class="attribute">propery</span>=<span class="string">"og:type"</span> <span class="attribute">content</span>=<span class="string">"article"</span>&gt;</span><br><span class="line">&lt;meta <span class="attribute">propery</span>=<span class="string">"og:url"</span> <span class="attribute">content</span>=<span class="string">"https://www.htmlapi.cn"</span>&gt;</span><br><span class="line">&lt;meta <span class="attribute">propery</span>=<span class="string">"og:image"</span> <span class="attribute">content</span>=<span class="string">"https://www.htmlapi.cn/assets/example.jpg"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>社媒会提取其中的标题、url和图片等，展示在发布的信息中，对于分享的呈现效果很重要，日常我们做<code>Facebook、Twitter</code>等分享都会用到。</p>
+<h3 id="安全区域"><a href="#安全区域" class="headerlink" title="安全区域"></a>安全区域</h3><p>开头已经聊了移动端适配，这里补充一下安全区域，这个概念怎么来的呢？</p>
+<p>主要是由于IOS系统更新过程中所出现的刘海摄像头、底部触摸横条等，对手机屏幕展示区域的占用和影响。</p>
+<p>不被影响的区域就称为“安全区域”，处理安全区域，需要在<code>meta</code>中设定<code>viewport-fit=cover</code>，只有设置了<code>viewport-fit=cover</code>，类似下面的环境变量函数才能生效。</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">padding-<span class="built_in">top</span>: env(safe-area-inset-<span class="built_in">top</span>);</span><br><span class="line">padding-<span class="built_in">bottom</span>: env(safe-area-inset-<span class="built_in">bottom</span>,<span class="number">0.5</span>vh);</span><br></pre></td></tr></table></figure>
+<p>以上代码，就是使用CSS属性来为我们的网页内容预留安全区域。</p>
+<h3 id="状态栏颜色"><a href="#状态栏颜色" class="headerlink" title="状态栏颜色"></a>状态栏颜色</h3><p>在比较注重体验的站点中，你会发现网页状态栏的颜色和主体的风格颜色是一致的，这样的好处是更沉浸，更像APP，怎么做的呢？只要这样就可以：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">name</span>=<span class="string">"theme-color"</span> <span class="attribute">content</span>=<span class="string">"#x2014"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>同时，它还可以搭配亮色或者暗色模式来使用：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">name</span>=<span class="string">"theme-color"</span> <span class="attribute">media</span>=<span class="string">"(prefers-colors-scheme:light)"</span> <span class="attribute">content</span>=<span class="string">"skyblue"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Favicon图标"><a href="#Favicon图标" class="headerlink" title="Favicon图标"></a>Favicon图标</h3><p>每有新项目上线，大概率最后一个被发现的bug，就是站点的标签上缺少品牌logo，要么是空的，要么是<code>Vue</code>或者<code>React</code>的logo，显得开发人员很粗糙。</p>
+<p>怎么设置呢，很简单，预先准备好<code>ico</code>图片，像下面这样设置即可。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"icon"</span> <span class="attribute">href</span>=<span class="string">"favicon.ico"</span> <span class="attribute">type</span>=<span class="string">"image/x-icon"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="资源预加载"><a href="#资源预加载" class="headerlink" title="资源预加载"></a>资源预加载</h3><p>预加载是大家比较熟悉的一种性能优化手段了，为了提升网站的体验，会优先提前加载一部分资源，代码像这样。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"prefetch"</span> <span class="attribute">href</span>=<span class="string">"gitbook/style.js"</span>&gt;</span><br><span class="line">&lt;link <span class="attribute">rel</span>=<span class="string">"preload"</span> <span class="attribute">href</span>=<span class="string">"gitbook/style.js"</span> <span class="attribute">as</span>=<span class="string">'script'</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>上面这段代码中，<code>prefetch</code>是预获取，<code>preload</code>是预加载，好像差不多，区别是什么：</p>
+<p><code>prefetch</code>的原理是缓存，且获取的是尚未到达的下一个页面的资源，优先级较低。</p>
+<p><code>preload</code>加载的是本页面即将使用的资源，优先级高于其他页面，另外，<code>preload</code>在使用的时候推荐设置<code>as</code>属性，精准指定需要加载的元素类型。</p>
+<p>凡事都不是只有好处没有弊端，这两者的使用有个“陷阱”，就是到底要设置哪些资源，可以设置多少资源？容易因为把握不好度而产生浪费，原则就是，能够显著提高加载速度的，最主要的资源，才设置，否则不需要设置。</p>
+<h3 id="脚本依赖"><a href="#脚本依赖" class="headerlink" title="脚本依赖"></a>脚本依赖</h3><p>现在大家都已经习惯了ES6风格的模块化开发，较少去关心脚本加载的顺序和依赖关系，可以交给打包工具去做，但有时候还是需要自行操作的，比如：链入一个三方广告、埋点脚本等。</p>
+<p>默认情况下，外链的多个JavaScript文件会按照前后顺序一个一个加载，前面的文件没加载完，不会加载后面的文件，包括后续的页面渲染，这就是为什么传统最佳实践中总有一条是“脚本放底部”。</p>
+<p>但是，如果这些资源，它们只是“要用”，但没那么重要，这样的结果就有些得不偿失。</p>
+<p>此时，我们就可以将对JavaScript文件的引用改成异步的方式，使用<code>async</code>属性或者<code>defer</code>属性都可以达到这一目的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"a.js"</span> <span class="attr">defer</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"b.js"</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>既然都可以，只要一个不就行了？区别自然是有的。</p>
+<p><code>defer</code>有“依赖”的意思，如果希望保证加载顺序，就不能随便设置，只能使用<code>defer</code>。</p>
+<p><code>async</code>就是单纯的异步，“你走你的，我走我的”，a、b各不相干，谁先执行完成是不确定的。</p>
+<p>需要注意的是，<code>defer</code>属性会推迟对<code>DOMContentLoaded</code>事件的执行，直到所有设置了<code>defer</code>属性的JavaScript文件都加载完毕。</p>
+<h3 id="type-‘module’"><a href="#type-‘module’" class="headerlink" title="type=‘module’"></a>type=‘module’</h3><p><code>type=&quot;module&quot;</code>是一种新的<script>类型，这种类型是伴随着ES6 <code>export</code>和<code>import</code>语法一起出现的。</p>
+<p>一旦JavaScript文件设置了<code>type=&quot;module&quot;</code>，代码的上下文环境就不再是全局对外的，而是私有的，要想外部可访问，要么使用<code>export</code>语法暴露，要么使用全局对象暴露。</p>
+<p>另外，设置了<code>type=&quot;module&quot;</code>的元素是异步加载与执行的，且能保证顺序，和defer属性的表现类似。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这篇文介绍了一些通常存在于HTML文件头或者尾的“小角色”，它们往往跟内容和业务逻辑无关，但是能帮助我们更好的提升体验，或者为解决问题提供相当便捷的方案，十分值得关注和研究。</p>
+<p>更多干货，我们下篇见！</p>
+<p>欢迎关注公众号：前端说书匠。好文第一时间接收不迷路！~</p>
+</script></p>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2024/10/08/html_is_not_easy_four/" title="HTML并不简单：小角色的大用途" target="_blank" rel="external">http://yoursite.com/2024/10/08/html_is_not_easy_four/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/10/08/html_is_not_easy_five/" title="HTML并不简单：小角色的大用途"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/10/01/html_is_not_easy_three/" title="HTML并不简单：自带交互的元素"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

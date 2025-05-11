@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>【轻聊前端】有“对象”之前 | 灵感之见</title>
+  <meta name="description" content="现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（七）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。  “一切”都是对象，那对象有什么，又能做什么？ 有些话题总">
+<meta name="keywords" content="分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【轻聊前端】有“对象”之前">
+<meta property="og:url" content="http://yoursite.com/2021/04/24/wechat_object_one/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（七）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。  “一切”都是对象，那对象有什么，又能做什么？ 有些话题总">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2023-05-07T09:44:34.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【轻聊前端】有“对象”之前">
+<meta name="twitter:description" content="现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（七）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。  “一切”都是对象，那对象有什么，又能做什么？ 有些话题总">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2021/04/24/wechat_object_one/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象是什么"><span class="toc-number">1.</span> <span class="toc-text">对象是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-number">2.</span> <span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更好的创建与继承"><span class="toc-number">3.</span> <span class="toc-text">更好的创建与继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-wechat_object_one" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【轻聊前端】有“对象”之前
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/24/wechat_object_one/" class="article-date">
+	  <time datetime="2021-04-23T16:00:00.000Z" itemprop="datePublished">2021-04-24</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/分享/">分享</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/24/wechat_object_one/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>现今各种框架、工具‘横行’，到处在讲原理和源码，更有跨端技术需要我们去探索，但如果基本功不好，学什么都是事倍功半，效果很不好，花费时间的同时打击自信心。此篇文章，为我所计划的【轻聊前端】系列第（七）篇，旨在系统地、逻辑性地把原生JavaScript知识分享给大家，帮助各位较为轻松地理清知识体系，更好地理解和记忆，我尽力而为，望不负期待。</p>
+</blockquote>
+<p>“一切”都是对象，那对象有什么，又能做什么？</p>
+<p>有些话题总是经久不衰，比如：原型链、this、深/浅拷贝，这些都跟对象有关，而对象的故事远不止于此，我们就来适当聊一聊。</p>
+<h2 id="对象是什么"><a href="#对象是什么" class="headerlink" title="对象是什么"></a>对象是什么</h2><p>它是一组属性和方法的集合，属性——“有什么”，方法——“能干什么”。</p>
+<p>使用场景大致分为两种：</p>
+<p><strong>语言层次</strong>，JavaScript的运行依赖对象系统，其中的每一种数据类型同时是一类对象，有着自己的属性和方法，供编写程序时使用。</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> <span class="built_in">str</span> = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">str</span>.length  <span class="comment">//11</span></span><br><span class="line"><span class="built_in">str</span>.substr(<span class="number">0</span>,<span class="number">5</span>) <span class="comment">//"hello"</span></span><br></pre></td></tr></table></figure>
+<p><strong>业务层次</strong>：根据业务类型不同，我们可以从具体需求中抽象出多个角色，每种角色都可以封装成一个对象，有自己的属性和方法。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let teacher = &#123;</span><br><span class="line"><span class="symbol">    name:</span><span class="string">"莉莉"</span>,</span><br><span class="line"><span class="symbol">    age:</span><span class="number">30</span>,</span><br><span class="line"><span class="symbol">    work:</span><span class="string">"老师"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>对象需要创建才能用，创建对象的方式有多种，接下来我们逐一介绍，讲一下前世今生。</p>
+<ul>
+<li>本尊</li>
+</ul>
+<p>聊类型的时候，我们就见过对象的本尊——Object。使用new运算符就可以创建一个对象，创建之后可以为其添加属性和方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">'idea'</span>;</span><br><span class="line">person.age = <span class="number">18</span>;</span><br><span class="line">person.work = <span class="string">'搬砖'</span>;</span><br><span class="line">person.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"我会跑"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了对象，就能在需要的时候使用它们，比如，前端请求后端传递过来的数据通常是对象形式，就可以取到它的属性值放到页面上展示，当然，前端可以创建对象来存储某种意义上的个体，进行传递或者其他操作。</p>
+<p>但这种创建形式不够简洁，写了很多重复的对象名称，一种更加直观也更常用的方法，叫”对象字面量“：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let person = &#123;</span><br><span class="line">    <span class="string">name :</span><span class="string">'idea'</span>,</span><br><span class="line">    <span class="string">age :</span><span class="number">18</span>,</span><br><span class="line">    <span class="string">work :</span><span class="string">'搬砖'</span>,</span><br><span class="line">    run()&#123;</span><br><span class="line">        console.log(<span class="string">"我会跑"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>书写简洁对工程师的开发体验也是重要的，所以，这种写法在开发中很常见。</p>
+<p>单这么看的话，对象就是个容器，不复杂，但是，这两种方法都有一个缺点：<strong>创建具有同样接口的多个对象需要重复编写很多代码。换句话说，只能一个个地生创建，没有实现封装、复用、继承</strong>。</p>
+<h2 id="更好的创建与继承"><a href="#更好的创建与继承" class="headerlink" title="更好的创建与继承"></a>更好的创建与继承</h2><ul>
+<li>工厂模式</li>
+</ul>
+<p>谈到封装和复用，我们可以十分自然地想到函数，如果能够用一个函数来封装整个创建对象的过程，类似一个小的对象“加工厂”，就解决了上面说的问题，这就是“工厂模式”的由来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,age,work</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    obj.name = name;</span><br><span class="line">    obj.age = age;</span><br><span class="line">    obj.work = work;</span><br><span class="line">    obj.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">'会跑'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = createPerson(<span class="string">"张三"</span>,<span class="number">16</span>,<span class="string">"程序员"</span>)</span><br><span class="line"><span class="keyword">let</span> person2 = createPerson(<span class="string">"李四"</span>,<span class="number">18</span>,<span class="string">"产品经理"</span>)</span><br></pre></td></tr></table></figure>
+<p>这个方案解决了类似对象创建的重复书写问题，是个不错的方案，但它有点不完整的地方，即“仅仅”封装了行为，创建出的对象和来源并没有什么关系，即person1、person2和createPerson是没有关系的。</p>
+<p>很多时候建立它们之间的联系都是重要的，比如继承属性和方法，所以可以继续改良。</p>
+<ul>
+<li>构造函数</li>
+</ul>
+<p>什么是构造函数——<strong>用于构造某种对象实例的函数</strong>。</p>
+<p>ECMAScript中的构造函数是用于创建特定类型对象的，就像我们可以用 new String()创建字符串，new Number()创建数字。</p>
+<p>String()和Number()是内置函数，这里我们讨论的是自定义的构造函数。</p>
+<p>它的写法和工厂模式相似，却有着本质的不同，譬如上面的对象我们可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,work</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.work = work;</span><br><span class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">'会跑'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> idea = <span class="keyword">new</span> Person(<span class="string">'灵感'</span>,<span class="number">18</span>,<span class="string">'前端砖工'</span>);</span><br><span class="line">idea.name <span class="comment">//'灵感'</span></span><br><span class="line">idea.age  <span class="comment">//18</span></span><br></pre></td></tr></table></figure>
+<p>它有如下特点：</p>
+<ul>
+<li>首字母大写，更易与普通函数作区分</li>
+<li>没有显式创建对象，属性和方法直接赋值给this</li>
+<li>没有return</li>
+</ul>
+<p>那么本质不同是什么？这就要了解构造的过程，具体如下：</p>
+<p>（1）在内存中创建一个新对象。</p>
+<p>（2）这个新对象内部的[[Prototype]]特性被赋值为构造函数的prototype属性。</p>
+<p>（3）构造函数内部的this被赋值为这个新对象。</p>
+<p>（4）执行内部代码，给新对象添加属性。</p>
+<p>（5）如果构造函数返回非空对象，则返回该对象；否则，返回刚创建的新对象。</p>
+<p>可以看出，它不仅看起来和工厂模式像，背后做的事情也像，创建了一个新对象，添加属性和方法，再把这个对象返回。一点不同是在第2步，<strong>新对象的[[Prototype]]特性被赋值为构造函数的prototype属性</strong>，这就为实例和构造函数建立了联系。</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idea<span class="function">.<span class="keyword">constructor</span> == <span class="title">Person</span>  <span class="comment">//true</span></span></span><br></pre></td></tr></table></figure>
+<p>所以，使用构造函数模式创建对象实例，既起到封装、复用的效果，又能为实例和构造函数之间建立联系。</p>
+<p>但是，并不代表构造函数是完美的，我们发现构造函数里有方法，方法本身是函数，函数也是对象，这样就等同于，每次创建一个实例的时候，都新建了一个Function实例。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let lisi = <span class="keyword">new</span> Person(<span class="string">"李四"</span>,<span class="number">18</span>,<span class="string">"产品经理"</span>)</span><br><span class="line"></span><br><span class="line">lisi.<span class="built_in">run</span> == idea.<span class="built_in">run</span>  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>两个实例是相互独立的，但其实它们做的是同一件事，这就有些浪费资源。</p>
+<p>怎么办？有一种方法是，把函数定义放在构造函数的外部，你是new的时候发生的事情，我把你放在new操作的外部，不参与不就行了？</p>
+<p>从效果上是可行的，但有几点弊端：</p>
+<ul>
+<li>污染全局作用域</li>
+<li>如果需要多个方法，就要在全局定义多个方法，变得较混乱</li>
+<li>这些方法只是跟单一对象相关，跟其他都无关，归属不清晰</li>
+</ul>
+<p>综上，这个方案是得不偿失的，不建议采用，那有没有更好的方式？</p>
+<p>不急，我们先来看另外一种。</p>
+<p><strong>原型模式</strong></p>
+<p>“每个函数都会创建一个prototype属性”。知道这一点，是理解原型模式的前提。</p>
+<p>prototype是个对象，对象中包含用特定引用类型创建的实例所共享的属性和方法。</p>
+<p>实际上，这个对象就是通过调用构造函数创建的对象的原型。所以，可以在它上面定义的属性和方法，从而被对象实例共享。看代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">person.prototype.name = <span class="string">'idea'</span>;</span><br><span class="line">person.prototype.age = <span class="string">'18'</span>;</span><br><span class="line">person.prototype.work = <span class="string">'程序员'</span>;</span><br><span class="line">person.prototype.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这样以来，当我们想创建对象的时候，可以：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">person1</span> = new Person();</span><br><span class="line"><span class="keyword">let</span> <span class="attr">person2</span> = new Person();</span><br><span class="line">person1.<span class="attr">run</span> == person2.run  //<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>方法run得到共享。</p>
+<p>我们来稍微探讨一下这个效果是怎么产生的。</p>
+<p>前面说过，只要创建一个函数，就会按照特定的规则为这个函数创建一个prototype属性。默认情况下，所有原型对象自动获得一个名为constructor的属性，指回与之关联的构造函数。对前面的例子而言，Person.prototype.constructor指向Person。然后，可能会给原型对象添加其他属性和方法。</p>
+<p>每次创建新实例，实例的内部[[Prototype]]指针就会被赋值为构造函数的原型对象。需要指出的是，并没有访问[[Prototype]]特性的标准方式，但多数浏览器会在每个对象上暴露<strong>proto</strong>属性，通过这个属性可以访问对象的原型。实例便是通过<strong>proto</strong>链接到原型对象，同一个构造函数的不同实例，通过<strong>proto</strong>共享原型对象，而Person.prototype指向原型对象，所以，定义在原型对象上的属性和方法就得到了共享。</p>
+<p>在这个基础之上，Object类型还有一个setPrototypeOf()方法，可以向实例的[[Prototype]]写入新值。这样就可以重写一个对象的原型继承关系.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    age : <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person1 = &#123;</span><br><span class="line">    name:<span class="string">'idea'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(person1,person)</span><br><span class="line">person1 <span class="comment">// &#123;name: "idea"&#125;</span></span><br><span class="line">person1.age  <span class="comment">//18</span></span><br></pre></td></tr></table></figure>
+<p>这个方法接受一个目标对象和一个原型对象，将二者建立联系，使得目标对象继承原型对象的属性。</p>
+<p>但是，修改继承关系是个风险稍高（或者比较损耗性能）的操作，毕竟你不知道会有多少对象与之关联，如果的确需要在创建对象实例的时候为其指定原型这样的操作，有另一种方法——Object.create()。</p>
+<p>Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的<strong>proto</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    age : <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span>  person1 = <span class="built_in">Object</span>.create(person); </span><br><span class="line">person1.age  <span class="comment">//18</span></span><br></pre></td></tr></table></figure>
+<p>由此，还可以了解一个叫“干净”的空对象的东西。我们建立空对象可用这些方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line"><span class="keyword">let</span> obj = <span class="built_in">Object</span>.Create(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>如果你不是对对象完全陌生，应该会知道，通过前面两种方式创建的对象，虽然看起来没有添加属性和方法，但它们有继承自Object的属性和方法，而第三种，它没有属性，也没有方法，所以称作“干净”的空对象。</p>
+<p>以上这些是我们讨论“原型模式”延伸出的小知识点，重点仍在模式本身。</p>
+<p>“原型模式”看似很棒，也不是没有问题。首先，它弱化了向构造函数传参的能力，所有实例默认都是相同的属性值，这显然造成不便，但这不是原型的最大问题。最大问题源自它的共享特性，所谓”成也萧何，败也萧何“，共享对函数来说比较合适，对原始值属性也能接受，如果涉及引用值，问题就暴露了。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person()&#123;&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    bag:[<span class="string">"thinkPad"</span>,<span class="string">"iphone12"</span>,<span class="string">"ipad"</span>,<span class="string">"mac"</span>]</span><br><span class="line">&#125;</span><br><span class="line">let person1 = new Person();</span><br><span class="line">let person2 = new Person();</span><br><span class="line">person1.bag <span class="regexp">//</span>  [<span class="string">"thinkPad"</span>, <span class="string">"iphone12"</span>, <span class="string">"ipad"</span>, <span class="string">"mac"</span>]</span><br><span class="line">person2.bag <span class="regexp">//</span>  [<span class="string">"thinkPad"</span>, <span class="string">"iphone12"</span>, <span class="string">"ipad"</span>, <span class="string">"mac"</span>]</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>修改person1</span><br><span class="line">person1.bag.pop()  </span><br><span class="line">person1.bag   <span class="regexp">//</span>  [<span class="string">"thinkPad"</span>, <span class="string">"iphone12"</span>, <span class="string">"ipad"</span>]</span><br><span class="line">person2.bag   <span class="regexp">//</span>  [<span class="string">"thinkPad"</span>, <span class="string">"iphone12"</span>, <span class="string">"ipad"</span>]</span><br></pre></td></tr></table></figure>
+<p>前面讲引用类型的时候说过，它存的是地址，而不是值本身，这里person1和person2的背包指向的是同一个地址，改一方，另一方也跟着改变，但这里是需要个性化处理的，毕竟，不是每个人都能用上mac…</p>
+<p>由于这个弊端的存在，原型模式通常不会单独使用，就有了下面这种模式。</p>
+<p><strong>组合继承模式</strong></p>
+<p>通过上面的讲述，我们知道，构造函数的成员都是私有的，原型模式的成员都是共享的，既然有些成员需要共享，有些成员需要私有，将二者组合起来不就可以了？</p>
+<p>我们可以把上面的代码改成这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,work,bag</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.work = work;</span><br><span class="line">    <span class="keyword">this</span>.bag = bag;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">'会跑'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"程序员"</span>,[<span class="string">"thinkPad"</span>]);</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person(<span class="string">"lili"</span>,<span class="number">16</span>,<span class="string">"产品经理"</span>,[<span class="string">"mac"</span>]) </span><br><span class="line"></span><br><span class="line">person1.run()  <span class="comment">// idea会跑</span></span><br><span class="line">person2.run()  <span class="comment">// lili会跑</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//有一天idea有钱了（虽然不知道哪一天）</span></span><br><span class="line">person1.bag.push(<span class="string">"mac"</span>)</span><br><span class="line">person1.bag  <span class="comment">//  ["thinkPad", "mac"]</span></span><br><span class="line">person2.bag  <span class="comment">//  ["mac"]</span></span><br></pre></td></tr></table></figure>
+<p>这种方法规避了构造函数和原型模式的不足，同时利用了各自的优点，曾经成为很流行的方式。</p>
+<p>但ES6之后，有了更好用的替代方法。</p>
+<p><strong>Class</strong></p>
+<p>在正统面向对象语言中都有类（class）的概念，类是一个模板，它描述一类对象的行为和状态。即使用类可以创建很多同类对象。</p>
+<p>ES6之前的JavaScript中是没有类的，只能通过其他方法来模拟，比如前面介绍的构造函数，或者组合继承。ES6之后推出了Class这种创建类的新工具。先看类的定义：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;&#125;</span><br><span class="line"><span class="keyword">const</span> Person = <span class="class"><span class="keyword">class</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以直接定义，也可以使用赋值表达式，这看起来是一种全新的方式，但大家应该在很多地方看到过，说class只是一种语法糖。什么是语法糖？语法层面的不同，用起来更舒服、更自然。它背后仍是构造函数与原型的组合模式。</p>
+<p>类可以包含构造函数方法、实例方法、getter函数、setter函数和静态类方法，但都不是必需的。正像上面的示例那样，空的类定义照样有效。默认情况下，类中的代码都在严格模式下执行。</p>
+<p>下面就定义一个完整的类来认识它。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name,age,work)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.work = work</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> getName()&#123;     </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> setAge(newAge)&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = newAge;</span><br><span class="line">    &#125;</span><br><span class="line">    run()&#123;</span><br><span class="line">        console.log(<span class="keyword">this</span>.name + <span class="string">"会跑"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    static sayName()&#123;</span><br><span class="line">        console.log(<span class="string">"say"</span>+<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后可以像这样定义一个实例：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person<span class="number">1</span> = <span class="keyword">new</span> Person(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"程序员"</span>)</span><br></pre></td></tr></table></figure>
+<p>通过定义类，可以非常方便地定义应该存在于实例上的成员、应该存在于原型上的成员，以及应该存在于类本身的成员。</p>
+<p><strong>实例成员</strong></p>
+<p>每次通过new调用类时，都会执行类构造函数。在函数内部，可以为新创建的实例添加“自有”属性。即上面Person类的constructor做的事。</p>
+<p>每个实例都对应一个唯一的成员对象，这意味着所有成员都不会在原型上共享。</p>
+<p><strong>原型方法与访问器</strong></p>
+<p>为了在实例间共享方法，类定义语法把在类块中定义的方法作为原型方法。比如person中的run方法。</p>
+<p>类定义也支持获取和设置访问器。语法与行为跟普通对象一样。就像上面的getName和setAge。它们分别会在访问实例属性或者修改实例属性时被调用。</p>
+<p><strong>静态类</strong></p>
+<p>使用static关键字作为前缀。在静态成员中，this引用类自身。通常用于执行不特定于实例的操作，也不要求存在类的实例。</p>
+<p>比如以上代码的sayName方法：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">person1</span><span class="selector-class">.sayName</span>()  <span class="comment">//Uncaught TypeError: person1.sayName is not a function</span></span><br><span class="line"><span class="selector-tag">Person</span><span class="selector-class">.sayName</span>()  <span class="comment">//sayPerson</span></span><br></pre></td></tr></table></figure>
+<p>使用实例无法调用静态方法，而类本身可以，且返回的this是类本身，name为Person。</p>
+<p><strong>类的继承</strong></p>
+<p>继承很常用，可以省很多重复的定义，比如，上面我们定义了人，那么可以在人的基础上，再定义一个男人，这样，男人是可以继承人的属性和方法的。直接看代码：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Man</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let man1 = <span class="keyword">new</span> <span class="type">Man</span>(<span class="string">"idea"</span>,<span class="number">18</span>,<span class="string">"男程序员"</span>);</span><br><span class="line">man1.work   <span class="comment">//"男程序员"</span></span><br><span class="line">man instanceof <span class="type">Person</span>   <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>可以看出，Man所创建的实例，继承了Person中的属性，且Person存在于man1的原型链上。</p>
+<p>当然，类还有其他一些细节，这里不再赘述，它已经成为现在创建对象和实例最常用的方式，且在流行框架React当中应用广泛。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>此文标题是”对象“之前，因为对象是个很大的话题，篇幅所限，一篇或者两篇文章可能都是说不完的，所以分开说，以减轻大家的阅读负担。</p>
+<p>本文仅介绍了从对象/类不存在到存在的这个环节，曾有过什么方法，现在主要使用什么方法，以及它们的特点，还有一些细节和对象API我们留到”之后“再详细介绍。</p>
+<p>祝学习进步，一起加油。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2021/04/24/wechat_object_one/" title="【轻聊前端】有“对象”之前" target="_blank" rel="external">http://yoursite.com/2021/04/24/wechat_object_one/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/05/09/anything_begining_is_hard/" title="万事开头的那点儿”难“"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/03/27/wechat_string/" title="【轻聊前端】&quot;字符串&quot;江湖"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

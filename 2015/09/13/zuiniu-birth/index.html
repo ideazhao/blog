@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>醉牛前端诞生记 | 灵感之见</title>
+  <meta name="description" content="起源大概两年多以前，和前端结缘，做技术这行的，不管是有项目练手，还是有人带，最主要依然靠自己。现在是信息时代，找资料很方便，当时的我像现在很多新手一样，如饥似渴的在网上找着各种指南，好的学习资料，教程，博客，word、pdf、txt、video，也加各种群求经。逐渐的就找到了很多好的资料。我看着那么多好东西，心想肯定还有其他很多人在找他们，那么为什么还要让他们跟我一样到处找，走那么多没必要的路呢？">
+<meta name="keywords" content="总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="醉牛前端诞生记">
+<meta property="og:url" content="http://yoursite.com/2015/09/13/zuiniu-birth/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="起源大概两年多以前，和前端结缘，做技术这行的，不管是有项目练手，还是有人带，最主要依然靠自己。现在是信息时代，找资料很方便，当时的我像现在很多新手一样，如饥似渴的在网上找着各种指南，好的学习资料，教程，博客，word、pdf、txt、video，也加各种群求经。逐渐的就找到了很多好的资料。我看着那么多好东西，心想肯定还有其他很多人在找他们，那么为什么还要让他们跟我一样到处找，走那么多没必要的路呢？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2015/09/13/zuiniu-birth/zuiniu-birth/1.jpg">
+<meta property="og:updated_time" content="2016-02-24T13:03:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="醉牛前端诞生记">
+<meta name="twitter:description" content="起源大概两年多以前，和前端结缘，做技术这行的，不管是有项目练手，还是有人带，最主要依然靠自己。现在是信息时代，找资料很方便，当时的我像现在很多新手一样，如饥似渴的在网上找着各种指南，好的学习资料，教程，博客，word、pdf、txt、video，也加各种群求经。逐渐的就找到了很多好的资料。我看着那么多好东西，心想肯定还有其他很多人在找他们，那么为什么还要让他们跟我一样到处找，走那么多没必要的路呢？">
+<meta name="twitter:image" content="http://yoursite.com/2015/09/13/zuiniu-birth/zuiniu-birth/1.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2015/09/13/zuiniu-birth/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#起源"><span class="toc-number">1.</span> <span class="toc-text">起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型怎么来的"><span class="toc-number">2.</span> <span class="toc-text">原型怎么来的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么生出来的"><span class="toc-number">3.</span> <span class="toc-text">怎么生出来的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#破茧到1-0版本"><span class="toc-number">4.</span> <span class="toc-text">破茧到1.0版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-zuiniu-birth" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      醉牛前端诞生记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2015/09/13/zuiniu-birth/" class="article-date">
+	  <time datetime="2015-09-12T16:00:00.000Z" itemprop="datePublished">2015-09-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/总结/">总结</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2015/09/13/zuiniu-birth/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>大概两年多以前，和前端结缘，做技术这行的，不管是有项目练手，还是有人带，最主要依然靠自己。现在是信息时代，找资料很方便，当时的我像现在很多新手一样，如饥似渴的在网上找着各种指南，好的学习资料，教程，博客，word、pdf、txt、video，也加各种群求经。逐渐的就找到了很多好的资料。我看着那么多好东西，心想肯定还有其他很多人在找他们，那么为什么还要让他们跟我一样到处找，走那么多没必要的路呢？</p>
+<p>于是在我出来工作之后不久，就拾起了在校时就建立却好久没顾上打理的QQ群，10个人不到，改名叫“web前端~美是编出来的”，这个名字起初是有人质疑的，觉得有点复杂，也有点奇怪。我为什么没改呢，因为它就是我想传达出来的信息，为什么我会做这个并喜欢上它，就是认为它很有趣，很神奇，像魔法一样能做出具有美感的页面。对，就是这样。群里从0到50的人基本都是我出去发广告拉来的，在我去宣传的过程中，在贴吧里看到有一个提供两本书的帖子下面有超过2000条回帖求书，当时我就震惊了，两本书需求就这么大，我有那么多…这更坚定了我把它们分享出去的想法。后来群里的人越来越多，我就没再刻意的去推广过，只是在群里给大家提供一些力所能及的帮助，比如：上传最新最好的资料，发布一些靠谱的职位信息和好文、教程链接等。</p>
+<p>说了这么多似乎和醉牛前端还是没扯上关系，其实不是，都是有因果的，虽然组了QQ群，虽然分享了那么多资源，甚至我在各个社区都开了专栏，也写自己的博客，但逐渐的会觉得仍然有些无力感，因为互联网很大，信息很多，需要帮助的人很多，而它们都太有限了，谁也不能一对一手把手，或者24小时全天候去提供帮助、解决问题。（虽然也没人有义务这么做，谁让我那么爱提别人操心呢~）。所以，效率很低，复用率极低，成本很高。很多东西可能这次你找到了，看过了，下次又找不到了，大家都不是机器，不可能把所有东西记脑子里，也不是所有人都会动手去做一个整理和组织（真的挺繁琐）。于是后来想做一个学习的平台，还想到做几个W作为主干，what、why、how，是什么、为什么、怎么用，然后再进行其他分类，想想真的挺赞。说干就干呗，于是我又到群里去发广告拉人了，拉了总共十几个人，还分成了设计和开发组，跟他们说了要做什么，想做成什么样，还向他们保证了这个项目不会死，我趁着周末把项目策划书都写出来了，他们也提了不少看法和意见。说到现在你可能有疑问，那么它就是醉牛前端吗？不像啊。是的，我保证了它不会死，可到目前为止它还是没有开始做，原因我在第一次发醉牛前端上线公告的那条微博里有说到“想法太多、太大，执行很不够”。</p>
+<h2 id="原型怎么来的"><a href="#原型怎么来的" class="headerlink" title="原型怎么来的"></a>原型怎么来的</h2><p>在很多次思考和否定之前的想法之后，我就想，太大或者太复杂的东西暂时做不了，那么可以做什么呢？</p>
+<p>我们很多人都有自己的网址收藏夹，我看过最恐怖的把整个电脑屏幕都铺满了，都是title，随着时间的推移，不断往里面加的话，都会变得很多，而且没有分类，前提那是你自己的电脑，换了电脑可能就丢了（如果不知道导出或忘记导出）。正是我自己为其所累，就又想了其他的对策。那就是很多人都吐槽却一直在用着的百度，忘了从什么时候起，百度首页不再只是简单的一个搜索框，而是有了一个导航，先给大家看张图，我自己在用的（已经是不完全版，更多的加在了站上）</p>
+<p><img src="zuiniu-birth/1.jpg" alt></p>
+<p>是的，这个导航你可以自定义的添加分类、网址和描述。</p>
+<p>用了一段时间之后分类越来越多，觉得可收藏的东西越来越多。我保证了不死的那个项目其实一直没有忘，既然那样的做不了，我又实在不想什么都不做，那就把自己的想法“简单、再简单”，不要把一件事想太复杂，也不要那也想做这也想做，你会发现到最后你把自己“想”死了。所以，就不贪心，不管是歪瓜裂枣还是烂葫芦，先做出来一个东西，没做出来的再漂亮也是空谈。</p>
+<p>那么做什么内容呢？教程肯定不行，最基本一点，我也没教程资源啊~手册？有人做得挺好了。又想想自己在工作和学习过程中找到过、用到过哪些东西？哪些很好、很常用的东西？为什么不提供一个平台把它们汇集到一起给大家呢？有些方面是很容易就想到的，比如博客/社区、手册/工具和一些常用的组件和库、书籍、教程。于是我就开始干了。</p>
+<h2 id="怎么生出来的"><a href="#怎么生出来的" class="headerlink" title="怎么生出来的"></a>怎么生出来的</h2><p>参照自己在使用百度导航的一些经验就开始做了起来，最开始的UI肯定不是现在的样子，就不给大家看了~做得过程中其实又有了新的一轮梳理，哪些东西应该分到哪一类，哪些应该再进一步的细分，哪些应该再加进来。好的，跟着自己的感觉折腾了几天之后，最开始的样子出来了，就在github上面新建了项目叫notebook（手册），就是想它像一个手册一样方便，大家想用马上拿来用。上传了文件，然后结合gh-pages，就出来了最初的样子。</p>
+<h2 id="破茧到1-0版本"><a href="#破茧到1-0版本" class="headerlink" title="破茧到1.0版本"></a>破茧到1.0版本</h2><p>最初的样子出来后，肯定想找同行朋友看看，因为我自己也不是太满意，内容不够，外观也有些别扭，在听取了一些建议之后，开始第一轮的优化，可以说是脱胎换骨的，找不到一点原先的样子了，当然，也参考了其他的网站。</p>
+<p>只从样子上去改肯定不够，还有几个问题：</p>
+<p><strong>叫什么？</strong></p>
+<p>这个其实是快要上线的时候才想起来的，当时只用了英文的名字，就是现在的域名，中文名还没加上，“醉牛前端”是早前曾经出现过脑海的名字，又想起它来，也没别的更好的想法（取名字向来都是头疼的事情~），于是就用它了，跟“最牛”同音，当然，就是个说法，可能也利于传播把，但没有最牛这回事。</p>
+<p><strong>网站是干什么的呢？</strong></p>
+<p>我要把最主要的目的以最直接明了的方式告诉大家，于是，就出现了右上角那两行字“做专业的前端平台，提供你需要的东西 解放你的收藏夹，让它们只做最主要的事情”</p>
+<p><strong>Logo</strong></p>
+<p>作为一个网站，只有颜色和文字，显然有些单调，起码logo是应该有的，可是，哪里有现成的适合网站的logo呢？于是我开始了新一轮的寻找，看着图标找感觉，找了几个站，也看了很多图标，看着看着，就看到了有一个很多小人的图标集，觉得，既然是做给前端人的，那么，这些没有身份的小人应该能够有一定的寓意，代表整个前端群体，但选哪个都不合适，于是，想选几个，几个呢？logo不能太大，三人成群，那就三个吧，挑什么颜色的呢？我又想到了前端最常用到的三原色“RGB”,“红、绿、蓝”，好的！就这么愉快的决定了。那选择了它们三个，以怎样的形式呈现出来？最初的想法是一个在上面，两个在下面，就是现在大家看到的样子，就用ps组合了一下，放了上去，但是…我还是不满足，就这样而已吗？这里其实是受到鬼哥的影响，他博客头部的“css”图，鼠标悬停是有动效的，所以，我也想做，显然一张图做动效会受到限制，所以，logo1.0废弃，三个图标单独放上去，就有了现在的logo，不复杂，却增添了一点点趣味性。（不要告诉我很多人在看到这篇文的时候才知道logo会动啊？~）</p>
+<p><strong>域名</strong></p>
+<p>既然是网站，就要有个独立域名，才像模像样，用什么呢？试过f2er-club.com，貌似已经被用过，f2er.com，呵呵，当然也被用，然后，我就试探性的打开了后缀列表，看到了.club，然后尝试了一些f2er.club，欧耶，perfect！~虽然出来之后也有人表示过质疑，但我相信它还是比较容易被f2er们接受的，是吧？</p>
+<p><strong>用户体验</strong></p>
+<p>网站做出来了，就是给人用的，虽然我认为它是个“内容”为主的站，但如果只是内容做好体验不好，岂不是很不搭，于是，从背景、边框线条、边距到区域动效、到点击导航不能返回顶部，到考虑到哪个使用的频率应该是最高的来调整侧边导航的排序、到大屏幕下内容不够不能撑满屏幕下部大块留白，到移动端适配。有些是上线之前就做了的，有些是上线后听取同行的意见进行的修改。 当然，没有最好只有更好，它还会变得更好。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网站上线后，得到了同行们的好评，很是欣慰，虽然它就只是link的大汇集，有人说我肯定花了很多的心思，这一点我不否认，不花心思真的不行，各种方法、各个角落，一个个的去找，分类、弄好了之后链接再检查，断断续续做了两个多月，甚至我都很多次几乎做不下去要放弃，因为也要做别的事，也要学习，差点就搁下了。但又不甘心，为了逼自己，在1.0还没出的时候，我就把域名注册下来了，抗战纪念日的假期三天，集中精力弄了两天半，虽然假期也没怎么休息，没出去玩儿，觉得还是蛮有意义。它本身没有一点技术难度，就是为了做一个这样的东西出来给大家，也是给自己，提供一些便利。我相信它~</p>
+<p>Tips：网站会不定期更新内容，我会在微博上面发消息通知大家，大家有建议或想法，最好是github上面提issue，当然，如果你没有github账号，或者不方便，那么<a href="http://weibo.com/ideazhao" target="_blank" rel="noopener">微博</a>留言也行，如果微博也不玩儿，可以邮件：<a href="mailto:420750281@qq.com" target="_blank" rel="noopener">420750281@qq.com</a>或者Q我，如果没有Q…</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2015/09/13/zuiniu-birth/" title="醉牛前端诞生记" target="_blank" rel="external">http://yoursite.com/2015/09/13/zuiniu-birth/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2015/10/17/those-year-i-do-bad/" title="那些年我干过的矬事"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2015/08/08/two-years-fe/" title="两年前端行"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

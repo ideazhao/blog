@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>z-index和zoom这哥俩 | 灵感之见</title>
+  <meta name="description" content="今天为什么要谈这个呢？出于一个页面仔的“窥探”欲吧，也可能不是，因为这些本来就是需要知道的，只是可能没有引起太多人注意。 当然，每个“是什么”的背后都有一个“为什么”，很多人都遇到过“设置了z-index却无用“的问题。 z-index是干嘛的呢？——设置元素在z轴方向的层级。那么怎么用它才是正确滴捏？ 先来看正常情况下 &amp;lt;div class=&amp;quot;mod&amp;quot;&amp;gt;   &amp;l">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="z-index和zoom这哥俩">
+<meta property="og:url" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="今天为什么要谈这个呢？出于一个页面仔的“窥探”欲吧，也可能不是，因为这些本来就是需要知道的，只是可能没有引起太多人注意。 当然，每个“是什么”的背后都有一个“为什么”，很多人都遇到过“设置了z-index却无用“的问题。 z-index是干嘛的呢？——设置元素在z轴方向的层级。那么怎么用它才是正确滴捏？ 先来看正常情况下 &amp;lt;div class=&amp;quot;mod&amp;quot;&amp;gt;   &amp;l">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/10.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/10.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/11.jpg">
+<meta property="og:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/12.jpg">
+<meta property="og:updated_time" content="2016-02-24T13:03:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="z-index和zoom这哥俩">
+<meta name="twitter:description" content="今天为什么要谈这个呢？出于一个页面仔的“窥探”欲吧，也可能不是，因为这些本来就是需要知道的，只是可能没有引起太多人注意。 当然，每个“是什么”的背后都有一个“为什么”，很多人都遇到过“设置了z-index却无用“的问题。 z-index是干嘛的呢？——设置元素在z轴方向的层级。那么怎么用它才是正确滴捏？ 先来看正常情况下 &amp;lt;div class=&amp;quot;mod&amp;quot;&amp;gt;   &amp;l">
+<meta name="twitter:image" content="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/zindex-zoom-and-the-brothers-home-front/1.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-zindex-zoom-and-the-brothers-home-front" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      z-index和zoom这哥俩
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2015/06/12/zindex-zoom-and-the-brothers-home-front/" class="article-date">
+	  <time datetime="2015-06-11T16:00:00.000Z" itemprop="datePublished">2015-06-12</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/CSS/">CSS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2015/06/12/zindex-zoom-and-the-brothers-home-front/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>今天为什么要谈这个呢？出于一个页面仔的“窥探”欲吧，也可能不是，因为这些本来就是需要知道的，只是可能没有引起太多人注意。</p>
+<p>当然，每个“是什么”的背后都有一个“为什么”，很多人都遇到过“设置了z-index却无用“的问题。</p>
+<p>z-index是干嘛的呢？——设置元素在z轴方向的层级。那么怎么用它才是正确滴捏？</p>
+<p>先来看正常情况下</p>
+<pre><code>&lt;div class=&quot;mod&quot;&gt;
+  &lt;h2&gt;z-index&lt;/h2&gt;
+  &lt;div class=&quot;up&quot;&gt;我是上层，哈哈&lt;/div&gt;
+  &lt;div class=&quot;down&quot;&gt;我是底层，呜呜&lt;/div&gt;
+&lt;/div&gt;
+
+css
+
+.mod{
+background: #BEFFFC;
+/*position: relative;
+z-index: 0;*/
+}
+up,.down{
+    height: 50px;
+    left: 0;
+    }
+.up{
+    /*position: relative;*/
+    top: 0;
+    background: rgb(123,213,132);
+    /*z-index: 0;*/
+  }
+.down{
+    /*position: relative;*/
+    top: 0;
+    background: rgb(102,134,232);
+/*    z-index: 0;
+*/  }
+</code></pre><p>如图</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/1.jpg" alt></p>
+<p>1、我们把z-index的注释去掉</p>
+<p>纹丝不动</p>
+<p>2、把up和down的定位加上</p>
+<p>依然纹丝不动，好吧是的，这个时候不动是正常的，它就不该动。</p>
+<p>3、为了能看出差别，父容器定位加上，子元素绝对定位</p>
+<p>如图</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/2.jpg" alt></p>
+<p>第一种情况出现了，视野之中，只剩下down，到这里为止，似乎也没跟我们要说的扯上什么关系，但其实是有关系的，我们给它们设置了z-index:0;那么它们现在就是在同样的层级，当是同样层级时，后面会覆盖前面。</p>
+<p>再来看</p>
+<p>4、去掉定位，使用margin负值把down拉上去</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/3.jpg" alt></p>
+<p>设置z-index，up为2，down为1，纹丝不动</p>
+<p>改为定位</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/4.jpg" alt></p>
+<p>旧景重现，but这个时候up在down上面。这是第二个注意点，需要使用定位，才能让z-index起作用！</p>
+<p>那么，哪种定位呢？我们来试试一个相对一个绝对，为了看得方便，给down设置绝对，并设置top值。层级仍然不变</p>
+<p>如图</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/5.jpg" alt></p>
+<p>如我们所愿，改一下试试，up为1，down为2</p>
+<p>如图</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/6.jpg" alt></p>
+<p>哇偶，没问题</p>
+<p>5、那如果想跟父元素调调呢？</p>
+<p>如元素设为2，子元素设为1</p>
+<p>如图</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/6.jpg" alt></p>
+<p>啊？！我真的没骗你，代码已经改了，可是为什么是这样，好吧难道是值不够大？那再改改，父元素改成10，还是不动，100，还是不动，使大招，999！！偶，还是不行，要吐血了。我们总是想使用暴力手段来尝试一些错误的东西，实际上是在跟自己过不去~这是为什么呢？</p>
+<p>因为，只要你的子元素使用了大于等于0的值，那么它就永远在父元素上面，不管父元素设置了多么大的z-index值，不信？那么是不是我们给z-index设置为0，子元素设置-1就可以了？</p>
+<p>看图</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/7.jpg" alt></p>
+<p>看来没有想的那么简单</p>
+<p>去掉父元素的z-index试试</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/8.jpg" alt></p>
+<p>哇，它们消失了，那么这个时候父元素的z-index值是多少呢？借助浏览器来看一下</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/9.jpg" alt></p>
+<p>好的，看来父元素跟子元素不玩儿这个，它们不互相攀比~</p>
+<p>6、还有一点，子元素的子元素会是个什么情况呢？</p>
+<p>我们索性来直接给它们里面直接套一层div，然后再看会是啥情况</p>
+<p>尝试设置up为2，down为1，up子元素为1，down子元素为2</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/10.jpg" alt></p>
+<p>好吧，我们又和哈哈见面了，可以看出，子元素设置了什么不重要，只要父元素设置了更低的z-index值，则子元素是无能为力的。</p>
+<p>然而这就这样结束了么？别忘了我们刚才没有给mod设置z-index值的时候，up和down是什么表现？</p>
+<p>是的，那么尝试不给down设置值，而只给它的子元素设置z-index，为了看得更清楚，给down定位到偏下位置。</p>
+<p>如下，设置为1</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/10.jpg" alt></p>
+<p>老朋友又见面了。。。</p>
+<p>设置为2</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/11.jpg" alt></p>
+<p>哇哈哈，down的子元素就酱紫完成了对父元素和up的超越，为什么同时超越了up？别忘了，down是在up之后。</p>
+<p>那如果把父元素的z-index清掉，只比较子元素呢，是的，它们同样遵循着”同级后在上，谁高谁在上“的原则。</p>
+<p>好了，说了这么多，来个小结：</p>
+<p>1、z-index起作用的前提是定位，这一点很重要，很多人设置z-index不起作用就是因为这个，更容易忘的是父子层叠的时候。</p>
+<p>2、层级值的比较，只在同级元素或者同级元素的子元素之间，父子之间不会有这样的比较。</p>
+<p>3、只要是子元素有着大于等于0的z-index值，那么它就在父元素之上，想在父元素之下，就设置为小于0的值，并且父元素z-index值为auto；</p>
+<p>除此之外，还有一点需要注意，z-index的值不会继承，还有人说z-index的默认值是0，刚才大家看到的，不够严谨。</p>
+<p>z-index就说到这儿。</p>
+<p>其他可参考 z-index</p>
+<p>下面简单说说zoom</p>
+<p>zoom这个东西大家经常看到使用，而且是对IE浏览器使用。其实是用来缩放的。</p>
+<p>很多文章说它是IE专有属性，其实未必。在火狐和chrome下，它依然会起作用，其他的我没测，不好发表看法。</p>
+<p>这里是来自caniuse的兼容表</p>
+<p><img src="zindex-zoom-and-the-brothers-home-front/12.jpg" alt></p>
+<p>另外两点表现比较诡异，</p>
+<p>1、缩放了高度，宽度未变</p>
+<p>2、缩放只是看起来，而并未对元素进行真正的缩放</p>
+<p>上述两点也是它跟transform：scale表现的区别所在。</p>
+<p>可以对它设置数值，如1，也可以设置百分比，如200%。</p>
+<p>那它可以用来干嘛</p>
+<p>触发ie的hasLayout属性，清除浮动、清除margin的重叠。</p>
+<p>有人说css3中它就会没了，显然不是，它还新增了一些东西，比如：</p>
+<p>zoom-in/zoom-out</p>
+<p>不要误会，它们是属性值，而不是属性，它俩是用来干嘛的呢？</p>
+<p>是改变鼠标的形状的，比如这样</p>
+<p>enter image description here</p>
+<p>具体可以看下张鑫旭的例子CSS3 cursor属性值zoom-in/zoom-out</p>
+<p>好了，由于时间紧迫，这篇文要结尾了。不知是否能够对你有所帮助，可能有所疏漏，下次有时间再来祥谈。</p>
+<p>欢迎关注微信公众号: 前端周末</p>
+<p>欢迎来这里交流：152128548</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/" title="z-index和zoom这哥俩" target="_blank" rel="external">http://yoursite.com/2015/06/12/zindex-zoom-and-the-brothers-home-front/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2015/06/19/front-home-lineheight-and-vertical/" title="浅析line-height和vertical"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2015/05/09/shen-js-2015/" title="我的“深jsconf2015”之旅"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

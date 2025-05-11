@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>HTML并不简单：自带交互的元素 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  上一篇我没聊过瘾，相信你也没看过瘾，这一篇接着聊。 就刻板印象来说，HTML是用于展示的，最多会联系上语义化、无障碍。 跟交互有什么关系，这不是JavaScript该做的事？ 非也，HTML里有不少元素自带交互，你能想起哪些？input、select，就是表单嘛，还有？ 当然，往下看。 de">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML并不简单：自带交互的元素">
+<meta property="og:url" content="http://yoursite.com/2024/10/01/html_is_not_easy_three/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  上一篇我没聊过瘾，相信你也没看过瘾，这一篇接着聊。 就刻板印象来说，HTML是用于展示的，最多会联系上语义化、无障碍。 跟交互有什么关系，这不是JavaScript该做的事？ 非也，HTML里有不少元素自带交互，你能想起哪些？input、select，就是表单嘛，还有？ 当然，往下看。 de">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d216e1ea6a284ae99de5a6ba0e7ab207~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1746237656&x-orig-sign=FZkxM8plk50bsrAMpZdfccs4Y0Y%3D">
+<meta property="og:image" content="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/537666d5cb634323a4599b3d7cd6e72d~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1746237656&x-orig-sign=N%2BBgvHF0vMGOqBXmGLxM4ivTnBk%3D">
+<meta property="og:image" content="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/36624f14ca554c1bacaa25d8f98f37cf~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1746237656&x-orig-sign=XzdHFfApxJttbcPsyfgli0TuIOo%3D">
+<meta property="og:updated_time" content="2025-04-26T02:01:44.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML并不简单：自带交互的元素">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自阅文集团前端专家张鑫旭所编写的 《HTML并不简单》  上一篇我没聊过瘾，相信你也没看过瘾，这一篇接着聊。 就刻板印象来说，HTML是用于展示的，最多会联系上语义化、无障碍。 跟交互有什么关系，这不是JavaScript该做的事？ 非也，HTML里有不少元素自带交互，你能想起哪些？input、select，就是表单嘛，还有？ 当然，往下看。 de">
+<meta name="twitter:image" content="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d216e1ea6a284ae99de5a6ba0e7ab207~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1746237656&x-orig-sign=FZkxM8plk50bsrAMpZdfccs4Y0Y%3D">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2024/10/01/html_is_not_easy_three/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#details"><span class="toc-number">1.</span> <span class="toc-text">details</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dialog"><span class="toc-number">2.</span> <span class="toc-text">dialog</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#form和自动关闭"><span class="toc-number">2.0.1.</span> <span class="toc-text">form和自动关闭</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭来源"><span class="toc-number">2.0.2.</span> <span class="toc-text">关闭来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#顶层特性"><span class="toc-number">2.0.3.</span> <span class="toc-text">顶层特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原生弹层"><span class="toc-number">3.</span> <span class="toc-text">原生弹层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fieldset"><span class="toc-number">4.</span> <span class="toc-text">fieldset</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#是不是后悔没早点get这个知识点？"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">是不是后悔没早点get这个知识点？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#progress进度条"><span class="toc-number">5.</span> <span class="toc-text">progress进度条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meter"><span class="toc-number">6.</span> <span class="toc-text">meter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#小结"><span class="toc-number">6.0.1.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-html_is_not_easy_three" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML并不简单：自带交互的元素
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/10/01/html_is_not_easy_three/" class="article-date">
+	  <time datetime="2024-09-30T16:00:00.000Z" itemprop="datePublished">2024-10-01</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/10/01/html_is_not_easy_three/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自阅文集团前端专家<strong>张鑫旭</strong>所编写的 <strong>《HTML并不简单》</strong></p>
+</blockquote>
+<p>上一篇我没聊过瘾，相信你也没看过瘾，这一篇接着聊。</p>
+<p>就刻板印象来说，HTML是用于展示的，最多会联系上语义化、无障碍。</p>
+<p>跟交互有什么关系，这不是JavaScript该做的事？</p>
+<p>非也，HTML里有不少元素自带交互，你能想起哪些？<code>input、select</code>，就是表单嘛，还有？</p>
+<p>当然，往下看。</p>
+<h2 id="details"><a href="#details" class="headerlink" title="details"></a>details</h2><p>这个单词很常用，见名知意，详情，但元素并不常用，按照语义来说，它可以用在展示不全内容的地方。</p>
+<p><code>details</code>通常和<code>summary</code>同时使用，一个概括，一个详情，看起来很合理。</p>
+<p>所以，<code>details</code>的常规应用就是：</p>
+<pre><code>&lt;details open&gt;
+    &lt;summary&gt;这是摘要&lt;/summary&gt;
+    &lt;p&gt;这里是具体的描述，标签相对随意&lt;/p&gt;
+&lt;/details&gt;
+</code></pre><p>效果如图：</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d216e1ea6a284ae99de5a6ba0e7ab207~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1746237656&amp;x-orig-sign=FZkxM8plk50bsrAMpZdfccs4Y0Y%3D" alt></p>
+<p>通过点击摘要的部分，可以展开和闭合详情，是不是很常见，也没想到会原生支持？</p>
+<p><code>details</code>是这个交互的核心，而<code>summary</code>是可以缺省的，如果没有，也可以通过切换<code>open</code>属性决定内容的显隐。</p>
+<p>其中的<code>p</code>元素只是示例，可以根据需要，替换成其他元素。</p>
+<p>最常见的使用场景就是悬浮菜单、多项菜单折叠、多级嵌套的树形效果等。</p>
+<h2 id="dialog"><a href="#dialog" class="headerlink" title="dialog"></a>dialog</h2><p>这个也很常见，通常我们创建对话框组件就会用这个名字，而它其实也是原生元素之一，专用来实现对话框。</p>
+<pre><code>&lt;dialog open&gt;
+    &lt;div&gt;打开一个对话框&lt;/div&gt;
+&lt;/dialog&gt;
+</code></pre><p>它的内部没什么限制，能放任意HTML元素，同时，支持使用<code>open</code>属性或者<code>dialog.open()</code>方法打开。</p>
+<p>但有一点要注意，它的默认打开位置不是屏幕中心，是靠近按钮的位置，需要改变位置得使用CSS进行设置。</p>
+<p>说到这里，似乎<code>dialog</code>跟<code>div</code>没有区别，没有比它优势的地方，当然不。</p>
+<h4 id="form和自动关闭"><a href="#form和自动关闭" class="headerlink" title="form和自动关闭"></a>form和自动关闭</h4><p>通常，对话框出现后，会在某个时机被关闭，往往是点击一个按钮，通过JavaScript代码进行关闭，而<code>dialog</code>内置了一种特性，不使用JavaScript代码也能让对话框关闭。</p>
+<pre><code>&lt;dialog&gt;
+    &lt;p&gt;描述文字&lt;/p&gt;
+    &lt;form method=&quot;dialog&quot;&gt;
+        &lt;button&gt;我知道了&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/dialog&gt;
+</code></pre><p>以上这段代码里，<code>form</code>元素设置了<code>method</code>属性，值为<code>‘dialog’</code>，这时候直接点击button即可实现对话框的关闭。</p>
+<p>不过有一点要注意，就是<code>button</code>必须是<code>submit</code>性质的，不能是普通的<code>type=‘button’</code>或者<code>type=‘reset’</code>等，当然，还有一种方法，是给<code>button</code>设置<code>formmethod=&quot;dialog&quot;</code>也能关闭弹窗。</p>
+<h4 id="关闭来源"><a href="#关闭来源" class="headerlink" title="关闭来源"></a>关闭来源</h4><p>这是个比较简单，但可以节省代码的特性，弹窗中常有多个按钮能关闭弹窗，如“确认”、“取消”，我们想知道用户点的是哪个，通常通过传参来判断，但也可以用另一种方法，直接给按钮设置<code>value</code>属性，然后用<code>dialog.returnValue</code>的值进行判断。</p>
+<h4 id="顶层特性"><a href="#顶层特性" class="headerlink" title="顶层特性"></a>顶层特性</h4><p>弹出框最尴尬的事情是什么？就是它被弹出的时候却发现页面上有别的元素比它层级更高，这个问题常用的解决方案是暴力设定<code>z-index</code>，给一个极大值来做保证。</p>
+<p>如果使用原生dialog，这种做法也不必了，因为它有个<code>showModal()</code>方法，这个方法有点厉害，它能够让弹框自动获取焦点，且弹框外元素无法再获取焦点，同时，它的层级是最高的，无需任何CSS样式设置，此特性的英文名叫<code>“top-layer”</code>。</p>
+<h2 id="原生弹层"><a href="#原生弹层" class="headerlink" title="原生弹层"></a>原生弹层</h2><p>虽然<code>dialog</code>元素好用，但对于一些敏捷交互，还是略重，比如：点击按钮预览图片。</p>
+<p>针对此类场景，一个全新的HTML属性就出现了—<code>popover</code>，不仅主流浏览器都支持，而且是一个全局属性，也就是说，它比dialog更加灵活，使用方法如下：</p>
+<pre><code>&lt;button popovertarget=&quot;imagePopover&quot;&gt;点击我&lt;/button&gt;
+&lt;div popover id=&quot;imagePopover&quot;&gt;
+    &lt;img src=&quot;example.jpg&quot; alt=&quot;&quot;&gt;
+&lt;/div&gt;
+</code></pre><p>三个要点：</p>
+<p>1、弹出元素添加<code>popover</code>属性\<br>2、触发弹出的元素设置<code>popovertarget</code>属性\<br>3、popovertarget属性值等同于弹出元素的<code>id</code>值。</p>
+<p>点击按钮之后就会看到打开了图片的一个弹出框。</p>
+<p>并且，它还自带点击外层内容自动关闭的特性，不用我们另外去写clickOutside之类的东西了。</p>
+<p>既然涉及交互，它可以设置样式和响应事件么，可以，用<code>:popover-open</code>伪类可匹配显示的弹层元素，而<code>beforetoggle</code>和<code>toggle</code>这两个事件可感知弹层显隐。</p>
+<h2 id="fieldset"><a href="#fieldset" class="headerlink" title="fieldset"></a>fieldset</h2><p><code>fieldset</code>可以帮助我们天然实现如下的样式：</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/537666d5cb634323a4599b3d7cd6e72d~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1746237656&amp;x-orig-sign=N%2BBgvHF0vMGOqBXmGLxM4ivTnBk%3D" alt></p>
+<p>多天然？你说自己实现也简单呐，不就是一个绝对定位加个背景色搞定嘛，但它能更简单。</p>
+<p>就像这样：</p>
+<pre><code>&lt;fieldset&gt;
+    &lt;legend&gt;标题&lt;/legend&gt;
+&lt;/fieldset&gt;
+</code></pre><p>不需要CSS，是不是简单得出奇？努力拼不过天赋的典范~</p>
+<p>除此之外，它还有个特性很实用，大家平时肯定碰到过这样的需求，用户填写完表单选项后，点击按钮开始处理文件，此时表单需要处于禁用状态，否则用户可能二次操作，这个行为是不可控的，一般怎么做呢，给每个表单分别设置禁用，但这样不论对于开发还是维护都显得繁琐。</p>
+<p>如果，我们将表单元素都包裹在<code>fieldset</code>元素内部，只需要设置一个属性，就可以将整批元素一起禁用，代码如下：</p>
+<pre><code>&lt;fieldset disabled&gt;
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;input type=&quot;text&quot;&gt;
+&lt;/fieldset&gt;
+</code></pre><h5 id="是不是后悔没早点get这个知识点？"><a href="#是不是后悔没早点get这个知识点？" class="headerlink" title="是不是后悔没早点get这个知识点？"></a>是不是后悔没早点get这个知识点？</h5><h2 id="progress进度条"><a href="#progress进度条" class="headerlink" title="progress进度条"></a>progress进度条</h2><p>在上传或者下载文件的时候，通常都要用到进度条，我们习惯引用组件，但如果不用组件，一定要自己写一套来模拟吗？</p>
+<p>其实原生HTML已经有了<code>progress</code>元素，基本使用方法如下：</p>
+<p>#####</p>
+<pre><code>&lt;progress value=&quot;50&quot; max=&quot;100&quot;&gt;&lt;/progress&gt;
+</code></pre><p>只要给它设置<code>value</code>和<code>max</code>的属性，就能展示成一个进度条，如果没有设置<code>value</code>，就是循环等待状态，可用<code>CSS:indeterminate</code>对这种状态做样式设置。</p>
+<h2 id="meter"><a href="#meter" class="headerlink" title="meter"></a>meter</h2><p>如果说前面几个元素，大家还有印象，只是没用过，这个元素怕是很多人没见过，它是用来干什么呢。</p>
+<p><code>meter</code>直译是“计量器”的意思，计量器的特点：有刻度，可计量。</p>
+<p>这两个特点你会想到什么？用不同长度或者颜色来表示“程度”对吧。</p>
+<p>不卖关子，密码强度就是它的一个典型适用场景。</p>
+<pre><code>&lt;meter value=&quot;20&quot; min=&quot;0&quot; max=&quot;100&quot; low=&quot;30&quot; high=&quot;60&quot; optimum=&quot;80&quot;&gt;&lt;/meter&gt;
+</code></pre><p>这么多属性，简直量身定做，这样以来，不用javaScript，仅用CSS就能实现对它的控制了。</p>
+<p>其中，<code>low</code>表示值过低，<code>high</code>表示值过高，值是高还是低的标准，则由<code>optimum</code>来决定，<code>optimum</code>在哪个区间就说明哪个区间是正常的，其他区间都为异常。</p>
+<p>用于设置其样式的是这一批伪类：</p>
+<pre><code>-webkit-meter-inner-element
+-webkit-meter-bar
+-webkit-meter-even-less-good-value
+-webkit-meter-optimum-value
+-webkit-meter-suboptimum-value
+</code></pre><p>大致效果如下：</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/36624f14ca554c1bacaa25d8f98f37cf~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1746237656&amp;x-orig-sign=XzdHFfApxJttbcPsyfgli0TuIOo%3D" alt></p>
+<p>大家最好自行写个demo体会一下。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>又是收获满满的一篇！两篇文章看过，是不是不敢再小看HTML了？​</p>
+<p>近些年标准制订者一直在努力推进添加各种能力和特性，不仅HTML，JavaScript和CSS也一样，知识库的更新速度远超不少开发伙伴的学习速度，所以我们要保持持续的关注和学习为好。</p>
+<p>欢迎关注公众号：前端说书匠。好文第一时间接收不迷路！~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2024/10/01/html_is_not_easy_three/" title="HTML并不简单：自带交互的元素" target="_blank" rel="external">http://yoursite.com/2024/10/01/html_is_not_easy_three/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/10/08/html_is_not_easy_four/" title="HTML并不简单：小角色的大用途"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/09/28/html_is_not_easy_two/" title="HTML并不简单：看似普通的元素"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

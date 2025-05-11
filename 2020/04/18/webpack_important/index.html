@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Webpack上手指北 | 灵感之见</title>
+  <meta name="description" content="近几年，打包构建工具层出不穷，前有Grunt、Gulp，后有Webpack、Rollup等，它们各有优势，均受到部分开发者的欢迎，本文聊聊Webpack的使用。 模块化不论是新工具还是新技术，都是为了解决问题而存在，那么构建工具解决什么问题呢？ 众所周知，最初的网页十分简单，没有多少交互，代码量也少，但随着技术的发展，JavaScript已经不仅仅用来实现简单的表单提交等功能，引入多个js文件到页">
+<meta name="keywords" content="总结,Webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack上手指北">
+<meta property="og:url" content="http://yoursite.com/2020/04/18/webpack_important/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="近几年，打包构建工具层出不穷，前有Grunt、Gulp，后有Webpack、Rollup等，它们各有优势，均受到部分开发者的欢迎，本文聊聊Webpack的使用。 模块化不论是新工具还是新技术，都是为了解决问题而存在，那么构建工具解决什么问题呢？ 众所周知，最初的网页十分简单，没有多少交互，代码量也少，但随着技术的发展，JavaScript已经不仅仅用来实现简单的表单提交等功能，引入多个js文件到页">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/webpack_use/chunk.jpg">
+<meta property="og:updated_time" content="2020-04-18T10:06:21.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack上手指北">
+<meta name="twitter:description" content="近几年，打包构建工具层出不穷，前有Grunt、Gulp，后有Webpack、Rollup等，它们各有优势，均受到部分开发者的欢迎，本文聊聊Webpack的使用。 模块化不论是新工具还是新技术，都是为了解决问题而存在，那么构建工具解决什么问题呢？ 众所周知，最初的网页十分简单，没有多少交互，代码量也少，但随着技术的发展，JavaScript已经不仅仅用来实现简单的表单提交等功能，引入多个js文件到页">
+<meta name="twitter:image" content="http://yoursite.com/img/webpack_use/chunk.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2020/04/18/webpack_important/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-webpack_important" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Webpack上手指北
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/04/18/webpack_important/" class="article-date">
+	  <time datetime="2020-04-17T16:00:00.000Z" itemprop="datePublished">2020-04-18</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Webpack/">Webpack</a>, <a class="article-tag-link" href="/tags/总结/">总结</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/04/18/webpack_important/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>近几年，打包构建工具层出不穷，前有Grunt、Gulp，后有Webpack、Rollup等，它们各有优势，均受到部分开发者的欢迎，本文聊聊Webpack的使用。</p>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>不论是新工具还是新技术，都是为了解决问题而存在，那么构建工具解决什么问题呢？</p>
+<p>众所周知，最初的网页十分简单，没有多少交互，代码量也少，但随着技术的发展，JavaScript已经不仅仅用来实现简单的表单提交等功能，引入多个js文件到页面中成为常态，但这种做法有很多缺点：</p>
+<p>1）需要手动维护文件的加载顺序。且多个js之间通常有依赖关系，难以清晰分辨谁依赖了谁。</p>
+<p>2）每一个<code>&lt;script&gt;</code>标签都需要向服务器发送请求，过多的请求会严重拖慢渲染速度。</p>
+<p>3）每个<code>&lt;script&gt;</code>标签都暴露在全局作用域，如果没有任何处理而直接在代码中进行变量或函数声明，就会造成全局污染。</p>
+<p>模块化解决了这些问题：</p>
+<ul>
+<li><p>通过分离模块，导入和导出，可以清晰地看到模块间的依赖关系。</p>
+</li>
+<li><p>借助工具进行打包，页面中只需要加载合并后的资源文件，减少了网络开销。</p>
+</li>
+<li><p>模块之间作用域隔离，彼此不会有命名冲突。</p>
+</li>
+</ul>
+<h2 id="使用Webpack的理由"><a href="#使用Webpack的理由" class="headerlink" title="使用Webpack的理由"></a>使用Webpack的理由</h2><p>打包工具众多，为什么选择Webpack？Webpack具备以下几点优势。</p>
+<p>1）默认支持多种模块标准，包括AMD、CommonJS，以及最新的ES6模块。这对于某些同时使用多种模块标准的工程非常有用，Webpack会帮我们处理好不同类型模块之间的依赖关系。</p>
+<p>2）完备的代码分割解决方案。可以分割打包后的资源，首屏只加载必要的部分，不重要的放到后面动态加载。这对于体积较大的应用尤为重要，可有效减小资源体积，提升首页渲染速度。</p>
+<p>3）可以处理各种类型的资源。除JavaScript以外，还可以处理样式、模板、图片等，而开发者需要做的仅仅是导入它们。比如你可以从JavaScript文件导入一个CSS或者PNG，而这一切最终都可以由下面讲到的loader来处理。</p>
+<p>4）庞大的社区支持。除了Webpack核心库以外，还有无数开发者为它编写周边插件和工具，大多数的需求你都可以找到现有解决方案。</p>
+<h2 id="配置与方法"><a href="#配置与方法" class="headerlink" title="配置与方法"></a>配置与方法</h2><p>看看怎么使用。</p>
+<p>依赖Node，这几乎是前端开发的标配，不多说。</p>
+<p>学习一种东西的时候最怕看到各种陌生概念，这里先捋一捋。</p>
+<p>为了便于理解，按照工作流程的阶段：</p>
+<p><code>entry</code>:流程的入口，告诉webpack从哪个文件开始打包，方式包括：字符串、对象、函数等。</p>
+<p><strong>字符串写法</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./entry/file.js'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+<p><strong>对象写法</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    vendors: <span class="string">'./src/vendors.js'</span> <span class="comment">//第三方库入口</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>多页面</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    pageOne: <span class="string">'./src/pageOne/index.js'</span>,</span><br><span class="line">    pageTwo: <span class="string">'./src/pageTwo/index.js'</span>,</span><br><span class="line">    pageThree: <span class="string">'./src/pageThree/index.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>至于函数的方式，可以有逻辑处理的发挥空间，最终返回的还是字符串或者对象。</p>
+<p><code>chunk</code>:字面意思是代码块，存在依赖关系的模块在打包时被封装为一个chunk<br><code>bundle</code>:由chunk得到的打包产物</p>
+<p>所以三者的关系如图：</p>
+<p><img src="/img/webpack_use/chunk.jpg" alt></p>
+<blockquote>
+<p>先消除一个可能的误解，并非是一个entry项对应一个chunk，对应一个bundle，都可能是多个，后面会再说。</p>
+</blockquote>
+<p><code>output</code>:设置输出路径和文件</p>
+<p><strong>单入口</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: <span class="string">'/public/assets'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+<p><strong>多入口</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    about: <span class="string">'./src/about.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: __dirname + <span class="string">'/dist'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里就遇到了上面提到的”多对多“的关系。</p>
+<p>其中filename是输出资源文件名，不仅可以是名称，还可以是相对路径，而且目录不存在也没关系，会自动创建。</p>
+<p>可以看到，filename 使用了<code>[name]</code>，这是因为多个文件需要生成多个对应的文件，<code>[name]</code>类似模板语言，意图是根据入口文件动态生成文件名，以确保唯一性。</p>
+<p>当然，<code>[name]</code>只是模板变量之一，还有可以控制客户端缓存的<code>[hash]</code>、<code>[chunkhash]</code>等，可以精确地让相应文件在客户端得到更新。就像这样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">  filename:<span class="string">'[name]@[hash].js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>loader</code>:字面意思是装载器，可以理解为”预处理器“，Webpack本身只认识JavaScript，对其他类型，比如：样式、图片等，必须预定义一个或多个loader对其进行转译，所以loader赋予webpack处理不同资源的能力，丰富了扩展性。</p>
+<p>用法示例如下：</p>
+<p>首先说明，loader不是webpack自带的，需要安装，比如我们处理样式。</p>
+<blockquote>
+<p>npm install –save-dev css-loader style-loader</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>]     </span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出，loader的套路很简单：</p>
+<p>1) 文件类型<br>2) 对应loader</p>
+<p>需要说明的是：</p>
+<p>1) css-loader 本身仅处理样式的加载，并不负责将样式插入页面，所以通常配合 style-loader 一起使用，预处理器同样。<br>2) use数组当中的loader顺序是有讲究的，它是从后往前进行处理，搞错了顺序同样无法达到想要的效果。</p>
+<p><code>plugin</code>: loader是做某些类型文件的模块转换工作，相比之下，plugin是用来完成一些loader职责之外的任务，更多，更丰富，也增强了webpack的能力。</p>
+<p>用法如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>它的可配置项有很多，这里不再列举，只要知道它是一个具有 apply 属性的 JavaScript ，可以携带参数，所以要向plugin属性传入 new 实例。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>说到这儿，你可能觉得都是零散的概念，它们应该放在哪儿？</p>
+<p>有一种”最佳实践“叫配置分离，即配置文件单独放在一个文件当中，node有package.json，webpack也有，我们上面提到的所有，都应该写在一个叫<code>webpack.config.js</code>的文件当中。譬如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,  <span class="comment">//模式，分为 development 和 production</span></span><br><span class="line">  entry: <span class="string">'./index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'index.bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>,<span class="string">'css-loader'</span>]     </span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最基本的配置就是这样了，如果看做是一条生产线的话，就是从入口文件进，从dist输出。</p>
+<p>实际开发中会加入更多逻辑和工具，代码量会大大增加，但使用方法类似。</p>
+<p><a href="https://www.webpackjs.com/configuration/" target="_blank" rel="noopener">更多配置</a></p>
+<h2 id="常用loader"><a href="#常用loader" class="headerlink" title="常用loader"></a>常用loader</h2><p>说到这儿，你可能会问，我知道webpack拿loader作为工具，但有哪些工具可用呢？下面介绍几个：</p>
+<ul>
+<li>babel-loader</li>
+</ul>
+<p>用途大家都很熟，把ES6+代码编译为ES5，可以让大家在浏览器支持度不是很充分的情况下用新方法编码。</p>
+<p>推荐安装：<code>babel-loader @babel/core @babel/preset-env</code></p>
+<ul>
+<li>ts-loader</li>
+</ul>
+<p>用于连接Webpack和Typescript。</p>
+<ul>
+<li>html-loader</li>
+</ul>
+<p>前面说过，Webpack只认识js，这个loader用于将HTML文件转化为字符串并格式化，通过js加载。</p>
+<ul>
+<li>file-loader</li>
+</ul>
+<p>打包文件类型资源，返回publicPath。<br>对publicPath稍作解释，前面我们看到过path，它是资源打包路径，而publicPath是资源引用路径，即页面当中做引用的静态文件（图片等）。</p>
+<ul>
+<li>vue-loader</li>
+</ul>
+<p>这个应该很多人在用，处理vue组件，除此之外，可能还要安装vue-template-compiler以及前面提到的样式处理loader等。</p>
+<p><a href="https://www.webpackjs.com/loaders/" target="_blank" rel="noopener">更多loader</a></p>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><ul>
+<li>html-webpack-plugin</li>
+</ul>
+<p>自动生成html文件，并且引用相关的 assets 文件。</p>
+<ul>
+<li>mini-css-extract-plugin</li>
+</ul>
+<p>分离CSS，将CSS提取到单独的文件中，支持CSS和sourceMap的按需加载。</p>
+<ul>
+<li>uglifyjs-webpack-plugin</li>
+</ul>
+<p>对js进行压缩混淆。</p>
+<ul>
+<li>Hot Module Replacement</li>
+</ul>
+<p>浏览器自动更新，实时预览修改效果</p>
+<ul>
+<li>CommonsChunkPlugin/SplitChunks</li>
+</ul>
+<p>把多个chunk中的公共部分提取出来，减少重复打包，缩小资源提及，可以更有效利用客户端缓存。</p>
+<p><a href="https://www.webpackjs.com/plugins/" target="_blank" rel="noopener">更多插件</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章已经有点长，但仍有很多东西没有讲到，没有深入，旨在跟大家分享webpack的用途以及大致用法，更详细内容及工具可移步<a href="https://www.webpackjs.com/" target="_blank" rel="noopener">官网</a>查看。</p>
+<p>但对于建立初步的认识应该足够，剩下的，各公司或者业务的特点都不一样，大家可根据具体情况进行定制，总之，工具是为我所用的，是为开发者提供便利的，而不是拦路虎，应该学会并掌握它。</p>
+<p>下篇见！~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2020/04/18/webpack_important/" title="Webpack上手指北" target="_blank" rel="external">http://yoursite.com/2020/04/18/webpack_important/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/04/19/object_copy_and_use/" title="对象拷贝与应用剖析"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/03/31/console_deep_learning/" title="Console很飒，不止log"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

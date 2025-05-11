@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>纵观JS对象的“简”与“繁”（上） | 灵感之见</title>
+  <meta name="description" content="JS这门语言，曾被不少开发者视为玩乐的语言，没有厚度和技术含量的语言，但发展到现在，想必没有人敢再这么说，它能做的事越来越多，所以，这门语言看似知识结构简单，但却在代码的行与行之间藏着很多细节和玄机。 “对象”在JS中是个很有意思的东西，它随处可见，说简单可以很简单，但也可以复杂到让人头皮发麻。 简单如何简单？ var person = new Object(); 这样就可以创建一个名为“pers">
+<meta name="keywords" content="学习、javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="纵观JS对象的“简”与“繁”（上）">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/object_deepsee_one/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="JS这门语言，曾被不少开发者视为玩乐的语言，没有厚度和技术含量的语言，但发展到现在，想必没有人敢再这么说，它能做的事越来越多，所以，这门语言看似知识结构简单，但却在代码的行与行之间藏着很多细节和玄机。 “对象”在JS中是个很有意思的东西，它随处可见，说简单可以很简单，但也可以复杂到让人头皮发麻。 简单如何简单？ var person = new Object(); 这样就可以创建一个名为“pers">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-10T02:35:53.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="纵观JS对象的“简”与“繁”（上）">
+<meta name="twitter:description" content="JS这门语言，曾被不少开发者视为玩乐的语言，没有厚度和技术含量的语言，但发展到现在，想必没有人敢再这么说，它能做的事越来越多，所以，这门语言看似知识结构简单，但却在代码的行与行之间藏着很多细节和玄机。 “对象”在JS中是个很有意思的东西，它随处可见，说简单可以很简单，但也可以复杂到让人头皮发麻。 简单如何简单？ var person = new Object(); 这样就可以创建一个名为“pers">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/object_deepsee_one/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简单"><span class="toc-number">1.</span> <span class="toc-text">简单</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复杂"><span class="toc-number">2.</span> <span class="toc-text">复杂</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象字面量"><span class="toc-number">2.1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式"><span class="toc-number">2.2.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-number">2.3.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型模式"><span class="toc-number">2.4.</span> <span class="toc-text">原型模式</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-object_deepsee_one" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      纵观JS对象的“简”与“繁”（上）
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/01/22/object_deepsee_one/" class="article-date">
+	  <time datetime="2019-01-21T16:00:00.000Z" itemprop="datePublished">2019-01-22</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/学习、javascript/">学习、javascript</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/01/22/object_deepsee_one/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>JS这门语言，曾被不少开发者视为玩乐的语言，没有厚度和技术含量的语言，但发展到现在，想必没有人敢再这么说，它能做的事越来越多，所以，这门语言看似知识结构简单，但却在代码的行与行之间藏着很多细节和玄机。</p>
+<p>“对象”在JS中是个很有意思的东西，它随处可见，说简单可以很简单，但也可以复杂到让人头皮发麻。</p>
+<h1 id="简单"><a href="#简单" class="headerlink" title="简单"></a>简单</h1><p>如何简单？</p>
+<pre><code>var person = new Object();
+</code></pre><p>这样就可以创建一个名为“person”的对象。</p>
+<p>但事实上，没有人会在意它的简单，因为简单的东西往往承担不了重任。</p>
+<p>所以，我们可以从另一个角度去理解它的复杂，就是强大——每一种形式，每一个特性，都为了解决更多问题而生。</p>
+<h1 id="复杂"><a href="#复杂" class="headerlink" title="复杂"></a>复杂</h1><p>像上面那样，我们可以轻松创建一个对象，进一步，为其添加一些属性和方法：</p>
+<pre><code>person.name = &quot;idea&quot;;
+person.age = 18;
+person.run = function(){
+    alert(&quot;I can run!&quot;);
+}
+</code></pre><p>但其实这里我们就会发现需要写很多的“person”，代码不够简洁。</p>
+<p>可以进行如下改进，也就是另外一种写法——“对象字面量”：</p>
+<h2 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h2><pre><code>var person = {
+    name : &quot;idea&quot;;
+    age : 18;
+    run : function(){
+        alert(&quot;I can run!&quot;);
+    }
+}
+</code></pre><p>它有两个优点：<strong>简化代码、凸显封装性</strong>。</p>
+<p>如果你对js不熟，但对css预处理还算熟悉，这就像是less或者sass的嵌套。（后面更深入的东西我还会拿css类比，以帮助理解。</p>
+<p>由此，我们可以像这样创建对象：</p>
+<pre><code>var person1 = {
+    name : &quot;tom&quot;;
+    age : 18;
+    run : function(){
+        alert(&quot;I can run!&quot;);
+    }
+} 
+var person2 = {
+    name : &quot;lili&quot;;
+    age : 16;
+    run : function(){
+        alert(&quot;I can run!&quot;);
+    }
+} 
+...
+</code></pre><p>但其实我们好像又发现一点不那么好的地方，这样以来，我们每创建一个新的实例，都要写这么一大块的代码，显然是冗余的，于是，有人发动脑筋，想了一种办法——“工厂模式”。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>对于工厂模式，可以这么理解，我们需要制作100个同类的产品，但不需要为每件产品都弄一个模子，而是一个模子可以反复用，生产很多很多产品。</p>
+<p>代码就像这样：</p>
+<pre><code>function createPerson(name, age, job){
+    var o = new object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = function(){
+        alert(this.name);
+    }
+    return o;
+}
+
+var person1 = createPerson(&quot;tom&quot;,18,&quot;teacher&quot;);
+var person2 = createPerson(&quot;lili&quot;,16,&quot;doctor&quot;);
+</code></pre><p>这段代码的亮点在最后，我们可以只用一行代码就创建一个对象，并赋予其属性值。</p>
+<p>看起来很不错，但它存在一个难以觉察的不足——我们好像无法获知这个对象的类型。</p>
+<p>这么说其实并不准确，每个对象都有其类型，大不了是Object，但这个结果给不了我们更有价值的东西。所以，要引荐出一个对象世界里的重要角色——“构造函数”。</p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>先看代码：</p>
+<pre><code>function Person(name, age, job){
+this.name = name;
+this.age = age;
+this.job = job;
+this.sayName = function(){
+    alert(this.name);
+    }
+};
+
+var person1 = new Person(&quot;tom&quot;,18,&quot;teacher&quot;);
+var person2 = new Person(&quot;lili&quot;,16,&quot;doctor&quot;);
+</code></pre><p>从面上看，这段代码跟上面那段有这么几点不同：</p>
+<ul>
+<li>没有显式创建对象</li>
+<li>属性和方法直接给了this</li>
+<li>没有返回</li>
+<li>创建新实例的时候，使用了“new”关键字</li>
+<li>名称首字母大写</li>
+</ul>
+<p>为什么说它重要，上面我们只是创建了一个自定义的构造函数，其实js当中有很多内置的构造函数，我们会无数次地使用，比如Array、Date、String等等。</p>
+<p>构造函数和普通函数有什么不同？好像只是首字母大写？</p>
+<p>这么说也没错，它可以当做普通函数使用，就像这样：</p>
+<pre><code>Person(“tom”,18,“teacher”)；
+</code></pre><p>但当它被这样使用了之后，就是作为构造函数：</p>
+<pre><code>var person1 = new Person(&quot;tom&quot;,18,&quot;teacher&quot;);
+</code></pre><p>会经历完全不同的过程。</p>
+<p>构造函数看起来很好用，但它还有需要改进的地方吗？往下看。</p>
+<p>上面那段代码里，有这么一行：</p>
+<pre><code>this.sayName = function(){  
+    alert(this.name);  
+}
+</code></pre><p>它会为新创建的实例新建一个sayName方法，别忘了，方法是赋予对象的函数，函数本身也是对象，所以，person1和person2是两个不同的对象实例，同样，它们的sayName方法也不同（虽然看起来是一个样子）。</p>
+<p>这样以来，name、age和job都共用了，完成同样任务的方法却没有共用，每一个新的实例都会创建一次，显然，这不是最理想的，有办法解决吗？</p>
+<p>我们可以做这样的尝试：</p>
+<pre><code>function Person(name,age,job){
+this.name = name;
+this.age = age;
+this.job = job;
+    this.sayName = sayName;
+};
+
+function sayName(){
+    alert(this.name);
+}
+
+var person1 = new Person(&quot;tom&quot;,18,&quot;teacher&quot;);
+var person2 = new Person(&quot;lili&quot;,16,&quot;doctor&quot;);
+</code></pre><p>和之前的区别就在于，我们把sayName方法提到了函数体的外面，意味着，它是个全局的函数，而不属于某一个。</p>
+<p>这个时候，你会发现一个有趣的现象，如果你写下这么一行代码：</p>
+<pre><code>alert(person1.sayName() == person2.sayName());
+</code></pre><p>它会弹出三个值：”tom、lili、true”。</p>
+<p>首先是里面两个分别执行，然后是外层，这说明，它们俩共用了同一个，不需要担心多余创建的那个函数实例。</p>
+<p>终于皆大欢喜！</p>
+<p>可是…慢着，好像哪里不对？</p>
+<p>你可能记得，说对象字面量的时候，我们提到了封装性，你会发现，这里的sayName方法在函数体的外部，如果有很多个，就会有很多个方法散落在外部，这感觉很糟，这不是我们要的，so，必须找到一个办法解决它，就像上面做的那样。</p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>我们终于迎来了这个重磅的概念，关于这个概念，往往让人觉得是复杂的，抽象的，高深莫测的，其实并不，让我们来看看它具体的表现：</p>
+<pre><code>function Person(){
+
+}
+Person.prototype.name = &quot;alien&quot;;
+Person.prototype.age = &quot;23&quot;;
+Person.prototype.job = &quot;teacher&quot;;
+Person.prototype.sayName = function(){
+    alert(this.name);
+};
+
+var person1 = new Person();
+
+var person2 = new Person();
+</code></pre><p>我们创建一个函数，但里面什么都没有。</p>
+<p>接下来用到了“prototype”，其实每个函数都有一个prototype属性，这个属性是一个指针，所谓指针，就是建立A和B相关联的一个中介，prototype指向一个对象，这个对象，可以为我们提供所有同一类型实例能够共享的属性和方法，听起来是不是很熟悉？——它能为我们带来前面提到的所有。</p>
+<p>但这么说似乎仍然不好理解，所以，你应该对CSS很熟悉，prototype，就相当于为所有可能的子元素，提供了一个父元素，这个父元素的所有属性，都能为子元素所共享，同时，它也不限制子元素的行为。</p>
+<p>即，person1和person2具备Person.prototype所指对象的所有属性和方法，并且能够对其进行覆盖或者添加自身特有的新属性和方法。</p>
+<p>看到这，我们是不是应该准备欢呼“大结局”了呢？的确，已经有不少内容了，可是，事情从来都不像我们想想的那么简单。</p>
+<p>来思考一下，原型虽好，但它是否让我们走向了另一个极端？所有的属性和方法我们都需要共享吗？往往并不是，很多时候，对于某个属性，我们只需要私有即可，而不必共有，那么，什么样的属性私有更合适？既具备私有，又能共有的方案，存在吗？</p>
+<p>想知道答案，且看下回分解~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/01/22/object_deepsee_one/" title="纵观JS对象的“简”与“繁”（上）" target="_blank" rel="external">http://yoursite.com/2019/01/22/object_deepsee_one/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/02/20/workandlife_one/" title="长亭外，悬崖边（一）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/09/05/js_event_type/" title="拨开JS事件的迷雾（二）"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

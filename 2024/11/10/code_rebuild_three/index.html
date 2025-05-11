@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>重构：编程大师的实操指南 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自前ThoughtWorks首席科学家马丁福勒所编写的  《重构：改善既有代码的设计》（第二版）  前面的文章，我们抛出了项目代码中的种种问题，想必你也曾试图改善和优化过，但有时不得法，改不好。 本篇文，介绍一些主要问题的改善方法。 见名知意难以理解的命名无疑是头等问题。 你见过最奇葩的名字是什么？笔者见过以自己名字命名的，用拼音的，用汉字的，用符">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重构：编程大师的实操指南">
+<meta property="og:url" content="http://yoursite.com/2024/11/10/code_rebuild_three/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自前ThoughtWorks首席科学家马丁福勒所编写的  《重构：改善既有代码的设计》（第二版）  前面的文章，我们抛出了项目代码中的种种问题，想必你也曾试图改善和优化过，但有时不得法，改不好。 本篇文，介绍一些主要问题的改善方法。 见名知意难以理解的命名无疑是头等问题。 你见过最奇葩的名字是什么？笔者见过以自己名字命名的，用拼音的，用汉字的，用符">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2025-04-26T02:13:22.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重构：编程大师的实操指南">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自前ThoughtWorks首席科学家马丁福勒所编写的  《重构：改善既有代码的设计》（第二版）  前面的文章，我们抛出了项目代码中的种种问题，想必你也曾试图改善和优化过，但有时不得法，改不好。 本篇文，介绍一些主要问题的改善方法。 见名知意难以理解的命名无疑是头等问题。 你见过最奇葩的名字是什么？笔者见过以自己名字命名的，用拼音的，用汉字的，用符">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2024/11/10/code_rebuild_three/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#见名知意"><span class="toc-number">1.</span> <span class="toc-text">见名知意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局部提炼"><span class="toc-number">2.</span> <span class="toc-text">局部提炼</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量"><span class="toc-number">2.0.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数"><span class="toc-number">2.0.2.</span> <span class="toc-text">函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数对象"><span class="toc-number">3.</span> <span class="toc-text">参数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#派生聚合"><span class="toc-number">4.</span> <span class="toc-text">派生聚合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拆分阶段"><span class="toc-number">5.</span> <span class="toc-text">拆分阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更换算法"><span class="toc-number">6.</span> <span class="toc-text">更换算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道取代循环"><span class="toc-number">7.</span> <span class="toc-text">管道取代循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分解条件表达式"><span class="toc-number">8.</span> <span class="toc-text">分解条件表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并条件表达式"><span class="toc-number">9.</span> <span class="toc-text">合并条件表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卫语句替代嵌套判断"><span class="toc-number">10.</span> <span class="toc-text">卫语句替代嵌套判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数取代参数"><span class="toc-number">11.</span> <span class="toc-text">函数取代参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">12.</span> <span class="toc-text">小结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-code_rebuild_three" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      重构：编程大师的实操指南
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/11/10/code_rebuild_three/" class="article-date">
+	  <time datetime="2024-11-09T16:00:00.000Z" itemprop="datePublished">2024-11-10</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/11/10/code_rebuild_three/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自前ThoughtWorks首席科学家<strong>马丁福勒</strong>所编写的  <strong>《重构：改善既有代码的设计》（第二版）</strong></p>
+</blockquote>
+<p>前面的文章，我们抛出了项目代码中的种种问题，想必你也曾试图改善和优化过，但有时不得法，改不好。</p>
+<p>本篇文，介绍一些主要问题的改善方法。</p>
+<h2 id="见名知意"><a href="#见名知意" class="headerlink" title="见名知意"></a>见名知意</h2><p>难以理解的命名无疑是头等问题。</p>
+<p>你见过最奇葩的名字是什么？笔者见过以自己名字命名的，用拼音的，用汉字的，用符号的，用简写的。</p>
+<p>一个好名字能让人一眼看出变量的用途，但起个好名字并不容易，我们常常会有“先起个名字用着”的想法，这会留后患，当名字和内容不符，会让人产生困惑，从而花更多时间去理解。</p>
+<p>起名字的技巧：</p>
+<p><strong>语义化</strong>：left、work、goods、about—避免生僻单词</p>
+<p><strong>组合</strong>：userinfo-update、form-login—表达更复杂的意思</p>
+<p><strong>名、动区分</strong>：userName（名）、getUserName（动）—区分是什么和干什么</p>
+<p><strong>交互关联</strong>：refreshClick、linkRedirect—用途和触发条件关联</p>
+<p>以上为常用技巧，同时要统一规范，否则会充斥着各种风格，反而引起混乱。</p>
+<p>如果实在想不到好名字，可以到这个站点寻求帮助（<a href="https://unbug.github.io/codelf/）" target="_blank" rel="noopener">https://unbug.github.io/codelf/）</a></p>
+<h2 id="局部提炼"><a href="#局部提炼" class="headerlink" title="局部提炼"></a>局部提炼</h2><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>代码中难免会涉及结果值是由其他变量计算得来，就会存在计算表达式，表达式可能非常复杂而难以阅读。</p>
+<p>这种情况下，局部变量可以帮助我们将表达式分解为容易管理的形式，调试时也更方便。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提炼前</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">order</span>.quantity * <span class="keyword">order</span>.itemPrice -</span><br><span class="line">Math.<span class="built_in">max</span>(0, <span class="keyword">order</span>.quantity - 500) * <span class="keyword">order</span>.itemPrice *</span><br><span class="line">    0.05 +</span><br><span class="line">      Math.<span class="built_in">min</span>(<span class="keyword">order</span>.quantity * <span class="keyword">order</span>.itemPrice * 0.1, 100);</span><br><span class="line"><span class="comment">// 提炼后</span></span><br><span class="line"><span class="keyword">const</span> basePrice = <span class="keyword">order</span>.quantity * <span class="keyword">order</span>.itemPrice;</span><br><span class="line"><span class="keyword">const</span> quantityDiscount = Math.<span class="built_in">max</span>(0, <span class="keyword">order</span>.quantity - 500) * <span class="keyword">order</span>.itemPrice * 0.05;</span><br><span class="line"><span class="keyword">const</span> shipping = Math.<span class="built_in">min</span>(basePrice * 0.1, 100);</span><br><span class="line"><span class="keyword">return</span> basePrice - quantityDiscount + shipping;</span><br></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>我们需要精简过长的函数，理由是什么？</p>
+<p>有人认为是长度，减轻阅读负担；有人认为是复用，只要被用过不止一次的代码，就应该单独一个函数。</p>
+<p>作者认为，最合理的观点是“<strong>将意图与实现分离</strong>”：如果你需要花时间浏览一段代码才能弄清它在干什么，就应该将其提炼到一个函数中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提炼前</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printOwing</span>(<span class="params">invoice</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> outstanding = calculateOutstanding();</span><br><span class="line">  <span class="comment">//print details</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`name: <span class="subst">$&#123;invoice.customer&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`amount: <span class="subst">$&#123;outstanding&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 提炼后</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printOwing</span>(<span class="params">invoice</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> outstanding = calculateOutstanding();</span><br><span class="line">  printDetails(outstanding);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printDetails</span>(<span class="params">outstanding</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`name: <span class="subst">$&#123;invoice.customer&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`amount: <span class="subst">$&#123;outstanding&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参数对象"><a href="#参数对象" class="headerlink" title="参数对象"></a>参数对象</h2><p>我们常会看见，一组数据总是结伴而行，出现在一个又一个函数，我喜欢代之以一个数据结构，如：对象。</p>
+<p><strong>将数据组织成结构</strong>可以使数据项之间的关系变得明晰，参数列表也能缩短，并且，所有使用该参数的函数都会通过同样的名字来访问，从而提升代码一致性。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 基本变量</span><br><span class="line">function amountInvoiced(startDate, endDate) <span class="meta">&#123;...&#125;</span></span><br><span class="line">function amountReceived(startDate, endDate) <span class="meta">&#123;...&#125;</span></span><br><span class="line">function amountOverdue(startDate, endDate) <span class="meta">&#123;...&#125;</span></span><br><span class="line">// 参数对象</span><br><span class="line"><span class="keyword">const</span> <span class="type">DateRange</span> = &#123;</span><br><span class="line"> startDate：“”，</span><br><span class="line"> endDate：“”</span><br><span class="line">&#125;</span><br><span class="line">function amountInvoiced(<span class="type">DateRange</span>) <span class="meta">&#123;...&#125;</span></span><br><span class="line">function amountReceived(<span class="type">DateRange</span>) <span class="meta">&#123;...&#125;</span></span><br><span class="line">function amountOverdue(<span class="type">DateRange</span>) <span class="meta">&#123;...&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="派生聚合"><a href="#派生聚合" class="headerlink" title="派生聚合"></a>派生聚合</h2><p>在软件中，经常需要把数据“喂”给一个程序，让它计算出各种派生信息。</p>
+<p>这些派生信息会在不同的地方用到，因此这些代码也会在不同的地方重复。</p>
+<p>我更愿意把所有计算逻辑收拢到一处，这样始终可以在固定的地方找到和更新它们，也可以一定程度上避免漏改。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 聚合前</span><br><span class="line">function base(aReading) <span class="meta">&#123;...&#125;</span></span><br><span class="line">function taxableCharge(aReading) <span class="meta">&#123;...&#125;</span></span><br><span class="line">// 聚合后</span><br><span class="line">function enrichReading(argReading) &#123;</span><br><span class="line">    <span class="keyword">const</span> aReading = _.cloneDeep(argReading);</span><br><span class="line">    aReading.baseCharge = base(aReading);</span><br><span class="line"> aReading.taxableCharge = taxableCharge(aReading);</span><br><span class="line"> <span class="keyword">return</span> aReading;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这一步通常需要对输入的数据做深拷贝，确保变换不会修改原来的数据。</p>
+<h2 id="拆分阶段"><a href="#拆分阶段" class="headerlink" title="拆分阶段"></a>拆分阶段</h2><p>每当看到一段代码在<strong>同时处理两件不同的事</strong>，就要想到把它拆分成<strong>各自独立</strong>的模块。</p>
+<p>到了需要修改的时候，就可以单独处理模块，而不必同时在脑子里考虑两个不同的目标。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拆分前</span></span><br><span class="line"><span class="keyword">const</span> orderData = orderString.split(<span class="regexp">/\s+/</span>);</span><br><span class="line"><span class="keyword">const</span> productPrice = priceList[orderData[<span class="number">0</span>].split(<span class="string">"-"</span>)[<span class="number">1</span>]]; <span class="keyword">const</span> orderPrice = <span class="built_in">parseInt</span>(orderData[<span class="number">1</span>]) * productPrice;</span><br><span class="line"><span class="comment">// 拆分后</span></span><br><span class="line"><span class="keyword">const</span> orderRecord = parseOrder(order);</span><br><span class="line"><span class="keyword">const</span> orderPrice = price(orderRecord, priceList);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseOrder</span>(<span class="params">aString</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> values = aString.split(<span class="regexp">/\s+/</span>);</span><br><span class="line">  <span class="keyword">return</span> (&#123;</span><br><span class="line">   productID: values[<span class="number">0</span>].split(<span class="string">"-"</span>)[<span class="number">1</span>],</span><br><span class="line">   quantity: <span class="built_in">parseInt</span>(values[<span class="number">1</span>]),</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">price</span>(<span class="params">order, priceList</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> order.quantity * priceList[order.productID];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="更换算法"><a href="#更换算法" class="headerlink" title="更换算法"></a>更换算法</h2><p>随着编程的推进，对问题有了更多理解，我们会发现原先的做法不够好了，这时应该将复杂的东西分解为简单的小块，或者删掉重写。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更换前</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foundPerson</span>(<span class="params">people</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; people.length; i++) &#123;</span><br><span class="line">     <span class="keyword">if</span> (people[i] === <span class="string">"Don"</span>) &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"Don"</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span> (people[i] === <span class="string">"John"</span>) &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"John"</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span> (people[i] === <span class="string">"Kent"</span>) &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"Kent"</span>;</span><br><span class="line">  &#125; </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="string">""</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 更换后</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foundPerson</span>(<span class="params">people</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> candidates = [<span class="string">"Don"</span>, <span class="string">"John"</span>, <span class="string">"Kent"</span>];</span><br><span class="line">  <span class="keyword">return</span> people.find(<span class="function"><span class="params">p</span> =&gt;</span> candidates.includes(p)) || <span class="string">''</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我个人经常会做这样的事，将条件判断更换为环境变量配置，或者更换为映射表，就会更清晰，也能减少代码量。</p>
+<h2 id="管道取代循环"><a href="#管道取代循环" class="headerlink" title="管道取代循环"></a>管道取代循环</h2><p>开发中常常需要对列表项进行处理，比如：寻找目标项、过滤目标项、返回新列表等等。</p>
+<p>如果这些操作用for循环实现，就要仔细甄别循环内部到底做了什么，结果是什么。</p>
+<p>这时候，用管道取代循环就是更好的做法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改造前</span></span><br><span class="line"><span class="keyword">const</span> names = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> i <span class="keyword">of</span> input) &#123;</span><br><span class="line"> <span class="keyword">if</span> (i.job === <span class="string">"programmer"</span>)</span><br><span class="line"> names.push(i.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 改造后</span></span><br><span class="line"><span class="keyword">const</span> names = input</span><br><span class="line"> .filter(<span class="function"><span class="params">i</span> =&gt;</span> i.job === <span class="string">"programmer"</span>)</span><br><span class="line"> .map(<span class="function"><span class="params">i</span> =&gt;</span> i.name)</span><br></pre></td></tr></table></figure>
+<p>最常见的管道非map和filter莫属，使用一组运算来描述迭代过程，入参和返回值都是一个集合。</p>
+<p>改造后，可读性变得更强了，一眼就知道每一步的意图。</p>
+<h2 id="分解条件表达式"><a href="#分解条件表达式" class="headerlink" title="分解条件表达式"></a>分解条件表达式</h2><p><strong>多样的业务需求</strong>产生的条件判断是导致复杂度上升的常见因素。</p>
+<p>我们需要根据不同的条件做不同的事，然后，很快就会得到一个相当长的函数，常常让人弄不清楚每个分支因何而来，又做了什么。</p>
+<p>根据经验，也可以将它分解为多个独立的函数。</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分解前</span></span><br><span class="line"><span class="keyword">if</span> (!aDate.isBefore(plan.summerStart) &amp;&amp; !aDate.isAfter(plan.summerEnd))</span><br><span class="line">  charge = quantity * plan.summerRate;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">charge = quantity * plan.regularRate + plan.regularServiceCharge;</span><br><span class="line"><span class="comment">// 分解后</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">summer</span>())</span><br><span class="line">  charge = <span class="built_in">summerCharge</span>();</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  charge = <span class="built_in">regularCharge</span>();</span><br></pre></td></tr></table></figure>
+<p>别小看这样的改变，从运行层面没什么区别，但它能很大程度避免代码杂糅，也更直观地说明做了什么。</p>
+<h2 id="合并条件表达式"><a href="#合并条件表达式" class="headerlink" title="合并条件表达式"></a>合并条件表达式</h2><p>有时我们会发现这样一串条件检查：<strong>条件各不相同， 最终行为却一致</strong>。</p>
+<p>如果发现这种情况，就应该使用“逻辑 或”和“逻辑与”将它们<strong>合并为一个条件表达式</strong>。</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改造前</span></span><br><span class="line"><span class="keyword">if</span> (anEmployee.seniority &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (anEmployee.monthsDisabled &gt; <span class="number">12</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (anEmployee.isPartTime) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改造后</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">isNotEligibleForDisability</span>()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">function <span class="built_in">isNotEligibleForDisability</span>() &#123;</span><br><span class="line">  <span class="keyword">return</span> ((anEmployee.seniority &lt; <span class="number">2</span>) || (anEmployee.monthsDisabled &gt; <span class="number">12</span>) || (anEmployee.isPartTime));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当维护这段代码的时候，就不需要花太多时间去理解每一个判断的含义和职责，因为赋予了它们一个整体的意义。</p>
+<h2 id="卫语句替代嵌套判断"><a href="#卫语句替代嵌套判断" class="headerlink" title="卫语句替代嵌套判断"></a>卫语句替代嵌套判断</h2><p>什么是<strong>卫语句</strong>？如果某个条件极其罕见，就应该单独检查该条件，并在该条件为真时立刻从函数中返回，这样的单独检查被称为“<strong>卫语句</strong>”(guard clauses)。</p>
+<p>条件表达式可分为两种，分支都是正常行为，使用 if…else…；只有部分分支正常，其余是异常，就可以用卫语句。</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改造前</span></span><br><span class="line">function <span class="built_in">getPayAmount</span>() &#123;</span><br><span class="line">  <span class="keyword">let</span> result;</span><br><span class="line">  <span class="keyword">if</span> (isDead)</span><br><span class="line">   result = <span class="built_in">deadAmount</span>();</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="keyword">if</span> (isSeparated)</span><br><span class="line">     result = <span class="built_in">separatedAmount</span>();</span><br><span class="line">   <span class="keyword">else</span> &#123;</span><br><span class="line">     <span class="keyword">if</span> (isRetired)</span><br><span class="line">       result = <span class="built_in">retiredAmount</span>();</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">       result = <span class="built_in">normalPayAmount</span>();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 改造后</span></span><br><span class="line">function <span class="built_in">getPayAmount</span>() &#123;</span><br><span class="line">      <span class="keyword">if</span> (isDead) <span class="keyword">return</span> <span class="built_in">deadAmount</span>();</span><br><span class="line">      <span class="keyword">if</span> (isSeparated) <span class="keyword">return</span> <span class="built_in">separatedAmount</span>();</span><br><span class="line">      <span class="keyword">if</span> (isRetired) <span class="keyword">return</span> <span class="built_in">retiredAmount</span>();</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">normalPayAmount</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数取代参数"><a href="#函数取代参数" class="headerlink" title="函数取代参数"></a>函数取代参数</h2><p><strong>不要用参数的类型来区分函数要做什么。</strong></p>
+<p>这看似有反常理，参数不就是用来做这个的？</p>
+<p>参数的使用可分成两种：一是决定输出结果的值，二是决定改变谁。</p>
+<p>用函数取代参数，就是第二种情况：<strong>决定改变谁</strong>。</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改造前</span></span><br><span class="line"><span class="keyword">function</span> setDimension(name, <span class="keyword">value</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (name === <span class="string">"height"</span>) &#123;</span><br><span class="line">       <span class="keyword">this</span>.<span class="number">_</span>height = <span class="keyword">value</span>;</span><br><span class="line">       <span class="keyword">return</span>; </span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (name === <span class="string">"width"</span>) &#123;</span><br><span class="line">       <span class="keyword">this</span>.<span class="number">_</span>width = <span class="keyword">value</span>;</span><br><span class="line">       <span class="keyword">return</span>;</span><br><span class="line">      &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 改造后</span></span><br><span class="line"><span class="keyword">function</span> setHeight(<span class="keyword">value</span>) &#123;<span class="keyword">this</span>.<span class="number">_</span>height = <span class="keyword">value</span>;&#125;</span><br><span class="line"><span class="keyword">function</span> setWidth (<span class="keyword">value</span>) &#123;<span class="keyword">this</span>.<span class="number">_</span>width = <span class="keyword">value</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>作者认为，看到函数就要知道它的用途，而不必去通过分析不同的参数来识别它什么时候做了什么。特别是当参数是布尔类型时尤为糟糕，你不知道true或者false到底意味着什么。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本文介绍了共11种改善代码问题的方法和技巧，也是本系列的完结篇。</p>
+<p>它们不是全部，但聪明如你，应该能看出这些方法存在共性，就是“<strong>让代码更好读，更好用</strong>”，所以，你能通过它们得到一些思考和启发，来改善自己项目中遇到的更多问题，才是最棒的。</p>
+<p>下一本，你想看什么，可以在评论区告诉我。</p>
+<p>欢迎关注公众号：<strong>前端说书匠</strong>。好文第一时间接收不迷路！~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2024/11/10/code_rebuild_three/" title="重构：编程大师的实操指南" target="_blank" rel="external">http://yoursite.com/2024/11/10/code_rebuild_three/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/11/17/vue3_code_share_one/" title="Vue.js技术内幕：最好的Vue3.0源码解读书籍"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/10/29/code_rebuild_two/" title="重构：代码的&quot;坏味道&quot;清单"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>是时候再提web标准 | 灵感之见</title>
+  <meta name="description" content="背景web标准是个老生常谈的话题。引入国内的时间，粗略算下来，有十年左右了。但是由于国内前端优秀人才的缺失和相关教育跟进的缓慢，造成了很多人都没有对它引起足够的重视并运用到自己的实际项目当中，同时又花了较多精力在眼花缭乱的新技术方案和工具中，这就造成了技术断层，影响不是一个两个人，而是一大部分，如果再缺少相关的正确引导，就会保留很多不正确的编码习惯，对于个人成长和所做的项目都是不利的。 为什么是时">
+<meta name="keywords" content="总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="是时候再提web标准">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/web_standard/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="背景web标准是个老生常谈的话题。引入国内的时间，粗略算下来，有十年左右了。但是由于国内前端优秀人才的缺失和相关教育跟进的缓慢，造成了很多人都没有对它引起足够的重视并运用到自己的实际项目当中，同时又花了较多精力在眼花缭乱的新技术方案和工具中，这就造成了技术断层，影响不是一个两个人，而是一大部分，如果再缺少相关的正确引导，就会保留很多不正确的编码习惯，对于个人成长和所做的项目都是不利的。 为什么是时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2016/04/09/web_standard/web_standard/example.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/04/09/web_standard/web_standard/taobao.png">
+<meta property="og:updated_time" content="2016-04-09T02:26:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="是时候再提web标准">
+<meta name="twitter:description" content="背景web标准是个老生常谈的话题。引入国内的时间，粗略算下来，有十年左右了。但是由于国内前端优秀人才的缺失和相关教育跟进的缓慢，造成了很多人都没有对它引起足够的重视并运用到自己的实际项目当中，同时又花了较多精力在眼花缭乱的新技术方案和工具中，这就造成了技术断层，影响不是一个两个人，而是一大部分，如果再缺少相关的正确引导，就会保留很多不正确的编码习惯，对于个人成长和所做的项目都是不利的。 为什么是时">
+<meta name="twitter:image" content="http://yoursite.com/2016/04/09/web_standard/web_standard/example.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2016/04/09/web_standard/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题来源"><span class="toc-number">2.</span> <span class="toc-text">问题来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、门槛低、简单"><span class="toc-number">2.1.</span> <span class="toc-text">1、门槛低、简单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、只需要做“对”，不需要做好"><span class="toc-number">2.2.</span> <span class="toc-text">2、只需要做“对”，不需要做好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、热衷于“向前看”"><span class="toc-number">2.3.</span> <span class="toc-text">3、热衷于“向前看”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档结构和意义为先"><span class="toc-number">3.</span> <span class="toc-text">文档结构和意义为先</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">3.1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标题"><span class="toc-number">3.2.</span> <span class="toc-text">标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格"><span class="toc-number">3.3.</span> <span class="toc-text">表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-strong-gt-，-lt-em-gt-，-lt-b-gt-，-lt-i-gt-和其他短语元素"><span class="toc-number">3.4.</span> <span class="toc-text">&lt;strong&gt;，&lt;em&gt;，&lt;b&gt;，&lt;i&gt;和其他短语元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最小化标示"><span class="toc-number">3.5.</span> <span class="toc-text">最小化标示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多种场景的样式"><span class="toc-number">3.6.</span> <span class="toc-text">多种场景的样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html5来了"><span class="toc-number">3.7.</span> <span class="toc-text">html5来了</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需要注意的几点"><span class="toc-number">4.</span> <span class="toc-text">需要注意的几点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#结构和表现分离了吗？"><span class="toc-number">4.1.</span> <span class="toc-text">结构和表现分离了吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#div无罪，table无毒"><span class="toc-number">4.2.</span> <span class="toc-text">div无罪，table无毒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class还是id？"><span class="toc-number">4.3.</span> <span class="toc-text">class还是id？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#克服代码洁癖，html标签并不是越少越好！"><span class="toc-number">4.4.</span> <span class="toc-text">克服代码洁癖，html标签并不是越少越好！</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全面了解，权衡利弊，方可取舍"><span class="toc-number">5.</span> <span class="toc-text">全面了解，权衡利弊，方可取舍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习资源的选择、标准的衡量"><span class="toc-number">6.</span> <span class="toc-text">学习资源的选择、标准的衡量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#被遗忘的角落——无障碍设计"><span class="toc-number">7.</span> <span class="toc-text">被遗忘的角落——无障碍设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web标准之外"><span class="toc-number">8.</span> <span class="toc-text">web标准之外</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-web_standard" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      是时候再提web标准
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2016/04/09/web_standard/" class="article-date">
+	  <time datetime="2016-04-08T16:00:00.000Z" itemprop="datePublished">2016-04-09</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/总结/">总结</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2016/04/09/web_standard/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>web标准是个老生常谈的话题。引入国内的时间，粗略算下来，有十年左右了。但是由于国内前端优秀人才的缺失和相关教育跟进的缓慢，造成了很多人都没有对它引起足够的重视并运用到自己的实际项目当中，同时又花了较多精力在眼花缭乱的新技术方案和工具中，这就造成了技术断层，影响不是一个两个人，而是一大部分，如果再缺少相关的正确引导，就会保留很多不正确的编码习惯，对于个人成长和所做的项目都是不利的。</p>
+<p>为什么是时候再提呢？可以先来看看下面一张具有一定代表性的图，截自我的企鹅群（152128548）</p>
+<p><img src="web_standard/example.jpg" alt></p>
+<p>1、标签仍在被滥用<br>2、重视觉，轻语义和结构<br>3、热衷于跟进热门新技术，不重视基础<br>4、当我在跟大家说重视基础的时候，要么有人说原生js，要么有人说css原理和技巧，没人说html</p>
+<p>由于以上的几点，加上各种场合和会议似乎很少提及这些方面的东西，新手在被老手“牵”着走，老手的精力又不在这些比较基础的东西上。这篇文呢，就是跟大家一起回到起点，去看看怎样做才算是符合了web标准的编码。</p>
+<h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><h3 id="1、门槛低、简单"><a href="#1、门槛低、简单" class="headerlink" title="1、门槛低、简单"></a>1、门槛低、简单</h3><p><strong>一周就可以掌握html，常用标签不多，用不到的不用管</strong></p>
+<p>比如：h1~6、p、span、div、img、a、input等，我们来随意的看一张截图</p>
+<p><img src="web_standard/taobao.png" alt></p>
+<p>上面是某宝PC端的登录页，可能是由于种种原因（不详），只用了少量的标签，所以，并不说它是不好的或者是错的，但它是其他很多人的写照。如果我说html标签有100多个，你会是什么反应？</p>
+<p>1、不知道，没想到有这么多<br>2、知道，但认为很多都用不上</p>
+<p>你会是哪种？</p>
+<p>如何在合适的时候，合适的地方，使用正确的标签，这是web标准的基本要求。后面细说。</p>
+<p><strong>CSS很简单，常用属性也就那么多</strong></p>
+<p>宽、高、边框、背景、定位、浮动、边距，如果你掌握了这么多，那么就能够应对很多页面布局的情况了。如果你因此就认为css很简单，那么就等着它来“惩罚”你吧。</p>
+<p>不好的方面：各种兼容问题，各种奇葩布局要求，各种不可预知的bug</p>
+<p>好的方面：诸多奇妙的技巧和css3新属性，能够帮助我们做出充满美感又神奇的效果</p>
+<p>如果你依然觉得CSS太简单，那么请看一下这里<a href="https://drafts.csswg.org/indexes/，要坚强" target="_blank" rel="noopener">https://drafts.csswg.org/indexes/，要坚强</a>~</p>
+<h3 id="2、只需要做“对”，不需要做好"><a href="#2、只需要做“对”，不需要做好" class="headerlink" title="2、只需要做“对”，不需要做好"></a>2、只需要做“对”，不需要做好</h3><p>很多时候，即使写错了浏览器会包容它，当我们的代码是不规范的，甚至有时候是错的，但是浏览器仍然将它“正常”显示出来，这个时候，我们意识不到自己的错误。认为看起来没问题就没问题，这是很危险的。</p>
+<p>标签不用在意，交给CSS去处理就好，理论上，我们可以通过一定的CSS规则，任意的改变一个元素的表现，这就造成了对html标签的不重视，因为我们总能让它们看起来没有任何问题。</p>
+<h3 id="3、热衷于“向前看”"><a href="#3、热衷于“向前看”" class="headerlink" title="3、热衷于“向前看”"></a>3、热衷于“向前看”</h3><p>学习新技术，丰富自己的技能树——html5、canvas、svg、react、ES6等。</p>
+<p>解决“难题”——觉得一般的工作没什么挑战了，所以不屑于去深挖自己已经会了东西。</p>
+<p>做出炫酷的效果——纯CSS图标、动画，3D动画，canvas动画等。</p>
+<p>跟风式学习——大家都在谈，业界都在捧，看起来很好的东西，就开始躁动不安，跃跃欲试，其实有句话叫做：“基础不牢，地动山摇”，兴致冲冲的去学习新的东西的时候，往往会发现，没有足够的基础，是很难前行的。</p>
+<p>上面说的这些是错的么？当然都对，特别是在技术发展更新迭代速度快的互联网领域，想会得更多让自己更强，同时会的更多在实际应用中可选择的方案也更多，兴趣驱动去学习，这是好事，我自己也是这样的，但我们需要注意的是，学习不是一条直线，不能沿着一条线一直往前冲，除了长度，还有深度，需要我们不断的从各个方面去打磨和填充才能日臻完善。</p>
+<h2 id="文档结构和意义为先"><a href="#文档结构和意义为先" class="headerlink" title="文档结构和意义为先"></a>文档结构和意义为先</h2><p>我们都知道，实现一种效果可以有多种方式，那么哪种才是最优的？来看例子</p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>什么特点呢？最明显的就是有很多项，项和项之间相互独立，竖着排列，像这样</p>
+<p>我是列表<br>我是列表<br>我是列表</p>
+<p>它可以被怎样写呢？</p>
+<p>1、  </p>
+<pre><code>我是列表&lt;br&gt;
+   我是列表&lt;br&gt;
+   我是列表&lt;br&gt;
+</code></pre><p>2、</p>
+<pre><code>&lt;li&gt;我是列表&lt;/li&gt;
+    &lt;li&gt;我是列表&lt;/li&gt;
+    &lt;li&gt;我是列表&lt;/li&gt;
+</code></pre><p>3、</p>
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;我是列表&lt;/li&gt;
+    &lt;li&gt;我是列表&lt;/li&gt;
+    &lt;li&gt;我是列表&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre><p>上面三种是比较直接想到的对的写法，当然也可以用ol，算同一种方法。它们所能实现的效果是类似的，往往我们会从表现的角度考虑说第一种不够灵活，无法控制样式，第二种方法浏览器也不会不搭理你，它会把li解析成块级元素，让它们单独排列，但它失去了告诉浏览器“我是个列表”的标志，也就是外层容器（ul/ol），最好的写法肯定是第三种，它不仅看上去是对的，还告诉浏览器这是个列表，还有列表所应有的特点，比如“缩进”和“着重号”，当然，最大的益处仍然是它是有意义的，也是为什么这里没有提div和p等元素的原因。</p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>作为标题，特点也简单，比页面上其他的文本更大、更粗。<br>我们可以这样写：</p>
+<p>1、    </p>
+<pre><code>&lt;span class=&quot;head&quot;&gt;我是标题&lt;/span&gt;
+</code></pre><p>2、    </p>
+<pre><code>&lt;p&gt;&lt;b&gt;我是标题&lt;/b&gt;&lt;/p&gt;
+</code></pre><p>3、     </p>
+<pre><code>&lt;h1&gt;我是标题&lt;/h1&gt;
+</code></pre><p>不看代码的情况下，三者可以一模一样，但看了代码的话，大家应该都会第三种写法是最好的，第三种写法的好处有哪些？</p>
+<p>1、本身是块级元素<br>2、是独特的，不像p或者span等元素会用到页面当中的很多地方<br>3、更加重要的是，在不加任何css规则的情况下，标题元素仍然明显是个标题，页面的无样式视图将显示其预期的文档结构，正确的标题元素传递了“意义”而不只是表现指令<br>4、屏幕阅读器、手机和其他浏览器也将知道如何处理标题元素<br>5、搜索引擎友好，除了title和meta，标题是最可能存在关键字的地方，利用好它，会更加方便用户找到你的页面</p>
+<p>但是它有没有问题困扰着我们呢，答案是有，h1和h2这些标题的默认样式被认为过于粗大，这会让有些人倾向于使用更高级别的标题元素，其实这个大家都知道，不是大问题，可以用css来控制，前提是：先结构，后表现。至于选择使用h几，也不是没有讲究的，它们既然是分了级别，那自然是有一定意义所在，一般来说，h1是个重要的标识，页面当中有一个就好，然后，不要出现类似h2包裹h1的情况。</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>现在如果提到表格（table），很多人会觉得好笑，使用web标准构建网站的一个最荒诞的说法就是你应该永远不使用表格。</p>
+<p>是的，使用table来布局确实是有劣势，但并不代表我们不能用表格来做适合它做的事，比如：数据化表格。</p>
+<p>最简单的表格可以有下面这个结构：</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+</code></pre><p>有时候，我们会在表格的上方加一点说明性文字，通常我们会习惯性的使用h*或者p标签来包裹这一段内容，如果你是用div，那么…</p>
+<p>其实我们有更好的选择——<code>&lt;caption&gt;</code>，这个是表格自己的专有标题哦，有它为什么我们还要用别的呢？</p>
+<p>除此之外，如果我们想给表格的第一行算作表头，可以怎么做呢？可以这样：</p>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;
+</code></pre><p>把这行代码放在第一行，th标签会给它不同于td的样式来区分出和其他行的不同，此外它可以是行的，也可以是列的，怎么区分呢？还有这个——scope属性scope=row/col，把此属性添加到th标签中即可设置它的归属。</p>
+<p>但这样就够了吗，如果对于简单的表格来说已经挺好，那么好像它还没有比较清晰的逻辑结构，那么，不卖关子了。较完整的表格，应该是下面这样：</p>
+<pre><code>&lt;table summary=&quot;这是一个表格的内容简介&quot; cellspacing=&quot;0&quot;&gt; 
+    &lt;caption&gt;表格标题&lt;/caption&gt; 
+        &lt;thead&gt; 
+            &lt;tr&gt; &lt;th scope=&quot;col&quot; id=&quot;name&quot;&gt;姓名&lt;/th&gt; &lt;th scope=&quot;col&quot; id=&quot;address&quot;&gt;地址&lt;/th&gt; &lt;th scope=&quot;col&quot; id=&quot;databirthday&quot;&gt;出生日期&lt;/th&gt; 
+            &lt;/tr&gt; 
+        &lt;/thead&gt; 
+        &lt;tbody&gt; 
+            &lt;tr&gt; &lt;td&gt;ewee&lt;td&gt; &lt;td&gt;hubei&lt;td&gt; &lt;td&gt;19870102&lt;td&gt; 
+            &lt;/tr&gt; 
+            &lt;tr&gt; &lt;td&gt;rewe&lt;td&gt; &lt;td&gt;wuhan&lt;td&gt; &lt;td&gt;419880103&lt;td&gt; 
+            &lt;/tr&gt; 
+            &lt;tr&gt; &lt;td&gt;ertww&lt;td&gt; &lt;td&gt;yichang&lt;td&gt; &lt;td&gt;19870205&lt;td&gt; 
+            &lt;/tr&gt; 
+    &lt;tbody&gt; 
+    &lt;tfoot&gt;&lt;tr&gt;&lt;td&gt;one&lt;/td&gt;&lt;td&gt;two&lt;/td&gt;&lt;td&gt;three&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt; 
+</code></pre><p>是不是顿觉十分的清晰，慢着，summary=”这是一个表格的内容简介”这句是什么鬼？好吧，看内容便知，它是关于表格的一个简介，这个简介用户是看不到的，屏幕阅读器可以利用该属性。</p>
+<h3 id="lt-strong-gt-，-lt-em-gt-，-lt-b-gt-，-lt-i-gt-和其他短语元素"><a href="#lt-strong-gt-，-lt-em-gt-，-lt-b-gt-，-lt-i-gt-和其他短语元素" class="headerlink" title="&lt;strong&gt;，&lt;em&gt;，&lt;b&gt;，&lt;i&gt;和其他短语元素"></a><code>&lt;strong&gt;</code>，<code>&lt;em&gt;</code>，<code>&lt;b&gt;</code>，<code>&lt;i&gt;</code>和其他短语元素</h3><p> 短语元素，在于控制的颗粒更小，无关布局，和表现也没有太大关系（虽然它会有加粗或者倾斜的效果），用来对于页面中的某些特殊内容做出特别的标识，比如“强调”、“引用”等。</p>
+<p>那么它们的区别在哪儿？</p>
+<p><code>&lt;strong&gt;</code>代替<code>&lt;b&gt;</code>,<code>&lt;em&gt;</code>代替<code>&lt;i&gt;</code></p>
+<p>传达意义和结构，而不是给出表现指令。</p>
+<p><code>&lt;em&gt;</code>表示强调，<code>&lt;strong&gt;</code>表示更加强调，在语音合成器用户代理场景下，它们还表现为音量、音调及语速的区别。如果一个元素需要既强调又斜体，那么我们可以选择正确的标签，然后通过样式来控制其他方面。</p>
+<p>如此之外还有其他短语元素，比如:</p>
+<p><code>&lt;cite&gt;</code>     包含对其他来源的引言或引用<br><code>&lt;code&gt;</code>   指定一个计算机代码片段<br><code>&lt;var&gt;</code>     表示一个变量或者程序参数实例<br>等</p>
+<h3 id="最小化标示"><a href="#最小化标示" class="headerlink" title="最小化标示"></a>最小化标示</h3><p>通常情况下，较少的代码意味着更快的下载，还意味着更少的服务器空间和带宽消耗。有个问题就是，即使你写出了符合web标准的页面仍然不能说明你写出了足够简洁或者合理的代码。正所谓规则是死的，容易做到，碰到实际场景，不同的做法会导致结果不同。在我们成长过程中，会遇到不同的老师，要么是一篇文章，要么是一本书，要么是具体的某个人，追溯到最后仍然是人，不同的人，观点和习惯可能不同。比如，你可能会养成一个习惯就是希望给所有单独添加样式的元素分配一个类，这样做到了较强的可控性，但是，这样引发什么潜在的问题呢？</p>
+<p>1、过多的类<br>2、类的命名难</p>
+<p>除了上面两点，还有一个可能碰到的就是类名重复，然后样式冲突。</p>
+<p>可能上面的问题你都遇到过，或许也想了办法去命名，去避免冲突，但有没有想过前因后果的关系？我们常常会“遇到问题”——“解决问题”，其实我们是在“制造问题”——“解决问题”。从现实情况看，也没有多少人在尝试的去打破它。</p>
+<p>我认为，为什么要命名那么多的类，因为我们可以通过给予不同的类名去区别开来元素样式，即使有个类名叫info，我们可以起个a-info、b-info，那么它们俩就是不同的了，我们还可以.a.info、.b.info，同样能够对其进行区分，再向上追溯，我们为什么要使用类名来区分它们？最大的可能就是，我们在同一个父容器里，使用了较多同类型的子元素或者后代元素，这又是为什么呢？是不是回到了我们最初对于html标签的看法上——常用的标签不多？事实上，我们经常不加思索的使用div、p、span，一个用作大的包含块，一个用作包裹整段文字，span用来包裹行内文字，顶多再加上img、a、i等。我说的是不是很简单（然而这样还是会有人用错）。那么实际上有这么简单吗？正是因为“重视觉，轻语义”，至于我们能想起来使用的正确的，有意义的标签很少，觉得没有必要锱铢必较，那么网页中那么多的内容，难免会出现我们所说的那几个元素的重复，重复了怎么办？样式不同啊，加类，类多了怎么办？想办法区分类，于是，就是你所熟悉的那些行业问题了。</p>
+<p>或许你会说，在大的、复杂项目里面，这些都是不可避免的，好，我同意你的说法，那如果我们能在结构和意义上做得更好，是不是能把这种情况大大改善？</p>
+<p>其实我们的CSS选择器足够而且正在变得更加强大，我们完全没必要把希望都寄托在加类这个看起来很省劲的方法上</p>
+<p>譬如：后代选择器、子选择器、各种伪类选择器、兄弟选择器、属性选择器等。</p>
+<p>小结：任何做法都不要非白即黑，不偷懒，不含糊，把方法合理巧妙的结合起来才是正道！</p>
+<h3 id="多种场景的样式"><a href="#多种场景的样式" class="headerlink" title="多种场景的样式"></a>多种场景的样式</h3><p>在日常项目中，我们很少会碰到特殊的需要，一般只要这样一行代码就够了</p>
+<pre><code>&lt;link href=&quot;&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+</code></pre><p>那么如果有特殊需要，该怎么做？可以看下下面这个表格</p>
+<p>值           描述<br>screen         计算机屏幕（默认）。<br>tty             电传打字机以及类似的使用等宽字符网格的媒介。<br>tv             电视机类型设备（低分辨率、有限的滚屏能力）。<br>projection     放映机。<br>handheld       手持设备（小屏幕、有限带宽）。<br>print          打印预览模式/打印页面。<br>braille          盲人点字法反馈设备。<br>aural          语音合成器。<br>all              适用于所有设备。</p>
+<p>找到它并不难，难的是，很多人可能不知从何处着手，没有这个意识或者概念的话，也就不会去查。了解了这些，就能根据不同场景给我们的页面分配不同的样式规则。</p>
+<h3 id="html5来了"><a href="#html5来了" class="headerlink" title="html5来了"></a>html5来了</h3><p>必须承认一点，当我最初看到html5的时候，内心是激动的，在它出现之前，是没有足够用来表示页面结构的语义化标签供我们使用的，一般我们是用“类”或者“id”来定义它们。不过同时问题又来了，应该怎样正确的使用它们？正如以前我们面对旧版本的html时忽略了很多语义化的标签一样，如果我们不能对这些新增加的标签有正确的认识，那么我们同样会陷入泥淖，虽然看起来会比之前好些。<br>较常用的有以下这些，你已经用起来了吗？</p>
+<p><code>&lt;article&gt;</code><br>定义外部的内容（结构元素）</p>
+<p><code>&lt;aside&gt;</code><br>定义页面内容之外的内容。 aside的内容与article的内容相关。（结构元素）</p>
+<p><code>&lt;figure&gt;</code><br>定义一组媒介内容的分组，以及它们的标题。（结构元素）</p>
+<p><code>&lt;section&gt;</code><br>标签定义文档中的节（section，区段）。比如章节，页眉，页脚或文档中的其他部分（结构元素）</p>
+<p><code>&lt;time&gt;</code><br>定义一个日期/时间    （内联元素）</p>
+<p><code>&lt;audio&gt;</code><br>定义声音内容。(内嵌元素)</p>
+<p><code>&lt;video&gt;</code><br>定义视频。(内嵌元素)</p>
+<p><code>&lt;canvas&gt;</code><br>定义图形,绘制路径，矩形，圆形，字符以及添加图像的方法</p>
+<p><code>&lt;dialog&gt;</code><br>定义对话（会话）dialog元素表示几个人之间的对话。HTML5dt元素可以表示讲话者，HTML5dd元素可以表示讲话内容。（结构元素）</p>
+<p><code>&lt;embed&gt;</code><br>定义外部交互内容或插件 </p>
+<p><code>&lt;footer&gt;</code><br>定义 section 或 page 的页脚</p>
+<p><code>&lt;figcaption&gt;</code><br>定义 figure 元素的标题</p>
+<p><code>&lt;hgroup&gt;</code><br>用于对网页或区段（section）的标题进行组合，对网页或区段的标题进行组合</p>
+<p><code>&lt;header&gt;</code><br>定义 section 或 page 的页眉（介绍信息）</p>
+<p><code>&lt;mark&gt;</code><br>定义带有记号的文本，请在需要突出显示文本时使用 <m> 标签</m></p>
+<p><code>&lt;nav&gt;</code><br>定义导航链接</p>
+<p><code>&lt;source&gt;</code><br>定义媒体资源</p>
+<p>更多标签可以参照这张图 <a href="http://www.inmotionhosting.com/img/infographics/html5_cheat_sheet_tags.png" target="_blank" rel="noopener">http://www.inmotionhosting.com/img/infographics/html5_cheat_sheet_tags.png</a></p>
+<p>或者到这里查看更多<a href="http://www.htmldog.com/guides/html/" target="_blank" rel="noopener">http://www.htmldog.com/guides/html/</a></p>
+<h2 id="需要注意的几点"><a href="#需要注意的几点" class="headerlink" title="需要注意的几点"></a>需要注意的几点</h2><h3 id="结构和表现分离了吗？"><a href="#结构和表现分离了吗？" class="headerlink" title="结构和表现分离了吗？"></a>结构和表现分离了吗？</h3><p>从我们开始接触分离观，可能就有一种认识，html里面不要有内联或者内嵌的样式，就是分离了，其实不然。<br>这带来了一个后果，不重视标签和类依赖。所以，貌似我们已经完全做到了分离，但分离之后，结构并没有做好它的本职工作，然后可能引起我们不得不要用类加以区分，反而因为要照顾到样式，在结构和表现之间建立很多纷繁复杂的联系，这也是带来维护问题的根源之一。不要所有事情都交给CSS解决，让CSS只做它该做的，也不要让自己在标签上使用的失误成为见缝插针的理由。</p>
+<h3 id="div无罪，table无毒"><a href="#div无罪，table无毒" class="headerlink" title="div无罪，table无毒"></a>div无罪，table无毒</h3><p>十几年前，当css出现并且普及，人们就开始了对以往页面的重构，很多使用table布局的页面被重新编写，用什么呢？“div+css”，相信大家都见过此类的教程或者书籍，笔者最初看到它的时候，就认为div是一门技术，因为它们是并列的关系，现在大家都知道，明显不是，但它所带来的影响是巨大的，div开始在页面中频繁出现甚至到泛滥的地步，然后，一批比较早觉醒的人以及html5概念的出现，让人们重新开始重视语义化，对div的态度开始了转变，仿佛用了它就是错误。其实不管是滥用还是不用，都是一种极端的做法，我们应该理性看待技术，它们的产生都是有原因的，也都是有自己的应用场景的，除非它们被更好、更合理的东西所替代（比如html5中所废弃的标签）。否则就应该占有一席之地，不该被区别看待。</p>
+<p>table也是同样，实践证明它不宜用来大范围的复杂布局，但是还是有它的应用场景的，上面表格的部分已做了描述，这里就不多说了。</p>
+<h3 id="class还是id？"><a href="#class还是id？" class="headerlink" title="class还是id？"></a>class还是id？</h3><p>关于这点，可以参考一下知乎上这个问题的答案。<a href="https://www.zhihu.com/question/19550864/answer/23440690" target="_blank" rel="noopener">https://www.zhihu.com/question/19550864/answer/23440690</a></p>
+<p>稍微总结下关注点：</p>
+<p>1、id唯一性，class重复。根据目标元素的重复性和独特性来定<br>2、id权重较高<br>3、外围用id，内部结构善用class<br>4、前端使用id操作DOM，重构使用class操作DOM，UI和交互相互独立互不影响</p>
+<p>另外还提出一点对于class的误用，下面是W3C的描述：</p>
+<p>class：There are no additional restrictions on the tokens authors can use in the class attribute, but authors are encouraged to use values that describe the nature of the content, rather than values that describe the desired presentation of the content.</p>
+<p>意思是：class应该是描述内容的本质(语义)的而不是内容长什么样。</p>
+<p>如果按照这种说法，那么有很多做法都是不妥的，相信大家看过很多“.f12、.fl 、.mr10”之类。</p>
+<h3 id="克服代码洁癖，html标签并不是越少越好！"><a href="#克服代码洁癖，html标签并不是越少越好！" class="headerlink" title="克服代码洁癖，html标签并不是越少越好！"></a>克服代码洁癖，html标签并不是越少越好！</h3><p>代码终究还是要交给浏览器或者是屏幕阅读器去读，而不是人，所以，如果我们只是做到了让人看着是清爽的，舒服的，就跑偏了，当然，这里不是为某些不必要的标签和嵌套找正当理由，而是站在结构和语义的角度，去运用应有的，有意义的标签，标识网页中需要点缀的内容，告诉浏览器它们是什么。而不仅是站在视觉角度考虑需不需要。</p>
+<h2 id="全面了解，权衡利弊，方可取舍"><a href="#全面了解，权衡利弊，方可取舍" class="headerlink" title="全面了解，权衡利弊，方可取舍"></a>全面了解，权衡利弊，方可取舍</h2><p>作为前端，实现一种结构或者一种功能，往往有很多方案可以用，比如上面所列的html结构，还有我们常用到的布局方案，CSS效果实现，js的方法，逻辑实现，我们常提到的框架或者库的选择等</p>
+<p>合理性——语义化、结构、逻辑、交互等<br>成本——学习、合作、迭代、维护等<br>兼容——多版本浏览器，多终端等<br>性能——传输、解析、查询等</p>
+<p>举个栗子，如果你想做动画，怎么做？</p>
+<p>flash、css3、js、svg、canvas、Gif等</p>
+<p>只有当我们对每一种实现方法或方案都熟悉了，知道了它的优缺点和应用场景，才能取舍自如，否则就是捆绑住了自己的手脚。</p>
+<h2 id="学习资源的选择、标准的衡量"><a href="#学习资源的选择、标准的衡量" class="headerlink" title="学习资源的选择、标准的衡量"></a>学习资源的选择、标准的衡量</h2><p>学习资源很重要，是否全面？是否正确？这决定了你对一项技术或者一个知识点的最初印象，一旦跑偏不知要多久才纠正得回来，更何况这种代价很多时候是没必要的。</p>
+<p>这是我在知乎上看到的两个问题可以作为参考<br>“若想学 HTML，应从哪里入手？”<a href="https://www.zhihu.com/question/19753196" target="_blank" rel="noopener">https://www.zhihu.com/question/19753196</a><br>前端开发基础扎实的标准是什么？ <a href="https://www.zhihu.com/question/38922374" target="_blank" rel="noopener">https://www.zhihu.com/question/38922374</a></p>
+<p>大家可以看看哪些是和自己的情况相吻合，它们就真的是很权威很可靠的选择吗？比如：<a href="http://w3school.com.cn/，" target="_blank" rel="noopener">http://w3school.com.cn/，</a> 很多初学者的最爱，而且冲着这域名，也会认为它是跟w3c组织相关的权威的官方网站，实则它和w3c组织半点关系都没有，当然也并不是说它有多差，很多人因之受益，但是这是一种性质上的认知错误，实际上它里面的有些内容也是错误的。</p>
+<p>再者说标准，不同人眼里的标准也是不同的，能写出页面是标准吗？能正确运用所有标签是标准吗？能熟练运用各种布局是标准吗？都不是，我们一直在进行一个“点——线——面——体”的过程，不论是单项技术，还是经验，综合能力，我们都在不断的积累和填充，单个点和单个方向做得比较好，不代表你就处在一个高的水平面上，或许在另一个地方你还缺了一大块，所以，不断摸索、探索，不断努力就好。</p>
+<h2 id="被遗忘的角落——无障碍设计"><a href="#被遗忘的角落——无障碍设计" class="headerlink" title="被遗忘的角落——无障碍设计"></a>被遗忘的角落——无障碍设计</h2><p>开发人员使用HTML、CSS和JavaScript创建富互联网应用程序时，往往把残疾人士抛在脑后，因为我们自己大多数是身体健全的人，所以，往往忽略了另一部分困难人士对产品的使用和需要。其实我们可以扭转这种局面。WAI-ARIA能够提供足够的语义，以确保富互联网应用是可以理解的，并且现在已经得到相对较好的支持。</p>
+<p>WAI-ARIA是一个为残疾人士等提供无障碍访问动态、可交互Web内容的技术规范。主要是为了提升网页的可用性，网页对残疾人士的无障碍化，是对 HTML 语义化的补充。它具备比现有的 HTML 元素和属性更完善的表达能力，并让你页面中元素的关系和含义更明确。</p>
+<p>如何使用WAI-ARIA？</p>
+<p>应用于HTML的ARIA有两部分组成：<strong>role</strong>（角色）和带<strong>aria-</strong>前缀的属性，其作用：</p>
+<p>role(角色)标识了一个元素的作用<br>aria-属性描述了与之有关的事物（特征）及其是什么样的（状态）</p>
+<p>ARIA在HTML中使用有其自己的规范，并不是说在HTML中使用了ARIA，Web页面就无障碍化了，就提高了可访问性了。言外之意，ARIA没有用好，反而会把你带到另一个坑中，使用你的页面可访问性更差。</p>
+<p>更多关于ARIA的使用，是一个大话题，不是一两句能够说得清楚，有兴趣多了解的，可以参考一下这篇文<a href="http://www.w3cplus.com/wai-aria/wai-aria.html" target="_blank" rel="noopener">http://www.w3cplus.com/wai-aria/wai-aria.html</a></p>
+<h2 id="web标准之外"><a href="#web标准之外" class="headerlink" title="web标准之外"></a>web标准之外</h2><p><strong>当量变引起质变</strong></p>
+<p>1、维护性</p>
+<p>举个栗子，如果我们去办事，两三个人时可以随便站，10个人可能就要排队了，如果有更多的人就需要有人维持秩序，再上升一个量级，可能还要分批放人，不然场面会失控。</p>
+<p>页面是同样道理，一两个页面，几十上百行代码，那就不用太在意怎么写，不同方法带来的差异是可以忽略不计的。几十个页面呢？上千行代码呢？</p>
+<p>2、性能</p>
+<p>性能至少关乎两个方面，代码的执行效率和文件大小。一个决定了代码的解析和执行速度，一个决定了传输速度。这里不细说。</p>
+<p>3、兼容</p>
+<p>从当初的浏览器大战，后来比较坑的IE低版本，到现在的各种分辨率移动设备和各种安卓、ios版本浏览器的兼容，微信内核浏览器的兼容，等等。我们过去在做这样的事，将来也会。</p>
+<p>上面说了，做出了符合标准的web页面，不代表我们就万事大吉，还有其他很多的实际问题会在量变到一定程度的情况下给我们制造麻烦，形成质变。那我们将如何应对这些质变？本文不做详述，只作为一个引子，后续会再写一篇文章来和大家探讨“web应变之道”。</p>
+<p>下次见！~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2016/04/09/web_standard/" title="是时候再提web标准" target="_blank" rel="external">http://yoursite.com/2016/04/09/web_standard/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2016/04/20/javascript-study-five/" title="征服javascript学习笔记（五）——引用类型Object和Array"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2016/04/06/动态中寻找答案/" title="动态中寻找答案"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

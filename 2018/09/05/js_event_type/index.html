@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>拨开JS事件的迷雾（二） | 灵感之见</title>
+  <meta name="description" content="上一篇文章，我们聊了什么是事件，以及多种绑定方法，这篇我们接着聊。 怎么实现日常工作中，我们要做的东西通常都是来自某个想法，比如，按钮点击之后要怎样，划过要怎样，还有悬停、滚动、拖拽、手机屏幕转换等等，诸多场景。 但这些想法怎么实现呢？似乎有点无从下手，其实编程语言的设计者已经为我们考虑了这个问题，它为我们准备了很多可以和不同场景相匹配的工具，就好比厨房里的铲子、勺子、筷子、叉子、菜刀，按需取用即">
+<meta name="keywords" content="学习、javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拨开JS事件的迷雾（二）">
+<meta property="og:url" content="http://yoursite.com/2018/09/05/js_event_type/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="上一篇文章，我们聊了什么是事件，以及多种绑定方法，这篇我们接着聊。 怎么实现日常工作中，我们要做的东西通常都是来自某个想法，比如，按钮点击之后要怎样，划过要怎样，还有悬停、滚动、拖拽、手机屏幕转换等等，诸多场景。 但这些想法怎么实现呢？似乎有点无从下手，其实编程语言的设计者已经为我们考虑了这个问题，它为我们准备了很多可以和不同场景相匹配的工具，就好比厨房里的铲子、勺子、筷子、叉子、菜刀，按需取用即">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/event/event_maopao.png">
+<meta property="og:image" content="http://yoursite.com/img/event/event_buhuo.png">
+<meta property="og:updated_time" content="2018-09-08T07:11:10.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拨开JS事件的迷雾（二）">
+<meta name="twitter:description" content="上一篇文章，我们聊了什么是事件，以及多种绑定方法，这篇我们接着聊。 怎么实现日常工作中，我们要做的东西通常都是来自某个想法，比如，按钮点击之后要怎样，划过要怎样，还有悬停、滚动、拖拽、手机屏幕转换等等，诸多场景。 但这些想法怎么实现呢？似乎有点无从下手，其实编程语言的设计者已经为我们考虑了这个问题，它为我们准备了很多可以和不同场景相匹配的工具，就好比厨房里的铲子、勺子、筷子、叉子、菜刀，按需取用即">
+<meta name="twitter:image" content="http://yoursite.com/img/event/event_maopao.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2018/09/05/js_event_type/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么实现"><span class="toc-number">1.</span> <span class="toc-text">怎么实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件类型"><span class="toc-number">2.</span> <span class="toc-text">事件类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件冒泡-捕获"><span class="toc-number">3.</span> <span class="toc-text">事件冒泡/捕获</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件对象"><span class="toc-number">4.</span> <span class="toc-text">事件对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-js_event_type" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      拨开JS事件的迷雾（二）
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/09/05/js_event_type/" class="article-date">
+	  <time datetime="2018-09-04T16:00:00.000Z" itemprop="datePublished">2018-09-05</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/学习、javascript/">学习、javascript</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/09/05/js_event_type/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>上一篇文章，我们聊了什么是事件，以及多种绑定方法，这篇我们接着聊。</p>
+<h2 id="怎么实现"><a href="#怎么实现" class="headerlink" title="怎么实现"></a>怎么实现</h2><p>日常工作中，我们要做的东西通常都是来自某个想法，比如，按钮点击之后要怎样，划过要怎样，还有悬停、滚动、拖拽、手机屏幕转换等等，诸多场景。</p>
+<p>但这些想法怎么实现呢？似乎有点无从下手，其实编程语言的设计者已经为我们考虑了这个问题，它为我们准备了很多可以和不同场景相匹配的工具，就好比厨房里的铲子、勺子、筷子、叉子、菜刀，按需取用即可，而且随着技术的演变，用户场景的丰富，它也会与时俱进，这就涉及到下面要讲的<strong>事件类型</strong>。</p>
+<h2 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h2><p>事件的种类可谓相当繁多，有可见的，有不可见的，大致可分为如下几类：</p>
+<ul>
+<li>UI：load、select、resize、scroll等</li>
+<li>焦点：blur、focus、change等</li>
+<li>鼠标：click、mousedown/up、mouseenter/leave、clientX/clientY等</li>
+<li>键盘：keydown/up、keypress</li>
+<li>触摸：touchstart、touchend、touchmove等</li>
+<li>手势：gesturestart、gestureend、gesturechange等</li>
+<li>设备：orientationchange、deviceorientation等</li>
+</ul>
+<p>上面这些，大都是人为操作，还有些事件是网页状态带来的，比如：网页加载完成、提交表单、网页出错等。</p>
+<p>除此之外，还有变动事件，复合事件，HTML5新加入的一些事件，不再一一列出。</p>
+<p>完整列表可在这里查看<a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank" rel="noopener">Web Events</a></p>
+<p>网页上几乎每个动作都能够触发某个事件，网页代码也时刻准备响应这些事件，有时候它可能给我们带来麻烦，但多数时候是能够为我所用来解决问题的，这里没有多少难以理解的地方，就不再赘述。</p>
+<h2 id="事件冒泡-捕获"><a href="#事件冒泡-捕获" class="headerlink" title="事件冒泡/捕获"></a>事件冒泡/捕获</h2><p>如果说事件当中有几大谜题，冒泡/捕获定能占据一席，按照最简单的逻辑，当满足了“元素、条件、执行内容”三者之后，事件应该就完整了，那冒泡和捕获又是什么意思？为什么会存在呢？</p>
+<p>实际上，他们是<strong>描述事件触发时序问题</strong>的术语。</p>
+<p>事件捕获指的是从总的父级到触发事件的那个节点，即自上而下地触发事件。相反的，事件冒泡是自下而上地触发事件。</p>
+<p>用两个图来展示：</p>
+<p><strong>事件冒泡</strong></p>
+<p><img src="/img/event/event_maopao.png" alt="事件冒泡"></p>
+<p><strong>事件捕获</strong></p>
+<p><img src="/img/event/event_buhuo.png" alt="事件捕获"></p>
+<p>如此说来，这两个过程看似浅显易懂，没那么难理解，可是它们为什么存在？</p>
+<p>找了挺多资料，都只说它们是什么，怎么用，却没有说设计意图，不过还是看到一种可能合理的解释。</p>
+<p>我们可以这样想，网页上的元素都是层层嵌套的，比如，一个body，套个div，再套个p，p里面再加个按钮，它们相当于若干个矩形进行叠放，那么，如果我点一下按钮所在的区域（注意，我强调了区域，即不先入为主地认为点的是按钮），那<strong>到底是点了谁呢</strong>？是按钮本身，还是包含它的p，或者是在点整个页面呢？</p>
+<p>给不出准确答案吧？因为你的手指就在那里，你的想法，或者说，我想让你的点击起到什么效果，得有个设定的方法或者机制吧？之前就说了，用户的任何一种行为都会对应某种结果，那么，浏览器的开发者自然不会让这种模棱两可、无法确定的东西真的没法解决，于是就给出了两种事件流的形式，冒泡或者捕获，开发者可选择是否用、用哪个、怎么用，这就提供了较大的可控性和灵活性。</p>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p>JS领域有一句很有名的话——一切皆为对象，如果单看”对象“这个知识点，似乎一点都不难，每个人都能随口说出几种创建和使用对象的方法，但是，JS当中的很多对象都是很抽象的，不知怎地，它就存在那里了，事件对象便是其中之一。</p>
+<p>先来看段代码：</p>
+<pre><code>function bgChange(e) {
+var rndCol = &apos;rgb(&apos; + random(255) + &apos;,&apos; + random(255) + &apos;,&apos; + random(255) + &apos;)&apos;;
+    e.target.style.backgroundColor = rndCol;
+    console.log(e);
+}  
+
+btn.addEventListener(&apos;click&apos;, bgChange);
+</code></pre><p>不难看出，这段代码可通过点击某元素来改变其背景色，但有个莫名的小东西出现了，就是”e“，这里的e是什么？又能做些什么呢？</p>
+<p>你一定见过它，或者，你见过跟它长得很像的event、evt，这是个固定的指定名称的参数，被称为“事件对象”，<strong>它被自动传递给事件处理函数，以提供额外的功能和信息</strong>。</p>
+<p>初看这种写法，我也很纳闷，有什么事不能明着来，非要暗里作怪？但人家就是这么设计的，我们只能尽量去理解。</p>
+<p>那么，事件对象有什么用途呢，可多着嘞，你一定也见过，譬如：</p>
+<ul>
+<li><p><strong>阻止默认行为</strong><br>什么是默认行为？链接跳转、表单提交等都是，这样写就可以加以阻止：<br>e.preventDefault();</p>
+</li>
+<li><p><strong>阻止事件冒泡</strong><br>事件冒泡是一种事件的执行机制，有些时候会造成意向不到的结果，需要阻止，像这样：<br>e.stopPropagation();</p>
+</li>
+<li><p><strong>事件委托</strong><br>上面一个应用是阻止事件冒泡，但有些时候，它又能给我带来好处，正所谓凡事都有两面性。<br>事件委托的意思是，当一个父元素有很多子元素，每个子元素都将执行同样的事件，那么，没必要给它们重复绑定，只要将事件监听器设置其父元素之上即可，举例如下：</p>
+</li>
+</ul>
+<div class="output_wrapper" id="output_wrapper_id" style="font-size: 16px; color: rgb(62, 62, 62); line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;"><pre style="font-size: inherit; color: inherit; line-height: inherit; margin: 0px; padding: 0px;"><code class="hljs php" style="margin: 0px 2px; line-height: 15px; font-size: 11px; font-weight: normal; word-spacing: -3px; letter-spacing: 0px; font-family: Consolas, Inconsolata, Courier, monospace; border-radius: 0px; overflow-x: auto; padding: 0.5em; background: rgb(30, 30, 30); color: rgb(220, 220, 220); display: block !important; white-space: pre !important; word-wrap: normal !important; word-break: normal !important; overflow: auto !important;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“parent-list”</span>&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-1”</span>&gt;Item&nbsp;<span class="hljs-number" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(184, 215, 163); word-wrap: inherit !important; word-break: inherit !important;">1</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-2”</span>&gt;Item&nbsp;<span class="hljs-number" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(184, 215, 163); word-wrap: inherit !important; word-break: inherit !important;">2</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-3”</span>&gt;Item&nbsp;<span class="hljs-number" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(184, 215, 163); word-wrap: inherit !important; word-break: inherit !important;">3</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-4”</span>&gt;Item&nbsp;<span class="hljs-number" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(184, 215, 163); word-wrap: inherit !important; word-break: inherit !important;">4</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-5”</span>&gt;Item&nbsp;<span class="hljs-number" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(184, 215, 163); word-wrap: inherit !important; word-break: inherit !important;">5</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;id=<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-6”</span>&gt;Item&nbsp;<span class="hljs-number" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(184, 215, 163); word-wrap: inherit !important; word-break: inherit !important;">6</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(87, 166, 74); font-style: italic; word-wrap: inherit !important; word-break: inherit !important;">//&nbsp;Get&nbsp;the&nbsp;element,&nbsp;add&nbsp;a&nbsp;click&nbsp;listener…</span><br>&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“parent-list”</span>).addEventListener(<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“click”</span>,&nbsp;<span class="hljs-function" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(220, 220, 220); word-wrap: inherit !important; word-break: inherit !important;"><span class="hljs-keyword" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(86, 156, 214); word-wrap: inherit !important; word-break: inherit !important;">function</span><span class="hljs-params" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(220, 220, 220); word-wrap: inherit !important; word-break: inherit !important;">(e)</span>&nbsp;</span>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(87, 166, 74); font-style: italic; word-wrap: inherit !important; word-break: inherit !important;">//&nbsp;e.target&nbsp;is&nbsp;the&nbsp;clicked&nbsp;element!</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(87, 166, 74); font-style: italic; word-wrap: inherit !important; word-break: inherit !important;">//&nbsp;If&nbsp;it&nbsp;was&nbsp;a&nbsp;list&nbsp;item</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(86, 156, 214); word-wrap: inherit !important; word-break: inherit !important;">if</span>(e.target&nbsp;&amp;&amp;&nbsp;e.target.nodeName&nbsp;==&nbsp;<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“LI”</span>)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(87, 166, 74); font-style: italic; word-wrap: inherit !important; word-break: inherit !important;">//&nbsp;List&nbsp;item&nbsp;found!&nbsp;&nbsp;Output&nbsp;the&nbsp;ID!</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“List&nbsp;item&nbsp;”</span>,&nbsp;e.target.id.replace(<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“post-“</span>,&nbsp;<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“”</span>),&nbsp;<span class="hljs-string" style="font-size: inherit; line-height: inherit; margin: 0px; padding: 0px; color: rgb(214, 157, 133); word-wrap: inherit !important; word-break: inherit !important;">“&nbsp;was&nbsp;clicked!”</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;});<br></code></pre></div>
+
+
+<p>这是个列表，事件监听器位于ul上，但最终选择执行的目标元素是li。</p>
+<p>当然，事件对象不止这些作用，它还有很多属性可以操作，譬如：</p>
+<ul>
+<li>event.target.nodeName 　　</li>
+<li>event.target.id　　　　　　</li>
+<li>event.target.className　　</li>
+<li>event.target.innerHTML<br>等。</li>
+</ul>
+<p>在此不再赘述，具体可自行试验和研究。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在使用事件的过程中，除了知道用什么，怎么用，还需要注意它可能引起的内存与性能问题。譬如：</p>
+<ul>
+<li>要限制一个页面当中的事件处理程序数量，否则，数量过多会占用太多内存，造成反应不灵敏，建立在冒泡机制上的事件委托可以帮助减少处理程序的数量。</li>
+<li>在浏览器卸载页面之前最好移除页面中的事件处理程序。</li>
+</ul>
+<p>事件的细节十分之多，两篇文章远远说不完，所以，这里只是概述，并未深入，但还是希望能对耐心读完的你有所帮助！</p>
+<p>接下来还会逐个涉及JS领域的其他知识，欲知后事如何，我们下回继续。</p>
+<p>参考链接：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events" target="_blank" rel="noopener">Events</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2018/09/05/js_event_type/" title="拨开JS事件的迷雾（二）" target="_blank" rel="external">http://yoursite.com/2018/09/05/js_event_type/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/01/22/object_deepsee_one/" title="纵观JS对象的“简”与“繁”（上）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/08/31/js_event/" title="拨开JS事件的迷雾（一）"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

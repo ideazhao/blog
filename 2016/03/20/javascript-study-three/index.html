@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>征服javascript学习笔记（三）——基本概念（下） | 灵感之见</title>
+  <meta name="description" content="操作符操作符有多种，包括算术操作符（加、减号）、位操作符、关系操作符和相等操作符，能够适用于很多值，例如：字符串、数字值、布尔值，甚至对象，在应用于对象时，相应的操作符通常会调用对象的ValueOf()或toString()方法，以便取得可以操作的值。 一元操作符 ES中最简单的操作符，只能操作一个值。 1、递增和递减 借鉴自C，各有两个版本：前置和后置。 顾名思义，使用的时候，就是放到前面或者后">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="征服javascript学习笔记（三）——基本概念（下）">
+<meta property="og:url" content="http://yoursite.com/2016/03/20/javascript-study-three/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="操作符操作符有多种，包括算术操作符（加、减号）、位操作符、关系操作符和相等操作符，能够适用于很多值，例如：字符串、数字值、布尔值，甚至对象，在应用于对象时，相应的操作符通常会调用对象的ValueOf()或toString()方法，以便取得可以操作的值。 一元操作符 ES中最简单的操作符，只能操作一个值。 1、递增和递减 借鉴自C，各有两个版本：前置和后置。 顾名思义，使用的时候，就是放到前面或者后">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2023-05-07T09:44:46.134Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="征服javascript学习笔记（三）——基本概念（下）">
+<meta name="twitter:description" content="操作符操作符有多种，包括算术操作符（加、减号）、位操作符、关系操作符和相等操作符，能够适用于很多值，例如：字符串、数字值、布尔值，甚至对象，在应用于对象时，相应的操作符通常会调用对象的ValueOf()或toString()方法，以便取得可以操作的值。 一元操作符 ES中最简单的操作符，只能操作一个值。 1、递增和递减 借鉴自C，各有两个版本：前置和后置。 顾名思义，使用的时候，就是放到前面或者后">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2016/03/20/javascript-study-three/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作符"><span class="toc-number">1.</span> <span class="toc-text">操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语句"><span class="toc-number">2.</span> <span class="toc-text">语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">3.</span> <span class="toc-text">函数</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-javascript-study-three" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      征服javascript学习笔记（三）——基本概念（下）
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2016/03/20/javascript-study-three/" class="article-date">
+	  <time datetime="2016-03-19T16:00:00.000Z" itemprop="datePublished">2016-03-20</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/javascript/">javascript</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2016/03/20/javascript-study-three/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>操作符有多种，包括算术操作符（加、减号）、位操作符、关系操作符和相等操作符，能够适用于很多值，例如：字符串、数字值、布尔值，甚至对象，在应用于对象时，相应的操作符通常会调用对象的ValueOf()或toString()方法，以便取得可以操作的值。</p>
+<p><strong>一元操作符</strong></p>
+<p>ES中最简单的操作符，只能操作一个值。</p>
+<p>1、递增和递减</p>
+<p>借鉴自C，各有两个版本：前置和后置。</p>
+<p>顾名思义，使用的时候，就是放到前面或者后面，能起到什么作用</p>
+<p>var age=29;<br>++age;</p>
+<p>得到的结果为30.“–”符号亦然，会得到28</p>
+<p>至于后置，那就是先输出结果后进行计算了，不再赘述。</p>
+<p>2、一元加、减</p>
+<p>一元加减应用到数值上面，和我们平时的认知没有不同，代表着正负数。</p>
+<p>在对非数值应用时，就像Number()转型函数一样对值进行转换，布尔值true和false会被转换为1和0，字符串值会按照一定的规则进行解析，对象是先调用它们的valueOf()和toString()方法，再转换得到的值。</p>
+<p>一元减操作符可以用于负数，一元加、减均可用于基本运算。</p>
+<p><strong>位操作符</strong></p>
+<p>位操作符用于最基本的层次上，按内存中表示数值的位来操作数值，ES中的所有数值都是以64位格式存储，但位操作符不直接操作64位的数，是将64位的值转换成32位的整数，然后执行操作，最后将结果转换回64位，对于开发人员来说，64位存储格式是透明的，因此整个过程就像只有32位的整数一样。</p>
+<p>对于有符号的整数，32位中的前31位用于表示整数的值，第32位用于表示数值的符号：0表示正数，1表示负数。叫做符号位。</p>
+<p>符号位的值决定了其他位数值的格式，其中，正数以纯二进制格式存储，31位中的每一位都表示2的幂，负数同样以二进制码存储，但使用的格式是二进制补码，计算一个数值的二进制补码，需要进行3个步骤：<br>（1）求这个数值绝对值的二进制码<br>（2）求二进制反码<br>（3）得到的二进制反码加1</p>
+<p>1、按位非（NOT）</p>
+<p>由一个波浪线（~）表示，执行按位非的结果就是返回数值的反码，是ES操作符中少数几个与二进制计算相关的操作符之一。</p>
+<p>2、按位与（AND）</p>
+<p>由一个和号字符（&amp;）表示，有两个操作数，从本质上讲，就是将两个数值的每一位对齐，然后根据有0为0，两个都是1为1的规则，对相同位置上的两个数进行计算</p>
+<p>3、按位或（OR）</p>
+<p>由一个竖线符号（|）表示，也有两个操作数，遵循有1为1，同为0则为0的规则对相同位置的数进行计算。</p>
+<p>4、按位异或（XOR）</p>
+<p>由一个插入符号（^）表示，两个操作数，遵循：两位不同为1，相同为0的规则。</p>
+<p>5、左移</p>
+<p>由（&lt;&lt;）表示，会将数值的所有位向左移动指定的位数。</p>
+<p>6、有符号的右移</p>
+<p>由（&gt;&gt;）表示，会将数值向右移动，但保留符号位。有符号的右移操作和左移操作恰好相反。</p>
+<p>7、无符号右移</p>
+<p>由（&gt;&gt;&gt;）表示，会将所有32位都向右移动。对正数来说，无符号右移的结果和符号右移相同，但对负数来说，情况就不同了，首先，无符号右移是以0来填充空位，而不是像有符号右移那样以符号位的值来填充空位，所以，对正数的无符号右移与有符号右移结果相同，但负数的结果就不一样了，其次，无符号右移操作符会把负数的二进制码当成正数的二进制码，而且，由于负数以其绝对值的二进制补码形式表示，因此会导致无符号右移后的结果非常大。</p>
+<p><strong>布尔操作符</strong></p>
+<p>3个：非（NOT）、与（AND）、或（OR）</p>
+<p>逻辑非，一个！号表示，无论操作的值是什么类型，它都会返回一个布尔值，首先把操作对象转换成布尔值，再对其求反。当然，它也可以用作把一个值转换成其对应的布尔值，同时使用两个逻辑非操作符，实际上会模拟Boolean()转型函数的行为，就得到了这个值真正对应的布尔值。</p>
+<p>逻辑与，由两个和号（&amp;&amp;）表示，两个操作数。遵循“同为真则真，有一个假则为假”的规则，可以应用于任何类型的操作数，在有一个操作数不是布尔值的情况下，逻辑与操作就不一定返回布尔值。</p>
+<p>逻辑或，由（||）表示，两个操作数，遵循“同假为假，其他为真”的规则。</p>
+<p><strong>乘性操作符</strong></p>
+<p>乘法 *<br>除法 /<br>求模 %</p>
+<p><strong>加性操作符</strong></p>
+<p>加法 +<br>减法 -</p>
+<p><strong>关系操作符</strong></p>
+<p>小于（&lt;）、大于（&gt;）、小于等于（&lt;=）或大于等于（&gt;=）</p>
+<p><strong>相等操作符</strong></p>
+<p>相等和不相等 “==”和“!=”<br>全等和不全等 “===”和“!==”</p>
+<p><strong>条件操作符</strong></p>
+<p>a&gt;b?1:2;</p>
+<p>若a大于b则为1，不大于则为2</p>
+<p><strong>赋值操作符</strong></p>
+<p>用“=”表示，如：a=3；将右侧的值赋给左侧</p>
+<p>每个主要的算术操作符都有对应的复合赋值操作符，如：*=、/=、%=、+=、-=、&lt;&lt;=、&gt;&gt;=.</p>
+<p><strong>逗号操作符</strong></p>
+<p>使用逗号操作符可以在一条语句中执行多个操作，如下例：<br>var num1=1,num2=2,num3=3;<br>逗号操作符多用于声明多个变量，除此之外，逗号操作符还可以用于赋值，在用于赋值时，逗号操作符会返回表达式的最后一项，如下例：<br>var num=(1,2,3,4,5);<br>最终num的值为5.</p>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p>首先，我们要知道语句是用来做什么，比如，条件判断，我们常常需要做比较，某个条件成立的情况下执行某个动作，又或者循环，网页中每种类型的信息都可能是多个，那么对多个进行判断或者操作，就可能会用到循环，当然，也跟数组有关，后面会有，这里不探讨。</p>
+<p>1、if</p>
+<pre><code>if(a){
+    do this
+    } else {
+    do this
+    }
+</code></pre><p>虽然在比较简单的情况下，比如一个简单的判断之后执行一个动作，那么它们可以被写在一行上，但是，业界普遍推崇的最佳实践是始终使用代码块，不管是简单还是复杂</p>
+<p>2、do-while</p>
+<p>是一种后测试循环语句，只有在循环体中的代码执行之后，才会测试出口条件，即循环体内的代码至少会被执行一次：</p>
+<pre><code>var i=1;
+
+    do{
+    i+=2;
+    } while (i&lt;10)
+
+    alert(i);
+</code></pre><p>只要变量i的值小于10，语句就会一直执行下去。</p>
+<p>3、while</p>
+<p>跟do-while相对，它是前测试语句，先判断，后执行。</p>
+<pre><code>var i=0;
+    while(i&lt;10){
+    i+=2;
+    }
+</code></pre><p>4、for </p>
+<p>一种前循环测试语句，具有在执行循环前初始化变量和定义循环后要执行的代码的能力。</p>
+<p>包括初始化变量定义，条件表达式，和循环的方式三个参数设置，例如：</p>
+<pre><code>var count=10;
+    for(var i=0;i&lt;count;i++){
+    alert(i);
+    }
+</code></pre><p>其实你可以发现，它跟下面的语句功能相同</p>
+<pre><code>var count=10;
+    var i=0;
+    while(i&lt;count){
+    alert(i);
+    }
+</code></pre><p>for循环只是把循环有关的代码集中到了一个位置，故而，while做不到的，for也做不到。需要指出的是，在for循环的变量初始化表达式中，可以不用var，也可以在外部进行初始化。</p>
+<p>for语句有极大灵活性，是ES中最常用的一个语句。</p>
+<p>5、for-in</p>
+<p>是一种精准的迭代语句，可以用来枚举对象的属性，譬如示例：</p>
+<pre><code>for(var propName in window){
+    document.write(propName);
+}
+</code></pre><p>上述例子，使用for-in循环来显示了BOM中windows对象的所有属性，注：ES对象的属性没有顺序，因此，通过for-in循环输出的属性名顺序是不可预测的。</p>
+<p>6、label</p>
+<p>使用label语句可以在代码中添加标签，以便将来使用。</p>
+<pre><code>label:statement
+</code></pre><p>示例：</p>
+<pre><code>start:for(var i=0;i&lt;count;i++){
+    alert(i);
+}
+</code></pre><p>此例中定义的start标签可以在将来由break或continue语句引用，加标签的语句一般都要与for语句等循环语句配合使用。</p>
+<p>7、break 和 continue</p>
+<p>此二者用于在循环中精确的控制代码的执行，其中，break会立即退出循环，强制执行循环后的语句，而continue语句虽然也会立即跳出循环，但退出循环后会从循环的顶部继续执行。</p>
+<p>8、with</p>
+<p>with语句是将代码的作用域设置到一个特定的对象中，定义with语句的目的主要是为了简化多次编写同一个对象的工作，如下</p>
+<pre><code>var qs=location.search.substring(1);
+    var hostName=location,hostname;
+    var url=location.href;
+</code></pre><p>上面几行代码都包含location对象，如果使用with语句，可以写成如下：</p>
+<pre><code>with(location){
+    var qs=location.search.substring(1);
+    var hostName=location,hostname;
+    var url=location.href;
+}
+</code></pre><p>但是，大量使用with会导致性能下降，同时也给调试代码带来困难，大型应用程序中不建议使用with语句。</p>
+<p>9、switch</p>
+<p>switch语句和if语句关系密切，同样可用于多种条件的判断，代码示例如下：</p>
+<pre><code>switch(i){
+    case:25:
+    alert(&quot;25&quot;);
+    break;
+    case:35:
+    alert(&quot;35&quot;);
+    break;
+    case:45:
+    alert(&quot;45&quot;);
+    break;
+    default;
+    alert(&quot;Other&quot;);
+}
+</code></pre><p>通过为每个case后面添加一个break语句，可以避免同时执行多个case代码的情况，若确实需要合并几种情况，要在代码中写清楚注释。</p>
+<p>可以在switch中使用任何数据类型，而且每个case的值不一定是常量，可以是变量甚至表达式。</p>
+<p>switch语句在比较值时使用的是全等操作符，因此不会发生类型转换。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>提到函数，不得不说的一个词是<strong>封装</strong>，它可以封装任意多条语句，可以在任何地方，任何时候调用执行，使用function关键字来声明，后跟一组参数及函数体。譬如：</p>
+<pre><code>function sayHi(name,message){
+    alert(&quot;hello&quot;+name+&quot;,&quot;+message);
+}
+</code></pre><p>可以通过其函数名进行调用，后面加上一对圆括号和参数，多个参数逗号分开。</p>
+<pre><code>sayHi(&quot;idea&quot;，“you are good”)；
+</code></pre><p>ES中的函数在定义时不必指定是否返回值，实际上，任何函数在任何时候都可以通过return语句后跟要返回的值来实现返回值，如：</p>
+<pre><code>function sum(num1,num2){
+    return num1+num2;
+}
+</code></pre><p>这个sum()函数的作用是两个值的和，除了return语句，没有任何声明表示该函数会返回一个值，调用示例如下：</p>
+<pre><code>var result=sum(5,10);
+</code></pre><p><strong>函数会在return语句之后立即退出，若return后面还有代码，将不会被执行。</strong></p>
+<p>当然，一个函数可以在函数体的不同代码块中包含多个return语句。另外，return语句可以不带任何返回值，这时，函数在停止执行后将返回undefined值，用于需要函数提前终止又不需要返回值的情况。</p>
+<p>推荐做法是，要么让函数始终返回一个值，要么永远不要返回值，否则会给代码调试带来不便。</p>
+<p><strong>理解参数</strong></p>
+<p>ES函数的参数和其他语言的函数参数不同，它不在乎传进来多少参数，也不在乎参数的数据类型，定义的函数参数个数和调用是传递的参数之间没有必然联系，之所以会这样，是因为ES中的参数内部是用一个数组来表示的，函数接收到的始终都是这个数组，而不关心数组中包含哪些参数，如果这个数组中不包含任何元素，也无所谓，包含多个元素，也没问题，实际上，在函数体内，通过arguments对象来访问这个参数组，从而获取传递给函数的每一个参数。</p>
+<p>其实argument对象只是与数组类似，前面例子可以这样写</p>
+<pre><code>function sayHi(){
+    alert(&quot;hello&quot;+arguments[0]+&quot;,&quot;+arguments[1]);        
+}
+</code></pre><p>它不包含命名参数，但函数功能依旧，这个事实说明了ES函数的一个重要特点，命名的函数只是提供了便利，但不是必需的。当然，另外一点是，arguments对象可以和参数一起使用，它的值永远和对应命名参数的值保持同步。</p>
+<p>需要记住的最后一点：没有传递值的命名参数将自动被赋予undefined值，这就跟定义了变量却并未初始化一样。</p>
+<p><strong>没有重载</strong></p>
+<p>ES函数不能像传统意义那样实现重载，而在其他语言中，可以为一个函数编写两个定义，只要两个定义接受的参数的类型和数量不同即可。如前面所述，ES中的函数没有这些，其参数是由包含零活多个值的数组来表示的，所以，重载是不可能做到的。</p>
+<p>如：</p>
+<pre><code>function addSomeNumber(num){
+    return num+100;
+}
+
+function addSomeNumber(num){
+    return num+200;
+}
+
+var result=addSomeNumber(100);  //300
+</code></pre><p>此处，函数被定义了两次，但后定义的函数覆盖了先定义的函数，所以最后的值为300.</p>
+<p>好了，关于基本概念，到此就告一段落了，还是有不少内容的，接下来依然路途遥远，但请相信只要我们坚持下去，它就不再那么遥远，定会越来越精彩，一起继续加油吧！~</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2016/03/20/javascript-study-three/" title="征服javascript学习笔记（三）——基本概念（下）" target="_blank" rel="external">http://yoursite.com/2016/03/20/javascript-study-three/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2016/03/27/javascript-study-four/" title="征服javascript学习笔记（四）——变量、作用域和内存"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2016/03/06/design-principle/" title="设计，不止于美"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

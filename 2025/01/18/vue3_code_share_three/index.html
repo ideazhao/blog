@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Vue.js技术内幕：数据响应式之2.x版 | 灵感之见</title>
+  <meta name="description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家黄轶所编写的 《Vue.js技术内幕》  上一篇我们聊了组件渲染，你好奇的第二个问题，一定是响应。即“数据驱动”。 数据驱动的本质是数据变化引起页面变化，让开发者只关注数据操作。 响应式的处理，需要应对多种场景，而且其中带有不易察觉的“巧思”，所以，本文只聊一个话题，就是Vue 2.x的响应式实现。 核">
+<meta name="keywords" content="书籍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js技术内幕：数据响应式之2.x版">
+<meta property="og:url" content="http://yoursite.com/2025/01/18/vue3_code_share_three/index.html">
+<meta property="og:site_name" content="灵感之见">
+<meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家黄轶所编写的 《Vue.js技术内幕》  上一篇我们聊了组件渲染，你好奇的第二个问题，一定是响应。即“数据驱动”。 数据驱动的本质是数据变化引起页面变化，让开发者只关注数据操作。 响应式的处理，需要应对多种场景，而且其中带有不易察觉的“巧思”，所以，本文只聊一个话题，就是Vue 2.x的响应式实现。 核">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cb82d46e371f4314a0d8b2eb6541ac4f~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1746238866&x-orig-sign=KHkL0aGmF%2BeaTq6u7ZiX2eO3jUE%3D">
+<meta property="og:updated_time" content="2025-04-26T02:58:08.742Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js技术内幕：数据响应式之2.x版">
+<meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家黄轶所编写的 《Vue.js技术内幕》  上一篇我们聊了组件渲染，你好奇的第二个问题，一定是响应。即“数据驱动”。 数据驱动的本质是数据变化引起页面变化，让开发者只关注数据操作。 响应式的处理，需要应对多种场景，而且其中带有不易察觉的“巧思”，所以，本文只聊一个话题，就是Vue 2.x的响应式实现。 核">
+<meta name="twitter:image" content="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cb82d46e371f4314a0d8b2eb6541ac4f~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1746238866&x-orig-sign=KHkL0aGmF%2BeaTq6u7ZiX2eO3jUE%3D">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2025/01/18/vue3_code_share_three/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="灵感之见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="./idea.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ideazhao" target="_blank">
+          <img class="img-circle img-rotate" src="/images/idea.png" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">灵感_idea</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>12年老博，慢工出细活</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TypeScript/">TypeScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI开发大观/">UI开发大观</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue3/">Vue3</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/分享交流/">分享交流</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试/">前端面试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">56</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动端/">移动端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/组件/">组件</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/组件/Vue3/">Vue3</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/经历/">经历</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计/">设计</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/说书匠/">说书匠</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读后感/">读后感</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/">2015</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/">2014</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/05/11/javascript_high_level_design_two/" class="title">JavaScript高级程序设计(第5版)：程序中的数据表达</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-05-10T16:00:00.000Z" itemprop="datePublished">2025-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/总结/">总结</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/04/23/ten_years_reading_record/" class="title">微信读书10年陪伴，当阅读照进现实</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-04-22T16:00:00.000Z" itemprop="datePublished">2025-04-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/31/javascript_high_level_design_one/" class="title">JavaScript高级程序设计(第5版)：扎实的基本功是唯一捷径</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-30T16:00:00.000Z" itemprop="datePublished">2025-03-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/23/vue3_code_share_five/" class="title">Vuejs技术内幕：用算法优雅解决复杂问题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-22T16:00:00.000Z" itemprop="datePublished">2025-03-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/说书匠/">说书匠</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/03/09/vue3_code_share_four/" class="title">Vuejs技术内幕：数据响应式之3.x版</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-03-08T16:00:00.000Z" itemprop="datePublished">2025-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心与框架"><span class="toc-number">1.</span> <span class="toc-text">核心与框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理流程"><span class="toc-number">2.</span> <span class="toc-text">处理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#底层机制"><span class="toc-number">3.</span> <span class="toc-text">底层机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#observe"><span class="toc-number">4.</span> <span class="toc-text">observe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-vue3_code_share_three" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue.js技术内幕：数据响应式之2.x版
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2025/01/18/vue3_code_share_three/" class="article-date">
+	  <time datetime="2025-01-17T16:00:00.000Z" itemprop="datePublished">2025-01-18</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/说书匠/">说书匠</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/书籍/">书籍</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2025/01/18/vue3_code_share_three/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>每个系列一本前端好书，帮你轻松学重点。</p>
+<p>本系列来自ZOOM前端架构师，前百度、滴滴资深技术专家<strong>黄轶</strong>所编写的 <strong>《Vue.js技术内幕》</strong></p>
+</blockquote>
+<p>上一篇我们聊了组件渲染，你好奇的第二个问题，一定是<strong>响应</strong>。即“数据驱动”。</p>
+<p>数据驱动的本质是数据变化引起页面变化，让开发者只关注数据操作。</p>
+<p>响应式的处理，需要应对多种场景，而且其中带有不易察觉的“巧思”，所以，本文只聊一个话题，就是Vue 2.x的响应式实现。</p>
+<h2 id="核心与框架"><a href="#核心与框架" class="headerlink" title="核心与框架"></a>核心与框架</h2><p>大家对于Vue,js 2.x使用的API和流程应该耳熟能详。API 就是 Object.defineProperty，流程则是：<strong>在数据被访问时收集依赖，数据被修改时更新依赖</strong>。</p>
+<p>图示如下：</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cb82d46e371f4314a0d8b2eb6541ac4f~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg54G15oSfX19pZGVh:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNjQxNzcwNTIxMzY4NjA2In0%3D&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1746238866&amp;x-orig-sign=KHkL0aGmF%2BeaTq6u7ZiX2eO3jUE%3D" alt="image.png"></p>
+<p>具体过程，以一个简单的示例来看：</p>
+<pre><code>&lt;template&gt;
+  &lt;p&gt;{{ msg }}&lt;/p&gt;
+  &lt;button @click=&quot;random&quot;&gt;Random msg&lt;/button&gt;
+&lt;/template&gt;
+&lt;&lt;script&gt;
+export default {
+  data(){
+    return {
+      msg:&quot;msg reactive&quot;
+    }
+  },
+  methods: {
+    random(){
+      this.msg = Math.random()
+    }
+  },
+}
+&lt;/script&gt;
+</code></pre><p>不得不说，Vue 2.x的流行是有原因的，笔者已经写了几年的Vue3 和 React，敲这段代码依然非常自然，符合直觉。</p>
+<p>开发者只需要把变量定义在data中，改变变量的方法定义在methods中，然后在模板中绑定这个变量，页面就会渲染定义好的变量，点击按钮，执行函数，就能改变页面的渲染。</p>
+<p>代码和表现都很简单，但不论是简单还是复杂，都会经过同一流程。</p>
+<h2 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h2><p>流程分为三步：<strong>数据劫持、依赖收集、派发更新</strong>。</p>
+<p>说法比较抽象，直接看代码：</p>
+<pre><code>// 核心：定义对象的响应式属性
+function defineReactive(obj: any, key: string) {
+  let value = obj[key];
+  let dep = new Dep();
+
+  // 深度代理
+  let childOb = observe(value);
+  Object.defineProperty(obj, key, {
+    get() {
+      // 依赖收集 dep.depend()
+      if (Dep.target) {
+        dep.depend();
+        if (childOb) {
+    // value 是对象或者数组，childOb 才会有值
+    // 这里是针对数组的依赖收集
+          childOb.dep.depend();
+        }
+      }
+      return value;
+    },
+    set(newVal) {
+  if (!hasChanged(value, newVal)) {
+         return;
+       }
+       // 新值进行响应式
+       observe(newVal);
+       value = newVal;
+       // 通知更新
+       dep.notify();
+    },
+  });
+}
+</code></pre><p>这个方法里，我们见到了两个关键角色：<strong>dep、observe</strong>。</p>
+<p>还看到 observe(value)、Dep.target，dep.depend()，dep.notify()，你可能已经懵了，这些代码在干什么？</p>
+<h2 id="底层机制"><a href="#底层机制" class="headerlink" title="底层机制"></a>底层机制</h2><p>搞懂这些操作，需要先做两件事：</p>
+<p>1、理解底层机制</p>
+<p>2、理顺机制与代码结合的过程</p>
+<p>响应式机制使用了“观察者”模式，它是设计模式的一种。</p>
+<blockquote>
+<p>设计模式，是由前人所总结的，用来解决某类问题的方案。可以理解为数学或者物理中的公式，同类问题均能套用，此谓“模式”。</p>
+</blockquote>
+<p>在这里，它解决的问题是<strong>哪些数据要响应，数据变化之后哪些地方要跟着变</strong>。</p>
+<p>所以，需要有一个角色对数据做<strong>观察（Watcher）</strong> ，还需要有一个角色来收集对数据有<strong>依赖的集合（subs）</strong> ，然后在变化发生的时候<strong>通知更新（notify），</strong> 这些事情都是在dep中完成的。</p>
+<p>说到这，就明了。</p>
+<p>在拿到数据之后，首先创建了一个Dep实例dep。</p>
+<pre><code>let dep = new Dep();
+
+export default class Dep {
+  // 静态变量，保存 Watcher 类型对象
+  static target: ?Watcher;
+  subs: Array&lt;Watcher&gt;;     // 订阅者数组 元素即 Watcher对象
+  constructor () {
+    this.subs = []
+  }
+  // 添加订阅者
+  addSub (sub: Watcher) {
+    this.subs.push(sub)
+  }
+  // 依赖收集
+  depend () {
+    if (Dep.target) {
+      Dep.target.addDep(this)
+    }
+  }
+  // 通知订阅者 更新事件
+  notify () {
+    for (let i = 0, l = subs.length; i &lt; l; i++) {
+      subs[i].update()
+    }
+  }
+}
+</code></pre><p>数据就是data，Dep.target是Watcher，dep.depend()就是在收集依赖，我们结合三段代码来看。</p>
+<p>它们分别来自：defineReactive、Dep、Watcher。</p>
+<pre><code>// defineReactive中
+if (Dep.target) {
+  dep.depend();
+}
+
+// Dep中
+// 添加订阅者
+addSub (sub: Watcher) {
+  this.subs.push(sub)
+}
+// 依赖收集
+depend () {
+  if (Dep.target) {
+    Dep.target.addDep(this)
+  }
+}
+// 通知订阅者 更新事件
+notify () {
+  for (let i = 0, l = subs.length; i &lt; l; i++) {
+    subs[i].update()
+  }
+}
+
+// Watcher中
+class Watcher {
+  addDep(dep) {
+    dep.addSub(this);
+  }
+  update() {
+    const oldValue = this.value;
+    this.value = this.get(); // 重新获取
+    this.callback.call(this.vm, this.value, oldValue); // 触发回调
+  }
+}
+</code></pre><p>从上到下，分别调用了：dep.depend()、Watcher.addDep(this)、dep.addSub(this);</p>
+<p>玄机就在理解这两个this，第一个是dep，第二个是watcher</p>
+<p>这个流程下来做了三件事：</p>
+<p>1、创建dep实例</p>
+<p>2、Watcher掉用自身的addDep方法，把dep实例加进去</p>
+<p>3、dep实例调用自身的addSub方法，把watcher作为订阅者加入到订阅者列表中</p>
+<p>总结：<strong>把跟当前数据相关的观察者存储到了所创建的dep实例的subs数组当中</strong>，这就是收集依赖。</p>
+<p>这个流程清楚了，更新就好说，需要更新的时候，调用观察者的update()方法，想想观察者放哪儿去了？dep的subs里，那么执行下面的代码就可以了。</p>
+<pre><code>// defineReactive中
+// 通知更新 dep.notify()
+dep.notify();
+
+// Dep中
+// 通知订阅者 更新事件
+notify () {
+  for (let i = 0, l = subs.length; i &lt; l; i++) {
+    subs[i].update()
+  }
+}
+
+// Watcher中
+update() {
+  const oldValue = this.value;
+  this.value = this.get(); // 重新获取
+  this.callback.call(this.vm, this.value, oldValue); // 触发回调
+}
+</code></pre><p>一句话总结，找到跟当前数据相关的watcher，执行update。</p>
+<h2 id="observe"><a href="#observe" class="headerlink" title="observe"></a>observe</h2><p>到这里我们刻意忽略了一个角色——observe，我们在defineReactive方法中见过它。</p>
+<pre><code>function defineReactive(obj: any, key: string) {
+  let value = obj[key];
+
+  // 深度代理
+  let childOb = observe(value);
+}
+</code></pre><p>它起到什么作用呢？可以看出，从data中取值之后，它可以对值进行更深层次的代理，所以其实它才是响应式数据开始处理的入口，而不是defineReactive。数据先经过observe，做完了对数据类型的判断，才进入defineReactive，</p>
+<p>看下面两段代码，就都串起来了。</p>
+<pre><code>// 数据响应式的入口函数
+export function observe(value: any) {
+  if (isPlainObject(value) || isArray(value)) {
+    // 当值为对象或数组时，进行响应式处理
+    return new Observer(value);
+  }
+}
+
+class Observer {
+  constructor(value: any) {
+    if (isArray(value)) {
+      // 数组，需要特殊处理，进行劫持数组方法
+      (value as any).__proto__ = arrayMethods;
+      this.observeArray(value);
+    } else {
+      // 对象
+      const keys = Object.keys(value);
+      for (let i = 0; i &lt; keys.length; i++) {
+        const key = keys[i];
+        defineReactive(value, key);
+      }
+    }
+  }
+
+  /**
+   * 将数组的每一项进行响应式处理
+   * @param value
+   */
+  observeArray(value: any[]) {
+    for (let i = 0, l = value.length; i &lt; l; i++) {
+      observe(value[i]);
+    }
+  }
+}
+</code></pre><p>至此，Vue.js 2.x的响应式机制梳理完成。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>响应式的过程，说复杂也复杂，需要一步步精妙的设计及考虑不同细节，才能囊括日常开发的不同情况，但说简单也简单。</p>
+<p>我们从头再做一次梳理：</p>
+<p>1、observe接收data，判断data中的变量是一般的值，还是普通对象，还是数组；</p>
+<p>2、如果是普通对象，对其进行劫持，如果是数组，则进入数组的处理流程；</p>
+<p>3、响应式机制应用了“观察者模式”，需要观察者角色，负责收集观察者的角色，及发生变化时通知观察者更新的动作；</p>
+<p>4、收集依赖和执行更新的过程使用了Object.defineProperty API中的getter和setter特性；</p>
+<p>5、收集依赖在getter中进行，Dep负责收集Watcher；</p>
+<p>6、更新动作在setter中进行，Dep负责通知Watcher更新。</p>
+<p>OK，下篇文，我们聊Vue.js 3.x的实现过程。</p>
+<p>更多好文第一时间接收，可关注公众号：<strong>前端说书匠</strong></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2025/01/18/vue3_code_share_three/" title="Vue.js技术内幕：数据响应式之2.x版" target="_blank" rel="external">http://yoursite.com/2025/01/18/vue3_code_share_three/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ideazhao" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/idea.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ideazhao" target="_blank"><span class="text-dark">灵感_idea</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>反复，是最好的精进法宝。勇于尝试，才能拥有向上的人生。常年码字，海量阅读，热爱编程，健身达人。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2025/03/09/vue3_code_share_four/" title="Vuejs技术内幕：数据响应式之3.x版"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/12/16/vue3_code_share_two/" title="Vue.js技术内幕：组件渲染"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">    <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat," data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/ali-pay.jpeg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat-pay.jpg" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ideazhao" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/ideazhao" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
