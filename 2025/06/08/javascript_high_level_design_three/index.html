@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="灵感之见">
 <meta property="og:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自曾供职于Google的知名前端技术专家马特·弗里斯比编写的 《JavaScript高级程序设计》(第5版)  世界上很少有事物孤立存在，即便你是单身，世界上有很多单身… 所以，集合（列表）是一种很常见的数据形式，新闻列表、人员名单列表等。 本篇文介绍JavaScript中的这类数据。 集合的共性你一眼就能看出什么样的数据是集合，就像这样： 121">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2025-06-08T14:38:47.599Z">
+<meta property="og:updated_time" content="2025-06-08T15:16:30.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计(第5版)：无处不在的集合">
 <meta name="twitter:description" content="每个系列一本前端好书，帮你轻松学重点。 本系列来自曾供职于Google的知名前端技术专家马特·弗里斯比编写的 《JavaScript高级程序设计》(第5版)  世界上很少有事物孤立存在，即便你是单身，世界上有很多单身… 所以，集合（列表）是一种很常见的数据形式，新闻列表、人员名单列表等。 本篇文介绍JavaScript中的这类数据。 集合的共性你一眼就能看出什么样的数据是集合，就像这样： 121">
@@ -364,8 +364,8 @@
 <p><strong>迭代方法</strong></p>
 <p>包括forEach、map、filter等，它们对数组的每一项运行其中的函数体，并根据各自的能力返回相应结果。</p>
 <p>forEach遍历数组项，没有返回值，类似for循环。</p>
-<p>map返回代码逻辑中指定的返回值。</p>
-<p>filter返回代码中条件判断为true的数组项。</p>
+<p>map返回代码逻辑中指定的返回值，组成新的数组。</p>
+<p>filter返回代码中条件判断为true的数组项，组成新的数组。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let numbers = [2,1,3]</span><br><span class="line">let newNumbers = numbers.map(num=&gt;&#123;</span><br><span class="line">	return num + 1</span><br><span class="line">&#125;)</span><br><span class="line">// [3,2,4]</span><br><span class="line">let newNumbers = numbers.filter(num=&gt;&#123;</span><br><span class="line">	return num &gt; 1</span><br><span class="line">&#125;)</span><br><span class="line">// [2,3]</span><br></pre></td></tr></table></figure>
 <p>除以上方法外，数组还有很多其他实用方法，如“reverse（反转）、sort（排序）、reduce（归并）、includes（包含）、flat（展开）”等，相当丰富，可满足各种需求，篇幅原因不一一介绍，各位根据需要拓展学习。</p>
 <p>笔者在最初学习时，曾苦于方法过多难以记忆，现在告诉你，不用记，没有比实践带来的印象更深，用到的时候多查，用多了自然记住。</p>
@@ -387,7 +387,7 @@
 <p>除此之外，在迭代方面也有差异，Map实例会维护键-值对的插入顺序，可以根据插入顺序执行迭代操作。可用的方法有keys()、values()、entries()等。</p>
 <p>它们对于内存占用的情况也不同，固定内存情况下，Map可以比Object多存储50%左右的键-值对。</p>
 <p>在插入、查找、删除等操作的性能上，Map也比Object更优，所以，需要用到键-值对的时候，我们可以调整一下编码习惯，优先选择Map。</p>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set是另一种新增的集合型数据结构，像加强版的Map，因为它们多数API也是相似的，正因如此，学习起来较为轻松。</p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set是另一种新增的集合型数据结构，像加强版的Map，因为它们多数API是相似的，正因如此，学习起来较为轻松。</p>
 <p><strong>基本API</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const m = new Set([1,2,3])</span><br><span class="line">m.size  // 3</span><br><span class="line">m.add(4).add(5)</span><br><span class="line">m.has(3)  // true </span><br><span class="line">m.delete(1)</span><br><span class="line">m.clear()</span><br></pre></td></tr></table></figure>
 <p>操作同样直观易懂，不赘述。</p>
