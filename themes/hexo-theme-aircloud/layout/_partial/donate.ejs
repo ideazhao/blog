@@ -1,0 +1,15 @@
+<div class="donate-container">
+    <div>
+        <img src="/img/pencil.jpg" alt="" class="i-pencil">
+    </div>
+    <div class="site-slogan">
+        <i> <%= config.subtitle %> </i>
+    </div>
+    <div class="donate-button">
+        <button id="donate-button"><%= __('post.donate') %></button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="<%= config['root'] %><%= config.donate.img %>">
+        <p> <%= config.donate.content %> </p>
+    </div>
+</div>

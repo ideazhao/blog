@@ -1,0 +1,116 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: 灵感之见
+subtitle: 学习让人快乐，而分享加倍
+description: 生活随笔、前端乱炖、情感沟通、职业交流、旅行笔记
+author: 灵感_idea
+language: zh-Hans
+timezone:
+
+SEOTitle: 灵感之见
+email: 420750281@qq.com
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://yoursite.com
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+
+sidebar-avatar: img/idea.png 
+
+donate:
+  img: img/wechat-pay.jpg
+  content: 感谢鼓励
+
+search:
+  path: search.json
+  field: post
+
+post_style:
+    indent: 0
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+# time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+pagination_dir: page
+index_generator:
+  per_page: 10
+  order_by: -date
+
+category_generator:
+  per_page: 0
+
+tag_generator:
+  per_page: 0
+
+archive_generator:
+  per_page: 0
+  yearly: true
+  monthly: true
+  daily: false
+
+feed:
+  type: atom ##feed類型 atom或者rss2
+  path: atom.xml ##feed路徑
+  limit: 20  ##feed文章最小數量
+
+# Social links
+# social:
+
+  # 等等
+
+# social_icons:
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+## Themes: http://hexo.io/themes/
+theme: pure
+
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: git@github.com:linggan100/ideablognew.git
+  branch: master
