@@ -15,7 +15,7 @@ email: 420750281@qq.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://ideazhao.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -30,8 +30,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
-
-sidebar-avatar: img/idea.png 
+sidebar-avatar: img/idea.png
 
 donate:
   img: img/wechat-pay.jpg
@@ -42,7 +41,7 @@ search:
   field: post
 
 post_style:
-    indent: 0
+  indent: 0
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -94,12 +93,12 @@ archive_generator:
 feed:
   type: atom ##feed類型 atom或者rss2
   path: atom.xml ##feed路徑
-  limit: 20  ##feed文章最小數量
+  limit: 20 ##feed文章最小數量
 
 # Social links
 # social:
 
-  # 等等
+# 等等
 
 # social_icons:
 
