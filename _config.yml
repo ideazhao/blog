@@ -111,5 +111,6 @@ theme: pure
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:ideazhao/blog.git
+  # repo: git@github.com:ideazhao/blog.git
+  repo: git@github.com:linggan100/ideablognew.git
   branch: master
