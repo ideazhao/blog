@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ideazhao.com/2026/10/10/claude_code_how_made/</loc>
+    
+    <lastmod>2026-10-10T01:47:48.104Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ideazhao.com/2026/09/06/ai_engineering_seven/</loc>
     
     <lastmod>2026-09-06T13:33:18.891Z</lastmod>
@@ -10,6 +17,13 @@
   
   <url>
     <loc>https://ideazhao.com/2026/07/28/ai_engineering_six/</loc>
+    
+    <lastmod>2026-09-06T13:33:18.890Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2026/07/01/ai_engineering_four/</loc>
     
     <lastmod>2026-09-06T13:33:18.890Z</lastmod>
     
@@ -26,20 +40,6 @@
     <loc>https://ideazhao.com/2026/07/15/ai_engineering_five/</loc>
     
     <lastmod>2026-09-06T13:33:18.890Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ideazhao.com/2026/07/01/ai_engineering_four/</loc>
-    
-    <lastmod>2026-09-06T13:33:18.890Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ideazhao.com/2026/04/27/hello_algo_seven/</loc>
-    
-    <lastmod>2026-09-06T13:33:18.889Z</lastmod>
     
   </url>
   
@@ -65,14 +65,21 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2026/03/22/hello_algo_five/</loc>
+    <loc>https://ideazhao.com/2026/04/27/hello_algo_seven/</loc>
+    
+    <lastmod>2026-09-06T13:33:18.889Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2026/03/01/hello_algo_four/</loc>
     
     <lastmod>2026-09-06T13:33:18.888Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2026/03/01/hello_algo_four/</loc>
+    <loc>https://ideazhao.com/2026/03/22/hello_algo_five/</loc>
     
     <lastmod>2026-09-06T13:33:18.888Z</lastmod>
     
@@ -86,20 +93,6 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2025/08/24/javascript_high_level_design_five/</loc>
-    
-    <lastmod>2026-09-06T13:33:18.886Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ideazhao.com/2025/09/08/javascript_high_level_design_six/</loc>
-    
-    <lastmod>2026-09-06T13:33:18.886Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://ideazhao.com/2025/10/13/hello_algo_one/</loc>
     
     <lastmod>2026-09-06T13:33:18.886Z</lastmod>
@@ -107,7 +100,21 @@
   </url>
   
   <url>
+    <loc>https://ideazhao.com/2025/08/24/javascript_high_level_design_five/</loc>
+    
+    <lastmod>2026-09-06T13:33:18.886Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://ideazhao.com/2025/12/15/hello_algo_two/</loc>
+    
+    <lastmod>2026-09-06T13:33:18.886Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2025/09/08/javascript_high_level_design_six/</loc>
     
     <lastmod>2026-09-06T13:33:18.886Z</lastmod>
     
@@ -268,13 +275,6 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2016/02/25/javascript-study-one/</loc>
-    
-    <lastmod>2023-05-07T09:44:46.134Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://ideazhao.com/2016/03/20/javascript-study-three/</loc>
     
     <lastmod>2023-05-07T09:44:46.134Z</lastmod>
@@ -282,7 +282,14 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2016/04/20/javascript-study-five/</loc>
+    <loc>https://ideazhao.com/2016/02/25/javascript-study-one/</loc>
+    
+    <lastmod>2023-05-07T09:44:46.134Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2016/09/21/javascript-study-six/</loc>
     
     <lastmod>2023-05-07T09:44:46.101Z</lastmod>
     
@@ -296,7 +303,7 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2016/09/21/javascript-study-six/</loc>
+    <loc>https://ideazhao.com/2016/04/20/javascript-study-five/</loc>
     
     <lastmod>2023-05-07T09:44:46.101Z</lastmod>
     
@@ -331,34 +338,6 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2022/03/17/wechat_bom/</loc>
-    
-    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ideazhao.com/2022/08/28/wechat_code_run_control/</loc>
-    
-    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ideazhao.com/2021/12/04/wechat_dom_part_one/</loc>
-    
-    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ideazhao.com/2022/04/12/wechat_event/</loc>
-    
-    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://ideazhao.com/2021/03/07/why_all_is_object/</loc>
     
     <lastmod>2023-05-07T09:44:34.218Z</lastmod>
@@ -373,7 +352,35 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2021/09/05/wechat_function/</loc>
+    <loc>https://ideazhao.com/2022/04/12/wechat_event/</loc>
+    
+    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2021/12/04/wechat_dom_part_one/</loc>
+    
+    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2022/03/17/wechat_bom/</loc>
+    
+    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2022/08/28/wechat_code_run_control/</loc>
+    
+    <lastmod>2023-05-07T09:44:34.218Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ideazhao.com/2021/06/12/wechat_object_two/</loc>
     
     <lastmod>2023-05-07T09:44:34.217Z</lastmod>
     
@@ -387,21 +394,21 @@
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2021/06/12/wechat_object_two/</loc>
+    <loc>https://ideazhao.com/2021/09/05/wechat_function/</loc>
     
     <lastmod>2023-05-07T09:44:34.217Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2021/07/18/wechat_array/</loc>
+    <loc>https://ideazhao.com/2021/04/24/wechat_object_one/</loc>
     
     <lastmod>2023-05-07T09:44:34.193Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ideazhao.com/2021/04/24/wechat_object_one/</loc>
+    <loc>https://ideazhao.com/2021/07/18/wechat_array/</loc>
     
     <lastmod>2023-05-07T09:44:34.193Z</lastmod>
     
